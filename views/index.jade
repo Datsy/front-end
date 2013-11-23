@@ -15,39 +15,39 @@ html
     script(src="bower_components/handlebars/handlebars.js")
 
   body
-    h1 Welcome
     script#datsyApp(type="text/x-handlebars-template")
       div#container
 
-    script#someOtherView(type="text/x-handlebars-template")
+    script#index(type="text/x-handlebars-template")
       h1 Page Title
       h3 Sub Title
-      {{#each variable}}
-      a(href="{{ link }}")
-        div
-          p.what {{ what }}
-          p When: {{ when }}
-          p Where: {{ where }}
-      {{/each}}
+      //- {{#each variable}}
+      //- a(href="{{ link }}")
+      //-   div
+      //-     p.what {{ what }}
+      //-     p When: {{ when }}
+      //-     p Where: {{ where }}
+      //- {{/each}}
 
 
     script.
       var DatsyApp = {};
 
-    script(src="javascript/client/models/Datsy.js")
+    script(src="javascript/models/Datsy.js")
 
-    script(src="javascript/client/collections/XXXX.js")
+    //- script(src="javascript/client/collections/XXXX.js")
 
-    script(src="javascript/client/views/DatsyApp.js")
-    script(src="javascript/client/views/IndexView.js")
+    script(src="javascript/views/DatsyApp.js")
+    script(src="javascript/views/IndexView.js")
 
-    script(src="javascript/client/router/router.js")
+    script(src="javascript/router/router.js")
   
     script.
       var datsy = new DatsyApp.Datsy();
-
+      console.log(datsy);
       var templates = {};
       $("[type='text/x-handlebars-template']").each(function(index, div){
           templates[div.id] = Handlebars.compile(div.innerHTML);
       });
       datsy.set('templates', templates);
+      var datsyApp = new DatsyApp.DatsyView({ model: datsy });
