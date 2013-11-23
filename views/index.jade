@@ -18,7 +18,7 @@ html
 
   body
     script#datsyApp(type="text/x-handlebars-template")
-      header.navbar.navbar-inverse.navbar-fixed-top.bs-docs-nav(role="banner")
+      header.row.navbar.navbar-inverse.navbar-fixed-top.bs-docs-nav(role="banner")
         div.container
           .navbar-header
             button.navbar-toggle(type="button" data-toggle="collapse" data-target=".bs-navbar-collapse")
@@ -29,21 +29,25 @@ html
             
             a.navbar-brand(href="") Datsy.io
           
-          nav.collapse.navbar-collapse.bs-navbar-collapse (role="navigation")
+          nav.collapse.navbar-collapse.bs-navbar-collapse(role="navigation").span3
             ul.nav.navbar-nav.navbar-right
               li
                 a(href="") Popular Visualizations
               li
                 a(href="") Most Viewed Datasets
 
-      div#content
+      div#container.row
 
-      footer.bs-footer(role="contentinfo")
-        div.container
-          div.bs-social
+      footer.row(role="")
+        div.holding.span9.offset1
+          p Hello World
 
     script#index(type="text/x-handlebars-template")
-
+      div.hero-unit.span4.offset2
+        h1 Heading
+        p Tagline
+        p
+          a.btn.btn-primary.btn-large Learn more
 
       //- {{#each variable}}
       //- a(href="{{ link }}")
