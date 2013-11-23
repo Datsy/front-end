@@ -5,22 +5,46 @@ html
     meta(name="viewport", content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
 
     link(rel='stylesheet', href='/bower_components/normalize-css/normalize.css')
+    link(href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/main.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
 
     script(src="bower_components/jquery/jquery.min.js")
+    script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
     script(src="bower_components/underscore/underscore-min.js")
     script(src="bower_components/backbone/backbone-min.js")
     script(src="bower_components/handlebars/handlebars.js")
 
   body
     script#datsyApp(type="text/x-handlebars-template")
-      div#container
+      header.navbar.navbar-inverse.navbar-fixed-top.bs-docs-nav(role="banner")
+        div.container
+          .navbar-header
+            button.navbar-toggle(type="button" data-toggle="collapse" data-target=".bs-navbar-collapse")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            
+            a.navbar-brand(href="") Datsy.io
+          
+          nav.collapse.navbar-collapse.bs-navbar-collapse (role="navigation")
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href="") Popular Visualizations
+              li
+                a(href="") Most Viewed Datasets
+
+      div#content
+
+      footer.bs-footer(role="contentinfo")
+        div.container
+          div.bs-social
 
     script#index(type="text/x-handlebars-template")
-      h1 Page Title
-      h3 Sub Title
+
+
       //- {{#each variable}}
       //- a(href="{{ link }}")
       //-   div
