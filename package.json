@@ -1,0 +1,14 @@
+{
+  "name": "Datsy.io",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "~3.3.5",
+    "jade": "0.35.0",
+    "bower": "1.2.7",
+    "node-sass": "~0.7.0"
+  }
+}
