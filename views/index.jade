@@ -17,73 +17,65 @@ html
     script(src="bower_components/handlebars/handlebars.js")
 
   body
+    script#datsyApp(type="text/x-handlebars-template")
+      header.row.navbar.navbar-inverse.navbar-fixed-top.bs-docs-nav(role="banner")
+        div.container
+          .navbar-header
+            button.navbar-toggle(type="button" data-toggle="collapse" data-target=".bs-navbar-collapse")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            
+            a.navbar-brand(href="") Datsy.io
+          
+          nav.collapse.navbar-collapse.bs-navbar-collapse(role="navigation").span3
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href="") Popular Visualizations
+              li
+                a(href="") Most Viewed Datasets
 
-    div#wrapper.row
+      div#wrapper
 
-    footer.row(role="")
-      div.holding
-        p Hello World
+      footer.row(role="")
+        div.holding.span9.offset1
+          p Hello World
 
-  script#datsyApp(type="text/x-handlebars-template")
-    nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
-      div.navbar-header
-        button.navbar-toggle(type="button", data-toggle="collapse")
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand(href="#") Datsy.io
-
-    //- .navbar-header
-    //-   button.navbar-toggle(type="button" data-toggle="collapse" data-target=".bs-navbar-collapse")
-    //-     span.sr-only Toggle navigation
-    //-     span.icon-bar
-    //-     span.icon-bar
-    //-     span.icon-bar
-      
-    //-   a.navbar-brand(href="") Datsy.io
-    
-    //- nav.collapse.navbar-collapse.bs-navbar-collapse(role="navigation").span3
-    //-   ul.nav.navbar-nav.navbar-right
-    //-     li
-    //-       a(href="") Popular Visualizations
-    //-     li
-    //-       a(href="") Most Viewed Datasets
-
-  script#index(type="text/x-handlebars-template")
-    div.jumbotron
-      h1 Heading
-      p Tagline
-      p
+    script#index(type="text/x-handlebars-template")
+      div.jumbotron
+        h1 Heading
+        p Tagline
         a.btn.btn-primary.btn-large Learn more
 
-    //- {{#each variable}}
-    //- a(href="{{ link }}")
-    //-   div
-    //-     p.what {{ what }}
-    //-     p When: {{ when }}
-    //-     p Where: {{ where }}
-    //- {{/each}}
+      //- {{#each variable}}
+      //- a(href="{{ link }}")
+      //-   div
+      //-     p.what {{ what }}
+      //-     p When: {{ when }}
+      //-     p Where: {{ where }}
+      //- {{/each}}
 
 
-  script.
-    var DatsyApp = {};
+    script.
+      var DatsyApp = {};
 
-  script(src="javascript/models/Datsy.js")
+    script(src="javascript/models/Datsy.js")
 
-  //- script(src="javascript/client/collections/XXXX.js")
+    //- script(src="javascript/client/collections/XXXX.js")
 
-  script(src="javascript/views/DatsyApp.js")
-  script(src="javascript/views/IndexView.js")
+    script(src="javascript/views/DatsyApp.js")
+    script(src="javascript/views/IndexView.js")
 
-  script(src="javascript/router/router.js")
+    script(src="javascript/router/router.js")
+  
+    script.
+      var datsy = new DatsyApp.Datsy();
+      console.log(datsy);
+      var templates = {};
+      $("[type='text/x-handlebars-template']").each(function(index, div){
+          templates[div.id] = Handlebars.compile(div.innerHTML);
+      });
+      datsy.set('templates', templates);
+      var datsyApp = new DatsyApp.DatsyView({ model: datsy });
 
-  script.
-    var datsy = new DatsyApp.Datsy();
-    console.log(datsy);
-    var templates = {};
-    $("[type='text/x-handlebars-template']").each(function(index, div){
-        templates[div.id] = Handlebars.compile(div.innerHTML);
-    });
-    datsy.set('templates', templates);
-    var datsyApp = new DatsyApp.DatsyView({ model: datsy });
