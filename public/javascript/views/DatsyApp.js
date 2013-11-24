@@ -1,6 +1,6 @@
 DatsyApp.DatsyView = Backbone.View.extend({
 
-  className: '',
+  className: 'container',
 
   initialize: function() {
     this.template = this.model.get('templates')['datsyApp'];
