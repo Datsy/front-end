@@ -1,3 +1,9 @@
+#searchField {
+  font-size: 1.4em;
+  margin-bottom: 5px; 
+  width: 100%;
+}
+
 #wrapper {
   margin-top: 100px;
 }
@@ -5,4 +11,21 @@
 footer {
   border-top: 1px solid #ccc;
   padding: 10px
+}
+
+.explore-content {
+  margin-top: 30px;
+}
+
+.shaded {
+  background-color: #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  -webkit-border-radius: 10px;
+}
+
+.shaded-li-header {
+  background-color: #888;
+  font-size: 1.2em;
+  font-weight: bold;
 }
