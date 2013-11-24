@@ -4,3 +4,6 @@
 footer {
   border-top: 1px solid #cccccc;
   padding: 10px; }
+
+.visView form {
+  height: 200px; }

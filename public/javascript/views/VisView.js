@@ -1,11 +1,11 @@
-DatsyApp.IndexView = Backbone.View.extend({
+DatsyApp.VisView = Backbone.View.extend({
 
-  className: '',
+  className: 'visView',
   
   events: {},
 
   initialize: function() {
-    this.template = this.model.get('templates')['indexView'];
+    this.template = this.model.get('templates')['visualizations'];
   },
 
   render: function() {
