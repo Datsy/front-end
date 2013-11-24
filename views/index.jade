@@ -49,6 +49,9 @@ html
         button#visualize-data.btn-danger.btn-lg.col-md-offset-3 Visualize Data
         button#explore-data.btn-primary.btn-lg.col-md-offset-2 Explore Datasets
 
+    script#explore-data(type="text/x-handlebars-template")
+      h1 Explore that shit!
+
       //- {{#each variable}}
       //- a(href="{{ link }}")
       //-   div
@@ -56,7 +59,6 @@ html
       //-     p When: {{ when }}
       //-     p Where: {{ where }}
       //- {{/each}}
-
 
     script.
       var DatsyApp = {};
@@ -67,12 +69,12 @@ html
 
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
+    script(src="javascript/views/ExploreDataView.js")
 
     script(src="javascript/router/router.js")
   
     script.
       var datsy = new DatsyApp.Datsy();
-      console.log(datsy);
       var templates = {};
       $("[type='text/x-handlebars-template']").each(function(index, div){
           templates[div.id] = Handlebars.compile(div.innerHTML);

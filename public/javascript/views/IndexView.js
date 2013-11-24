@@ -19,11 +19,13 @@ DatsyApp.IndexView = Backbone.View.extend({
   navigateVisualizeData: function() {
     // Navigate to VisualizeData view
     console.log('navigateVisualizeData');
+    Backbone.history.navigate("/visualize", {trigger: true});
   },
 
   navigateExploreData: function() {
     // Navigate to ExploreData view
     console.log('navigateExploreData');
+    Backbone.history.navigate("/explore", {trigger: true});
   }
 
 });
