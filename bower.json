@@ -13,6 +13,7 @@
     "backbone": "1.1.0",
     "underscore": "1.5.2",
     "handlebars": "1.0.0",
-    "bootstrap": "~3.0.2"
+    "bootstrap": "~3.0.2",
+    "jqueryui": "~1.10.3"
   }
 }
