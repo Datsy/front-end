@@ -50,7 +50,26 @@ html
         button#explore-data.btn-primary.btn-lg.col-md-offset-2 Explore Datasets
 
     script#explore-data(type="text/x-handlebars-template")
-      h1 Explore that shit!
+      h1.text-center Explore Datasets
+
+      div.row
+        ul.list-group.col-md-4
+          li.list-group-item Categories
+          li.list-group-item Finance
+          li.list-group-item Government
+          li.list-group-item Populations
+          li.list-group-item Education
+          li.list-group-item Law
+          li.list-group-item ...
+        
+        ul.list-group.col-md-8
+          li.list-group-item Dataset1
+          li.list-group-item Dataset2
+          li.list-group-item Dataset3
+          li.list-group-item Dataset4
+          li.list-group-item Dataset5
+          li.list-group-item Dataset6
+          li.list-group-item ...
 
       //- {{#each variable}}
       //- a(href="{{ link }}")
