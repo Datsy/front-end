@@ -38,15 +38,18 @@ html
 
       div#wrapper
 
-      footer.row(role="")
-        div.holding.span9.offset1
-          p Hello World
+      footer.row.navbar.navbar-inverse(role="navigation")
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="") Help
+          li
+            a(href="") About
 
     script#index(type="text/x-handlebars-template")
       div.jumbotron
-        h1 Heading
+        h1 Super Sick Visualization
         p Tagline
-        a.btn.btn-primary.btn-large Learn more
+        a.btn.btn-primary.btn-large Be awesome.
 
       //- {{#each variable}}
       //- a(href="{{ link }}")
@@ -78,4 +81,3 @@ html
       });
       datsy.set('templates', templates);
       var datsyApp = new DatsyApp.DatsyView({ model: datsy });
-
