@@ -1,6 +1,6 @@
 DatsyApp.IndexView = Backbone.View.extend({
 
-  className: 'container',
+  className: '',
   
   events: {},
 
