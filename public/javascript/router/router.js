@@ -6,7 +6,9 @@ DatsyApp.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "index",
+    '': 'index',
+    'explore': 'exploreData',
+    'visualize': 'visualizeData'
   },
   
   swapView: function(view) {
@@ -17,6 +19,18 @@ DatsyApp.Router = Backbone.Router.extend({
     console.log('index route');
     var indexView = new DatsyApp.IndexView({ model: this.model });
     this.swapView(indexView);
+  },
+
+  exploreData: function() {
+    console.log('explore route');
+    var exploreDataView = new DatsyApp.ExploreDataView({ model: this.model });
+    this.swapView(exploreDataView);
+  },
+
+  visualizeData: function() {
+    console.log('visualize route');
+    var visualizeDataView = new DatsyApp.VisualizeDataView({ model: this.model });
+    this.swapView(visualizeDataView);
   }
 
 });
