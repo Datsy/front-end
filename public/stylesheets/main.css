@@ -10,8 +10,25 @@ footer {
   border-top: 1px solid #cccccc;
   padding: 10px; }
 
+.col-name {
+  float: left;
+  font-size: 1.3em;
+  font-weight: bold; }
+
+.col-source {
+  font-size: 1.3em;
+  font-weight: bold; }
+
+.col-stars {
+  float: right;
+  font-size: 1.3em;
+  font-weight: bold; }
+
 .explore-content {
   margin-top: 30px; }
+
+.explore-header {
+  display: inline-block; }
 
 .shaded {
   background-color: #cccccc;
