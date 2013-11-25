@@ -10,34 +10,28 @@
 
 footer {
   border-top: 1px solid #ccc;
+  margin-top: 20px;
   padding: 10px;
 }
 
-.col-name {
-  font-size: 1.3em;
+.data-explore-header {
+  font-size: 0.9em;
   font-weight: bold;
   text-align: left;
-  p {
-    left: 34px;
+  text-transform: uppercase;
+  
+  p.name {
+    left: 48px;
     position: relative;
   }
-}
-
-.col-source {
-  font-size: 1.3em;
-  font-weight: bold;
-  text-align: center;
-}
-
-.col-stars {
-  font-size: 1.3em;
-  font-weight: bold;
-  text-align: right;
-  p {
-    margin: 0;
-    padding: 0;
+  p.source {
     position: relative;
-    right: 40px;
+    left: 30px;
+  }
+  p.stars {
+    position: relative;
+    right: 30px;
+    text-align: right;
   }
 }
 
