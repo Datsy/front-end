@@ -12,7 +12,7 @@ DatsyApp.Router = Backbone.Router.extend({
   },
   
   swapView: function(view) {
-    this.$el.html( view.render().el);
+    this.$el.html(view.render().el);
   },
 
   index: function(){
@@ -31,6 +31,10 @@ DatsyApp.Router = Backbone.Router.extend({
     console.log('explore route');
     var exploreDataView = new DatsyApp.ExploreDataView({ model: this.model });
     this.swapView(exploreDataView);
+    // Set accordions to be collapsible
+    $( ".accordion" ).accordion({
+      collapsible: true
+    });
   }
 
 });
