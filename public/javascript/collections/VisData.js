@@ -4,7 +4,7 @@ DatsyApp.VisData = Backbone.Collection.extend({
   url: '/data',
 
   initialize: function() {
-    //this.fetch();
+    this.fetch();
   }
 
 });

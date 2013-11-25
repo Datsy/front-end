@@ -22,7 +22,7 @@ html
       include templates/datsyApp
 
       div#wrapper
-
+      
       footer
         include templates/footer
 
@@ -36,13 +36,15 @@ html
       var DatsyApp = {};
 
     script(src="javascript/models/Datsy.js")
+    script(src="javascript/models/VisDatum.js")
 
-    //- script(src="javascript/client/collections/XXXX.js")
+    script(src="javascript/collections/VisData.js")
 
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
     script(src="javascript/views/VisView.js")
-
+    script(src="javascript/views/GraphView.js")
+    
     script(src="javascript/router/router.js")
   
     script.
@@ -53,6 +55,7 @@ html
         templates[div.id] = Handlebars.compile(div.innerHTML);
       });
       datsy.set('templates', templates);
+      
       var datsyApp = new DatsyApp.DatsyView({ model: datsy });
  
       
