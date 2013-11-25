@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     jade: {
       dev: {
         files: {
-          "views/index.html": "views/*.jade"
+          "views/index.html": "views/index.jade"
         }
       }
     }
