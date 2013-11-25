@@ -23,6 +23,6 @@ module.exports = {
 
     sendResponse(res, data, 201);
   }
-
+  
 };
  
