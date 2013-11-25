@@ -8,7 +8,7 @@ DatsyApp.IndexView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.template = this.model.get('templates')['index'];
+    this.template = this.model.get('templates')['indexView'];
   },
 
   render: function() {

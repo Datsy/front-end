@@ -16,98 +16,39 @@ html
     script(src="bower_components/underscore/underscore-min.js")
     script(src="bower_components/backbone/backbone-min.js")
     script(src="bower_components/handlebars/handlebars.js")
+    script(src="bower_components/d3/d3.min.js")
     script(src="bower_components/jqueryui/ui/minified/jquery-ui.min.js")  
 
   body
     script#datsyApp(type="text/x-handlebars-template")
-      header.row.navbar.navbar-inverse.navbar-fixed-top.bs-docs-nav(role="banner")
-        div.container
-          .navbar-header
-            button.navbar-toggle(type="button" data-toggle="collapse" data-target=".bs-navbar-collapse")
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            
-            a.navbar-brand(href="") DATSY.io
-          
-          nav.collapse.navbar-collapse.bs-navbar-collapse(role="navigation").span3
-            ul.nav.navbar-nav.navbar-right
-              li
-                a(href="") Popular Visualizations
-              li
-                a(href="") Most Viewed Datasets
+      include templates/datsyApp
 
       div#wrapper
-
+      
       footer
-        a.pull-right(href="#") Back to top
-        p &copy; 2013 Datsy &middot; All Rights Reserved
+        include templates/footer
 
-    script#index(type="text/x-handlebars-template")
-      div.jumbotron
-        h1.text-center Welcome To Datsy!
-        p.text-center.lead We set data free.
-        button#visualize-data.btn-danger.btn-lg.col-md-offset-3 Visualize Data
-        button#explore-data.btn-primary.btn-lg.col-md-offset-2 Explore Datasets
+    script#indexView(type="text/x-handlebars-template")
+      include templates/indexView
+
+    script#visualizations(type="text/x-handlebars-template")
+      include templates/visualizations
 
     script#explore-data(type="text/x-handlebars-template")
-      h1.text-center Explore Datasets
-
-      div.explore-content.row
-        div.col-md-4
-          div.shaded
-            input#searchField(type="text", placeholder="Search for keywords...")
-            ul.list-group
-              header 
-                li.shaded-li-header.list-group-item.text-center Explore By Topic
-              li.list-group-item Finance
-              li.list-group-item Transportation
-              li.list-group-item Crime
-
-            ul.list-group
-              header
-                li.shaded-li-header.list-group-item.text-center Most Popular
-              li.list-group-item ...
-              li.list-group-item ...
-              li.list-group-item ...
-          
-        div.col-md-8
-          div.shaded
-            header
-              div.explore-header.col-name Dataset1
-              div.explore-header.col-source Data Source
-              div.explore-header.col-stars Stars 
-            div#accordion
-              h3 Dataset1
-              div
-                div.col-md-6
-                  Test
-                div.col-md-6
-                  Test
-              h3 Dataset2
-              div
-                p Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
-              h3 Dataset3
-              div
-                p Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-                ul
-                  li List item one
-                  li List item two
-                  li List item three
-              h3 Dataset4
-              div
-                p Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      include templates/explore
 
     script.
       var DatsyApp = {};
 
     script(src="javascript/models/Datsy.js")
+    script(src="javascript/models/VisDatum.js")
 
-    //- script(src="javascript/client/collections/XXXX.js")
+    script(src="javascript/collections/VisData.js")
 
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
+    script(src="javascript/views/VisView.js")
+    script(src="javascript/views/GraphView.js")
     script(src="javascript/views/ExploreDataView.js")
 
     script(src="javascript/router/router.js")
@@ -116,9 +57,12 @@ html
   
     script.
       var datsy = new DatsyApp.Datsy();
+
       var templates = {};
       $("[type='text/x-handlebars-template']").each(function(index, div){
-          templates[div.id] = Handlebars.compile(div.innerHTML);
+        templates[div.id] = Handlebars.compile(div.innerHTML);
       });
       datsy.set('templates', templates);
+      
       var datsyApp = new DatsyApp.DatsyView({ model: datsy });
+       
