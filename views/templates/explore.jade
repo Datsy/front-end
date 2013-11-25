@@ -30,9 +30,9 @@ div.explore-content.row
       div.accordion
         h3.row.dataset-item
           div.col-md-4
-            p.name Dataset1
+            p.name Obesity in America
           div.col-md-4
-            p.source Data Source
+            p.source American McGee
           div.col-md-4
             p.stars
               span.glyphicon.glyphicon-star-empty
@@ -42,38 +42,49 @@ div.explore-content.row
         div.row.accordion-content
           div.col-md-6.content-table
             //- Fake static data
-            table.table.table-condensed.dataset
+            table.table.table-striped.table-bordered.dataset
               thead
                 tr
                   td id
                   td Restaurant
                   td State
                   td Obesity
+                  td Scroll1
+                  td Scroll2
               tbody
                 tr
                   td 1
                   td McDonalds
                   td California
                   td 28%
+                  td Fake
+                  td Fake
                 tr
                   td 2
                   td Mexler
                   td New Mexico
                   td 12%
+                  td Fake
+                  td Fake
                 tr
                   td 3
                   td Wendy's
                   td Utah
                   td 27%
+                  td Fake
+                  td Fake
           div.col-md-3
-            h5.keywords Keywords
-            p.keywords Obesity
-            p.keywords States
-            p.keywords McDonalds
+            h5.tag-header Tags
+            ul.tag-item
+              li Obesity
+              li McDonalds
+              li State
           div.col-md-3
-            p 27 Columns
-            p 14k Rows
-            button.btn.btn-info View Data
+            div.row.meta-data
+              h5 Data Summary
+              p 27 cols, 14k rows
+            div.row
+              button.btn.btn-info.view-data View Data
 
         h3.row.dataset-item
           div.col-md-4

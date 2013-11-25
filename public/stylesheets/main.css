@@ -15,15 +15,18 @@ h5.keywords {
   margin: 0;
   text-decoration: underline; }
 
-table thead {
-  font-weight: bold; }
 table.dataset {
-  font-size: 0.8em; }
+  margin: 0; }
+  table.dataset thead {
+    font-weight: bold; }
+  table.dataset.dataset {
+    font-size: 0.8em; }
 
 .accordion-content {
   padding: 10px !important; }
 
 .content-table {
+  overflow-x: auto;
   padding: 0; }
 
 .data-explore-header {
@@ -43,7 +46,7 @@ table.dataset {
 
 .dataset-item {
   font-weight: normal;
-  font-size: 1em; }
+  font-size: 0.75em; }
   .dataset-item p.name {
     font-weight: bold;
     font-size: 1.1em;
@@ -68,8 +71,23 @@ table.dataset {
 .explore-header {
   display: inline-block; }
 
-.keywords {
+.meta-data {
+  font-size: 0.7em;
   text-align: center; }
+
+.tag-header {
+  margin: 10px 0 5px 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: underline; }
+
+.tag-item {
+  list-style: none;
+  font-size: 0.7em;
+  padding: 0;
+  text-align: center; }
+  .tag-item li {
+    padding: 2px 0; }
 
 .shaded {
   background-color: #cccccc;
@@ -81,6 +99,11 @@ table.dataset {
   background-color: #888888;
   font-size: 1.2em;
   font-weight: bold; }
+
+.view-data {
+  position: relative;
+  bottom: -60px;
+  right: -40px; }
 
 .visView form {
   height: 90px;
