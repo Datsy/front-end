@@ -10,31 +10,28 @@ footer {
   border-top: 1px solid #cccccc;
   padding: 10px; }
 
-.visView form {
-  height: 90px;
-  margin-top: 30px; }
-
-.visView #graph {
-  min-height: 100px;
-  width: 100%;
-  background-color: #cccccc;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  padding: 3% 5%; }
-
 .col-name {
-  float: left;
   font-size: 1.3em;
-  font-weight: bold; }
+  font-weight: bold;
+  text-align: left; }
+  .col-name p {
+    left: 34px;
+    position: relative; }
 
 .col-source {
   font-size: 1.3em;
-  font-weight: bold; }
+  font-weight: bold;
+  text-align: center; }
 
 .col-stars {
-  float: right;
   font-size: 1.3em;
-  font-weight: bold; }
+  font-weight: bold;
+  text-align: right; }
+  .col-stars p {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    right: 40px; }
 
 .explore-content {
   margin-top: 30px; }
@@ -52,3 +49,15 @@ footer {
   background-color: #888888;
   font-size: 1.2em;
   font-weight: bold; }
+
+.visView form {
+  height: 90px;
+  margin-top: 30px; }
+
+.visView #graph {
+  min-height: 100px;
+  width: 100%;
+  background-color: #cccccc;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  padding: 3% 5%; }

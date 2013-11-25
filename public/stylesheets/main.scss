@@ -13,34 +13,32 @@ footer {
   padding: 10px;
 }
 
-.visView form {
-  height: 90px;
-  margin-top: 30px;
-}
-.visView #graph {
-  min-height: 100px;
-  width: 100%;
-  background-color: #ccc;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  padding: 3% 5%;
-}
-
 .col-name {
-  float: left;
   font-size: 1.3em;
   font-weight: bold;
+  text-align: left;
+  p {
+    left: 34px;
+    position: relative;
+  }
 }
 
 .col-source {
   font-size: 1.3em;
   font-weight: bold;
+  text-align: center;
 }
 
 .col-stars {
-  float: right;
   font-size: 1.3em;
   font-weight: bold;
+  text-align: right;
+  p {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    right: 40px;
+  }
 }
 
 .explore-content {
@@ -62,4 +60,17 @@ footer {
   background-color: #888;
   font-size: 1.2em;
   font-weight: bold;
+}
+
+.visView form {
+  height: 90px;
+  margin-top: 30px;
+}
+.visView #graph {
+  min-height: 100px;
+  width: 100%;
+  background-color: #ccc;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  padding: 3% 5%;
 }
