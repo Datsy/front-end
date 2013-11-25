@@ -10,18 +10,6 @@ footer {
   border-top: 1px solid #cccccc;
   padding: 10px; }
 
-.visView form {
-  height: 90px;
-  margin-top: 30px; }
-
-.visView #graph {
-  min-height: 100px;
-  width: 100%;
-  background-color: #cccccc;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  padding: 3% 5%; }
-
 .col-name {
   float: left;
   font-size: 1.3em;
