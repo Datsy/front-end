@@ -34,12 +34,47 @@ div.explore-content.row
           div.col-md-4
             p.source Data Source
           div.col-md-4
-            p.stars Stars 
-        div.row
-          div.col-md-6
-            p What is this??
-          div.col-md-6
-            p WHAT IS THIS??
+            p.stars
+              span.glyphicon.glyphicon-star-empty
+              span.glyphicon.glyphicon-star-empty
+              span.glyphicon.glyphicon-star-empty
+              span.glyphicon.glyphicon-star-empty
+        div.row.accordion-content
+          div.col-md-6.content-table
+            //- Fake static data
+            table.table.table-condensed.dataset
+              thead
+                tr
+                  td id
+                  td Restaurant
+                  td State
+                  td Obesity
+              tbody
+                tr
+                  td 1
+                  td McDonalds
+                  td California
+                  td 28%
+                tr
+                  td 2
+                  td Mexler
+                  td New Mexico
+                  td 12%
+                tr
+                  td 3
+                  td Wendy's
+                  td Utah
+                  td 27%
+          div.col-md-3
+            h5.keywords Keywords
+            p.keywords Obesity
+            p.keywords States
+            p.keywords McDonalds
+          div.col-md-3
+            p 27 Columns
+            p 14k Rows
+            button.btn.btn-info View
+
         h3.row.dataset-item
           div.col-md-4
             p.name Dataset2
@@ -49,6 +84,7 @@ div.explore-content.row
             p.stars Stars 
         div
           p Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
+        
         h3.row.dataset-item
           div.col-md-4
             p.name Dataset3
@@ -62,6 +98,7 @@ div.explore-content.row
             li List item one
             li List item two
             li List item three
+        
         h3.row.dataset-item
           div.col-md-4
             p.name Dataset4
@@ -71,4 +108,3 @@ div.explore-content.row
             p.stars Stars 
         div
           p Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-          

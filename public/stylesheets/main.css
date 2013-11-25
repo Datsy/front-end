@@ -11,6 +11,21 @@ footer {
   margin-top: 20px;
   padding: 10px; }
 
+h5.keywords {
+  margin: 0;
+  text-decoration: underline; }
+
+table thead {
+  font-weight: bold; }
+table.dataset {
+  font-size: 0.8em; }
+
+.accordion-content {
+  padding: 10px !important; }
+
+.content-table {
+  padding: 0; }
+
 .data-explore-header {
   font-size: 0.9em;
   font-weight: bold;
@@ -52,6 +67,9 @@ footer {
 
 .explore-header {
   display: inline-block; }
+
+.keywords {
+  text-align: center; }
 
 .shaded {
   background-color: #cccccc;
