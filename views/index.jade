@@ -1,11 +1,12 @@
 doctype 5
 html
   head
-    title Datsy.io
+    title DATSY.io
     meta(name="viewport", content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
 
-    link(rel='stylesheet', href='/bower_components/normalize-css/normalize.css')
-    link(href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet")
+    //- link(rel='stylesheet', href='/bower_components/normalize-css/normalize.css')
+    link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css")
     link(rel='stylesheet', href='/stylesheets/main.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
@@ -16,6 +17,7 @@ html
     script(src="bower_components/backbone/backbone-min.js")
     script(src="bower_components/handlebars/handlebars.js")
     script(src="bower_components/d3/d3.min.js")
+    script(src="bower_components/jqueryui/ui/minified/jquery-ui.min.js")  
 
   body
     script#datsyApp(type="text/x-handlebars-template")
@@ -32,6 +34,9 @@ html
     script#visualizations(type="text/x-handlebars-template")
       include templates/visualizations
 
+    script#explore-data(type="text/x-handlebars-template")
+      include templates/explore
+
     script.
       var DatsyApp = {};
 
@@ -44,8 +49,11 @@ html
     script(src="javascript/views/IndexView.js")
     script(src="javascript/views/VisView.js")
     script(src="javascript/views/GraphView.js")
-    
+    script(src="javascript/views/ExploreDataView.js")
+
     script(src="javascript/router/router.js")
+
+    script(src="javascript/main.js")
   
     script.
       var datsy = new DatsyApp.Datsy();
@@ -57,5 +65,4 @@ html
       datsy.set('templates', templates);
       
       var datsyApp = new DatsyApp.DatsyView({ model: datsy });
- 
-      
+       
