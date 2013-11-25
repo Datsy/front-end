@@ -20,11 +20,31 @@ footer {
     left: 48px;
     position: relative; }
   .data-explore-header p.source {
-    position: relative;
-    left: 30px; }
+    text-align: center; }
   .data-explore-header p.stars {
     position: relative;
     right: 30px;
+    text-align: right; }
+
+.dataset-item {
+  font-weight: normal;
+  font-size: 1em; }
+  .dataset-item p.name {
+    font-weight: bold;
+    font-size: 1.1em;
+    left: 0px;
+    margin: 0;
+    position: relative;
+    text-align: left; }
+  .dataset-item p.source {
+    font-style: italic;
+    margin: 0;
+    position: relative;
+    text-align: center; }
+  .dataset-item p.stars {
+    margin: 0;
+    position: relative;
+    right: 35px;
     text-align: right; }
 
 .explore-content {

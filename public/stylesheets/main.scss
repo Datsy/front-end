@@ -25,12 +25,36 @@ footer {
     position: relative;
   }
   p.source {
-    position: relative;
-    left: 30px;
+    text-align: center;
   }
   p.stars {
     position: relative;
     right: 30px;
+    text-align: right;
+  }
+}
+
+.dataset-item {
+  font-weight: normal;
+  font-size: 1em;
+  p.name {
+    font-weight: bold;
+    font-size: 1.1em;
+    left: 0px;
+    margin: 0;
+    position: relative;
+    text-align: left;
+  }
+  p.source {
+    font-style: italic;
+    margin: 0;
+    position: relative;
+    text-align: center;
+  }
+  p.stars {
+    margin: 0;
+    position: relative;
+    right: 35px;
     text-align: right;
   }
 }
