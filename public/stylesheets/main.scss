@@ -10,37 +10,77 @@
 
 footer {
   border-top: 1px solid #ccc;
+  margin-top: 20px;
   padding: 10px;
 }
 
-.visView form {
-  height: 90px;
-  margin-top: 30px;
-}
-.visView #graph {
-  min-height: 100px;
-  width: 100%;
-  background-color: #ccc;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  padding: 3% 5%;
+h5.keywords {
+  margin: 0;
+  text-decoration: underline;
 }
 
-.col-name {
-  float: left;
-  font-size: 1.3em;
-  font-weight: bold;
+table.dataset {
+  margin: 0;
+  thead {
+    font-weight: bold;
+  }
+  &.dataset {
+    font-size: 0.8em;
+  }
 }
 
-.col-source {
-  font-size: 1.3em;
-  font-weight: bold;
+.accordion-content {
+  padding: 5px !important;
 }
 
-.col-stars {
-  float: right;
-  font-size: 1.3em;
+.content-table {
+  overflow-x: auto;
+  padding: 0;
+}
+
+.data-explore-header {
+  font-size: 0.9em;
   font-weight: bold;
+  text-align: left;
+  text-transform: uppercase;
+  
+  p.name {
+    left: 48px;
+    position: relative;
+  }
+  p.source {
+    text-align: center;
+  }
+  p.stars {
+    position: relative;
+    right: 30px;
+    text-align: right;
+  }
+}
+
+.dataset-item {
+  font-weight: normal;
+  font-size: 0.75em;
+  p.name {
+    font-weight: bold;
+    font-size: 1.1em;
+    left: 0px;
+    margin: 0;
+    position: relative;
+    text-align: left;
+  }
+  p.source {
+    font-style: italic;
+    margin: 0;
+    position: relative;
+    text-align: center;
+  }
+  p.stars {
+    margin: 0;
+    position: relative;
+    right: 35px;
+    text-align: right;
+  }
 }
 
 .explore-content {
@@ -49,6 +89,31 @@ footer {
 
 .explore-header {
   display: inline-block;
+}
+
+.meta-data {
+  font-size: 0.7em;
+  text-align: center;
+  h5 {
+    text-decoration: underline;
+  }
+}
+
+.tag-header {
+  margin: 10px 0 5px 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.tag-item {
+  list-style: none;
+  font-size: 0.7em;
+  padding: 0;
+  text-align: center;
+  li {
+    padding: 2px 0;
+  }
 }
 
 .shaded {
@@ -62,4 +127,23 @@ footer {
   background-color: #888;
   font-size: 1.2em;
   font-weight: bold;
+}
+
+.view-data {
+  position: relative;
+  bottom: -60px;
+  right: -40px;
+}
+
+.visView form {
+  height: 90px;
+  margin-top: 30px;
+}
+.visView #graph {
+  min-height: 100px;
+  width: 100%;
+  background-color: #ccc;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  padding: 3% 5%;
 }

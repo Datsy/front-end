@@ -8,7 +8,104 @@
 
 footer {
   border-top: 1px solid #cccccc;
+  margin-top: 20px;
   padding: 10px; }
+
+h5.keywords {
+  margin: 0;
+  text-decoration: underline; }
+
+table.dataset {
+  margin: 0; }
+  table.dataset thead {
+    font-weight: bold; }
+  table.dataset.dataset {
+    font-size: 0.8em; }
+
+.accordion-content {
+  padding: 5px !important; }
+
+.content-table {
+  overflow-x: auto;
+  padding: 0; }
+
+.data-explore-header {
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: left;
+  text-transform: uppercase; }
+  .data-explore-header p.name {
+    left: 48px;
+    position: relative; }
+  .data-explore-header p.source {
+    text-align: center; }
+  .data-explore-header p.stars {
+    position: relative;
+    right: 30px;
+    text-align: right; }
+
+.dataset-item {
+  font-weight: normal;
+  font-size: 0.75em; }
+  .dataset-item p.name {
+    font-weight: bold;
+    font-size: 1.1em;
+    left: 0px;
+    margin: 0;
+    position: relative;
+    text-align: left; }
+  .dataset-item p.source {
+    font-style: italic;
+    margin: 0;
+    position: relative;
+    text-align: center; }
+  .dataset-item p.stars {
+    margin: 0;
+    position: relative;
+    right: 35px;
+    text-align: right; }
+
+.explore-content {
+  margin-top: 30px; }
+
+.explore-header {
+  display: inline-block; }
+
+.meta-data {
+  font-size: 0.7em;
+  text-align: center; }
+  .meta-data h5 {
+    text-decoration: underline; }
+
+.tag-header {
+  margin: 10px 0 5px 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: underline; }
+
+.tag-item {
+  list-style: none;
+  font-size: 0.7em;
+  padding: 0;
+  text-align: center; }
+  .tag-item li {
+    padding: 2px 0; }
+
+.shaded {
+  background-color: #cccccc;
+  border-radius: 10px;
+  padding: 10px;
+  -webkit-border-radius: 10px; }
+
+.shaded-li-header {
+  background-color: #888888;
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.view-data {
+  position: relative;
+  bottom: -60px;
+  right: -40px; }
 
 .visView form {
   height: 90px;
@@ -21,34 +118,3 @@ footer {
   border-radius: 10px;
   margin-bottom: 30px;
   padding: 3% 5%; }
-
-.col-name {
-  float: left;
-  font-size: 1.3em;
-  font-weight: bold; }
-
-.col-source {
-  font-size: 1.3em;
-  font-weight: bold; }
-
-.col-stars {
-  float: right;
-  font-size: 1.3em;
-  font-weight: bold; }
-
-.explore-content {
-  margin-top: 30px; }
-
-.explore-header {
-  display: inline-block; }
-
-.shaded {
-  background-color: #cccccc;
-  border-radius: 10px;
-  padding: 10px;
-  -webkit-border-radius: 10px; }
-
-.shaded-li-header {
-  background-color: #888888;
-  font-size: 1.2em;
-  font-weight: bold; }
