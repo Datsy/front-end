@@ -30,7 +30,7 @@ table.dataset {
 }
 
 .accordion-content {
-  padding: 10px !important;
+  padding: 5px !important;
 }
 
 .content-table {
@@ -94,6 +94,9 @@ table.dataset {
 .meta-data {
   font-size: 0.7em;
   text-align: center;
+  h5 {
+    text-decoration: underline;
+  }
 }
 
 .tag-header {

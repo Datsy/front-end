@@ -23,7 +23,7 @@ table.dataset {
     font-size: 0.8em; }
 
 .accordion-content {
-  padding: 10px !important; }
+  padding: 5px !important; }
 
 .content-table {
   overflow-x: auto;
@@ -74,6 +74,8 @@ table.dataset {
 .meta-data {
   font-size: 0.7em;
   text-align: center; }
+  .meta-data h5 {
+    text-decoration: underline; }
 
 .tag-header {
   margin: 10px 0 5px 0;
