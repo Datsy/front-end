@@ -2,19 +2,21 @@ var path = require('path');
 var sass = require('node-sass');
 
 exports.settings = function(app, express){
-  app.use(app.router);
-  app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/../views');
-  app.set("view engine", "jade");
-  app.configure(function() {
-    app.use(
-      sass.middleware({
-        src: __dirname + '/styles', //where the sass files are 
-        dest: __dirname + '/public/stylesheets', //where css should go
-        debug: true // obvious
-      })
-    );
+  app.configure(function(){
+    app.set('port', process.env.PORT || 3000);
+    app.set('views', __dirname + '/../views');
+    app.set("view engine", "jade");
+    app.use(sass.middleware({
+       src:   __dirname + '/../public',
+       dest:  __dirname + '/../public',
+       debug: true
+    }));
+    app.use(express.favicon());
+    app.use(express.logger('dev'));
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(app.router);
+    app.use(express.static(path.join(__dirname, '../public')));
   });
-  app.use(express.static(path.join(__dirname, '/../public')));
 };
 
