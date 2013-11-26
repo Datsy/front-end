@@ -1,15 +1,19 @@
 //- Dataset Name and Description
 div.col-md-12.row
   div.col-md-5
-    div.jumbotron
+    div#name-keywords-filter.jumbotron
       div.row
-        h2 Dataset Name
+        h2#dataset-name SF CityBikes
       div.row
-        h4 Go to column:
+        h5 Keywords:
+        p
+        p
+        p
+        p
       div.row
-        input(type="text")
+        input#column-filter(type="text" placeholder="Search for column name...")
   div.col-md-7
-    div.jumbotron
+    div#dataset-metadata.jumbotron
       div.row
         h4 Description:
       div.row
