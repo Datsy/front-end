@@ -1,7 +1,7 @@
 {
   "dataset": "Bay Area Bikeshare - Station Statuses",
   "ranking": 1,
-  "tags": ['realtime', 'bikes', 'geo'],
+  "tags": ['realtime', 'bikes', 'geolocation'],
   "columns": ["executiontime", "stationid", "stationname", "availabledocks", "totaldocks", "latitude", "longitude", "statusvalue", "statuskey", "availablebikes", "staddress1", "staddress2", "city", "postalcode", "location", "altitude", "teststation", "lastcommunicationtime", "landmark"],
   "meta": {
     "numRecords": 168675

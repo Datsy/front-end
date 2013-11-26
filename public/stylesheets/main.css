@@ -25,6 +25,9 @@ table.dataset {
 .accordion-content {
   padding: 5px !important; }
 
+.categories {
+  overflow-x: auto; }
+
 .content-table {
   overflow-x: auto;
   padding: 0; }
