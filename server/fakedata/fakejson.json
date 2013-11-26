@@ -709,7 +709,7 @@
       "tags": [],
       "columns": [],
       "meta": {
-        "numRecords": ~~(Math.random()*100000)
+        "numRecords": 98727
     },
     "records": []
     },
@@ -719,7 +719,7 @@
       "tags": [],
       "columns": [],
       "meta": {
-        "numRecords": ~~(Math.random()*100000)
+        "numRecords": 123547
       },
       "records": []
     },
@@ -729,7 +729,7 @@
       "tags": [],
       "columns": [],
       "meta": {
-        "numRecords": ~~(Math.random()*100000)
+        "numRecords": 1235
       },
       "records": []
     },{
@@ -738,7 +738,7 @@
       "tags": [],
       "columns": [],
       "meta": {
-        "numRecords": ~~(Math.random()*100000)
+        "numRecords": 98234
       },
       "records": []
     }
