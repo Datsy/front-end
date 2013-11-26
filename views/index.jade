@@ -37,6 +37,12 @@ html
     script#explore-data(type="text/x-handlebars-template")
       include templates/explore
 
+    script#exploreCategories(type="text/x-handlebars-template")
+      include templates/explore-categories
+
+    script#exploreDatasets(type="text/x-handlebars-template")
+      include templates/explore-datasets
+
     script.
       var DatsyApp = {};
 
@@ -50,6 +56,8 @@ html
     script(src="javascript/views/VisView.js")
     script(src="javascript/views/GraphView.js")
     script(src="javascript/views/ExploreDataView.js")
+    script(src="javascript/views/ExploreDatasetsView.js")
+    script(src="javascript/views/ExploreCategoriesView.js")
 
     script(src="javascript/router/router.js")
 
