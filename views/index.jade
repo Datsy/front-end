@@ -8,6 +8,7 @@ html
     link(rel="stylesheet", href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css")
     link(rel='stylesheet', href='/stylesheets/main.css')
     link(rel='stylesheet', href='/stylesheets/visualizer.css')
+    link(rel='stylesheet', href='/stylesheets/explorer.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
@@ -19,6 +20,8 @@ html
     script(src="bower_components/jqueryui/ui/minified/jquery-ui.min.js")  
 
   body
+
+    //- MASTER AND INDEX TEMPLATES
     script#datsyApp(type="text/x-handlebars-template")
       include templates/datsyApp
 
@@ -30,18 +33,27 @@ html
     script#indexView(type="text/x-handlebars-template")
       include templates/indexView
 
+    //- VISUALIZATION TEMPLATES
     script#visualizations(type="text/x-handlebars-template")
-      include templates/visualizations
+      include templates/visualization/visualizations
 
     script#dropper(type="text/x-handlebars-template")
-      include templates/dropper
+      include templates/visualization/dropper
 
     script#columnModel(type="text/x-handlebars-template")
-      include templates/columnModel
+      include templates/visualization/columnModel
 
+    //- DATA EXPLORER TEMPLATES
     script#explore-data(type="text/x-handlebars-template")
-      include templates/explore
+      include templates/explore/explore
 
+    script#exploreCategories(type="text/x-handlebars-template")
+      include templates/explore/explore-categories
+
+    script#exploreDatasets(type="text/x-handlebars-template")
+      include templates/explore/explore-datasets
+
+    //- DATA SET VIEW TEMPLATES
     script#dataSet(type="text/x-handlebars-template")
       include templates/dataSet
 
@@ -53,13 +65,20 @@ html
 
     script(src="javascript/collections/VisData.js")
 
-    script(src="javascript/views/SvgBackboneView.js")
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
-    script(src="javascript/views/VisView.js")
-    script(src="javascript/views/GraphView.js")
-    script(src="javascript/views/ColumnModelView.js")
-    script(src="javascript/views/ExploreDataView.js")
+
+    //- Explorere Views
+    script(src="javascript/views/explore/ExploreDataView.js")
+    script(src="javascript/views/explore/ExploreDatasetsView.js")
+    script(src="javascript/views/explore/ExploreCategoriesView.js")
+
+    //- Visualizer Views
+    script(src="javascript/views/visualizer/SvgBackboneView.js")
+    script(src="javascript/views/visualizer/VisualizerView.js")
+    script(src="javascript/views/visualizer/GraphView.js")
+    script(src="javascript/views/visualizer/ColumnModelView.js")
+
     script(src="javascript/views/DataSetView.js")
 
     script(src="javascript/router/router.js")

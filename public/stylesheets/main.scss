@@ -1,16 +1,10 @@
-#searchField {
-  font-size: 1.4em;
-  margin-bottom: 5px; 
-  width: 100%;
-}
-
 #wrapper {
   margin-top: 100px;
 }
 
 footer {
   border-top: 1px solid #ccc;
-  margin-top: 20px;
+  clear: both;
   padding: 10px;
 }
 
@@ -31,6 +25,10 @@ table.dataset {
 
 .accordion-content {
   padding: 5px !important;
+}
+
+.categories {
+  overflow-x: auto;
 }
 
 .content-table {
@@ -83,12 +81,58 @@ table.dataset {
   }
 }
 
+.delete-keyword {
+  background-color: DarkTurquoise;
+  border-radius: 20px;
+  margin-left: 3px;
+  padding: 1px 3px;
+}
+
+.explore-categories, .explore-datasets {
+  margin-bottom: 20px;
+}
+
+
 .explore-content {
   margin-top: 30px;
 }
 
 .explore-header {
   display: inline-block;
+}
+
+.input-border {
+  background-color: white;
+  border: 1px solid #bbb;
+  border-radius: 20px;
+  cursor: text;
+  padding: 0 10px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.input-shader {
+  background-color: #3498db;
+  border-radius: 50px;
+  margin-top: 20px;
+  padding: 3px 5px;
+}
+
+.keyword-header {
+  margin: 10px 0 5px 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.keyword-item {
+  list-style: none;
+  font-size: 0.7em;
+  padding: 0;
+  text-align: center;
+  li {
+    padding: 2px 0;
+  }
 }
 
 .meta-data {
@@ -99,21 +143,13 @@ table.dataset {
   }
 }
 
-.tag-header {
-  margin: 10px 0 5px 0;
-  padding: 0;
-  text-align: center;
-  text-decoration: underline;
-}
-
-.tag-item {
-  list-style: none;
-  font-size: 0.7em;
-  padding: 0;
-  text-align: center;
-  li {
-    padding: 2px 0;
-  }
+.post-keyword {
+  background-color: Aqua;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 3px;
+  padding: 3px 4px 3px 4px;
 }
 
 .shaded {
@@ -132,5 +168,5 @@ table.dataset {
 .view-data {
   position: relative;
   bottom: -60px;
-  right: -40px;
+  right: -20px;
 }
