@@ -23,6 +23,7 @@ DatsyApp.ExploreDataView = Backbone.View.extend({
     // Add keyword if spacebar is entered
     if(e.keyCode === 32) {
       $('input').val('');
+      // TODO: move this HTML into a template
       $('span.style').append(
         '<span class="post-keyword">' +
           text +
@@ -33,7 +34,6 @@ DatsyApp.ExploreDataView = Backbone.View.extend({
 
   removeKeyword: function(e) {
     $(e.target).parent().remove();
-    console.log('remove the span');
   }
 
 });
