@@ -2,10 +2,13 @@
 
 Master Object
   datasets: array of objects
+    id: unique id for dataset
     dataset: string
     ranking: int
     tags: array of string
-    columns: array of string
+    columnNames: array of objects
+      name: string
+      columnTags: array of strings
     meta: object
       num records: int
       num columns: int

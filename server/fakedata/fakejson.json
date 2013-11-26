@@ -1,10 +1,88 @@
 {
   "datasets":[
     {
+      "id": 0,
       "dataset": "Bay Area Bikeshare - Station Statuses",
       "ranking": 1,
       "tags": ["realtime", "bikes", "geolocation", "san francisco"],
-      "columns": ["executiontime", "stationid", "stationname", "availabledocks", "totaldocks", "latitude", "longitude", "statusvalue", "statuskey", "availablebikes", "staddress1", "staddress2", "city", "postalcode", "location", "altitude", "teststation", "lastcommunicationtime", "landmark"],
+      "columnNames": [
+        {
+          "name": "executiontime",
+          "columnTags": []
+        },
+        {
+          "name": "stationid",
+          "columnTags": []
+        },
+        {
+          "name": "stationname",
+          "columnTags": []
+        },
+        {
+          "name": "availabledocks",
+          "columnTags": []
+        },
+        {
+          "name": "totaldocks",
+          "columnTags": []
+        },
+        {
+          "name": "latitude",
+          "columnTags": []
+        },
+        {
+          "name": "longitude",
+          "columnTags": []
+        },
+        {
+          "name": "statusvalue",
+          "columnTags": []
+        },
+        {
+          "name": "statuskey",
+          "columnTags": []
+        },
+        {
+          "name": "availablebikes",
+          "columnTags": []
+        },
+        {
+          "name": "staddress1",
+          "columnTags": []
+        },
+        {
+          "name": "staddress2",
+          "columnTags": []
+        },
+        {
+          "name": "city",
+          "columnTags": []
+        },
+        {
+          "name": "postalcode",
+          "columnTags": []
+        },
+        {
+          "name": "location",
+          "columnTags": []
+        },
+        {
+          "name": "altitude",
+          "columnTags": []
+        },
+        {
+          "name": "teststation",
+          "columnTags": []
+        },
+        {
+          "name": "lastcommunicationtime",
+          "columnTags": []
+        },
+        {
+          "name": "landmark",
+          "columnTags": []
+        }
+      ],
       "meta": {
         "numRecords": 168675,
         "numColumns": 19
@@ -706,39 +784,48 @@
       ]
     },
     {
+      "id": 1,
       "dataset": "Porn Movies Shot Within Last Year",
       "ranking": 4,
       "tags": [],
-      "columns": [],
+      "columnNames": [
+      ],
       "meta": {
         "numRecords": 98727
       },
       "records": []
       },
     {
+      "id": 2,
       "dataset": "Saddest Bars near Hack Reactor",
       "ranking": 5,
       "tags": [],
-      "columns": [],
+      "columnNames": [
+      ],
       "meta": {
         "numRecords": 123547
       },
       "records": []
     },
     {
+      "id": 3,
       "dataset": "Dirtiest Restaurants in San Francisco",
       "ranking": 1,
       "tags": [],
-      "columns": [],
+      "columnNames": [
+      ],
       "meta": {
         "numRecords": 1235
       },
       "records": []
-    },{
+    },
+    {
+      "id": 4,
       "dataset": "Salaries of Dev Bootcamp Graduates",
       "ranking": 5,
       "tags": [],
-      "columns": [],
+      "columnNames": [
+      ],
       "meta": {
         "numRecords": 98234
       },
