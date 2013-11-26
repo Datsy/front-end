@@ -4,13 +4,12 @@ html
     title DATSY.io
     meta(name="viewport", content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
 
-    //- link(rel='stylesheet', href='/bower_components/normalize-css/normalize.css')
     link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet", href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css")
     link(rel='stylesheet', href='/stylesheets/main.css')
+    link(rel='stylesheet', href='/stylesheets/visualizer.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
-
     script(src="bower_components/jquery/jquery.min.js")
     script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
     script(src="bower_components/underscore/underscore-min.js")
@@ -45,6 +44,7 @@ html
 
     script(src="javascript/collections/VisData.js")
 
+    script(src="javascript/views/SvgBackboneView.js")
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
     script(src="javascript/views/VisView.js")

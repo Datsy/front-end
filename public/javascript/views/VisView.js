@@ -2,46 +2,44 @@ DatsyApp.VisView = Backbone.View.extend({
 
   className: 'visView',
 
-  events: {},
+  events: {
+    'keyup #inputData1': 'queryPossibleResults',
+    'keyup #inputData2': 'queryPossibleResults',
+  },
 
   initialize: function() {
     this.template = this.model.get('templates')['visualizations'];
-    this.data = new DatsyApp.VisData();
-    this.data.on('add', this.drawChart.bind(this));
+    this.availableColumns = [];
   },
 
   render: function() {
     this.$el.html( this.template(this.model.attributes) );
-    this.$graph = this.$el.find('#graph');
-    this.setGraphVariables();
+    var graph = this.$el.find('#graph');
+    var self = this;
+    setTimeout(function() {
+      graph.append( new DatsyApp.GraphView({ width: graph.width() }).render() );
+      $('.dataCol').draggable({ containment: ".container", revert: true, });
+     },1);
     return this;
   },
 
-  setGraphVariables: function() {
+  queryPossibleResults: function(event) {
+    var queryID = event.target.id;
     var self = this;
-    setTimeout(function() { 
-      self.$graph.css({ 'height': self.$graph[0].offsetWidth / 2 });
-      self.height = self.$graph.height();
-      self.width = self.$graph.width();
-      
-      self.drawChart();
-    }, 1); // what the fuck internet
+    $.ajax({
+      method: 'POST',
+      url: '/data',
+      data: event.target.value,
+      contentType: 'text/plain',
+      success: function(data) {
+        self.availableColumns = data;
+        $('#' + queryID).autocomplete({ source: self.availableColumns });
+      }
+    });
   },
 
-  drawChart: function() {
-    this.$graph.empty();
-    var chartData = this.data.map(function(d) {
-      return d.get('data');
-    });
-
-    var svg = d3.select(this.$graph[0]).append('svg')
-        .attr('height', this.height).attr('width', this.width);
-
-    svg.selectAll('rect').data(chartData)
-        .enter().append('rect')
-        .style('width', function(d) { return d * 10 + 'px' })
-        .style('height', 10)
-        .text(function(d) { return d; });
-  }
+  queryPossibleResults2: function(event) {
+    $('#dataSetsTwo > .dataCol').text('').text(event.target.value);
+  },
 
 });

@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     jasmine: {
-      src: 'public/javascript/models/Datsy.js',
+      src: ['public/javascript/**/*.js', '!public/javascript/main.js'],
       options: {
         outfile: 'spec/SpecRunner.html',
         keepRunner: true,
@@ -17,14 +17,14 @@ module.exports = function(grunt) {
           'public/bower_components/handlebars/handlebars.js',
           'public/bower_components/d3/d3.min.js'
         ],
-        specs: 'spec/tests/DatsyModelSpec.js',
+        specs: 'spec/tests/*.js',
         helpers: 'spec/helpers/*.js'
       }
     },
 
     watch: {
-      files: 'public/javascript/**/*.js',
-      tasks: 'jasmine'
+      files: ['public/javascript/**/*.js'],
+      tasks: ['default']
     }
 
   });

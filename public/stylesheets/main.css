@@ -106,15 +106,3 @@ table.dataset {
   position: relative;
   bottom: -60px;
   right: -40px; }
-
-.visView form {
-  height: 90px;
-  margin-top: 30px; }
-
-.visView #graph {
-  min-height: 100px;
-  width: 100%;
-  background-color: #cccccc;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  padding: 3% 5%; }
