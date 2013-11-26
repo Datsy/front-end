@@ -141,10 +141,10 @@ table.dataset {
 
 .shaded-li-header {
   background-color: #888888;
-  font-size: 1.2em;
+  font-size: 0.9em;
   font-weight: bold; }
 
 .view-data {
   position: relative;
-  bottom: -60px;
-  right: -20px; }
+  bottom: -40px;
+  right: -30px; }
