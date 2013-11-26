@@ -1,10 +1,10 @@
 DatsyApp.VisData = Backbone.Collection.extend({
 
   model: DatsyApp.VisDatum,
-  url: '/data',
+//  url: '/data',
 
   initialize: function() {
-    this.fetch();
+  //  this.fetch();
   }
 
 });

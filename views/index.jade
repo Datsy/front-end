@@ -33,6 +33,12 @@ html
     script#visualizations(type="text/x-handlebars-template")
       include templates/visualizations
 
+    script#dropper(type="text/x-handlebars-template")
+      include templates/dropper
+
+    script#columnModel(type="text/x-handlebars-template")
+      include templates/columnModel
+
     script#explore-data(type="text/x-handlebars-template")
       include templates/explore
 
@@ -52,6 +58,7 @@ html
     script(src="javascript/views/IndexView.js")
     script(src="javascript/views/VisView.js")
     script(src="javascript/views/GraphView.js")
+    script(src="javascript/views/ColumnModelView.js")
     script(src="javascript/views/ExploreDataView.js")
     script(src="javascript/views/DataSetView.js")
 

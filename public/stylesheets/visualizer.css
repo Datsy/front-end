@@ -34,7 +34,8 @@
 
 #dataColumnOptions {
   min-height: 50px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  margin-top: 30px; }
   #dataColumnOptions .dataCol {
     width: 90%;
     margin: 3px auto;
