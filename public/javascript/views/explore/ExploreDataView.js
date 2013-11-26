@@ -4,7 +4,8 @@ DatsyApp.ExploreDataView = Backbone.View.extend({
   
   events: {
     'keypress :input': 'addPostKeyword',           // enter space bar in input box
-    'click span.delete-keyword': 'removeKeyword'
+    'click span.delete-keyword': 'removeKeyword',
+    'click button.view-data': 'gotoDatasetView'
   },
 
   initialize: function() {
@@ -43,6 +44,11 @@ DatsyApp.ExploreDataView = Backbone.View.extend({
 
   removeKeyword: function(e) {
     $(e.target).parent().remove();
+  },
+
+  gotoDatasetView: function(e) {
+    // TODO: should route to correct dataset id
+    Backbone.history.navigate("/dataset", {trigger: true});
   }
 
 });
