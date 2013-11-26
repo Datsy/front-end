@@ -787,8 +787,9 @@
       "id": 1,
       "dataset": "Porn Movies Shot Within Last Year",
       "ranking": 4,
-      "tags": ["porn", "movies"],
-      "columns": [],
+      "tags": [],
+      "columnNames": [
+      ],
       "meta": {
         "numRecords": 98727
       },
@@ -798,8 +799,9 @@
       "id": 2,
       "dataset": "Saddest Bars near Hack Reactor",
       "ranking": 5,
-      "tags": ["sad", "bars"],
-      "columns": [],
+      "tags": [],
+      "columnNames": [
+      ],
       "meta": {
         "numRecords": 123547
       },
@@ -809,8 +811,9 @@
       "id": 3,
       "dataset": "Dirtiest Restaurants in San Francisco",
       "ranking": 1,
-      "tags": ["restaurant", "San Francisco", "dirty", "dirtiest", "health inspection"],
-      "columns": [],
+      "tags": [],
+      "columnNames": [
+      ],
       "meta": {
         "numRecords": 1235
       },
@@ -820,8 +823,9 @@
       "id": 4,
       "dataset": "Salaries of Dev Bootcamp Graduates",
       "ranking": 5,
-      "tags": ["salary", "salaries", "dev", "dev bootcamp", "graduate"],
-      "columns": [],
+      "tags": [],
+      "columnNames": [
+      ],
       "meta": {
         "numRecords": 98234
       },
