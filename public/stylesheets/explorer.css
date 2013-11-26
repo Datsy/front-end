@@ -1,0 +1,11 @@
+#searchField {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 20px;
+  color: #444444;
+  display: inline-block;
+  font-size: 1.4em;
+  height: 40px;
+  outline: none;
+  padding: 0 5px;
+  width: 100%; }
