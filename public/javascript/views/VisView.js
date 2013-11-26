@@ -5,6 +5,8 @@ DatsyApp.VisView = Backbone.View.extend({
   events: {
     'keyup #inputData1': 'queryPossibleResults',
     'keyup #inputData2': 'queryPossibleResults',
+    'click #inputButton1': 'addColumn',
+    'click #inputButton2': 'addColumn'
   },
 
   initialize: function() {
@@ -38,8 +40,11 @@ DatsyApp.VisView = Backbone.View.extend({
     });
   },
 
-  queryPossibleResults2: function(event) {
-    $('#dataSetsTwo > .dataCol').text('').text(event.target.value);
-  },
+  addColumn: function(event) {
+    var clickID = event.target.id;
+    var columnName = (clickID === 'inputButton1') ? $('#inputData1').value() : $('#inputData2').value();
+    console.log(columnName);
+//    $.get('/data', event.target.)
+  }
 
 });
