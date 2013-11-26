@@ -1,0 +1,46 @@
+.visView form {
+  height: 50px;
+  margin-top: 30px; }
+
+.visView #graph {
+  min-height: 100px;
+  width: 100%;
+  background-color: #cccccc;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  padding: 2% 3% 1% 2%; }
+
+.bar {
+  fill: steelblue; }
+
+.bar:hover {
+  fill: darkred; }
+
+#graph text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end; }
+
+.axis text {
+  font: 10px sans-serif; }
+
+.axis path, .axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges; }
+
+.x.axis path {
+  display: none; }
+
+#dataColumnOptions {
+  min-height: 50px;
+  margin-bottom: 20px; }
+  #dataColumnOptions .dataCol {
+    width: 90%;
+    margin: 3px auto;
+    text-align: center;
+    padding-top: 4px;
+    height: 30px;
+    background-color: #eeeeee; }
+  #dataColumnOptions .dataCol:nth-child(even) {
+    background-color: #dddddd; }

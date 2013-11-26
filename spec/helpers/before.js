@@ -1,1 +1,2 @@
 var DatsyApp = {};
+var templates = {};
