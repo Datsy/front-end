@@ -6,8 +6,8 @@ DatsyApp.VisView = Backbone.View.extend({
 
   initialize: function() {
     this.template = this.model.get('templates')['visualizations'];
-    //this.data = new DatsyApp.VisData();
-    //this.data.on('add', this.drawChart.bind(this));
+    this.data = new DatsyApp.VisData();
+    this.data.on('add', this.drawChart.bind(this));
   },
 
   render: function() {
