@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 var headers = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -12,4 +14,14 @@ exports.sendResponse = sendResponse = function(res, object, statusCode, contentT
   headers["content-type"] = contentType;
   res.writeHead(statusCode, headers);
   res.end(object);
+};
+
+exports.processPost = processPost = function(req, cb) {
+  var data = "";
+  req.on("data", function(chunk) {
+    data += chunk;
+  });
+  req.on("end", function() {
+    cb(data);
+  });
 };

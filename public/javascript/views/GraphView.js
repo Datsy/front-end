@@ -4,12 +4,13 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
 
   initialize: function(options) {
     this.width = options.width;
-    this.data = new DatsyApp.VisData();
-    this.data.on('add', this.drawChart.bind(this));
+    // this.data = new DatsyApp.VisData();
+    // this.data.on('add', this.setGraphVariables.bind(this));
+    this.margin = { top: 20, right: 30, bottom: 30, left: 40 };
   },
 
   render: function(options) {
-    this.setGraphVariables();
+//    this.setGraphVariables();
     return this.$el;
   },
 
@@ -19,9 +20,9 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
       var chart = self.$el;
       var h = self.width / 2;
       chart.css({ 'height': h, 'width': self.width });
-      self.margin = { top: 20, right: 30, bottom: 30, left: 40 };
       self.height = chart.height() - self.margin.top - self.margin.bottom;
-    }, 1); // what the fuck internet
+      self.drawChart();
+    }, 1);
   },
 
   drawChart: function() {
@@ -75,7 +76,6 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
         .attr('y', function(d) { return y(d.value); })
         .attr("height", function(d) { return self.height - y(d.value); })
         .attr("width", x.rangeBand());
-
   }
 
 
