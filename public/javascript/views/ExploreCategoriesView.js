@@ -7,12 +7,13 @@ DatsyApp.ExploreCategoriesView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.template = this.model.get('templates')['explore-categories'];
-    this.render();
+    this.template = this.model.get('templates')['exploreCategories'];
   },
 
   render: function() {
-    $('div.explore-categories').html( this.template(this.model.attributes) );
+    console.log('Explore CategoriesView');
+    console.log('this', this.$el);
+    return this.$el.html(this.template(this.model.attributes));
   }
 
 });

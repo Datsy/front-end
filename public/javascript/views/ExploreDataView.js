@@ -11,7 +11,9 @@ DatsyApp.ExploreDataView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html( this.template(this.model.attributes) );
+    this.$el.html(this.template(this.model.attributes))
+      .append(new DatsyApp.ExploreCategoriesView({model: this.model}).render())
+      .append(new DatsyApp.ExploreDatasetsView({model: this.model}).render());
     return this;
   }
 

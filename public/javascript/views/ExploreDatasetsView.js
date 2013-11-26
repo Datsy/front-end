@@ -7,12 +7,12 @@ DatsyApp.ExploreDatasetsView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.template = this.model.get('templates')['explore-datasets'];
-    this.render();
+    this.template = this.model.get('templates')['exploreDatasets'];
   },
 
   render: function() {
-    $('div.explore-datasets').html( this.template(this.model.attributes) );
+    console.log('Explore DatasetsView');
+    return this.$el.html(this.template(this.model.attributes));
   }
 
 });
