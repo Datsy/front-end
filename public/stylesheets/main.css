@@ -1,6 +1,10 @@
 #searchField {
+  border-radius: 20px;
+  border: 1px solid #bbbbbb;
+  color: #444444;
   font-size: 1.4em;
-  margin-bottom: 5px;
+  height: 40px;
+  padding: 0 15px;
   width: 100%; }
 
 #wrapper {
@@ -73,6 +77,12 @@ table.dataset {
 
 .explore-header {
   display: inline-block; }
+
+.input-shader {
+  background-color: #3498db;
+  border-radius: 50px;
+  margin-top: 20px;
+  padding: 3px 5px; }
 
 .meta-data {
   font-size: 0.7em;
