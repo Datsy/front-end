@@ -1,6 +1,6 @@
 #searchField {
+  border: none !important;
   border-radius: 20px;
-  border: 1px solid #bbb;
   color: #444;
   font-size: 1.4em;
   height: 40px;
@@ -97,6 +97,11 @@ table.dataset {
 
 .explore-header {
   display: inline-block;
+}
+
+.input-border {
+  border: 1px solid #bbb;
+  border-radius: 20px;
 }
 
 .input-shader {
