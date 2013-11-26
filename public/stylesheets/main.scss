@@ -1,6 +1,10 @@
 #searchField {
+  border-radius: 20px;
+  border: 1px solid #bbb;
+  color: #444;
   font-size: 1.4em;
-  margin-bottom: 5px; 
+  height: 40px;
+  padding: 0 15px;
   width: 100%;
 }
 
@@ -95,6 +99,13 @@ table.dataset {
   display: inline-block;
 }
 
+.input-shader {
+  background-color: #3498db;
+  border-radius: 50px;
+  margin-top: 20px;
+  padding: 3px 5px;
+}
+
 .meta-data {
   font-size: 0.7em;
   text-align: center;
@@ -103,14 +114,14 @@ table.dataset {
   }
 }
 
-.tag-header {
+.keyword-header {
   margin: 10px 0 5px 0;
   padding: 0;
   text-align: center;
   text-decoration: underline;
 }
 
-.tag-item {
+.keyword-item {
   list-style: none;
   font-size: 0.7em;
   padding: 0;
