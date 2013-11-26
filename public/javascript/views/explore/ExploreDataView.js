@@ -8,7 +8,8 @@ DatsyApp.ExploreDataView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.template = this.model.get('templates')['explore-data'];
+    this.template = this.model.get('templates')['exploreData'];
+    this.keywordCache = [];
   },
 
   render: function() {
@@ -20,6 +21,14 @@ DatsyApp.ExploreDataView = Backbone.View.extend({
 
   addPostKeyword: function(e) {
     var text = $('input').val();
+    
+    // Query Server for JSON Object of Keywords
+    // if(!this.keywordCache.length){
+    //   $.post('http://localhost:3000/data', function(data){
+    //     console.log(data);
+    //   });
+    // }
+    
     // Add keyword if spacebar is entered
     if(e.keyCode === 32) {
       $('input').val('');
