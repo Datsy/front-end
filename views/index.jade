@@ -9,6 +9,7 @@ html
     link(rel='stylesheet', href='/stylesheets/main.css')
     link(rel='stylesheet', href='/stylesheets/visualizer.css')
     link(rel='stylesheet', href='/stylesheets/explorer.css')
+    link(rel='stylesheet', href='/stylesheets/dataset.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
@@ -44,7 +45,7 @@ html
       include templates/visualization/columnModel
 
     //- DATA EXPLORER TEMPLATES
-    script#explore-data(type="text/x-handlebars-template")
+    script#exploreData(type="text/x-handlebars-template")
       include templates/explore/explore
 
     script#exploreCategories(type="text/x-handlebars-template")
@@ -54,8 +55,8 @@ html
       include templates/explore/explore-datasets
 
     //- DATA SET VIEW TEMPLATES
-    script#dataSet(type="text/x-handlebars-template")
-      include templates/dataSet
+    script#datasetView(type="text/x-handlebars-template")
+      include templates/dataset/dataSet
 
     script.
       var DatsyApp = {};
@@ -68,10 +69,13 @@ html
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
 
-    //- Explorere Views
+    //- Explorer Views
     script(src="javascript/views/explore/ExploreDataView.js")
     script(src="javascript/views/explore/ExploreDatasetsView.js")
     script(src="javascript/views/explore/ExploreCategoriesView.js")
+
+    //- Dataset Views
+    script(src="javascript/views/dataset/DatasetView.js")
 
     //- Visualizer Views
     script(src="javascript/views/visualizer/SvgBackboneView.js")
