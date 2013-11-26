@@ -25,3 +25,12 @@ exports.fakeJSON = fakeJSON = function(cb) {
     cb(JSON.parse(data));
   });
 };
+
+exports.returnColumnData = returnColumnData = function(columnName, cb) {
+  fakeJSON(function(data) {
+    var results = data.records.map(function(record) {
+      return record[columnName];
+    });
+    cb(results);
+  });
+};

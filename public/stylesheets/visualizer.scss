@@ -44,6 +44,7 @@
 #dataColumnOptions {
   min-height: 50px;
   margin-bottom: 20px;
+  margin-top: 30px;
 
   .dataCol {
     width: 90%;
@@ -56,6 +57,5 @@
   .dataCol:nth-child(even) {
     background-color: #ddd;
   }
-
 }
 
