@@ -20,12 +20,6 @@ exports.queryOptions = queryOptions = function(data) {
   }
 };
 
-exports.fakeJSON = fakeJSON = function(cb) {
-  fs.readFile('./server/fakedata/fakejson.json', 'binary', function(err, data) {
-    cb(JSON.parse(data));
-  });
-};
-
 exports.returnColumnData = returnColumnData = function(columnName, cb) {
   fakeJSON(function(data) {
     var results = data.records.map(function(record) {
