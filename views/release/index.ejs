@@ -12,10 +12,10 @@
     <link rel="icon" type="image/png" href="images/icon.png">
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/underscore/underscore-min.js"></script>
-    <script src="bower_components/backbone/backbone-min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
     <script src="bower_components/handlebars/handlebars.js"></script>
-    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/jqueryui/ui/minified/jquery-ui.min.js"> </script>
   </head>
   <body>
@@ -68,14 +68,16 @@
       <div id="graph"></div>
     </script>
     <script id="dropper" type="text/x-handlebars-template">
-      <div id="dropper">
-        <div class="aAxis">
-          <p>Drop X axis value here</p>
-        </div>
-        <div class="yAxis">
-          <p>Drop Y axis value here</p>
-        </div>
-        <button id="renderChart">Render</button>
+      <div id="dropper" class="col-md-7 col-md-offset-2">
+        <ul class="row">
+          <li class="xAxis droppable col-md-5">
+            <p>Drop X axis value here</p>
+          </li>
+          <li class="yAxis droppable col-md-5 col-md-offset-2">
+            <p>Drop Y axis value here</p>
+          </li>
+        </ul>
+        <button id="renderChart" disabled class="btn btn-success btn-lg center">Render</button>
       </div>
     </script>
     <script id="columnModel" type="text/x-handlebars-template">
@@ -373,6 +375,7 @@
     <script src="javascript/views/dataset/DatasetView.js"></script>
     <script src="javascript/views/visualizer/SvgBackboneView.js"></script>
     <script src="javascript/views/visualizer/VisualizerView.js"></script>
+    <script src="javascript/views/visualizer/DropAxisView.js"></script>
     <script src="javascript/views/visualizer/GraphView.js"></script>
     <script src="javascript/views/visualizer/ColumnModelView.js"></script>
     <script src="javascript/views/DataSetView.js"></script>

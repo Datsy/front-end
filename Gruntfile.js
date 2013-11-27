@@ -15,7 +15,7 @@ module.exports = function(grunt) {
           src: "**/*.jade",
           dest: "views/release",
           expand: true,
-          ext: ".html"
+          ext: ".ejs"
         } ]
       }
     },
