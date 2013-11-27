@@ -97,7 +97,7 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
         .enter().append('rect')
           .attr('class', 'bar')
           .attr('x', function(d) { return self.x(d.x); })
-          .attr('width', function(d) { return self.width - self.x(d.x) })
+          .attr('width', function(d) { return self.x(d.x) })
           .attr('y', function(d) { return self.y(d.y); })
           .attr('height', function(d) { return self.height - self.y(d.y); });
     } else if (typeof this.dataX[0] === 'string' && typeof this.dataY[0] === 'string') {
