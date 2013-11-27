@@ -13,17 +13,19 @@ DatsyApp.VisView = Backbone.View.extend({
     this.droppableView = new DatsyApp.DropAxisView({ template: this.model.get('templates')['dropper'] });
     this.droppableView.on('renderChart', this.swapGraph.bind(this));
     this.availableColumns = [];
+    this.currentGraphView = this.droppableView;
 
     $(window).on("resize.DatsyApp", _.bind(this.resize, this));
   },
 
   resize: function() {
-    this.$graph.empty();
     // SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW.
+    this.currentGraphView.remove();
     var w = $('.container').width();
     var h = w / 2;
     this.$graph = this.$el.find('#graph');
     this.$graph.css({'height': h, 'width': w });
+    this.$graph.append( this.currentGraphView.render() );
   },
 
   render: function() {
@@ -85,7 +87,8 @@ DatsyApp.VisView = Backbone.View.extend({
       var dataY = args.y;
       var graphView = new DatsyApp.GraphView({ width: w, height: h, dataX: dataX, dataY: dataY });
       this.$graph.append( graphView.el );
-      graphView.render()
+      graphView.render();
+      this.currentGraphView = graphView;
     } else {
       this.$graph.append( new DatsyApp.DropAxisView({ template: this.model.get('templates')['dropper'] }).render() );
     }

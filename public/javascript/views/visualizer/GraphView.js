@@ -5,7 +5,6 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
   events: {},
 
   initialize: function(options) {
-
     this.margin = { top: 20, right: 30, bottom: 30, left: 40 };
     this.dataX = options.dataX[0].columnData;
     this.dataY = options.dataY[0].columnData;
@@ -13,12 +12,8 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
     for (var i = 0; i < this.dataX.length; i++) {
       this.chartData.push({x: this.dataX[i], y: this.dataY[i] });
     }
-    // console.log(options.dataY, this.dataY);
-    // console.log(options.dataX, this.dataX);
-    // console.log(this.chartData);
     this.width = options.width - this.margin.left - this.margin.right;
     this.height = options.height - this.margin.top - this.margin.bottom;
-    //this.setGraphVariables();
   },
 
   render: function() {
@@ -96,42 +91,42 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
  
   drawChart: function() {
     var self = this;
-    if (typeof self.dataX[0] === 'number' && typeof this.dataY[0] === 'number') {
+   if (typeof self.dataX[0] === 'number' && typeof this.dataY[0] === 'number') {
       this.chart.selectAll('.bar')
-          .data([ { x: 'A', y: 0.10 }, { x: 'B', y: 0.09 }, { x: 'C', y: 0.01 }, { x: 'D', y: 0.08 }, { x: 'E', y: 0.11 }, { x: 'F', y: 0.03 }, { x: 'G', y: 0.06 }, { x: 'H', y: 0.13 } ])
+          .data(self.chartData)
         .enter().append('rect')
           .attr('class', 'bar')
           .attr('x', function(d) { return self.x(d.x); })
           .attr('width', function(d) { return self.width - self.x(d.x) })
           .attr('y', function(d) { return self.y(d.y); })
           .attr('height', function(d) { return self.height - self.y(d.y); });
-    // } else if (typeof this.dataX[0] === 'string' && typeof this.dataY[0] === 'string') {
-    //   this.chart.selectAll('.bar')
-    //       .data([1,2,3,4])
-    //     .enter().append('rect')
-    //       .attr('class', 'bar')
-    //       .attr('x', function(d) { return this.x(d.x); })
-    //       .attr('width', this.x.rangeBand())
-    //       .attr('y', function(d) { return this.y(d.y); })
-    //       .attr('height', this.y.rangeBand());
-    // } else if (typeof this.dataX[0] === 'number' && typeof this.dataY[0] === 'string') {
-    //   this.chart.selectAll('.bar')
-    //       .data([1,2,3,4])
-    //     .enter().append('rect')
-    //       .attr('class', 'bar')
-    //       .attr('x', function(d) { return this.x(d.x); })
-    //       .attr('width', function(d) { return this.width - this.x(d.x) })
-    //       .attr('y', function(d) { return this.y(d.y); })
-    //       .attr('height', this.y.rangeBand());
-    // } else {
-    //   this.chart.selectAll('.bar')
-    //       .data([1,2,3,4])
-    //     .enter().append('rect')
-    //       .attr('class', 'bar')
-    //       .attr('x', function(d) { return this.x(d.x); })
-    //       .attr('width', this.x.rangeBand())
-    //       .attr('y', function(d) { return this.y(d.y); })
-    //       .attr('height', function(d) { return this.height - this.y(d.y); });
+    } else if (typeof this.dataX[0] === 'string' && typeof this.dataY[0] === 'string') {
+      this.chart.selectAll('.bar')
+          .data(self.chartData)
+        .enter().append('rect')
+          .attr('class', 'bar')
+          .attr('x', function(d) { return self.x(d.x); })
+          .attr('width', self.x.rangeBand())
+          .attr('y', function(d) { return self.y(d.y); })
+          .attr('height', self.y.rangeBand());
+    } else if (typeof this.dataX[0] === 'number' && typeof this.dataY[0] === 'string') {
+      this.chart.selectAll('.bar')
+          .data(self.chartData)
+        .enter().append('rect')
+          .attr('class', 'bar')
+          .attr('x', 0 )
+          .attr('width', function(d) { return self.x(d.x) })
+          .attr('y', function(d) { return self.y(d.y); })
+          .attr('height', self.y.rangeBand());
+    } else {
+      this.chart.selectAll('.bar')
+          .data(self.chartData)
+        .enter().append('rect')
+          .attr('class', 'bar')
+          .attr('x', function(d) { return self.x(d.x); })
+          .attr('width', self.x.rangeBand())
+          .attr('y', function(d) { return self.y(d.y); })
+          .attr('height', function(d) { return self.height - self.y(d.y); });
     }
   }
 
