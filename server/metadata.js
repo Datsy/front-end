@@ -13,10 +13,13 @@ exports.setUpMetaData = function() {
     for(var i = 0; i < data.datasets.length; i++) {
       var thisDataSet = data.datasets[i];
       metadata.totalDataSets++;
+      // check for duplicates
       metadata.dataSetTags.splice(metadata.dataSetTags.length, 0, thisDataSet.tags);
-      for (var j = 0; j < thisDataSet.columnNames.length; j++) {        
-        metadata.columnNames.push(thisDataSet.columnNames[j].name);
-        metadata.columnTags.push(thisDataSet.columnNames[j].columnTags);
+      for (var j = 0; j < thisDataSet.columns.length; j++) {        
+        metadata.columnNames.push(thisDataSet.columns[j].name);
+        for (var k = 0; k < thisDataSet.columns[j].columnTags.length; k++) {        
+          metadata.columnTags.push(thisDataSet.columns[j].columnTags[k]);
+        }
       }
     }
   });
@@ -32,11 +35,14 @@ exports.getColumnNames = function() {
 
 exports.getColumn = function(columnName, cb) {
   readFakeJSON(function(data) {
-    //FAKE IT UNTIL WE GET REAL DATA
     var results = [];
-    var records = data.datasets[0].records;
-    for (var i = 0; i < records.length; i++) {
-      results.push(records[i][columnName]);
+    for (var i = 0; i < data.datasets.length; i++) {
+      for (var j = 0; j < data.datasets[i].columns.length; j++) {
+        if (data.datasets[i].columns[j].name === columnName) {
+         results =  data.datasets[i].columns[j].data;
+         // TODO: break out on finding, deal with mutiples
+        }
+      }
     }
     cb(results);
   });

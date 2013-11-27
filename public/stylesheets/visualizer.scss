@@ -1,9 +1,11 @@
+
 .visView form {
   height: 50px;
   margin-top: 30px;
 }
 
-.visView #graph {
+#graph {
+  position: relative;
   min-height: 100px;
   width: 100%;
   background-color: #ccc;
@@ -12,18 +14,40 @@
   padding: 2% 3% 1% 2%;
 }
 
-.bar {
-  fill: steelblue;
+div#dropper {
+  .xAxis, .yAxis {
+    height: 100px;
+    border: 2px dashed #333;
+    list-style: none;
+  }
+  button {
+    margin-left: 220px;
+  }
+  .axis-state-hover {
+  }
+  .axis-state-active {
+    border-style: solid;
+  }
+  .axis-state-highlight {
+    border-style: solid;
+    background-color: #aaa;
+  }
 }
 
-.bar:hover {
-  fill: darkred;
-}
+svg
 
-#graph text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
+  text {
+    fill: white;
+    font: 10px sans-serif;
+    text-anchor: end;
+
+  .bar {
+    fill: steelblue;
+  }
+
+  .bar:hover {
+    fill: darkred;
+  }
 }
 
 .axis text {

@@ -3,15 +3,29 @@ DatsyApp.VisView = Backbone.View.extend({
   className: 'visView',
 
   events: {
-    'keyup #inputData1': 'queryPossibleResults',
-    'keyup #inputData2': 'queryPossibleResults',
-    'click #inputButton1': 'addColumn',
-    'click #inputButton2': 'addColumn'
+    'keyup #inputData2, #inputData1': 'queryPossibleResults',
+    'click #inputButton1, #inputButton2': 'addColumn'
   },
 
   initialize: function() {
     this.template = this.model.get('templates')['visualizations'];
+    this.selectedColumns = new DatsyApp.VisData();
+    this.droppableView = new DatsyApp.DropAxisView({ template: this.model.get('templates')['dropper'] });
+    this.droppableView.on('renderChart', this.swapGraph.bind(this));
     this.availableColumns = [];
+    this.currentGraphView = this.droppableView;
+
+    $(window).on("resize.DatsyApp", _.bind(this.resize, this));
+  },
+
+  resize: function() {
+    // SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW.
+    this.currentGraphView.remove();
+    var w = $('.container').width();
+    var h = w / 2;
+    this.$graph = this.$el.find('#graph');
+    this.$graph.css({'height': h, 'width': w });
+    this.$graph.append( this.currentGraphView.render() );
   },
 
   render: function() {
@@ -20,7 +34,7 @@ DatsyApp.VisView = Backbone.View.extend({
     var h = w / 2;
     this.$graph = this.$el.find('#graph');
     this.$graph.css({'height': h, 'width': w });
-
+    this.$graph.append( this.droppableView.render() );
     return this;
   },
 
@@ -58,18 +72,46 @@ DatsyApp.VisView = Backbone.View.extend({
   addSingleColumn: function(data, columnName, clickID) {
     var model1 = new DatsyApp.VisDatum({ column: data, colTitle: columnName });
     var model1View = new DatsyApp.ColumnModelView({ model: model1, template: this.model.get('templates')['columnModel'] });
+    this.selectedColumns.add(model1);
     var dataSet = (clickID === 'inputButton1') ? 'dataSetsOne' : 'dataSetsTwo';
     $('#' + dataSet).append(model1View.render().el);
-    $('.dataCol').draggable({ containment: ".container", revert: true, });
+    this.updateDragNDrop(columnName);
   },
 
-  swapGraph: function(chart, dataX, dataY) {
+  swapGraph: function(args) {
+    var w = this.$graph.width();
+    var h = this.$graph.height();
     this.$graph.empty();
-    if (chart) {
-      this.$graph.append( new DatsyApp.GraphView({ width: w, height: h, dataX: dataX, dataY: dataY }).render() );
+    if (args.chartView) {
+      var dataX = args.x;
+      var dataY = args.y;
+      var graphView = new DatsyApp.GraphView({ width: w, height: h, dataX: dataX, dataY: dataY });
+      this.$graph.append( graphView.el );
+      graphView.render();
+      this.currentGraphView = graphView;
     } else {
       this.$graph.append( new DatsyApp.DropAxisView({ template: this.model.get('templates')['dropper'] }).render() );
     }
+  },
+
+  updateDragNDrop: function(columnName) {
+    var self = this;
+    $('.dataCol').draggable({ containment: ".container", revert: true, });
+    $( ".droppable" ).droppable({
+      accept: ".dataCol",
+      activeClass: "axis-state-hover",
+      hoverClass: "axis-state-active",
+      drop: function( event, ui ) {
+        var thisModel = self.selectedColumns.getModel(columnName);
+        if ($(this).hasClass('xAxis')) {
+          self.droppableView.addXModel(thisModel);
+        } else {
+          self.droppableView.addYModel(thisModel);
+        }
+        $( this ).addClass( "axis-state-highlight" )
+          .find( "p" ).html( columnName + " added!" );
+      }
+    });
   }
 
 });
