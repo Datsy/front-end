@@ -1,4 +1,4 @@
-describe('SongQueueView', function() {
+describe('VisualizerView', function() {
   var view;
 
   beforeEach(function() {

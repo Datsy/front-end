@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     },
 
     jasmine: {
-      src: ['public/javascript/**/*.js', '!public/javascript/main.js'],
+      src: ['public/javascript/**/*.js'],
       options: {
         outfile: 'spec/SpecRunner.html',
         keepRunner: true,
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
-  // grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['jade', 'jasmine']);
   
