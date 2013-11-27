@@ -34,6 +34,7 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
     } else {
       this.linearScaleY();
     }
+    console.log(this.x);
     this.xAxis = d3.svg.axis()
         .scale(this.x).orient('bottom');
 
