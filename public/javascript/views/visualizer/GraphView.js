@@ -5,50 +5,64 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
   events: {},
 
   initialize: function(options) {
-    this.dataX = options.dataX;
-    this.dataY = options.dataY;
-    this.width = options.width;
-    this.setGraphVariables();
     this.margin = { top: 20, right: 30, bottom: 30, left: 40 };
+    this.dataX = options.dataX[0].columnData;
+    this.dataY = options.dataY[0].columnData;
+    this.width = options.width;
+    this.height = options.height;
+    //this.setGraphVariables();
   },
 
   render: function() {
+    this.prepChart();
     this.drawChart();
     return this.$el;
   },
 
-  setGraphVariables: function() {
-    var self = this;
-    setTimeout(function() {
-      var chart = self.$el;
-      var h = self.width / 2;
-      chart.css({ 'height': h, 'width': self.width });
-      self.height = chart.height() - self.margin.top - self.margin.bottom;
-    }, 1);
+  // setGraphVariables: function() {
+  //   var self = this;
+  //   setTimeout(function() {
+  //     var chart = self.$el;
+  //     var h = self.width / 2;
+  //     chart.css({ 'height': h, 'width': self.width });
+  //     //self.height = chart.height() - self.margin.top - self.margin.bottom;
+  //   }, 1);
+  // },
+
+  prepChart: function() {
+    if (typeof this.dataX[0] === 'string') {
+      this.ordinalScale('x');
+    } else {
+      this.linearScale('x');
+    }
+    if (typeof this.dataY[0] === 'string') {
+      this.ordinalScale('y');
+    } else {
+      this.linearScale('y');
+    }
+    this.xAxis = d3.svg.axis()
+        .scale(this.x).orient('bottom');
+
+    this.yAxis = d3.svg.axis()
+        .scale(this.y).orient('left');
+        //.ticks(10, '%');
+  },
+
+  linearScale: function(axis) {
+    var direction = (axis === 'x') ? this.width : this.height;
+    this[axis] = d3.scale.linear()
+        .domain([0, d3.max(this['data' + axis.toUpperCase()] )])
+        .range([direction, 0]);
+  },
+
+  ordinalScale: function(axis) {
+    var direction = (axis === 'x') ? this.width : this.height;
+    this[axis] = d3.scale.ordinal()
+        .domain(this['data' + axis.toUpperCase()])
+        .rangeRoundBands([0, direction], .1);
   },
 
   drawChart: function() {
-    this.$el.empty();
-    var self = this;
-    var chartData = this.data.map(function(d) {
-      return { value: d.get('frequency'), letter: d.get('letter') };
-    });
-
-    var y = d3.scale.linear()
-        .domain([0, d3.max(chartData, function(d) { return d.value; }) ])
-        .range([this.height, 0]);
-
-    var x = d3.scale.ordinal()
-        .domain(chartData.map( function(d) { return d.letter; }))
-        .rangeRoundBands([0, this.width], .1); // maps letters to the width, with a division between each
-   
-    var xAxis = d3.svg.axis()
-        .scale(x).orient('bottom');
-
-    var yAxis = d3.svg.axis()
-        .scale(y).orient('left')
-        .ticks(10, '%');
-
     var chart = d3.select('svg')
         .attr('width', this.width + this.margin.left + this.margin.right)
         .attr('height', this.height + this.margin.top + this.margin.bottom)

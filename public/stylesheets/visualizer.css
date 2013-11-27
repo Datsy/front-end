@@ -2,7 +2,8 @@
   height: 50px;
   margin-top: 30px; }
 
-.visView #graph {
+#graph {
+  postion: relative;
   min-height: 100px;
   width: 100%;
   background-color: #cccccc;
@@ -10,27 +11,34 @@
   margin-bottom: 30px;
   padding: 2% 3% 1% 2%; }
 
-.bar {
-  fill: steelblue; }
+div#dropper .xAxis, div#dropper .yAxis {
+  height: 100px;
+  border: 2px dashed #333333;
+  list-style: none; }
+div#dropper button {
+  margin-left: 220px; }
+div#dropper .axis-state-active {
+  border-style: solid; }
+div#dropper .axis-state-highlight {
+  border-style: solid;
+  background-color: #aaaaaa; }
 
-.bar:hover {
-  fill: darkred; }
-
-#graph text {
+svg#chart text {
   fill: white;
   font: 10px sans-serif;
   text-anchor: end; }
-
-.axis text {
-  font: 10px sans-serif; }
-
-.axis path, .axis line {
-  fill: none;
-  stroke: black;
-  shape-rendering: crispEdges; }
-
-.x.axis path {
-  display: none; }
+  svg#chart text .bar {
+    fill: steelblue; }
+  svg#chart text .bar:hover {
+    fill: darkred; }
+  svg#chart text .axis text {
+    font: 10px sans-serif; }
+  svg#chart text .axis path, svg#chart text .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges; }
+  svg#chart text .x.axis path {
+    display: none; }
 
 #dataColumnOptions {
   min-height: 50px;
