@@ -3,7 +3,7 @@
   margin-top: 30px; }
 
 #graph {
-  postion: relative;
+  position: relative;
   min-height: 100px;
   width: 100%;
   background-color: #cccccc;
@@ -23,22 +23,25 @@ div#dropper .axis-state-highlight {
   border-style: solid;
   background-color: #aaaaaa; }
 
-svg#chart text {
+svg text {
   fill: white;
   font: 10px sans-serif;
   text-anchor: end; }
-  svg#chart text .bar {
+  svg text .bar {
     fill: steelblue; }
-  svg#chart text .bar:hover {
+  svg text .bar:hover {
     fill: darkred; }
-  svg#chart text .axis text {
-    font: 10px sans-serif; }
-  svg#chart text .axis path, svg#chart text .axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges; }
-  svg#chart text .x.axis path {
-    display: none; }
+
+.axis text {
+  font: 10px sans-serif; }
+
+.axis path, .axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges; }
+
+.x.axis path {
+  display: none; }
 
 #dataColumnOptions {
   min-height: 50px;

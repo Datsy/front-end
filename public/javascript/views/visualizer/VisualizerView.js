@@ -83,7 +83,9 @@ DatsyApp.VisView = Backbone.View.extend({
     if (args.chartView) {
       var dataX = args.x;
       var dataY = args.y;
-      this.$graph.append( new DatsyApp.GraphView({ width: w, height: h, dataX: dataX, dataY: dataY }).render() );
+      var graphView = new DatsyApp.GraphView({ width: w, height: h, dataX: dataX, dataY: dataY });
+      this.$graph.append( graphView.el );
+      graphView.render()
     } else {
       this.$graph.append( new DatsyApp.DropAxisView({ template: this.model.get('templates')['dropper'] }).render() );
     }

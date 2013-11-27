@@ -5,13 +5,14 @@ Master Object
     id: unique id for dataset
     dataset: string
     ranking: int
-    tags: array of string
-    columnNames: array of objects
-      name: string
-      columnTags: array of strings
     meta: object
       num records: int
       num columns: int
-    records: array of objects -- this is actual record data
-      object:
-          individual row, broken down by each column in dataset
+    tags: array of strings
+    columns: array of objects
+      name: string
+      description: string
+      columnTags: array of strings
+      datatype: type
+      data: array of values for said column
+  
