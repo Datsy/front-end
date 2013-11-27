@@ -23,21 +23,21 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
 
   render: function() {
     this.prepChart();
-    //this.drawAxis();
-   // this.drawChart();
+    this.drawAxis();
+    this.drawChart();
     return this.$el;
   },
 
   prepChart: function() {
     if (typeof this.dataX[0] === 'string') {
-      this.ordinalScaleX;
+      this.ordinalScaleX();
     } else {
-      this.linearScaleX;
+      this.linearScaleX();
     }
     if (typeof this.dataY[0] === 'string') {
-      this.ordinalScaleY;
+      this.ordinalScaleY();
     } else {
-      this.linearScaleY;
+      this.linearScaleY();
     }
     this.xAxis = d3.svg.axis()
         .scale(this.x).orient('bottom');
@@ -47,25 +47,25 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
         //.ticks(10, '%');
   },
 
-  linearScaleX: function(axis) {
+  linearScaleX: function() {
     this.x = d3.scale.linear()
         .domain([0, d3.max(this.dataX)])
         .range([0, this.width]);
   },
 
-  ordinalScaleX: function(axis) {
+  ordinalScaleX: function() {
     this.x = d3.scale.ordinal()
         .domain(this.dataX)
         .rangeRoundBands([0, this.width], .1);
   },
 
-  linearScaleY: function(axis) {
+  linearScaleY: function() {
     this.y = d3.scale.linear()
         .domain([0, d3.max(this.dataY)])
         .range([this.height, 0]);
   },
 
-  ordinalScaleY: function(axis) {
+  ordinalScaleY: function() {
     this.y = d3.scale.ordinal()
         .domain(this.dataY)
         .rangeRoundBands([this.height, 0], .1);
@@ -98,13 +98,13 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
     var self = this;
     if (typeof self.dataX[0] === 'number' && typeof this.dataY[0] === 'number') {
       this.chart.selectAll('.bar')
-          .data(this.chartData)
+          .data([ { x: 'A', y: 0.10 }, { x: 'B', y: 0.09 }, { x: 'C', y: 0.01 }, { x: 'D', y: 0.08 }, { x: 'E', y: 0.11 }, { x: 'F', y: 0.03 }, { x: 'G', y: 0.06 }, { x: 'H', y: 0.13 } ])
         .enter().append('rect')
           .attr('class', 'bar')
           .attr('x', function(d) { return self.x(d.x); })
-         // .attr('width', function(d) { return self.width - self.x(d.x) })
-          //.attr('y', function(d) { return self.y(d.y); })
-          //.attr('height', function(d) { return self.height - self.y(d.y); });
+          .attr('width', function(d) { return self.width - self.x(d.x) })
+          .attr('y', function(d) { return self.y(d.y); })
+          .attr('height', function(d) { return self.height - self.y(d.y); });
     // } else if (typeof this.dataX[0] === 'string' && typeof this.dataY[0] === 'string') {
     //   this.chart.selectAll('.bar')
     //       .data([1,2,3,4])
@@ -136,19 +136,3 @@ DatsyApp.GraphView = DatsyApp.SvgBackboneView.extend({
   }
 
 });
-
-
-    // if (typeof this.dataX[0] === 'number') {
-    //   this.chart.attr('x', function(d) { console.log(d); return this.x(d.x); })
-    //     .attr('width', function(d) { return this.width - this.x(d.x) });
-    // } else {
-    //   this.chart.attr('x', function(d) { return this.x(d.x); })
-    //     .attr('width', this.x.rangeBand());
-    // }
-    // if (typeof this.dataY[0] === 'number') {
-    //   this.chart.attr('y', function(d) { return this.y(d.y); })
-    //       .attr('height', function(d) { return this.height - this.y(d.y); });
-    // } else {
-    //   this.chart.attr('y', function(d) { return this.y(d.y); })
-    //       .attr('height', this.y.rangeBand());
-    // }
