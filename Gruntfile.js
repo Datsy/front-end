@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         keepRunner: true,
         vendor: [
           'public/bower_components/jquery/jquery.min.js',
+          'public/bower_components/jqueryui/minified/jquery-ui.min.js',
           'public/bower_components/bootstrap/dist/js/bootstrap.min.js',
           'public/bower_components/underscore/underscore-min.js',
           'public/bower_components/backbone/backbone-min.js',
@@ -29,9 +30,10 @@ module.exports = function(grunt) {
 
   });
 
+  grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jasmine']);
+  grunt.registerTask('default', ['jade', 'jasmine']);
   
 };

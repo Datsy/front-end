@@ -15,7 +15,7 @@ describe('DatsyAppView', function() {
     expect(datsyAppView.template).toEqual(datsy.get('templates')['datsyApp']);
   });
 
-  xit('should generate a router', function() {
+  it('should generate a router', function() {
     expect(DatsyView.router).toEqual(jasmine.any(Datsy.Router));
   });
 
