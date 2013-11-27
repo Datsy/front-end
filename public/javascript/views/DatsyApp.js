@@ -10,7 +10,7 @@ DatsyApp.DatsyView = Backbone.View.extend({
   },
 
   initialize: function() {
-   this.template = this.model.get('templates')['datsyApp'];
+    this.template = this.model.get('templates')['datsyApp'];
     $('body').prepend(this.render().el);
     this.router = new DatsyApp.Router({ el: this.$el.find('#wrapper'), model: this.model });
     Backbone.history.start({pushstate:true});
