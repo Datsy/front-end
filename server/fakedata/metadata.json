@@ -1,0 +1,37 @@
+{
+  "datasets": 
+  [
+    {
+      "id": 123,
+      "url": "http://www.example.com/bicycledata",
+      "name": "Bicycle Paths",
+      "description": "data for bicyclists worldwide",
+      "author": "Bicycle International Inc.",
+      "dateAdded": "November 20, 2013",
+      "numrows": "230980",
+      "numcols": "4",
+      "columns": [
+        {
+          "name": "id",
+          "datatype": "integer",
+          "meaning": "unique_id",
+        },
+        {
+          "name": "location",
+          "datatype": "coordinate",
+          "meaning": "start of bicycle path",
+        },
+        {
+          "name": "length",
+          "datatype": "float",
+          "meaning": "the length of the bicycle path from start to finish",
+        },
+        {
+          "name": "difficulty",
+          "datatype": "integer",
+          "meaning": "how hilly is this path",
+        }
+      ]
+    }
+  ]
+}
