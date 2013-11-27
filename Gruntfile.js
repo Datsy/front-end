@@ -4,6 +4,22 @@ module.exports = function(grunt) {
   // project config
   grunt.initConfig({
 
+    jade: {
+      compile: {
+        options: {
+          client: false,
+          pretty: true
+        },
+        files: [ {
+          cwd: "views/src",
+          src: "**/*.jade",
+          dest: "views/release",
+          expand: true,
+          ext: ".html"
+        } ]
+      }
+    },
+
     jasmine: {
       src: ['public/javascript/**/*.js', '!public/javascript/main.js'],
       options: {
@@ -32,7 +48,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  // grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['jade', 'jasmine']);
   
