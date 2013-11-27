@@ -1,5 +1,4 @@
 describe('DatsyAppView', function() {
- 
   var datsy, datsyAppView;
  
   beforeEach(function () {
@@ -7,7 +6,7 @@ describe('DatsyAppView', function() {
     datsyAppView = new DatsyApp.DatsyView({model: datsy});
   });
 
-  xit('should have a model', function() {
+  it('should have a model', function() {
     expect(datsyAppView.model).toBe(datsy);
   });
 
