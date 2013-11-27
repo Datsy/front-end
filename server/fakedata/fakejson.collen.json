@@ -8,7 +8,7 @@
         "numRecords": 168675,
         "numColumns": 19
       },
-      "tags": ["earthquake", "magniute", "geolocation", "san francisco"],
+      "tags": ["earthquake", "magnitude", "geolocation", "san francisco"],
       "columns": [
         {
           "name": "magnitude",
