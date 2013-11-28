@@ -1,12 +1,11 @@
 DatsyApp.DatsyView = Backbone.View.extend({
 
-  className: 'container',
+  className: '',
 
   events: {
     '.click .navbar-brand': 'loadIndex',
     'click #explore': "navigateToExplore",
-    'click #visualizer': "navigateToVisulizer",
-    'click #dataset': "navigateToDataset"
+    'click #visualizer': "navigateToVisulizer"
   },
 
   initialize: function() {
@@ -34,11 +33,6 @@ DatsyApp.DatsyView = Backbone.View.extend({
   navigateToVisulizer: function() {
     console.log('clicked viz');
     this.router.navigate("/visualize", {trigger: true} );
-  },
-
-  navigateToDataset: function() {
-    console.log('clicked data');
-    this.router.navigate("/dataset/1", {trigger: true} );
   }
 
 });

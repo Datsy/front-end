@@ -1,5 +1,43 @@
-div.jumbotron
-  h1.text-center Welcome To Datsy!
-  p.text-center.lead We set data free.
-  button#visualize-data.btn-danger.btn-lg.col-md-offset-3 Visualize Data
-  button#explore-data.btn-primary.btn-lg.col-md-offset-2 Explore Datasets
+div.landing-splash
+div.container
+  div.landing-copy.col-md-7
+    h1.proxima.text-center Welcome to Datsy!
+    h3.proxima.lead.text-center We're big data for the little guy.
+    p.text-center
+      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet lacus imperdiet, tempor dolor quis, mollis turpis. Nunc at viverra justo, non volutpat diam. Maecenas rutrum sollicitudin ornare. Integer eget nibh in libero pellentesque tincid.
+    h2.text-center Let's Get Started
+    form(role='form')
+      div.form-group(for="getStartedForm")
+        label.sr-only Search for a topic that interests you
+        input#getStartedForm.form-control(type='text', placeholder="Search for a topic that interests you.")
+      button#getStartedButton.btn.btn-success.btn-lg(type="submit") Go!
+
+  div.panel.backer.col-md-7
+
+  div.about-datsy.row.col-lg-12
+    h1.proxima.text-center What is Datsy?
+    div.row.marketing
+      div.col-lg-4
+        img.img-circle(src="http://placedog.com/140/140", alt="Generic placeholder image")
+        h2 Data at Your Fingertips
+        p Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.
+        p
+          a.btn.btn-default(role="button") View details &raquo;
+    
+      div.col-lg-4
+        img.img-circle(src="http://placedog.com/140/140", alt="Generic placeholder image")
+        h2 Make Connections
+        p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
+        p
+          a.btn.btn-default(role="button") View details &raquo;
+      
+      div.col-lg-4
+        img.img-circle(src="http://placedog.com/140/140", alt="Generic placeholder image")
+        h2 Bring Data to Life
+        p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+        p
+          a.btn.btn-default(role="button") View details &raquo;
+    div.row.exampleGraphs
+      h1.row.text-center Example Graphings
+      img.img-rounded.col-md-6(src="http://placedog.com/250/150",  alt="Example Graph 1")
+      img.img-rounded.col-md-6(src="http://placedog.com/250/150",  alt="Example Graph 2")
