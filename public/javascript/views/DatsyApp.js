@@ -5,7 +5,7 @@ DatsyApp.DatsyView = Backbone.View.extend({
   events: {
     '.click .navbar-brand': 'loadIndex',
     'click #explore': "navigateToExplore",
-    'click #visualizer': "navigateToVisulizer"
+    'click #visualizer': "navigateToVisualizer"
   },
 
   initialize: function() {
@@ -30,7 +30,7 @@ DatsyApp.DatsyView = Backbone.View.extend({
     this.router.navigate("/explore", {trigger: true} );
   },
 
-  navigateToVisulizer: function() {
+  navigateToVisualizer: function() {
     console.log('clicked viz');
     this.router.navigate("/visualize", {trigger: true} );
   }

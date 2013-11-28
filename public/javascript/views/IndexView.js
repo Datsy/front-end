@@ -3,8 +3,7 @@ DatsyApp.IndexView = Backbone.View.extend({
   className: '',
   
   events: {
-    'click button#explore-data': 'navigateExploreData',
-    'click button#visualize-data': 'navigateVisualizeData'
+    'click button#getStartedButton': 'intialSearch'
   },
 
   initialize: function() {
@@ -16,16 +15,10 @@ DatsyApp.IndexView = Backbone.View.extend({
     return this;
   },
 
-  navigateVisualizeData: function() {
-    // Navigate to VisualizeData view
-    console.log('navigateVisualizeData');
-    Backbone.history.navigate("/visualize", {trigger: true});
-  },
+  intialSearch: function(e) {
+    e && e.preventDefault();
 
-  navigateExploreData: function() {
-    // Navigate to ExploreData view
-    console.log('navigateExploreData');
-    Backbone.history.navigate("/explore", {trigger: true});
+//    Backbone.history.navigate("/visualize", {trigger: true});
   }
 
 });

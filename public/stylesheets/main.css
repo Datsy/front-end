@@ -76,36 +76,49 @@ header #explore {
   margin-top: -425px;
   border-radius: 10px;
 }
-#wrapper .about-datsy {
-  margin-top: 660px;
+.about-datsy-strip {
+  position: relative;
+  width: 100%;
   background-color: #fff;
+  margin-top: 135px;
 }
-#wrapper .about-datsy h1 {
+.about-datsy-strip .about-datsy h1 {
   font-weight: 800;
   font-size: 50px;
 }
-#wrapper .about-datsy .marketing {
+.about-datsy-strip .about-datsy .marketing {
   margin-top: 30px;
 }
-#wrapper .about-datsy .marketing img {
+.about-datsy-strip .about-datsy .marketing img {
+  position: relative;
   height: 140px;
   width: 140px;
-  margin-left: 100px;
+  left: 50%;
+  margin-left: -70px;
 }
-#wrapper .about-datsy .marketing h2 {
+.about-datsy-strip .about-datsy .marketing h2 {
   text-align: center;
 }
-#wrapper .about-datsy .marketing a {
-  margin-left: 115px;
-}
-#wrapper .about-datsy .exampleGraphs {
+.about-datsy-strip .about-datsy .exampleGraphs {
   margin: 35px 0;
 }
-#wrapper .about-datsy .exampleGraphs h1 {
+.about-datsy-strip .about-datsy .exampleGraphs h1 {
   margin: 0 0 30px 0;
+}
+.buffer {
+  margin: 20px 0;
 }
 footer {
   border-top: 1px solid #ccc;
   clear: both;
   padding: 50px 10px 50px 10px;
+}
+@media all and (max-width: 1200px) and (min-width: 990px) {
+  #wrapper .landing-copy {
+    margin-top: 40px;
+  }
+  #wrapper .backer {
+    height: 495px;
+    margin-top: -425px;
+  }
 }

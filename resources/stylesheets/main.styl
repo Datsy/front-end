@@ -72,26 +72,31 @@ header
     margin-top -425px
     border-radius 10px
 
-  .about-datsy
-    margin-top 660px
-    background-color #fff
+.about-datsy-strip
+  position relative
+  width 100%
+  background-color #fff
+  margin-top 135px
+  
 
+  .about-datsy
+    
     h1
       font-weight 800
       font-size 50px
 
     .marketing
       margin-top 30px
+
       img
+        position relative
         height 140px
         width 140px
-        margin-left 100px
+        left 50%
+        margin-left -70px
 
       h2
         text-align center
-
-      a
-        margin-left 115px;
     
     .exampleGraphs
       margin 35px 0
@@ -99,7 +104,19 @@ header
       h1
         margin 0 0 30px 0
 
+.buffer
+  margin 20px 0
+
 footer
   border-top 1px solid #ccc
   clear both
   padding 50px 10px 50px 10px
+
+@media all and (max-width: 1200px) and (min-width: 990px)
+  #wrapper
+    .landing-copy
+      margin-top 40px
+
+    .backer
+      height 495px
+      margin-top -425px
