@@ -8,7 +8,7 @@ class DatsyApp.Router extends Backbone.Router
     '': 'index',
     'explore': 'exploreData',
     'visualize': 'visualize',
-    'searchDataSets': 'searchDataSets'
+    'searchDataSets/:params': 'searchDataSets'
   
   swapView: (view) ->
     @$el.html view.render().el
@@ -29,6 +29,5 @@ class DatsyApp.Router extends Backbone.Router
     # //   collapsible: true
 
   searchDataSets: (params) ->
-    console.log params
-    # dataSetView = new DatsyApp.DatasetView { model: this.model }
-    # @swapView dataSetView
+    dataSetSearchView = new DatsyApp.DataSetSearchView { template: @model.get('templates')['dataSetSearch'], searchTopic: params }
+    @swapView dataSetSearchView

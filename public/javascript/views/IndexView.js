@@ -1,24 +1,40 @@
-DatsyApp.IndexView = Backbone.View.extend({
+(function() {
+  var _ref,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  className: '',
-  
-  events: {
-    'click button#getStartedButton': 'intialSearch'
-  },
+  DatsyApp.IndexView = (function(_super) {
+    __extends(IndexView, _super);
 
-  initialize: function() {
-    this.template = this.model.get('templates')['indexView'];
-  },
+    function IndexView() {
+      _ref = IndexView.__super__.constructor.apply(this, arguments);
+      return _ref;
+    }
 
-  render: function() {
-    this.$el.html( this.template(this.model.attributes) );
-    return this;
-  },
+    IndexView.prototype.events = {
+      'click button#getStartedButton': 'intialSearch'
+    };
 
-  intialSearch: function(e) {
-    e && e.preventDefault();
+    IndexView.prototype.initialize = function(options) {
+      return this.template = options.template;
+    };
 
-//    Backbone.history.navigate("/visualize", {trigger: true});
-  }
+    IndexView.prototype.render = function() {
+      this.$el.html(this.template);
+      return this;
+    };
 
-});
+    IndexView.prototype.intialSearch = function(e) {
+      var searchVal;
+      e && e.preventDefault();
+      searchVal = $('#getStartedForm').val();
+      return Backbone.history.navigate("/searchDataSets/" + searchVal, {
+        trigger: true
+      });
+    };
+
+    return IndexView;
+
+  })(Backbone.View);
+
+}).call(this);

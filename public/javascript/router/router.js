@@ -1,47 +1,67 @@
-DatsyApp.Router = Backbone.Router.extend({
-  
-  initialize: function(options) {
-    this.$el = options.el;
-    this.model = options.model;
-  },
+(function() {
+  var _ref,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  routes: {
-    '': 'index',
-    'explore': 'exploreData',
-    'visualize': 'visualize',
-    'dataset': 'dataset'    // SHOULD ROUTE TO DATASET ID: 'dataset/:id': 'dataset'
-  },
-  
-  swapView: function(view) {
-    this.$el.html(view.render().el);
-  },
+  DatsyApp.Router = (function(_super) {
+    __extends(Router, _super);
 
-  index: function(){
-    console.log('index route');
-    var indexView = new DatsyApp.IndexView({ model: this.model });
-    this.swapView(indexView);
-  },
+    function Router() {
+      _ref = Router.__super__.constructor.apply(this, arguments);
+      return _ref;
+    }
 
-  visualize: function(){
-    console.log('visualize route');
-    var visView = new DatsyApp.VisView({ model: this.model });
-    this.swapView(visView);
-  },
+    Router.prototype.initialize = function(options) {
+      this.$el = options.el;
+      return this.model = options.model;
+    };
 
-  exploreData: function() {
-    console.log('explore route');
-    var exploreDataView = new DatsyApp.ExploreDataView({ model: this.model });
-    this.swapView(exploreDataView);
-    // Set accordions to be collapsible
-    $( ".accordion" ).accordion({
-      collapsible: true
-    });
-  },
+    Router.prototype.routes = {
+      '': 'index',
+      'explore': 'exploreData',
+      'visualize': 'visualize',
+      'searchDataSets/:params': 'searchDataSets'
+    };
 
-  dataset: function(id) {
-    console.log('dataset route');
-    var dataSetView = new DatsyApp.DatasetView({ model: this.model });
-    this.swapView(dataSetView);
-  }
+    Router.prototype.swapView = function(view) {
+      return this.$el.html(view.render().el);
+    };
 
-});
+    Router.prototype.index = function() {
+      var indexView;
+      indexView = new DatsyApp.IndexView({
+        template: this.model.get('templates')['indexView']
+      });
+      return this.swapView(indexView);
+    };
+
+    Router.prototype.visualize = function() {
+      var visView;
+      visView = new DatsyApp.VisView({
+        model: this.model
+      });
+      return this.swapView(visView);
+    };
+
+    Router.prototype.exploreData = function() {
+      var exploreDataView;
+      exploreDataView = new DatsyApp.ExploreDataView({
+        model: this.model
+      });
+      return this.swapView(exploreDataView);
+    };
+
+    Router.prototype.searchDataSets = function(params) {
+      var dataSetSearchView;
+      dataSetSearchView = new DatsyApp.DataSetSearchView({
+        template: this.model.get('templates')['dataSetSearch'],
+        searchTopic: params
+      });
+      return this.swapView(dataSetSearchView);
+    };
+
+    return Router;
+
+  })(Backbone.Router);
+
+}).call(this);

@@ -33,10 +33,13 @@ module.exports = function(grunt) {
     // },
 
     watch: {
-        // compile: {
-        //   files: 'resources/coffeescript/**/*.coffee',
-        //   tasks: [ 'compile' ]
-        // },
+        compile: {
+          files: 'resources/coffeescript/**/*.coffee',
+          tasks: [ 'compile' ],
+          options: {
+            livereload: true
+          }
+        }
         // test: {
         //   files: ['public/javascript/**/*.js'],
         //   tasks: ['test']
@@ -50,6 +53,6 @@ module.exports = function(grunt) {
 
 //  grunt.registerTask('test', ['jasmine']);
   grunt.registerTask('compile', ['coffee']);
-  grunt.registerTask('default', ['coffee']);
+  grunt.registerTask('default', ['watch']);
   
 };

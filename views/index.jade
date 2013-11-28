@@ -4,7 +4,6 @@ html
     title DATSY.io
     meta(name="viewport", content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
 
-
     link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet", href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css")
     link(rel='stylesheet', href='/stylesheets/main.css')
@@ -35,57 +34,38 @@ html
     script#indexView(type="text/x-handlebars-template")
       include templates/indexView
 
-    //- VISUALIZATION TEMPLATES
-    script#visualizations(type="text/x-handlebars-template")
-      include templates/visualization/visualizations
-
-    script#dropper(type="text/x-handlebars-template")
-      include templates/visualization/dropper
-
-    script#model(type="text/x-handlebars-template")
-      include templates/model
-
     //- DATA EXPLORER TEMPLATES
-    script#exploreData(type="text/x-handlebars-template")
-      include templates/explore/explore
+    //- script#exploreData(type="text/x-handlebars-template")
+    //-   include templates/explore/explore
 
-    script#exploreCategories(type="text/x-handlebars-template")
-      include templates/explore/explore-categories
+    //- script#exploreCategories(type="text/x-handlebars-template")
+    //-   include templates/explore/explore-categories
 
-    script#exploreDatasets(type="text/x-handlebars-template")
-      include templates/explore/explore-datasets
+    //- script#exploreDatasets(type="text/x-handlebars-template")
+    //-   include templates/explore/explore-datasets
 
-    //- DATA SET VIEW TEMPLATES
-    script#datasetView(type="text/x-handlebars-template")
-      include templates/dataset/dataSet
+    //- SEARCH DATA SETS
+    script#dataSetSearch(type="text/x-handlebars-template")
+      include templates/dataSetSearch/dataSetSearch
 
     script.
       var DatsyApp = {};
 
     script(src="javascript/models/Datsy.js")
-    script(src="javascript/models/DataSelectionModel.js")
-    script(src="javascript/models/VisDatum.js")
-
-    script(src="javascript/collections/VisData.js")
 
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
-    script(src="javascript/views/BaseModalView.js")
+    script(src="javascript/views/SvgBackboneView.js")
+
+    //- Data Set Search
+    script(src="javascript/views/dataSetSearch/DataSetSearchView.js")
 
     //- Explorer Views
-    script(src="javascript/views/explore/ExploreDataView.js")
-    script(src="javascript/views/explore/ExploreDatasetsView.js")
-    script(src="javascript/views/explore/ExploreCategoriesView.js")
-
-    //- Dataset Views
-    script(src="javascript/views/dataset/DatasetView.js")
+    //- script(src="javascript/views/explore/ExploreDataView.js")
+    //- script(src="javascript/views/explore/ExploreDatasetsView.js")
+    //- script(src="javascript/views/explore/ExploreCategoriesView.js")
 
     //- Visualizer Views
-    script(src="javascript/views/visualizer/SvgBackboneView.js")
-    script(src="javascript/views/visualizer/VisualizerView.js")
-    script(src="javascript/views/visualizer/DataSelectionModelView.js")
-    script(src="javascript/views/visualizer/GraphView.js")
-    script(src="javascript/views/visualizer/ColumnModelView.js")
 
     script(src="javascript/router/router.js")
   
