@@ -5,7 +5,7 @@ describe('Datsy Model', function() {
     datsy = new DatsyApp.Datsy();
   });
 
-  xit('has an app title', function(){
+  it('has an app title', function(){
     expect(datsy.get('AppName')).toBe('Datsy');
   });
 
