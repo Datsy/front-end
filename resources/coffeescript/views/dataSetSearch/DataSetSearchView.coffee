@@ -13,9 +13,9 @@ class DatsyApp.DataSetSearchView extends Backbone.View
     @$el.html @loadingTemplate({ searchTag: @mainTag })
     @
 
-  # render: ->
-  #   @$el.html @template({ searchTag: @mainTag, occurance: 1 })
-  #   @
+  renderLoaded: ->
+    @$el.html @template({ searchTag: @mainTag, occurance: 1 })
+    @
 
   uppercase: (tag) ->
     tagArr = tag.split(' ')

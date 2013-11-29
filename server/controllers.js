@@ -20,12 +20,9 @@ module.exports = {
   },
 
   sendTagMeta: function(req, res) {
-    console.log(req);
-    var tag = req.params['param'];
-    console.log(tag);
-    // returnColumnData(columnName, function(results) {
-    //   sendResponse(res, results, 201);
-    // });
+    var tag = req.query['tag'];
+    var result = returnDatabaseMetadata(tag);
+    sendResponse(res, result, 201);
   }
 
 };

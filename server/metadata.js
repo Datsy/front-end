@@ -21,28 +21,15 @@ exports.setUpMetaData = function() {
   });
 };
 
-exports.getMetaData = function(field) {
-  return metadata.datasets;
+exports.getMetaData = function(tag) {
+  var results = metadata.dataSets.filter(function(dataset) {
+    return (dataset.tags.indexOf(tag) === -1) ? false : true;
+  })
+  return results;
 };
 
 exports.getTags = function() {
   return metadata.dataSetTags;
-};
-
-
-exports.getColumn = function(columnName, cb) {
-  readFakeJSON(function(data) {
-    var results = [];
-    for (var i = 0; i < data.datasets.length; i++) {
-      for (var j = 0; j < data.datasets[i].columns.length; j++) {
-        if (data.datasets[i].columns[j].name === columnName) {
-         results =  data.datasets[i].columns[j].data;
-         // TODO: break out on finding, deal with mutiples
-        }
-      }
-    }
-    cb(results);
-  });
 };
 
 var readFakeJSON = function(cb1, cb2) {

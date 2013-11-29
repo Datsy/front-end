@@ -28,6 +28,14 @@
       return this;
     };
 
+    DataSetSearchView.prototype.renderLoaded = function() {
+      this.$el.html(this.template({
+        searchTag: this.mainTag,
+        occurance: 1
+      }));
+      return this;
+    };
+
     DataSetSearchView.prototype.uppercase = function(tag) {
       var tagArr;
       tagArr = tag.split(' ');
