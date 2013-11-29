@@ -19,7 +19,8 @@
     IndexView.prototype.initialize = function(options) {
       this.template = options.template;
       this.tags = [];
-      return this;
+      _.bindAll(this, 'removeBackground');
+      return $(window).scroll(this.removeBackground);
     };
 
     IndexView.prototype.render = function() {
@@ -51,6 +52,15 @@
       return $('#getStartedForm').autocomplete({
         source: this.tags
       });
+    };
+
+    IndexView.prototype.removeBackground = function() {
+      if ($(window).scrollTop() > 800) {
+        $('.landing-splash').hide();
+      }
+      if ($(window).scrollTop() < 799) {
+        return $('.landing-splash').show();
+      }
     };
 
     return IndexView;

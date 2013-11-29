@@ -1,12 +1,14 @@
 class DatsyApp.DataSetSearchView extends Backbone.View
   
-  #events:
-
+  events:
+    'focus #filterTagSearch': 'setUpTags',
+  
   initialize: (options) ->
     @template = options.template
     @loadingTemplate = options.loadingTemplate
     @mainTag = @uppercase options.searchTopic
     @databases = new DatsyApp.Databases({ url: '/search?tag=' + options.searchTopic })
+    setTimeout (=> @databases.on 'add', @renderLoaded()), 500
     @
 
   render: ->
@@ -14,7 +16,8 @@ class DatsyApp.DataSetSearchView extends Backbone.View
     @
 
   renderLoaded: ->
-    @$el.html @template({ searchTag: @mainTag, occurance: 1 })
+    singular = @databases.length == 1
+    @$el.html @template({ searchTag: @mainTag, occurance: @databases.length, singular: singular })
     @
 
   uppercase: (tag) ->

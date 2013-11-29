@@ -7,7 +7,9 @@ class DatsyApp.IndexView extends Backbone.View
   initialize: (options) ->
     @template = options.template
     @tags = [];
-    @
+
+    _.bindAll @, 'removeBackground'
+    $(window).scroll @removeBackground
 
   render: ->
     @$el.html @template
@@ -27,3 +29,7 @@ class DatsyApp.IndexView extends Backbone.View
   setUpTags: ->
     @tags = @model.listTags();
     $('#getStartedForm').autocomplete { source: @tags }
+
+  removeBackground: ->
+    $('.landing-splash').hide() if $(window).scrollTop() > 800
+    $('.landing-splash').show() if $(window).scrollTop() < 799

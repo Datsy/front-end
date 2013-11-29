@@ -11,3 +11,58 @@
 .verticalCenter img {
   margin: 0 auto;
 }
+.filterResults {
+  margin-top: 150px;
+}
+.filterResults h3 {
+  margin-top: 3px;
+}
+.filterResults form {
+  margin-top: 20px;
+}
+.filterResults input[type='text'] {
+  text-align: center;
+  height: 40px;
+  padding-top: 5px;
+  font-size: 20px;
+}
+.filterResults input[type='text']:focus {
+  border-color: #999;
+  box-shadow: none;
+}
+.filterResults input[type='text']:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.filterResults input[type='text']:focus::-moz-placeholder {
+  color: transparent;
+}
+.filterResults #addFilters {
+  height: 40px;
+  width: 40px;
+}
+.filterResults #seeDataBases {
+  margin-top: 40px;
+}
+@media all and (max-width: 990px) and (min-width: 640px) {
+  .col-md-9 {
+    width: 90%;
+  }
+  .col-md-offset-5 {
+    margin-left: 41.66666667%;
+  }
+  #addFilters {
+    left: 5px;
+  }
+}
+@media all and (max-width: 767px) {
+  .col-md-9 {
+    width: 100%;
+  }
+  .col-md-offset-5 {
+    width: 90%;
+    margin-left: 5%;
+  }
+  #addFilters {
+    margin-left: 45%;
+  }
+}

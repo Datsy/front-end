@@ -10,3 +10,54 @@
 
   img
     margin 0 auto
+
+.filterResults
+  margin-top 150px
+  
+  h3
+    margin-top 3px
+
+  form
+    margin-top 20px
+
+  input[type='text']
+    text-align center
+    height 40px
+    padding-top 5px
+    font-size 20px
+  
+  input[type='text']:focus
+    border-color #999
+    box-shadow none
+
+  input[type='text']:focus::-webkit-input-placeholder
+    color transparent
+  
+  input[type='text']:focus::-moz-placeholder
+    color transparent
+
+  #addFilters
+    height 40px
+    width 40px
+
+  #seeDataBases
+    margin-top 40px
+
+@media all and (max-width: 990px) and (min-width: 640px)
+  .col-md-9
+    width 90%
+  .col-md-offset-5
+    margin-left 41.66666667%
+  #addFilters
+    left 5px
+
+@media all and (max-width: 767px)
+  .col-md-9
+    width 100%
+  .col-md-offset-5
+    width 90%
+    margin-left 5%
+  #addFilters
+    margin-left 45%
+
+

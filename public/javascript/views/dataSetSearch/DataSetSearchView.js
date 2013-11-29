@@ -11,13 +11,21 @@
       return _ref;
     }
 
+    DataSetSearchView.prototype.events = {
+      'focus #filterTagSearch': 'setUpTags'
+    };
+
     DataSetSearchView.prototype.initialize = function(options) {
+      var _this = this;
       this.template = options.template;
       this.loadingTemplate = options.loadingTemplate;
       this.mainTag = this.uppercase(options.searchTopic);
       this.databases = new DatsyApp.Databases({
         url: '/search?tag=' + options.searchTopic
       });
+      setTimeout((function() {
+        return _this.databases.on('add', _this.renderLoaded());
+      }), 500);
       return this;
     };
 
@@ -29,9 +37,12 @@
     };
 
     DataSetSearchView.prototype.renderLoaded = function() {
+      var singular;
+      singular = this.databases.length === 1;
       this.$el.html(this.template({
         searchTag: this.mainTag,
-        occurance: 1
+        occurance: this.databases.length,
+        singular: singular
       }));
       return this;
     };
