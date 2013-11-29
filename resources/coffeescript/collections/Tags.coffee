@@ -5,7 +5,7 @@ class DatsyApp.Tags extends Backbone.Collection
   url: '/tags',
 
   initialize: ->
-    @fetch()
+    @fetch { success: @triggerLoaded }
 
   has: (tag) ->
     models = @models
@@ -16,3 +16,6 @@ class DatsyApp.Tags extends Backbone.Collection
     models = @models
     return @models.map (model) ->
       return model.get('label')
+
+  triggerLoaded: =>
+    @trigger 'loaded'

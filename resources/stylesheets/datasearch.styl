@@ -1,6 +1,7 @@
 .verticalCenter
   height 300px
   margin-top 100px
+  margin-bottom 60px
 
   h1
     margin 0
@@ -39,25 +40,37 @@
   #addFilters
     height 40px
     width 40px
+    margin-left -50px
+    margin-top -1px
+    box-shadow none
+    outline none
 
   #seeDataBases
     margin-top 40px
+    margin-bottom 20px
 
 @media all and (max-width: 990px) and (min-width: 640px)
-  .col-md-9
-    width 90%
+  .col-md-10
+    width 100%
   .col-md-offset-5
-    margin-left 41.66666667%
-  #addFilters
-    left 5px
+    margin-left 37.66666667%
 
 @media all and (max-width: 767px)
+  .verticalCenter
+    margin-top 80px
+
+  .filterResults
+    margin-top 70px
+
   .col-md-9
     width 100%
+  
   .col-md-offset-5
     width 90%
     margin-left 5%
+  
   #addFilters
-    margin-left 45%
-
-
+    margin-left 25% !important
+    margin-top 0 !important
+    width 50% !important
+ 

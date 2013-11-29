@@ -15,7 +15,15 @@
 
     Databases.prototype.initialize = function(params) {
       this.url = params.url;
-      return this.fetch();
+      this.fetch();
+      return this.on('change', this.triggerChange);
+    };
+
+    Databases.prototype.filterByTags = function(tag) {
+      this.models = this.models.filter(function(model) {
+        return model.get('tags').indexOf(tag) !== -1;
+      });
+      return this.length = this.models.length;
     };
 
     return Databases;

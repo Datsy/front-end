@@ -8,6 +8,7 @@ html
     link(rel="stylesheet", href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css")
     link(rel='stylesheet', href='/stylesheets/main.css')
     link(rel='stylesheet', href='/stylesheets/datasearch.css')
+    link(rel='stylesheet', href='/stylesheets/explorer.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
@@ -33,14 +34,11 @@ html
       include templates/indexView
 
     //- DATA EXPLORER TEMPLATES
-    //- script#exploreData(type="text/x-handlebars-template")
-    //-   include templates/explore/explore
+    script#exploreDataSets(type="text/x-handlebars-template")
+      include templates/explore/exploreDataSets
 
-    //- script#exploreCategories(type="text/x-handlebars-template")
-    //-   include templates/explore/explore-categories
-
-    //- script#exploreDatasets(type="text/x-handlebars-template")
-    //-   include templates/explore/explore-datasets
+    script#listDatasets(type="text/x-handlebars-template")
+      include templates/explore/listDatasets
 
     //- SEARCH DATA SETS
     script#dataSetSearch(type="text/x-handlebars-template")
@@ -67,9 +65,8 @@ html
     script(src="javascript/views/dataSetSearch/DataSetSearchView.js")
 
     //- Explorer Views
-    //- script(src="javascript/views/explore/ExploreDataView.js")
-    //- script(src="javascript/views/explore/ExploreDatasetsView.js")
-    //- script(src="javascript/views/explore/ExploreCategoriesView.js")
+    script(src="javascript/views/explore/ExploreDataSetsView.js")
+    script(src="javascript/views/explore/ListDataSetsView.js")
 
     //- Visualizer Views
 

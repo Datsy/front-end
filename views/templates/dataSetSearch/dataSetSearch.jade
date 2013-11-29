@@ -5,12 +5,12 @@ div.container.filterResults
   h1.text-center {{ searchTag }} appeared in {{ occurance }} results.
   {{/if}}
 
-  h3.text-center.text-muted Would you like to further refine your search, or see all matching databases?
+  h3.text-center.text-muted Add filters to refine search, or click Browse Data Sets start exploring.
 
   form.form-inline(role='form')
-    div.form-group.col-md-9.col-md-offset-1
+    div.form-group.col-md-10.col-md-offset-1
       label.sr-only(for="filter") Add topics to filter results
       input#filterTagSearch.form-control(type='text', placeholder="Add topics to filter results.", autocomplete="off")
     button#addFilters.btn.btn-success.glyphicon.glyphicon-plus(type="submit")
 
-  button#seeDataBases.btn.btn-success.btn-lg.col-md-offset-5(type="submit") Let's See 'Em!
+  button#seeDataBases.btn.btn-success.btn-lg.col-md-offset-5(type="submit") Browse Data Sets

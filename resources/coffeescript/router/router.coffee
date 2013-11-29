@@ -4,12 +4,16 @@ class DatsyApp.Router extends Backbone.Router
     @$el = options.el
     @model = options.model
     @currentView = undefined
+    @tags = []
+    @model.on 'loaded', @setTags
+    @
 
   routes:
     '': 'index',
-    'explore': 'exploreData',
+    #'explore': 'exploreAllDataSets',
     'visualize': 'visualize',
-    'searchDataSets/:params': 'searchDataSets'
+    'searchDataSets/:params': 'searchDataSets',
+    'exploreDataSets': 'exploreDataSets'
   
   swapView: (view) ->
     @currentView.remove() if @currentView
@@ -24,14 +28,18 @@ class DatsyApp.Router extends Backbone.Router
     visView = new DatsyApp.VisView { model: this.model }
     @swapView visView
 
-  exploreData: ->
-    exploreDataView = new DatsyApp.ExploreDataView { model: this.model }
-    @swapView exploreDataView
-    # // // Set accordions to be collapsible
-    # // $( ".accordion" ).accordion({
-    # //   collapsible: true
-
   searchDataSets: (params) ->
     params = params.toLowerCase()
-    dataSetSearchView = new DatsyApp.DataSetSearchView { template: @model.get('templates')['dataSetSearch'], loadingTemplate: @model.get('templates')['loading'], searchTopic: params }
+    dataSetSearchView = new DatsyApp.DataSetSearchView { template: @model.get('templates')['dataSetSearch'], loadingTemplate: @model.get('templates')['loading'], searchTopic: params, tags: @tags }
     @swapView dataSetSearchView
+    dataSetSearchView.on 'startExplore', @setDatabases
+
+  exploreDataSets: ->
+    exploreDataSetsViews = new DatsyApp.ExploreDataSetsView { template: @model.get('templates')['exploreDataSets'], listTemplate: @model.get('templates')['listDatasets'], databases: @databases }
+    @swapView exploreDataSetsViews
+
+  setTags: =>
+    @tags = @model.listTags()
+
+  setDatabases: (options) =>
+    @databases = options
