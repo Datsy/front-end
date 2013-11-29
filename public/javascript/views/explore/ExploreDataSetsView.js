@@ -15,16 +15,25 @@
 
     ExploreDataSetsView.prototype.initialize = function(options) {
       this.template = options.template;
-      return this.listTemplate = options.listTemplate;
+      this.listTemplate = options.listTemplate;
+      this.dataSetItemTemplate = options.dataSetItemTemplate;
+      return this.databases = options.databases;
     };
 
     ExploreDataSetsView.prototype.render = function() {
       var listdataView;
       this.$el.html(this.template);
+      debugger;
       listdataView = new DatsyApp.ListDataSetsView({
-        template: this.listTemplate
+        template: this.listTemplate,
+        dataSetItemTemplate: this.dataSetItemTemplate,
+        databases: this.databases
       });
       this.$el.append(listdataView.render());
+      this.$el.find('.accordion').accordion({
+        collapsible: true,
+        heightStyle: "content"
+      });
       return this;
     };
 

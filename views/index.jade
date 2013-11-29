@@ -40,6 +40,9 @@ html
     script#listDatasets(type="text/x-handlebars-template")
       include templates/explore/listDatasets
 
+    script#dataSetItem(type="text/x-handlebars-template")
+      include templates/explore/dataSetItem
+
     //- SEARCH DATA SETS
     script#dataSetSearch(type="text/x-handlebars-template")
       include templates/dataSetSearch/dataSetSearch
@@ -67,6 +70,7 @@ html
     //- Explorer Views
     script(src="javascript/views/explore/ExploreDataSetsView.js")
     script(src="javascript/views/explore/ListDataSetsView.js")
+    script(src="javascript/views/explore/DataSetItemView.js")
 
     //- Visualizer Views
 

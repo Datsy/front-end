@@ -10,7 +10,6 @@ class DatsyApp.Router extends Backbone.Router
 
   routes:
     '': 'index',
-    #'explore': 'exploreAllDataSets',
     'visualize': 'visualize',
     'searchDataSets/:params': 'searchDataSets',
     'exploreDataSets': 'exploreDataSets'
@@ -35,7 +34,13 @@ class DatsyApp.Router extends Backbone.Router
     dataSetSearchView.on 'startExplore', @setDatabases
 
   exploreDataSets: ->
-    exploreDataSetsViews = new DatsyApp.ExploreDataSetsView { template: @model.get('templates')['exploreDataSets'], listTemplate: @model.get('templates')['listDatasets'], databases: @databases }
+    debugger
+    exploreDataSetsViews = new DatsyApp.ExploreDataSetsView {
+      template: @model.get('templates')['exploreDataSets'],
+      listTemplate: @model.get('templates')['listDatasets'],
+      dataSetItemTemplate: @model.get('templates')['dataSetItem'],
+      databases: @databases
+    }
     @swapView exploreDataSetsViews
 
   setTags: =>

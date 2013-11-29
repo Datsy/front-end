@@ -12,11 +12,23 @@
     }
 
     ListDataSetsView.prototype.initialize = function(options) {
-      return this.template = options.template;
+      this.template = options.template;
+      this.itemViewTemplate = options.dataSetItemTemplate;
+      this.databases = options.databases;
+      return console.log(this.databases.models);
     };
 
     ListDataSetsView.prototype.render = function() {
-      return this.$el.html(this.template);
+      var listing,
+        _this = this;
+      this.$el.html(this.template);
+      listing = this.databases.map(function(database) {
+        return new DatsyApp.DataSetItemView({
+          template: _this.itemViewTemplate,
+          model: database
+        });
+      });
+      return this.$el.find('.accordion').append(listing);
     };
 
     return ListDataSetsView;

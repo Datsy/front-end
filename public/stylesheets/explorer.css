@@ -11,3 +11,31 @@
 .explore-datasets {
   margin-bottom: 20px;
 }
+.explore-categories header,
+.explore-datasets header {
+  width: 100%;
+  height: 40px;
+  background-color: #ccc;
+  padding: 7px 19px 5px 19px;
+  margin: 8px 0 4px 0;
+}
+.explore-categories header p,
+.explore-datasets header p {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  color: #333;
+  margin-right: 183px;
+}
+.explore-categories header p:last-child,
+.explore-datasets header p:last-child {
+  margin-right: 0px;
+}
+.explore-categories header p:hover,
+.explore-datasets header p:hover {
+  color: #666;
+}
+.explore-categories header span,
+.explore-datasets header span {
+  margin-left: 6px;
+}
