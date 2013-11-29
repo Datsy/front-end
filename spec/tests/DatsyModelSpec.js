@@ -1,5 +1,4 @@
 describe('Datsy Model', function() {
-
   var datsy;
 
   beforeEach(function() {

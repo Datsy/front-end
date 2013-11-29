@@ -1,9 +1,14 @@
 describe('DatsyAppView', function() {
   var datsy, datsyAppView;
- 
+  datsy = new DatsyApp.Datsy();
+  datsyAppView = new DatsyApp.DatsyView({model: datsy});
+  $("[type='text/x-handlebars-template']").each(function(index, div){
+    templates[div.id] = Handlebars.compile(div.innerHTML);
+  });
+  datsy.set('templates', templates); 
+
   beforeEach(function () {
-    datsy = new DatsyApp.Datsy();
-    datsyAppView = new DatsyApp.DatsyView({model: datsy});
+    
   });
 
   it('should have a model', function() {
