@@ -6,26 +6,26 @@ module.exports = {
   
   route: function(app) {
     app.get('/', this.index);
-    app.post('/data', this.sendData);
-    app.get('/data/:param', this.sendColumn);
+    app.get('/tags', this.sendTags);
+    app.get('/search', this.sendTagMeta);
   },
 
   index: function(req, res) {
     res.render('index');
   },
 
-  sendData: function(req, res) {
-    processPost(req, function(data) {
-      var options = queryOptions(data);
-      sendResponse(res, options, 201);
-    });
+  sendTags: function(req, res) {
+    var options = getAllTags();
+    sendResponse(res, options, 201);
   },
 
-  sendColumn: function(req, res) {
-    var columnName = req.params['param'];
-    returnColumnData(columnName, function(results) {
-      sendResponse(res, results, 201);
-    });
+  sendTagMeta: function(req, res) {
+    console.log(req);
+    var tag = req.params['param'];
+    console.log(tag);
+    // returnColumnData(columnName, function(results) {
+    //   sendResponse(res, results, 201);
+    // });
   }
 
 };

@@ -12,7 +12,15 @@
     }
 
     Datsy.prototype.initialize = function() {
-      return this.set('AppName', 'Datsy');
+      this.set('AppName', 'Datsy');
+      this.set('tags', new DatsyApp.Tags());
+      return this;
+    };
+
+    Datsy.prototype.tagExists = function(tag) {
+      var tags;
+      tags = this.get('tags');
+      return tags.has(tag);
     };
 
     return Datsy;

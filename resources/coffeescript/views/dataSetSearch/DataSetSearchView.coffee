@@ -4,6 +4,7 @@ class DatsyApp.DataSetSearchView extends Backbone.View
 
   initialize: (options) ->
     @template = options.template
+    @availableTags = options.tags
 
   render: ->
     @$el.html @template

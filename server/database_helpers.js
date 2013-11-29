@@ -12,6 +12,10 @@ exports.queryOptions = queryOptions = function(data) {
   return mapColumns(columnData);
 };
 
+exports.getAllTags = getAllTags = function(data) {
+  return metadata.getTags;
+};
+
 exports.returnColumnData = returnColumnData = function(columnName, cb) {
   var column = metadata.getColumn(columnName, function(results) {
     cb(results);

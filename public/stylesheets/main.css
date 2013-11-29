@@ -63,7 +63,9 @@ header #explore {
   border-color: #999;
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(126,126,126,0.4);
 }
-#wrapper .landing-copy form input[type='text']:focus::-webkit-input-placeholder,
+#wrapper .landing-copy form input[type='text']:focus::-webkit-input-placeholder {
+  color: transparent;
+}
 #wrapper .landing-copy form input[type='text']:focus::-moz-placeholder {
   color: transparent;
 }

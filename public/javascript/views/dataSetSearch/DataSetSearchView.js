@@ -12,7 +12,8 @@
     }
 
     DataSetSearchView.prototype.initialize = function(options) {
-      return this.template = options.template;
+      this.template = options.template;
+      return this.availableTags = options.tags;
     };
 
     DataSetSearchView.prototype.render = function() {

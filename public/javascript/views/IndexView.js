@@ -28,9 +28,15 @@
       var searchVal;
       e && e.preventDefault();
       searchVal = $('#getStartedForm').val();
-      return Backbone.history.navigate("/searchDataSets/" + searchVal, {
-        trigger: true
-      });
+      if (this.tagExists(searchVal)) {
+        return Backbone.history.navigate("/searchDataSets/" + searchVal, {
+          trigger: true
+        });
+      }
+    };
+
+    IndexView.prototype.tagExists = function(tag) {
+      return this.model.tagExists(tag);
     };
 
     return IndexView;
