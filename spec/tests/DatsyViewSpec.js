@@ -1,13 +1,8 @@
 describe('DatsyAppView', function() {
-  var datsy, datsyAppView;
-  datsy = new DatsyApp.Datsy();
-  
-  $("[type='text/x-handlebars-template']").each(function(index, div){
-    templates[div.id] = Handlebars.compile(div.innerHTML);
-  });
-  datsy.set('templates', templates); 
+  var datsy = new DatsyApp.Datsy();
+  datsy.set('templates', templates);
 
-  datsyAppView = new DatsyApp.DatsyView({model: datsy});
+  var datsyAppView = new DatsyApp.DatsyView({model: datsy});
 
   it('should have a model', function() {
     expect(datsyAppView.model).toBe(datsy);
