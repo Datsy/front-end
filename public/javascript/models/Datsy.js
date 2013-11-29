@@ -23,6 +23,12 @@
       return tags.has(tag);
     };
 
+    Datsy.prototype.listTags = function() {
+      var tags;
+      tags = this.get('tags');
+      return tags.list();
+    };
+
     return Datsy;
 
   })(Backbone.Model);

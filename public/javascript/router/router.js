@@ -13,7 +13,8 @@
 
     Router.prototype.initialize = function(options) {
       this.$el = options.el;
-      return this.model = options.model;
+      this.model = options.model;
+      return this.currentView = void 0;
     };
 
     Router.prototype.routes = {
@@ -24,13 +25,18 @@
     };
 
     Router.prototype.swapView = function(view) {
+      if (this.currentView) {
+        this.currentView.remove();
+      }
+      this.currentView = view;
       return this.$el.html(view.render().el);
     };
 
     Router.prototype.index = function() {
       var indexView;
       indexView = new DatsyApp.IndexView({
-        template: this.model.get('templates')['indexView']
+        template: this.model.get('templates')['indexView'],
+        model: this.model
       });
       return this.swapView(indexView);
     };
@@ -53,8 +59,10 @@
 
     Router.prototype.searchDataSets = function(params) {
       var dataSetSearchView;
+      params = params.toLowerCase();
       dataSetSearchView = new DatsyApp.DataSetSearchView({
         template: this.model.get('templates')['dataSetSearch'],
+        loadingTemplate: this.model.get('templates')['loading'],
         searchTopic: params
       });
       return this.swapView(dataSetSearchView);

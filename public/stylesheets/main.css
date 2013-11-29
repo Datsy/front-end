@@ -3,7 +3,6 @@
 }
 html {
   background-color: #fff;
-  min-width: 960px;
 }
 .proxima {
   font-family: "proxima-nova", sans-serif;
@@ -14,7 +13,7 @@ header #explore {
 }
 #wrapper {
   margin-top: 50px;
-  min-height: 700px;
+  min-height: 500px;
 }
 #wrapper .landing-splash {
   width: 100%;
@@ -72,6 +71,10 @@ header #explore {
 #wrapper .landing-copy form #getStartedButton {
   width: 200px;
   margin: 5px auto;
+}
+#wrapper .landing-copy form #getStartedButton:active {
+  box-shadow: none;
+  outline: none;
 }
 #wrapper .backer {
   z-index: 1;

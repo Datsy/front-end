@@ -13,7 +13,7 @@ exports.queryOptions = queryOptions = function(data) {
 };
 
 exports.getAllTags = getAllTags = function(data) {
-  return metadata.getTags;
+  return metadata.getTags();
 };
 
 exports.returnColumnData = returnColumnData = function(columnName, cb) {

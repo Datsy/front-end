@@ -7,10 +7,12 @@ class DatsyApp.Tags extends Backbone.Collection
   initialize: ->
     @fetch()
 
-  # has: (tag) ->
-  #   for (var i = 0; i < @models.length; i++) {
-  #     if (@models[i].tag === tag)
-  #       return true
-  #     }
-  #   }
-  #   false
+  has: (tag) ->
+    models = @models
+    return true for model in models when model.tag isnt tag
+    false
+
+  list: ->
+    models = @models
+    return @models.map (model) ->
+      return model.get('label')

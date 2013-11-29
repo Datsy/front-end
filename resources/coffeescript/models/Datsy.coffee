@@ -8,3 +8,7 @@ class DatsyApp.Datsy extends Backbone.Model
   tagExists: (tag) ->
     tags = @get 'tags'
     return tags.has(tag)
+
+  listTags: ->
+    tags = @get 'tags'
+    return tags.list();

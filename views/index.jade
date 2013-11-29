@@ -7,9 +7,7 @@ html
     link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet", href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css")
     link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel='stylesheet', href='/stylesheets/visualizer.css')
-    link(rel='stylesheet', href='/stylesheets/explorer.css')
-    link(rel='stylesheet', href='/stylesheets/dataset.css')
+    link(rel='stylesheet', href='/stylesheets/datasearch.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
@@ -48,13 +46,18 @@ html
     script#dataSetSearch(type="text/x-handlebars-template")
       include templates/dataSetSearch/dataSetSearch
 
+    script#loading(type="text/x-handlebars-template")
+      include templates/dataSetSearch/loading
+
     script.
       var DatsyApp = {};
 
     script(src="javascript/models/Datsy.js")
     script(src="javascript/models/Tag.js")
+    script(src="javascript/models/Database.js")
 
     script(src="javascript/collections/Tags.js")
+    script(src="javascript/collections/Databases.js")
 
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")

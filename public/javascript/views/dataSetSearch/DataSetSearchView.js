@@ -13,12 +13,29 @@
 
     DataSetSearchView.prototype.initialize = function(options) {
       this.template = options.template;
-      return this.availableTags = options.tags;
+      this.loadingTemplate = options.loadingTemplate;
+      this.mainTag = this.uppercase(options.searchTopic);
+      this.databases = new DatsyApp.Databases({
+        url: '/search?tag=' + options.searchTopic
+      });
+      return this;
     };
 
     DataSetSearchView.prototype.render = function() {
-      this.$el.html(this.template);
+      this.$el.html(this.loadingTemplate({
+        searchTag: this.mainTag
+      }));
       return this;
+    };
+
+    DataSetSearchView.prototype.uppercase = function(tag) {
+      var tagArr;
+      tagArr = tag.split(' ');
+      tagArr = tagArr.map(function(word) {
+        var newWord;
+        return newWord = word.charAt(0).toUpperCase() + word.slice(1);
+      });
+      return tagArr.join(' ');
     };
 
     return DataSetSearchView;

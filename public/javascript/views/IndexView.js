@@ -12,11 +12,14 @@
     }
 
     IndexView.prototype.events = {
+      'focus #getStartedForm': 'setUpTags',
       'click button#getStartedButton': 'intialSearch'
     };
 
     IndexView.prototype.initialize = function(options) {
-      return this.template = options.template;
+      this.template = options.template;
+      this.tags = [];
+      return this;
     };
 
     IndexView.prototype.render = function() {
@@ -25,11 +28,15 @@
     };
 
     IndexView.prototype.intialSearch = function(e) {
-      var searchVal;
+      var tag;
       e && e.preventDefault();
-      searchVal = $('#getStartedForm').val();
-      if (this.tagExists(searchVal)) {
-        return Backbone.history.navigate("/searchDataSets/" + searchVal, {
+      tag = $('#getStartedForm').val();
+      if (this.tagExists(tag)) {
+        return Backbone.history.navigate("/searchDataSets/" + tag, {
+          trigger: true
+        });
+      } else {
+        return Backbone.history.navigate("/searchDataSets/null", {
           trigger: true
         });
       }
@@ -37,6 +44,13 @@
 
     IndexView.prototype.tagExists = function(tag) {
       return this.model.tagExists(tag);
+    };
+
+    IndexView.prototype.setUpTags = function() {
+      this.tags = this.model.listTags();
+      return $('#getStartedForm').autocomplete({
+        source: this.tags
+      });
     };
 
     return IndexView;

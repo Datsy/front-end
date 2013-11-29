@@ -19,6 +19,26 @@
       return this.fetch();
     };
 
+    Tags.prototype.has = function(tag) {
+      var model, models, _i, _len;
+      models = this.models;
+      for (_i = 0, _len = models.length; _i < _len; _i++) {
+        model = models[_i];
+        if (model.tag !== tag) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    Tags.prototype.list = function() {
+      var models;
+      models = this.models;
+      return this.models.map(function(model) {
+        return model.get('label');
+      });
+    };
+
     return Tags;
 
   })(Backbone.Collection);
