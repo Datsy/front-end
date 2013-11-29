@@ -3,7 +3,7 @@ DatsyApp.DatsyView = Backbone.View.extend({
   className: 'container',
 
   events: {
-    '.click .navbar-brand': 'loadIndex',
+    'click .navbar-brand': 'loadIndex',
     'click #explore': "navigateToExplore",
     'click #visualizer': "navigateToVisulizer",
     'click #dataset': "navigateToDataset"
@@ -17,7 +17,7 @@ DatsyApp.DatsyView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(this.template());
+    this.$el.html(this.template);
     return this;
   },
 

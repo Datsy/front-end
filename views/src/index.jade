@@ -90,14 +90,3 @@ html
     script(src="javascript/router/router.js")
 
     script(src="javascript/main.js")
-  
-    script.
-      var datsy = new DatsyApp.Datsy();
-
-      var templates = {};
-      $("[type='text/x-handlebars-template']").each(function(index, div){
-        templates[div.id] = Handlebars.compile(div.innerHTML);
-      });
-      datsy.set('templates', templates);
-      
-      var datsyApp = new DatsyApp.DatsyView({ model: datsy });
