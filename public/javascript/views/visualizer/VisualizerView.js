@@ -10,10 +10,9 @@ DatsyApp.VisView = Backbone.View.extend({
   initialize: function() {
     this.template = this.model.get('templates')['visualizations'];
     // this.selectedColumns = new DatsyApp.VisData();
-    this.droppableView = new DatsyApp.DropAxisView({ template: this.model.get('templates')['chart'] });
+    this.currentGraphView = new DatsyApp.ChartView();
     // this.droppableView.on('renderChart', this.swapGraph.bind(this));
     // this.availableColumns = [];
-    // this.currentGraphView = this.droppableView;
     // $(window).on("resize.DatsyApp", _.bind(this.resize, this));
   },
 
@@ -33,7 +32,7 @@ DatsyApp.VisView = Backbone.View.extend({
     var h = w / 2;
     this.$graph = this.$el.find('#graph');
     this.$graph.css({'height': h, 'width': w });
-    this.$graph.append( this.droppableView.render() );
+    this.$graph.append( this.currentGraphView.render() );
     return this;
   }
 

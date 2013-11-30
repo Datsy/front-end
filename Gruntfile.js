@@ -35,7 +35,7 @@ module.exports = function(grunt) {
         'public/javascript/explore/ExploreDatasetsView.js',
         'public/javascript/explore/ExploreCategoriesView.js',
         'public/javascript/visualizer/ColumnModelView.js',
-        'public/javascript/visualizer/DropAxisView.js',
+        'public/javascript/visualizer/ChartView.js',
         'public/javascript/visualizer/SvgBackboneView.js',
         'public/javascript/visualizer/GraphView.js',
         'public/javascript/visualizer/VisualizerView.js'

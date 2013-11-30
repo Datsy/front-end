@@ -41,9 +41,6 @@ html
     script#dropper(type="text/x-handlebars-template")
       include templates/visualization/dropper
 
-    script#chart(type="text/x-handlebars-template")
-      include templates/visualization/chart
-
     script#columnModel(type="text/x-handlebars-template")
       include templates/visualization/columnModel
 
@@ -86,7 +83,7 @@ html
     //- Visualizer Views
     script(src="javascript/views/visualizer/SvgBackboneView.js")
     script(src="javascript/views/visualizer/VisualizerView.js")
-    script(src="javascript/views/visualizer/DropAxisView.js")
+    script(src="javascript/views/visualizer/ChartView.js")
     script(src="javascript/views/visualizer/GraphView.js")
     script(src="javascript/views/visualizer/ColumnModelView.js")
 
