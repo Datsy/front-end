@@ -57,6 +57,18 @@ module.exports = function(grunt) {
       }
     },
 
+    nodemon: {
+      dev: {
+        options: {
+          file: 'app.js',
+          nodeArgs: ['--debug'],
+          env: {
+            PORT: '3000'
+          }
+        }
+      }
+    },
+
     watch: {
       jade: {
         files: ['views/src/**/*.jade'],
@@ -74,6 +86,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jade', 'jasmine']);
+  grunt.registerTask('default', ['jade', 'jasmine', 'watch']);
   
 };
