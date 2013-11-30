@@ -21,7 +21,25 @@ module.exports = function(grunt) {
     },
 
     jasmine: {
-      src: ['public/javascript/**/*.js'],
+      // Need to fix the include order
+      src: [
+        'public/javascript/main.js',
+        'public/javascript/models/Datsy.js',
+        'public/javascript/models/VisDatum.js',
+        'public/javascript/collections/VisData.js',
+        'public/javascript/router/router.js',
+        'public/javascript/views/DatsyApp.js',
+        'public/javascript/views/IndexView.js',
+        'public/javascript/dataset/DatasetView.js',
+        'public/javascript/explore/ExploreDataView.js',
+        'public/javascript/explore/ExploreDatasetsView.js',
+        'public/javascript/explore/ExploreCategoriesView.js',
+        'public/javascript/visualizer/ColumnModelView.js',
+        'public/javascript/visualizer/DropAxisView.js',
+        'public/javascript/visualizer/SvgBackboneView.js',
+        'public/javascript/visualizer/GraphView.js',
+        'public/javascript/visualizer/VisualizerView.js'
+      ],
       options: {
         outfile: 'spec/SpecRunner.html',
         keepRunner: true,
