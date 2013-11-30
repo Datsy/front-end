@@ -7,10 +7,17 @@ DatsyApp.ChartView = Backbone.View.extend({
   initialize: function(options) {
     this.currentXModel = null;
     this.currentYModel = null;
+    this.data = [4, 8, 15, 16, 23, 42];
   },
 
   render: function() {
     // this.$el.html(this.template());
+    d3.select(this.el)
+      .selectAll('div')
+        .data(this.data)
+      .enter().append('div')
+        .style('width', function(d) { return d * 10 + "px"; })
+        .text(function(d) { return d; });
     return this.$el;
   },
 

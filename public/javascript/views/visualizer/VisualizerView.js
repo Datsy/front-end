@@ -75,7 +75,7 @@ DatsyApp.VisView = Backbone.View.extend({
   //   $('#' + dataSet).append(model1View.render().el);
   //   this.updateDragNDrop(columnName);
   // },
-
+  // 
   // swapGraph: function(args) {
   //   var w = this.$graph.width();
   //   var h = this.$graph.height();
@@ -90,7 +90,7 @@ DatsyApp.VisView = Backbone.View.extend({
   //   } else {
   //     this.$graph.append( new DatsyApp.DropAxisView({ template: this.model.get('templates')['dropper'] }).render() );
   //   }
-  // },
+  // }
   // 
   // updateDragNDrop: function(columnName) {
   //   var self = this;
