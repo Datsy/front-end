@@ -1,22 +1,41 @@
-DatsyApp.ChartView = Backbone.View.extend({
+DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
   events: {
 
   },
+  tagName: 'svg',
 
   initialize: function(options) {
     this.currentXModel = null;
     this.currentYModel = null;
+    this.chartWidth = $('.container').width();
+    this.chartHeight = this.chartWidth / 2;
     this.data = [4, 8, 15, 16, 23, 42];
+    this.x = d3.scale.linear()
+        .domain([0, d3.max(this.data)])
+        // TODO: Rewrite to properly retrieve padding from the graph
+        .range([0,this.chartWidth * 0.95]);
   },
 
   render: function() {
-    // this.$el.html(this.template());
-    d3.select(this.el)
-      .selectAll('div')
+    var x = this.x;
+    var chart = d3.select(this.el)
+        .attr('width', this.chartWidth)
+        .attr('height', 20 * this.data.length);
+
+    var bar = chart.selectAll('g')
         .data(this.data)
-      .enter().append('div')
-        .style('width', function(d) { return d * 10 + "px"; })
+      .enter().append('g')
+        .attr('transform', function(d, i) { return 'translate(0,' + i * 20 + ')'; });
+    
+    bar.append('rect')
+        .attr('width', x)
+        .attr('height', 20 - 1);
+
+    bar.append('text')
+        .attr('x', function(d) { return x(d) - 3; })
+        .attr('y', 20 / 2)
+        .attr('dy', '.35em')
         .text(function(d) { return d; });
     return this.$el;
   },

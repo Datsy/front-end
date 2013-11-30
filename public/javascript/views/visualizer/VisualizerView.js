@@ -1,7 +1,6 @@
 DatsyApp.VisView = Backbone.View.extend({
 
   className: 'visView',
-
   events: {
     // 'keyup #inputData2, #inputData1': 'queryPossibleResults',
     // 'click #inputButton1, #inputButton2': 'addColumn'
@@ -27,7 +26,7 @@ DatsyApp.VisView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html( this.template() );
+    this.$el.html( this.template );
     var w = $('.container').width();
     var h = w / 2;
     this.$graph = this.$el.find('#graph');

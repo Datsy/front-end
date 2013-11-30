@@ -11,13 +11,12 @@
   margin-bottom: 30px;
   margin-top: 40px;
   padding: 2% 3% 1% 2%; }
-  #graph div div {
+  #graph rect {
+    fill: steelblue; }
+  #graph text {
+    fill: white;
     font: 10px sans-serif;
-    background-color: steelblue;
-    text-align: right;
-    padding: 3px;
-    margin: 1px;
-    color: white; }
+    text-anchor: end; }
 
 svg text {
   fill: white;
