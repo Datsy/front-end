@@ -6,10 +6,17 @@ class DatsyApp.ListDataSetsView extends Backbone.View
     @template = options.template
     @itemViewTemplate = options.dataSetItemTemplate
     @databases = options.databases
-    console.log @databases.models
 
   render: ->
     @$el.html @template
     listing = @databases.map (database) =>
       return new DatsyApp.DataSetItemView { template: @itemViewTemplate, model: database }
-    @$el.find('.accordion').append(listing)
+    @$el.find('.accordion').append(
+      @databases.map (database) =>
+        return new DatsyApp.DataSetItemView({ template: @itemViewTemplate, model: database }).render()
+    )
+    # .accordion {
+    #   collapsible: true
+    #   heightStyle: "content"
+    # }
+    @

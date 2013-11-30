@@ -69,7 +69,6 @@
     };
 
     Router.prototype.exploreDataSets = function() {
-      debugger;
       var exploreDataSetsViews;
       exploreDataSetsViews = new DatsyApp.ExploreDataSetsView({
         template: this.model.get('templates')['exploreDataSets'],

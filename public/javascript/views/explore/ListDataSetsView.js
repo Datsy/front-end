@@ -14,8 +14,7 @@
     ListDataSetsView.prototype.initialize = function(options) {
       this.template = options.template;
       this.itemViewTemplate = options.dataSetItemTemplate;
-      this.databases = options.databases;
-      return console.log(this.databases.models);
+      return this.databases = options.databases;
     };
 
     ListDataSetsView.prototype.render = function() {
@@ -28,7 +27,13 @@
           model: database
         });
       });
-      return this.$el.find('.accordion').append(listing);
+      this.$el.find('.accordion').append(this.databases.map(function(database) {
+        return new DatsyApp.DataSetItemView({
+          template: _this.itemViewTemplate,
+          model: database
+        }).render();
+      }));
+      return this;
     };
 
     return ListDataSetsView;

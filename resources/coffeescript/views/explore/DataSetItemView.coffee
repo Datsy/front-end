@@ -7,4 +7,5 @@ class DatsyApp.DataSetItemView extends Backbone.View
     @template = options.template
 
   render: ->
+    console.log @model.attributes
     @$el.html @template(@model.attributes)

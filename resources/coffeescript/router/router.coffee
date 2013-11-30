@@ -34,7 +34,6 @@ class DatsyApp.Router extends Backbone.Router
     dataSetSearchView.on 'startExplore', @setDatabases
 
   exploreDataSets: ->
-    debugger
     exploreDataSetsViews = new DatsyApp.ExploreDataSetsView {
       template: @model.get('templates')['exploreDataSets'],
       listTemplate: @model.get('templates')['listDatasets'],

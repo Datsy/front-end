@@ -1,9 +1,8 @@
-{{#each database}}
 h3.row.dataset-item
   div.col-md-4
-    p.name {{ attributes.table_name }}
+    p.name {{ table_name }}
   div.col-md-4
-    p.source {{ attributes.author}}
+    p.source {{ author}}
   div.col-md-4
     p.stars
       span.glyphicon.glyphicon-star-empty
@@ -12,7 +11,7 @@ h3.row.dataset-item
       span.glyphicon.glyphicon-star-empty
 div.row.accordion-content
   ul
-    {{#each attributes.columns}}
+    {{#each columns}}
     li
       div
         p Column Name: {{ name }}
@@ -24,4 +23,3 @@ div.row.accordion-content
   //- {{#each attributes.tags}}
   //- p {{this}}
   //- {{/each}}
-{{/each}}

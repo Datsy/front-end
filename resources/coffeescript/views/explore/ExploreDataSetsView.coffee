@@ -1,6 +1,5 @@
 class DatsyApp.ExploreDataSetsView extends Backbone.View
 
-#  events:
   className: 'explore'
 
   initialize: (options) ->
@@ -11,10 +10,6 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
 
   render: ->
     @$el.html @template
-    debugger
     listdataView = new DatsyApp.ListDataSetsView { template: @listTemplate, dataSetItemTemplate: @dataSetItemTemplate, databases: @databases }
-    @$el.append listdataView.render()
-    @$el.find('.accordion').accordion
-      collapsible: true
-      heightStyle: "content"
+    @$el.append listdataView.render().el
     @
