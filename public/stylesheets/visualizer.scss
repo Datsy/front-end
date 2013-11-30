@@ -11,36 +11,19 @@
   background-color: #ccc;
   border-radius: 10px;
   margin-bottom: 30px;
+  margin-top: 40px;
   padding: 2% 3% 1% 2%;
 }
 
-div#dropper {
-  .xAxis, .yAxis {
-    height: 100px;
-    border: 2px dashed #333;
-    list-style: none;
-  }
-  button {
-    margin-left: 220px;
-  }
-  .axis-state-hover {
-  }
-  .axis-state-active {
-    border-style: solid;
-  }
-  .axis-state-highlight {
-    border-style: solid;
-    background-color: #aaa;
-  }
-}
 
-svg
 
+svg {
   text {
     fill: white;
     font: 10px sans-serif;
     text-anchor: end;
-
+  }
+  
   .bar {
     fill: steelblue;
   }

@@ -58,8 +58,14 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: ['public/javascript/**/*.js'],
-      tasks: ['default']
+      jade: {
+        files: ['views/src/**/*.jade'],
+        tasks: ['jade']
+      },
+      jasmine: {
+        files: ['public/javascript/**/*.js'],
+        tasks: ['jasmine']
+      }
     }
 
   });

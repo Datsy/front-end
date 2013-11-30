@@ -9,28 +9,17 @@
   background-color: #cccccc;
   border-radius: 10px;
   margin-bottom: 30px;
+  margin-top: 40px;
   padding: 2% 3% 1% 2%; }
-
-div#dropper .xAxis, div#dropper .yAxis {
-  height: 100px;
-  border: 2px dashed #333333;
-  list-style: none; }
-div#dropper button {
-  margin-left: 220px; }
-div#dropper .axis-state-active {
-  border-style: solid; }
-div#dropper .axis-state-highlight {
-  border-style: solid;
-  background-color: #aaaaaa; }
 
 svg text {
   fill: white;
   font: 10px sans-serif;
   text-anchor: end; }
-  svg text .bar {
-    fill: steelblue; }
-  svg text .bar:hover {
-    fill: darkred; }
+svg .bar {
+  fill: steelblue; }
+svg .bar:hover {
+  fill: darkred; }
 
 .axis text {
   font: 10px sans-serif; }

@@ -61,10 +61,6 @@
           <button id="inputButton2" type="submit" class="btn btn-default form-control">Add</button>
         </div>
       </form>
-      <div id="dataColumnOptions" class="row">
-        <div id="dataSetsOne" class="col-md-6"></div>
-        <div id="dataSetsTwo" class="col-md-6"></div>
-      </div>
       <div id="graph"></div>
     </script>
     <script id="dropper" type="text/x-handlebars-template">
@@ -79,6 +75,9 @@
         </ul>
         <button id="renderChart" disabled class="btn btn-success btn-lg center">Render</button>
       </div>
+    </script>
+    <script id="chart" type="text/x-handlebars-template">
+      <div id="chart"></div>
     </script>
     <script id="columnModel" type="text/x-handlebars-template">
       <p>{{ columnTitle }}</p>
