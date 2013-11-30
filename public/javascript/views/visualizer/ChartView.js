@@ -24,7 +24,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     //     .domain([0, d3.max(this.data)])
     //     .range([0,this.chartWidth]);
     this.x = d3.scale.ordinal()
-        .rangeBands([0, this.chartWidth])
+        .rangeRoundBands([0, this.chartWidth], 0.2)
         .domain(this.data.map(function(d) { return d.name; }));
 
     this.y = d3.scale.linear()
