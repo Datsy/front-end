@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         keepRunner: true,
         vendor: [
           'public/bower_components/jquery/jquery.min.js',
-          'public/bower_components/jqueryui/minified/jquery-ui.min.js',
+          'public/bower_components/jqueryui/ui/minified/jquery-ui.min.js',
           'public/bower_components/bootstrap/dist/js/bootstrap.min.js',
           'public/bower_components/underscore/underscore-min.js',
           'public/bower_components/backbone/backbone-min.js',
