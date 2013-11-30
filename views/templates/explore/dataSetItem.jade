@@ -1,24 +1,13 @@
-h3.row.dataset-item
-  div.col-md-4
-    p.name {{ table_name }}
-  div.col-md-4
-    p.source {{ author}}
-  div.col-md-4
-    p.stars
-      span.glyphicon.glyphicon-star-empty
-      span.glyphicon.glyphicon-star-empty
-      span.glyphicon.glyphicon-star-empty
-      span.glyphicon.glyphicon-star-empty
-div.row.accordion-content
-  ul
-    {{#each columns}}
-    li
-      div
-        p Column Name: {{ name }}
-        p Data Type: {{ data_type}}
-        p Description: {{ description }}
-        button.btn.btn-success.addColumnForVis Add This Column for Viewing
-    {{/each}}
+ul.column-list
+  {{#each columns}}
+  li.column-listing
+    div.column-descriptions.col-md-8
+      p Column Name: {{ name }}
+      p Data Type: {{ data_type}}
+      p Description: {{ description }}
+    div.column-add-button.col-md-4
+      button.btn.btn-success.btn-sm.addColumnForVis Add This Column for Viewing
+  {{/each}}
   //- p {{attributes.description}}
   //- {{#each attributes.tags}}
   //- p {{this}}

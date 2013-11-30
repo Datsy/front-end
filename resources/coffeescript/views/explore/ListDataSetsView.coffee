@@ -1,22 +1,15 @@
 class DatsyApp.ListDataSetsView extends Backbone.View
   
-# events:
+  className: 'explore-datasets',
 
   initialize: (options) ->
-    @template = options.template
     @itemViewTemplate = options.dataSetItemTemplate
     @databases = options.databases
 
   render: ->
-    @$el.html @template
-    listing = @databases.map (database) =>
-      return new DatsyApp.DataSetItemView { template: @itemViewTemplate, model: database }
-    @$el.find('.accordion').append(
-      @databases.map (database) =>
-        return new DatsyApp.DataSetItemView({ template: @itemViewTemplate, model: database }).render()
-    )
-    # .accordion {
-    #   collapsible: true
-    #   heightStyle: "content"
-    # }
+    @databases.forEach (model) =>
+      panel = new DatsyApp.DataSetItemView { template: @itemViewTemplate, model: model }
+      @$el.append('<h3>' + model.attributes.table_name + '</h3>')
+      @$el.append(panel.render().el)
+    setTimeout (=> @$el.accordion({ collapsible: true, heightStyle: 'content' }) ), 0
     @

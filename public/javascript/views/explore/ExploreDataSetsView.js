@@ -11,11 +11,10 @@
       return _ref;
     }
 
-    ExploreDataSetsView.prototype.className = 'explore';
+    ExploreDataSetsView.prototype.className = 'explore container';
 
     ExploreDataSetsView.prototype.initialize = function(options) {
       this.template = options.template;
-      this.listTemplate = options.listTemplate;
       this.dataSetItemTemplate = options.dataSetItemTemplate;
       return this.databases = options.databases;
     };
@@ -24,7 +23,6 @@
       var listdataView;
       this.$el.html(this.template);
       listdataView = new DatsyApp.ListDataSetsView({
-        template: this.listTemplate,
         dataSetItemTemplate: this.dataSetItemTemplate,
         databases: this.databases
       });

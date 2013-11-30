@@ -11,17 +11,13 @@
       return _ref;
     }
 
-    DataSetItemView.prototype.events = {
-      'click #addColumnForVis': 'addColumnForVis'
-    };
-
     DataSetItemView.prototype.initialize = function(options) {
       return this.template = options.template;
     };
 
     DataSetItemView.prototype.render = function() {
-      console.log(this.model.attributes);
-      return this.$el.html(this.template(this.model.attributes));
+      this.$el.html(this.template(this.model.attributes));
+      return this;
     };
 
     return DataSetItemView;

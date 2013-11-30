@@ -11,28 +11,30 @@
       return _ref;
     }
 
+    ListDataSetsView.prototype.className = 'explore-datasets';
+
     ListDataSetsView.prototype.initialize = function(options) {
-      this.template = options.template;
       this.itemViewTemplate = options.dataSetItemTemplate;
       return this.databases = options.databases;
     };
 
     ListDataSetsView.prototype.render = function() {
-      var listing,
-        _this = this;
-      this.$el.html(this.template);
-      listing = this.databases.map(function(database) {
-        return new DatsyApp.DataSetItemView({
+      var _this = this;
+      this.databases.forEach(function(model) {
+        var panel;
+        panel = new DatsyApp.DataSetItemView({
           template: _this.itemViewTemplate,
-          model: database
+          model: model
         });
+        _this.$el.append('<h3>' + model.attributes.table_name + '</h3>');
+        return _this.$el.append(panel.render().el);
       });
-      this.$el.find('.accordion').append(this.databases.map(function(database) {
-        return new DatsyApp.DataSetItemView({
-          template: _this.itemViewTemplate,
-          model: database
-        }).render();
-      }));
+      setTimeout((function() {
+        return _this.$el.accordion({
+          collapsible: true,
+          heightStyle: 'content'
+        });
+      }), 0);
       return this;
     };
 
