@@ -8,5 +8,5 @@ $(document).ready(function() {
   datsy.set('templates', templates);
   
   var datsyAppView = new DatsyApp.DatsyView({ model: datsy });
-  Backbone.history.start({pushstate:true});
+  
 });
