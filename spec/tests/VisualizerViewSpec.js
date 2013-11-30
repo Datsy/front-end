@@ -1,8 +1,15 @@
-describe('SongQueueView', function() {
-  var view;
+describe('VisualizerView', function() {
+  // var datsy = new DatsyApp.Datsy();
+  
+  // $("[type='text/x-handlebars-template']").each(function(index, div){
+  //   templates[div.id] = Handlebars.compile(div.innerHTML);
+  // });
+  // datsy.set('templates', templates); 
 
-  beforeEach(function() {
-    view = new DatsyApp.VisView();
-  });
+  // var view = new DatsyApp.VisView({model: datsy});
+
+  // beforeEach(function() {
+    
+  // });
 
 });

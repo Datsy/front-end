@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DATSY.io</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/visualizer.css">
+    <link rel="stylesheet" href="/stylesheets/explorer.css">
+    <link rel="stylesheet" href="/stylesheets/dataset.css">
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/jqueryui/ui/minified/jquery-ui.min.js"> </script>
+  </head>
+  <body>
+    <script id="datsyApp" type="text/x-handlebars-template">
+      <header role="banner" class="row navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target=".bs-navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="" class="navbar-brand">Datsy.io</a>
+          </div>
+          <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse span3">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a id="visualizer">Visualizations</a></li>
+              <li><a id="explore">Explore Datasets</a></li>
+              <li><a id="dataset">View Single Dataset</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div id="wrapper"></div>
+      <footer><a href="#" class="pull-right">Back to top</a>
+        <p>&copy; 2013 Datsy &middot; All Rights Reserved</p>
+      </footer>
+    </script>
+    <script id="indexView" type="text/x-handlebars-template">
+      <div class="jumbotron">
+        <h1 class="text-center">Welcome To Datsy!</h1>
+        <p class="text-center lead">We set data free.</p>
+        <button id="visualize-data" class="btn-danger btn-lg col-md-offset-3">Visualize Data</button>
+        <button id="explore-data" class="btn-primary btn-lg col-md-offset-2">Explore Datasets</button>
+      </div>
+    </script>
+    <script id="visualizations" type="text/x-handlebars-template">
+      <h1 class="text-center">Data Comes Alive!</h1>
+      <form role="form" class="form-inline center">
+        <div class="form-group col-md-6">
+          <label for="inputData1" class="sr-only">Data Set One</label>
+          <input id="inputData1" type="text" placeholder="Data Set One" class="form-control">
+          <button id="inputButton1" type="submit" class="btn btn-default form-control">Add</button>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputData2" class="sr-only">Data Set Two</label>
+          <input id="inputData2" type="text" placeholder="Data Set Two" class="form-control">
+          <button id="inputButton2" type="submit" class="btn btn-default form-control">Add</button>
+        </div>
+      </form>
+      <div id="dataColumnOptions" class="row">
+        <div id="dataSetsOne" class="col-md-6"></div>
+        <div id="dataSetsTwo" class="col-md-6"></div>
+      </div>
+      <div id="graph"></div>
+    </script>
+    <script id="dropper" type="text/x-handlebars-template">
+      <div id="dropper" class="col-md-7 col-md-offset-2">
+        <ul class="row">
+          <li class="xAxis droppable col-md-5">
+            <p>Drop X axis value here</p>
+          </li>
+          <li class="yAxis droppable col-md-5 col-md-offset-2">
+            <p>Drop Y axis value here</p>
+          </li>
+        </ul>
+        <button id="renderChart" disabled class="btn btn-success btn-lg center">Render</button>
+      </div>
+    </script>
+    <script id="columnModel" type="text/x-handlebars-template">
+      <p>{{ columnTitle }}</p>
+    </script>
+    <script id="exploreData" type="text/x-handlebars-template">
+      <h1 class="text-center">Explore Datasets</h1>
+      <div class="row input-shader">
+        <div class="input-border"><span class="style"></span>
+          <input id="searchField" type="text" placeholder="Search for keywords...">
+        </div>
+      </div>
+      <div class="explore-content row"></div>
+    </script>
+    <script id="exploreCategories" type="text/x-handlebars-template">
+      <div class="col-md-3 explore-categories">
+        <div class="shaded">
+          <div class="categories">
+            <ul class="list-group">
+              <header> 
+                <li class="shaded-li-header list-group-item text-center">Most Popular Keywords</li>
+              </header>
+              <li class="list-group-item">Bicycle</li>
+              <li class="list-group-item">Street</li>
+              <li class="list-group-item">Hair Plugs</li>
+            </ul>
+            <ul class="list-group">
+              <header>
+                <li class="shaded-li-header list-group-item text-center">Most Popular Datasets</li>
+              </header>
+              <li class="list-group-item">Finance</li>
+              <li class="list-group-item">Transportation</li>
+              <li class="list-group-item">Crime</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id="exploreDatasets" type="text/x-handlebars-template">
+      <div class="col-md-9 explore-datasets">
+        <div class="shaded">
+          <header class="row data-explore-header">
+            <div class="col-md-4">
+              <p class="name">Sort By Name <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></p>
+            </div>
+            <div class="col-md-4">
+              <p class="source">Sort By Source <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></p>
+            </div>
+            <div class="col-md-4">
+              <p class="stars">Sort By Stars <span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-down"></span></p>
+            </div>
+          </header>
+          <div class="accordion">
+            <h3 class="row dataset-item">
+              <div class="col-md-4">
+                <p class="name">Obesity in America</p>
+              </div>
+              <div class="col-md-4">
+                <p class="source">American McGee</p>
+              </div>
+              <div class="col-md-4">
+                <p class="stars"><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></p>
+              </div>
+            </h3>
+            <div class="row accordion-content">
+              <div class="col-md-6 content-table">
+                <table class="table table-striped table-bordered dataset">
+                  <thead>
+                    <tr>
+                      <td>id</td>
+                      <td>Restaurant</td>
+                      <td>State</td>
+                      <td>Obesity</td>
+                      <td>Scroll1</td>
+                      <td>Scroll2</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>McDonalds</td>
+                      <td>California</td>
+                      <td>28%</td>
+                      <td>Fake</td>
+                      <td>Fake</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Mexler</td>
+                      <td>New Mexico</td>
+                      <td>12%</td>
+                      <td>Fake</td>
+                      <td>Fake</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Wendy's</td>
+                      <td>Utah</td>
+                      <td>27%</td>
+                      <td>Fake</td>
+                      <td>Fake</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-3">
+                <h5 class="keyword-header">Keywords
+                  <ul class="keyword-item">
+                    <li>Obesity</li>
+                    <li>McDonalds</li>
+                    <li>State</li>
+                  </ul>
+                </h5>
+              </div>
+              <div class="col-md-3">
+                <div class="row meta-data">
+                  <h5>Summary</h5>
+                  <p>27 cols, 14k rows</p>
+                </div>
+                <div class="row">
+                  <button class="btn btn-info view-data">View Data</button>
+                </div>
+              </div>
+            </div>
+            <h3 class="row dataset-item">
+              <div class="col-md-4">
+                <p class="name">Dataset2</p>
+              </div>
+              <div class="col-md-4">
+                <p class="source">Data Source</p>
+              </div>
+              <div class="col-md-4">
+                <p class="stars">Stars </p>
+              </div>
+            </h3>
+            <div>
+              <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.</p>
+            </div>
+            <h3 class="row dataset-item">
+              <div class="col-md-4">
+                <p class="name">Dataset3</p>
+              </div>
+              <div class="col-md-4">
+                <p class="source">Data Source</p>
+              </div>
+              <div class="col-md-4">
+                <p class="stars">Stars </p>
+              </div>
+            </h3>
+            <div>
+              <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.</p>
+              <ul>
+                <li>List item one</li>
+                <li>List item two</li>
+                <li>List item three</li>
+              </ul>
+            </div>
+            <h3 class="row dataset-item">
+              <div class="col-md-4">
+                <p class="name">Dataset4</p>
+              </div>
+              <div class="col-md-4">
+                <p class="source">Data Source</p>
+              </div>
+              <div class="col-md-4">
+                <p class="stars">Stars </p>
+              </div>
+            </h3>
+            <div>
+              <p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id="datasetView" type="text/x-handlebars-template">
+      <div class="col-md-12 row">
+        <div class="col-md-5">
+          <div id="name-keywords-filter" class="jumbotron">
+            <div class="row">
+              <h2 id="dataset-name">SF CityBikes</h2>
+            </div>
+            <div class="row">
+              <h5>Keywords:</h5>
+            </div>
+            <div class="row">
+              <input id="column-filter" type="text" placeholder="Search for column name...">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div id="dataset-metadata" class="jumbotron">
+            <div class="row">
+              <h4>Description:</h4>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Owner:</h5>
+                <h5>Organization: </h5>
+              </div>
+              <div class="col-md-6">
+                <h5>Last Updated:</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 row overflow">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <td>id</td>
+              <td>executiontime</td>
+              <td>stationid</td>
+              <td>stationname</td>
+              <td>availabledocks</td>
+              <td>totaldocks</td>
+              <td>latitude</td>
+              <td>longitude</td>
+              <td>statusvalue</td>
+              <td>statuskey</td>
+              <td>availablebikes</td>
+              <td>staddress1</td>
+              <td>staddress2</td>
+              <td>city</td>
+              <td>postalcode</td>
+              <td>location</td>
+              <td>altitude</td>
+              <td>teststation</td>
+              <td>lastcommunicationtime</td>
+              <td>landmark</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2013-11-24 00:16:01+00</td>
+              <td>2</td>
+              <td>San Jose Diridon Caltrain Station</td>
+              <td>15</td>
+              <td>27</td>
+              <td>37.33067</td>
+              <td>-121.901593</td>
+              <td>In Service</td>
+              <td>1</td>
+              <td>12</td>
+              <td>San Jose Diridon Caltrain Station</td>
+              <td> </td>
+              <td>San Jose</td>
+              <td> </td>
+              <td>Crandall Street</td>
+              <td> </td>
+              <td>false</td>
+              <td></td>
+              <td>San Jose </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>2013-11-24 00:16:01+00</td>
+              <td>3</td>
+              <td>San Jose Civic Center</td>
+              <td>4</td>
+              <td>15</td>
+              <td>37.330698</td>
+              <td>-121.888979</td>
+              <td>In Service</td>
+              <td>1</td>
+              <td>11</td>
+              <td>San Jose Civic Center</td>
+              <td> </td>
+              <td>San Jose</td>
+              <td> </td>
+              <td>W San Carlos Street</td>
+              <td> </td>
+              <td>false</td>
+              <td></td>
+              <td>San Jose</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+    <script>
+      var DatsyApp = {};
+      
+    </script>
+    <script src="javascript/models/Datsy.js"></script>
+    <script src="javascript/models/VisDatum.js"></script>
+    <script src="javascript/collections/VisData.js"></script>
+    <script src="javascript/views/DatsyApp.js"></script>
+    <script src="javascript/views/IndexView.js"></script>
+    <script src="javascript/views/explore/ExploreDataView.js"></script>
+    <script src="javascript/views/explore/ExploreDatasetsView.js"></script>
+    <script src="javascript/views/explore/ExploreCategoriesView.js"></script>
+    <script src="javascript/views/dataset/DatasetView.js"></script>
+    <script src="javascript/views/visualizer/SvgBackboneView.js"></script>
+    <script src="javascript/views/visualizer/VisualizerView.js"></script>
+    <script src="javascript/views/visualizer/DropAxisView.js"></script>
+    <script src="javascript/views/visualizer/GraphView.js"></script>
+    <script src="javascript/views/visualizer/ColumnModelView.js"></script>
+    <script src="javascript/router/router.js"></script>
+    <script src="javascript/main.js"></script>
+  </body>
+</html>

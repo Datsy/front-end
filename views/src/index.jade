@@ -61,11 +61,14 @@ html
     script.
       var DatsyApp = {};
 
+    //- Models
     script(src="javascript/models/Datsy.js")
     script(src="javascript/models/VisDatum.js")
 
+    //- Collections
     script(src="javascript/collections/VisData.js")
 
+    //- Landing Page Views
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
 
@@ -84,19 +87,6 @@ html
     script(src="javascript/views/visualizer/GraphView.js")
     script(src="javascript/views/visualizer/ColumnModelView.js")
 
-    script(src="javascript/views/DataSetView.js")
-
     script(src="javascript/router/router.js")
 
     script(src="javascript/main.js")
-  
-    script.
-      var datsy = new DatsyApp.Datsy();
-
-      var templates = {};
-      $("[type='text/x-handlebars-template']").each(function(index, div){
-        templates[div.id] = Handlebars.compile(div.innerHTML);
-      });
-      datsy.set('templates', templates);
-      
-      var datsyApp = new DatsyApp.DatsyView({ model: datsy });
