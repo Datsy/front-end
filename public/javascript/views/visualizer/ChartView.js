@@ -20,64 +20,48 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       ["1063.11","1058.41","1045.93","1031.89","1034.07","1022.31","1025.20","1031.55","1033.56","1035.23","1032.47","1011.78","1010.59","1016.03","1007.95","1022.75","1021.52","1026.11","1027.04","1030.58","1030.42","1036.24","1015.00","1015.20","1025.55","1031.41","1007.00","1003.30","1011.41","888.79","898.03","882.01","876.11","871.99","868.24","855.86","853.67","865.74","872.35","876.09","887.99","887.00","875.91","876.39","878.17","877.23","886.84","886.50","903.11","898.39","903.32","886.11","887.76","889.07","893.06","896.19","888.67","888.05","879.58","879.56","871.63","860.38","846.90","855.43","848.55","850.15","866.39","870.21","873.71","869.33","865.42","865.65","856.91","859.66","869.81","881.25","885.51","890.41","892.66","890.65","896.57","905.00","906.57","904.22","887.75","890.92","882.27","885.35","887.70","902.90","903.80","910.70","896.60","910.68","918.55","919.61","924.69","923.00","920.24","905.99","905.24","905.09","893.49","886.43","882.31","887.88","880.37","877.07","873.65","866.20","869.79","880.93","884.74","900.68","900.62","886.25","875.04","877.00","871.98","879.81","890.22","879.73","864.64","859.70","859.10","867.63","871.22","870.76","868.31","881.27","873.32","882.79","889.42","906.97","908.53","909.18","903.87","915.89","887.10","877.53","880.23","871.48","873.63","857.23","861.55","845.72","829.61","820.43","824.57","819.06","801.42","809.10","813.45","807.90","800.11","799.87","765.91","782.56","793.37","781.93","790.05","790.39","790.18","777.65","774.85","783.05","795.07","806.20","813.04","801.19","794.19","802.66","812.42","809.64","810.31","811.26","814.71","811.32","807.79","814.30","821.54","825.31","827.61","834.82","831.52","832.60","831.38","838.60","821.50","806.19","801.20","799.78","790.13","790.77","799.71","795.53","792.46","806.85","792.89","787.82","782.86","780.70","782.42","785.37","773.95","770.17","765.74","759.02","775.60","755.69","753.83","753.68","750.73","753.67","754.21","741.50","702.87","704.51","711.32","715.19","724.93","723.25","739.99","741.48","738.12","733.30","734.75","737.97","723.67","723.25"]
     },
     this.data = this.convertJSONForD3(this.fakeJSON, 'Date', 'Result1');
-    this.margin = {top: 20, right: 30, bottom: 20, left: 40};
-    this.width = this.chartWidth - this.margin.left - this.margin.right,
-    this.height = this.chartHeight - this.margin.top - this.margin.bottom;
-
-    this.x = d3.scale.ordinal()
-        .rangeBands([0, this.chartWidth], 0.5)
-        .domain(this.data.map(function(d) { return d.name; }));
-
+    this.data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7];
+    this.width = 400;
+    this.height = 200;
+    this.margin = 20;
     this.y = d3.scale.linear()
-        .range([this.height, 0])
-        .domain([0, d3.max(this.data, function(d) { return d.value; })]);
-    
+         .domain([0, d3.max(this.data, function(d) { return d; })])
+         .range([0 + this.margin, this.height - this.margin]);
+    this.x = d3.scale.linear()
+         .domain([0, this.data.length])
+         .range([0 + this.margin, this.width - this.margin]);    
   },
 
   render: function() {
     var x = this.x;
     var y = this.y;
-    var height = this.height;
-    
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient('bottom');
-
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient('left')
-        .ticks(10, '$');
 
     var chart = d3.select(this.el)
-        .attr('width', this.width + this.margin.left + this.margin.right)
-        .attr('height', this.height + this.margin.top + this.margin.bottom)
-      .append('g')
-        .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+        .attr('width', this.width)
+        .attr('height', this.height);
 
-    chart.append('g')
-        .attr('class', 'x axis')
-        .attr('transform', 'translate(0,' + this.height + ')')
-        .call(xAxis);
+    var g = chart.append('svg:g')
+        .attr('transform', 'translate(0, 200)');
 
-    chart.append('g')
-          .attr('class', 'y axis')
-          .call(yAxis)
-        .append('text')
-          .attr('transform', 'rotate(-90)')
-          .attr('y', 6)
-          .attr('dy', '.71em')
-          .style('text-anchor', 'end')
-          .text('Stock Price');
+    var line = d3.svg.line()
+        .x(function(d, i) { return x(i); })
+        .y(function(d) { return -1 * y(d); });
 
-    chart.selectAll('.bar')
-        .data(this.data)
-      .enter().append('rect')
-        .attr('class', 'bar')
-        .attr('x', function(d) { return x(d.name); })
-        .attr('y', function(d) { return y(d.value); })
-        .attr('height', function(d) { return height - y(d.value); })
-        .attr('width', x.rangeBand());        
-        
+    g.append('svg:path')
+      .attr('d', line(this.data));
+    
+    g.append('svg:line')
+      .attr('x1', x(0))
+      .attr('y1', -1 * y(0))
+      .attr('x2', x(this.width))
+      .attr('y2', -1 * y(0));
+
+    g.append('svg:line')
+      .attr('x1', x(0))
+      .attr('y1', -1 * y(0))
+      .attr('x2', x(0))
+      .attr('y2', -1 * y(540));
+
     return this.$el;
   },
 
