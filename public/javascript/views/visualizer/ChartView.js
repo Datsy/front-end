@@ -45,7 +45,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
         .attr('height', this.chartHeight);
 
     var g = chart.append('svg:g')
-        .attr('transform', 'translate(0, 500)');
+        .attr('transform', 'translate(0, ' + this.chartHeight + ')');
 
     // Plot first data series
     var line1 = d3.svg.line()
@@ -63,81 +63,82 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       .attr('d', line2(this.data))
       .style('stroke', 'red');  // TODO: should be assigned a color in progressive order
 
+    var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom")
+      .ticks(10);
+
+    var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient('left')
+      .ticks(10, '$');
+
+    chart.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + this.chartHeight*.95 + ")")
+      .call(xAxis);
+
+    chart.append('g')
+      .attr('class', 'y axis')
+      .attr('transform', 'translate(' + 30 + ',0)')
+      .call(yAxis);
+        // .append('text')
+        //   .attr('transform', 'rotate(-90)')
+        //   .attr('y', 6)
+        //   .attr('dy', '.71em')
+        //   .style('text-anchor', 'end')
+        //   .text('Stock Price');
+
     // Draw X-Axis Line
-    g.append('svg:line')
-      .attr('x1', x(minDate))
-      .attr('y1', -1 * y(0))
-      .attr('x2', x(maxDate))
-      .attr('y2', -1 * y(0));
+    // g.append('svg:line')
+    //   .attr('x1', x(minDate))
+    //   .attr('y1', -1 * y(0))
+    //   .attr('x2', x(maxDate))
+    //   .attr('y2', -1 * y(0));
 
     // Draw Y-Axis Line
-    g.append('svg:line')
-      .attr('x1', x(minDate))
-      .attr('y1', -1 * y(0))
-      .attr('x2', x(minDate))
-      .attr('y2', -1 * y(1075));  // TODO: Should be slightly more than series max
+    // g.append('svg:line')
+    //   .attr('x1', x(minDate))
+    //   .attr('y1', -1 * y(0))
+    //   .attr('x2', x(minDate))
+    //   .attr('y2', -1 * y(1075));  // TODO: Should be slightly more than series max
 
-    // var xAxis = d3.svg.axis()
-    //   .scale(x)
-    //   .orient("bottom")
-    //   .ticks(30);
+    // g.selectAll('.xlabel')
+    //   .data(x.ticks(3))
+    //   .enter().append('svg:text')
+    //   .attr('class', 'xLabel')
+    //   .text(String)
+    //   .attr('x', function(d) { return x(d) })
+    //   .attr('y', 0)
+    //   .attr('text-anchor', 'middle');
 
-    // var yAxis = d3.svg.axis()
-    //   .scale(y)
-    //   .orient('left')
-    //   .ticks(10, '$');
+    // g.selectAll('.yLabel')
+    //   .data(y.ticks(10))
+    //   .enter().append('svg:text')
+    //   .attr('class', 'yLabel')
+    //   .text(String)
+    //   .attr('x', 0)
+    //   .attr('y', function(d) { return -1 * y(d) })
+    //   .attr('text-anchor', 'right')
+    //   .attr('dy', 4);
 
-    // chart.append("g")
-    //   .attr("class", "x axis")
-    //   .attr("transform", "translate(0," + this.chartHeight + ")")
-    //   .call(xAxis);
+    // g.selectAll('.xTicks')
+    //   .data(x.ticks(10))
+    //   .enter().append('svg:line')
+    //   .attr('class', 'xTicks')
+    //   .attr('x1', function(d) { return x(d); })
+    //   .attr('y1', -1 * y(0))
+    //   .attr('x2', function(d) { return x(d); })
+    //   .attr('y2', -1 * y(5));
 
-    // chart.append('g')
-    //       .attr('class', 'y axis')
-    //       .call(yAxis)
-    //     .append('text')
-    //       .attr('transform', 'rotate(-90)')
-    //       .attr('y', 6)
-    //       .attr('dy', '.71em')
-    //       .style('text-anchor', 'end')
-    //       .text('Stock Price');
-
-    g.selectAll('.xlabel')
-      .data(x.ticks(3))
-      .enter().append('svg:text')
-      .attr('class', 'xLabel')
-      .text(String)
-      .attr('x', function(d) { return x(d) })
-      .attr('y', 0)
-      .attr('text-anchor', 'middle');
-
-    g.selectAll('.yLabel')
-      .data(y.ticks(10))
-      .enter().append('svg:text')
-      .attr('class', 'yLabel')
-      .text(String)
-      .attr('x', 0)
-      .attr('y', function(d) { return -1 * y(d) })
-      .attr('text-anchor', 'right')
-      .attr('dy', 4);
-
-    g.selectAll('.xTicks')
-      .data(x.ticks(10))
-      .enter().append('svg:line')
-      .attr('class', 'xTicks')
-      .attr('x1', function(d) { return x(d); })
-      .attr('y1', -1 * y(0))
-      .attr('x2', function(d) { return x(d); })
-      .attr('y2', -1 * y(5));
-
-    g.selectAll('.yTicks')
-      .data(y.ticks(10))
-      .enter().append('svg:line')
-      .attr('class', 'yTicks')
-      .attr('y1', function(d) { return -1 * y(d); })
-      .attr('x1', x(-0.3))
-      .attr('y2', function(d) { return -1 * y(d); })
-      .attr('x2', x(0));
+    // g.selectAll('.yTicks')
+    //   .data(y.ticks(10))
+    //   .enter().append('svg:line')
+    //   .attr('class', 'yTicks')
+    //   .attr('y1', function(d) { return -1 * y(d); })
+    //   .attr('x1', x(-0.3))
+    //   .attr('y2', function(d) { return -1 * y(d); })
+    //   .attr('x2', x(0));
 
     return this.$el;
   },
