@@ -51,7 +51,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
     // Plot first data series
     var line1 = d3.svg.line()
-        .x(function(d, i) { return x(i); })
+        .x(function(d, i) { return x(d.xAxis); })
         .y(function(d) { return -1 * y(d.series1); });
     g.append('svg:path')
       .attr('d', line1(this.data))
@@ -59,7 +59,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     
     // Plot second data series
     var line2 = d3.svg.line()
-        .x(function(d, i) { return x(i); })
+        .x(function(d, i) { return x(d.xAxis); })
         .y(function(d) { return -1 * y(d.series2); });
     g.append('svg:path')
       .attr('d', line2(this.data))
