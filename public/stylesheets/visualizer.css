@@ -10,11 +10,8 @@
 
 path {
   stroke: steelblue;
-  stroke-width: 2;
+  stroke-width: 3;
   fill: none; }
-
-line {
-  stroke: black; }
 
 text {
   font-family: Arial;
@@ -30,4 +27,5 @@ text {
 .axis path, .axis line {
   fill: none;
   stroke: black;
+  stroke-width: 2;
   shape-rendering: crispEdges; }

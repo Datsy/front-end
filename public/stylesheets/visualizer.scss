@@ -11,12 +11,8 @@
 
 path {
   stroke: steelblue;
-  stroke-width: 2;
+  stroke-width: 3;
   fill: none;
-}
- 
-line {
-  stroke: black;
 }
  
 text {
@@ -37,5 +33,6 @@ text {
 .axis line {
   fill: none;
   stroke: #000;
+  stroke-width: 2;
   shape-rendering: crispEdges;
 }

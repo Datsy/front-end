@@ -27,7 +27,8 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     // TODO: Need to get max of all series
     this.y = d3.scale.linear()
          .domain([0, d3.max(this.data, function(d) { return d.series2; })])
-         .range([this.chartHeight - this.margin, 0 + this.margin]);
+         .range([0 + this.margin, this.chartHeight - this.margin]);
+
     // TODO: Need to get x-range of all series
     this.x = d3.time.scale()
          .domain([this.minDate, this.maxDate])
@@ -51,6 +52,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     var line1 = d3.svg.line()
         .x(function(d, i) { return x(d.xAxis); })
         .y(function(d) { return -1 * y(d.series1); });
+    
     g.append('svg:path')
       .attr('d', line1(this.data))
       .style('stroke', 'blue');  // TODO: Should be assigned a color in progressive order
