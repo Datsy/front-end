@@ -23,10 +23,8 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     this.width = 960;
     this.height = 500;
     this.margin = 30;
-    var minDate = this.data[this.data.length -1].xAxis;
-    var maxDate = this.data[0].xAxis;
-
-    console.log('min: ', minDate, 'max:', maxDate);
+    this.minDate = this.data[this.data.length -1].xAxis;
+    this.maxDate = this.data[0].xAxis;
 
     // TODO: Need to get max of all series
     this.y = d3.scale.linear()
@@ -34,13 +32,15 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
          .range([0 + this.margin, this.height - this.margin]);
     // TODO: Need to get x-range of all series
     this.x = d3.time.scale()
-         .domain([minDate, maxDate])
+         .domain([this.minDate, this.maxDate])
          .range([0 + this.margin, this.width - this.margin]);
   },
 
   render: function() {
     var x = this.x;
     var y = this.y;
+    var minDate = this.minDate;
+    var maxDate = this.maxDate;
 
     var chart = d3.select(this.el)
         .attr('width', this.width)
@@ -67,16 +67,16 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
     // Draw X-Axis Line
     g.append('svg:line')
-      .attr('x1', x(0))
+      .attr('x1', x(minDate))
       .attr('y1', -1 * y(0))
-      .attr('x2', x(this.width))
+      .attr('x2', x(maxDate))
       .attr('y2', -1 * y(0));
 
     // Draw Y-Axis Line
     g.append('svg:line')
-      .attr('x1', x(0))
+      .attr('x1', x(minDate))
       .attr('y1', -1 * y(0))
-      .attr('x2', x(0))
+      .attr('x2', x(minDate))
       .attr('y2', -1 * y(1075));  // TODO: Should be slightly more than series max
 
     // var xAxis = d3.svg.axis()
