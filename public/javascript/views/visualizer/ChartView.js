@@ -26,7 +26,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
     // TODO: Need to get max of all series
     this.y = d3.scale.linear()
-         .domain([0, d3.max(this.data, function(d) { return d.series2; })])
+         .domain([d3.min(this.data, function(d) { return d.series1; }), d3.max(this.data, function(d) { return d.series2; })])
          .range([this.height - this.padding, this.padding]);
 
     // TODO: Need to get x-range of all series
