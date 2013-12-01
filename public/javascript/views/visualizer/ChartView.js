@@ -49,6 +49,22 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     var g = chart.append('svg:g')
         .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
+    chart.selectAll("line.horizontalGrid").data(y.ticks(10)).enter()
+        .append("line")
+          .attr(
+          {
+            "class":"horizontalGrid",
+            "x1" : this.padding + margin.left,
+            "x2" : this.width - margin.right,
+            "y1" : function(d){ return y(d);},
+            "y2" : function(d){ return y(d);},
+            "fill" : "none",
+            "shape-rendering" : "crispEdges",
+            "stroke" : "#999",
+            "stroke-dasharray": "2,1",
+            "stroke-width" : "1px"
+          });
+
     // Plot first data series
     var line1 = d3.svg.line()
         .x(function(d, i) { return x(d.xAxis); })
@@ -69,7 +85,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     var xAxis = d3.svg.axis()
       .scale(x)
       .orient('bottom')
-      .ticks(10)
+      .ticks(12)
       .tickFormat(d3.time.format('%b'));
 
     chart.append('g')
@@ -86,7 +102,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     var yAxis = d3.svg.axis()
       .scale(y)
       .orient('left')
-      .ticks(10, '$');
+      .ticks(5, '$');
 
     chart.append('g')
       .attr('class', 'y axis')
