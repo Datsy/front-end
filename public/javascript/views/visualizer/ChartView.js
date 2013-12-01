@@ -23,13 +23,18 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     this.width = 960;
     this.height = 500;
     this.margin = 30;
+    var minDate = this.data[this.data.length -1].xAxis;
+    var maxDate = this.data[0].xAxis;
+
+    console.log('min: ', minDate, 'max:', maxDate);
+
     // TODO: Need to get max of all series
     this.y = d3.scale.linear()
          .domain([0, d3.max(this.data, function(d) { return d.series2; })])
          .range([0 + this.margin, this.height - this.margin]);
     // TODO: Need to get x-range of all series
-    this.x = d3.scale.linear()
-         .domain([0, this.data.length])
+    this.x = d3.time.scale()
+         .domain([minDate, maxDate])
          .range([0 + this.margin, this.width - this.margin]);
   },
 
@@ -100,7 +105,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     //       .text('Stock Price');
 
     g.selectAll('.xlabel')
-      .data(x.ticks(30))
+      .data(x.ticks(3))
       .enter().append('svg:text')
       .attr('class', 'xLabel')
       .text(String)
@@ -165,7 +170,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     var args = Array.prototype.slice.call(arguments,2);
 
     for(var i=0; i < data[x].length; i++) {
-      d3Data.push({xAxis: data[x][i], series1: +data[args[0]][i], series2: +data[args[1]][i]});
+      d3Data.push({xAxis: new Date(data[x][i]).getTime(), series1: +data[args[0]][i], series2: +data[args[1]][i]});
     }
     console.log('length: ', d3Data);
     return d3Data;
