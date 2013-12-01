@@ -62,6 +62,43 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       .attr('x2', x(0))
       .attr('y2', -1 * y(540));
 
+    g.selectAll('.xlabel')
+      .data(x.ticks(5))
+      .enter().append('svg:text')
+      .attr('class', 'xLabel')
+      .text(String)
+      .attr('x', function(d) { return x(d) })
+      .attr('y', 0)
+      .attr('text-anchor', 'middle');
+
+    g.selectAll('.yLabel')
+      .data(y.ticks(4))
+      .enter().append('svg:text')
+      .attr('class', 'yLabel')
+      .text(String)
+      .attr('x', 0)
+      .attr('y', function(d) { return -1 * y(d) })
+      .attr('text-anchor', 'right')
+      .attr('dy', 4);
+
+    g.selectAll('.xTicks')
+      .data(x.ticks(5))
+      .enter().append('svg:line')
+      .attr('class', 'xTicks')
+      .attr('x1', function(d) { return x(d); })
+      .attr('y1', -1 * y(0))
+      .attr('x2', function(d) { return x(d); })
+      .attr('y2', -1 * y(-0.3));
+
+    g.selectAll('.yTicks')
+      .data(y.ticks(4))
+      .enter().append('svg:line')
+      .attr('class', 'yTicks')
+      .attr('y1', function(d) { return -1 * y(d); })
+      .attr('x1', x(-0.3))
+      .attr('y2', function(d) { return -1 * y(d); })
+      .attr('x2', x(0));
+      
     return this.$el;
   },
 
