@@ -28,7 +28,7 @@
       models = this.models;
       for (_i = 0, _len = models.length; _i < _len; _i++) {
         model = models[_i];
-        if (model.tag !== tag) {
+        if (model.attributes.label === tag) {
           return true;
         }
       }

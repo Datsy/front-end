@@ -1,5 +1,8 @@
 class DatsyApp.DataSampleModelView extends DatsyApp.BaseModalView
 
+  events: 
+    'click .btn' : 'destroyThis'
+
   initialize: (options) ->
     @template = universalTemplates.modal
     @datasetID = options.datasetID
@@ -20,4 +23,7 @@ class DatsyApp.DataSampleModelView extends DatsyApp.BaseModalView
   onReady: =>
     @render()
     @trigger 'ready'
-    
+  
+  destroyThis: ->
+    delete @sampleData
+    @trigger 'done'

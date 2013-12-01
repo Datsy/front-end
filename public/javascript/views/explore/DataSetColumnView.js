@@ -8,6 +8,7 @@
     __extends(DataSetColumnView, _super);
 
     function DataSetColumnView() {
+      this.deleteModalView = __bind(this.deleteModalView, this);
       this.showModal = __bind(this.showModal, this);
       _ref = DataSetColumnView.__super__.constructor.apply(this, arguments);
       return _ref;
@@ -24,8 +25,7 @@
 
     DataSetColumnView.prototype.initialize = function(options) {
       this.template = options.template;
-      this.datasetID = options.datasetID;
-      return this.sampleDataModelView = null;
+      return this.datasetID = options.datasetID;
     };
 
     DataSetColumnView.prototype.render = function() {
@@ -38,7 +38,8 @@
         datasetID: this.datasetID,
         columnName: this.model.name
       });
-      return this.sampleDataModelView.once('ready', this.showModal);
+      this.sampleDataModelView.once('ready', this.showModal);
+      return this.sampleDataModelView.once('done', this.deleteModalView);
     };
 
     DataSetColumnView.prototype.addColumnForVis = function() {
@@ -50,6 +51,10 @@
 
     DataSetColumnView.prototype.showModal = function() {
       return this.sampleDataModelView.show();
+    };
+
+    DataSetColumnView.prototype.deleteModalView = function() {
+      return delete this.sampleDataModelView;
     };
 
     return DataSetColumnView;

@@ -18,6 +18,7 @@ class DatsyApp.IndexView extends Backbone.View
     e && e.preventDefault();
     tag = $('#getStartedForm').val()
     if @tagExists(tag)
+      tag = tag.split(' ').join('_')
       Backbone.history.navigate "/searchDataSets/" + tag, {trigger: true}
     else
       Backbone.history.navigate "/searchDataSets/null", {trigger: true}    

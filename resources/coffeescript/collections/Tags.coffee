@@ -9,8 +9,8 @@ class DatsyApp.Tags extends Backbone.Collection
 
   has: (tag) ->
     models = @models
-    return true for model in models when model.tag isnt tag
-    false
+    return true for model in models when model.attributes.label is tag
+    return false
 
   list: ->
     models = @models

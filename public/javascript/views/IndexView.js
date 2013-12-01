@@ -33,6 +33,7 @@
       e && e.preventDefault();
       tag = $('#getStartedForm').val();
       if (this.tagExists(tag)) {
+        tag = tag.split(' ').join('_');
         return Backbone.history.navigate("/searchDataSets/" + tag, {
           trigger: true
         });

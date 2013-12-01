@@ -113,7 +113,7 @@
 
     DataSetSearchView.prototype.loadExploreView = function() {
       this.trigger('startExplore', this.databases);
-      return Backbone.history.navigate("/exploreDataSets", {
+      return Backbone.history.navigate("/exploreDataSets/" + this.mainTag, {
         trigger: true
       });
     };

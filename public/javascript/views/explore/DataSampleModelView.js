@@ -13,6 +13,10 @@
       return _ref;
     }
 
+    DataSampleModelView.prototype.events = {
+      'click .btn': 'destroyThis'
+    };
+
     DataSampleModelView.prototype.initialize = function(options) {
       var urlForSample;
       this.template = universalTemplates.modal;
@@ -47,6 +51,11 @@
     DataSampleModelView.prototype.onReady = function() {
       this.render();
       return this.trigger('ready');
+    };
+
+    DataSampleModelView.prototype.destroyThis = function() {
+      delete this.sampleData;
+      return this.trigger('done');
     };
 
     return DataSampleModelView;

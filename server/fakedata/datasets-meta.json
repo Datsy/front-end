@@ -57,7 +57,7 @@
           "description": "Latitute",
           "column_tags": ["latitude"],
           "data_type": "latitude",
-          "data": [
+          "data_sample": [
             "38.839N",
             "38.815N",
             "38.807N",
@@ -85,7 +85,7 @@
               "description": "ID of bike share station",
               "column_tags": ["id", "station"],
               "data_type": "integer",
-              "data": [
+              "data_sample": [
                 1,
                 2,
                 3,
@@ -98,7 +98,7 @@
               "description": "Name of bike share station",
               "column_tags": ["name", "station"],
               "data_type": "string",
-              "data": [
+              "data_sample": [
                 "Market and 7th",
                 "Powell and Post (Union Square)",
                 "Golden Gate and Polk",
@@ -111,7 +111,7 @@
               "description": "Number of available bikes",
               "column_tags": ["bikes", "available"],
               "data_type": "integer",
-              "data": [
+              "data_sample": [
                 10,
                 2,
                 15,
@@ -124,7 +124,7 @@
               "description": "Total docks available",
               "column_tags": ["docks"],
               "data_type": "integer",
-              "data": [
+              "data_sample": [
                 15,
                 10,
                 15,

@@ -63,5 +63,6 @@ class DatsyApp.DataSetSearchView extends Backbone.View
 
   loadExploreView: ->
     @trigger 'startExplore', @databases
-    Backbone.history.navigate "/exploreDataSets", {trigger: true}
+
+    Backbone.history.navigate "/exploreDataSets/" + @mainTag, {trigger: true}
 
