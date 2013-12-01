@@ -1,7 +1,3 @@
-.visView form {
-  height: 50px;
-  margin-top: 30px; }
-
 #graph {
   position: relative;
   min-height: 100px;
@@ -11,12 +7,23 @@
   margin-bottom: 30px;
   margin-top: 40px;
   padding: 2% 3% 1% 2%; }
-  #graph rect {
+  #graph .bar {
     fill: steelblue; }
-  #graph text {
-    fill: white;
-    font: 10px sans-serif;
-    text-anchor: end; }
+
+.visView form {
+  height: 50px;
+  margin-top: 30px; }
+
+.axis text {
+  font: 10px sans-serif; }
+
+.axis path, .axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges; }
+
+.x.axis path {
+  display: none; }
 
 svg text {
   fill: white;
