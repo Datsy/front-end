@@ -68,12 +68,19 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom")
-      .ticks(10);
+      .ticks(10)
+      .tickFormat(d3.time.format("%b"));
 
     chart.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + this.chartHeight*.95 + ")")
-      .call(xAxis);
+      .attr("transform", "translate(0," + this.chartHeight*.92 + ")")
+      .call(xAxis)
+      .selectAll("text")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(90)")
+        .style("text-anchor", "start");
 
     var yAxis = d3.svg.axis()
       .scale(y)
