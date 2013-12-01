@@ -1,5 +1,6 @@
 (function() {
   var _ref,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -7,6 +8,7 @@
     __extends(DataSetColumnView, _super);
 
     function DataSetColumnView() {
+      this.showModal = __bind(this.showModal, this);
       _ref = DataSetColumnView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
@@ -22,7 +24,8 @@
 
     DataSetColumnView.prototype.initialize = function(options) {
       this.template = options.template;
-      return this.datasetID = options.datasetID;
+      this.datasetID = options.datasetID;
+      return this.sampleDataModelView = null;
     };
 
     DataSetColumnView.prototype.render = function() {
@@ -31,16 +34,11 @@
     };
 
     DataSetColumnView.prototype.viewSampleData = function() {
-      var sampleData, sampleDataModelView, urlForSample;
-      urlForSample = '/sample?id=' + this.datasetID + '&column=' + this.model.name;
-      console.log(urlForSample);
-      sampleData = new SampleData({
-        urlRoot: urlForSample
+      this.sampleDataModelView = new DatsyApp.DataSampleModelView({
+        datasetID: this.datasetID,
+        columnName: this.model.name
       });
-      sampleDataModelView = new DatsyApp.DataSampleModelView({
-        model: sampleData
-      });
-      return sampleDataModelView.show();
+      return this.sampleDataModelView.once('ready', this.showModal);
     };
 
     DataSetColumnView.prototype.addColumnForVis = function() {
@@ -48,6 +46,10 @@
       return this.trigger('addColumn', {
         id: 0
       });
+    };
+
+    DataSetColumnView.prototype.showModal = function() {
+      return this.sampleDataModelView.show();
     };
 
     return DataSetColumnView;

@@ -11,19 +11,19 @@ class DatsyApp.DataSetColumnView extends Backbone.View
   initialize: (options) ->
     @template = options.template
     @datasetID = options.datasetID
+    @sampleDataModelView = null
 
   render: ->
     @$el.html @template(@model)
     @
 
   viewSampleData: ->
-    urlForSample = '/sample?id=' + @datasetID + '&column=' + @model.name
-    console.log urlForSample
-    sampleData = new SampleData { urlRoot: urlForSample }
-    sampleDataModelView = new DatsyApp.DataSampleModelView { model: sampleData }
-    sampleDataModelView.show();    
+    @sampleDataModelView = new DatsyApp.DataSampleModelView { datasetID: @datasetID, columnName: @model.name }
+    @sampleDataModelView.once 'ready', @showModal
 
   addColumnForVis: ->
     console.log @model
     @trigger 'addColumn', { id: 0 }
 
+  showModal: =>
+    @sampleDataModelView.show()

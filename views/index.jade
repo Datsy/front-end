@@ -50,12 +50,16 @@ html
     script#loading(type="text/x-handlebars-template")
       include templates/dataSetSearch/loading
 
+    script#modal(type="text/y-handlebars-template")
+      include templates/main/modal
+
     script.
       var DatsyApp = {};
 
     script(src="javascript/models/Datsy.js")
     script(src="javascript/models/Tag.js")
     script(src="javascript/models/Database.js")
+    script(src="javascript/models/SampleData.js")
 
     script(src="javascript/collections/Tags.js")
     script(src="javascript/collections/Databases.js")
@@ -88,5 +92,10 @@ html
         templates[div.id] = Handlebars.compile(div.innerHTML);
       });
       datsy.set('templates', templates);
-      
+
+      window.universalTemplates = {}
+      $("[type='text/y-handlebars-template']").each(function(index, div){
+        universalTemplates[div.id] = Handlebars.compile(div.innerHTML);
+      });
+
       var datsyApp = new DatsyApp.DatsyView({ model: datsy });

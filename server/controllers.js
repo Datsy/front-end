@@ -8,6 +8,7 @@ module.exports = {
     app.get('/', this.index);
     app.get('/tags', this.sendTags);
     app.get('/search', this.sendTagMeta);
+    app.get('/sample', this.sendSampleColumns);
   },
 
   index: function(req, res) {
@@ -23,6 +24,11 @@ module.exports = {
     var tag = req.query['tag'];
     var result = returnDatabaseMetadata(tag);
     sendResponse(res, result, 201);
+  },
+
+  sendSampleColumns: function(req, res) {
+    var sample = getSampleData(req.query);
+    sendResponse(res, sample, 201);
   }
 
 };

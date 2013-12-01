@@ -1,6 +1,9 @@
 class DatsyApp.SampleData extends Backbone.Model
 
-  #defaults:
-
-  initialize: ->
+  initialize: (options) ->
+    @url =  options.url
     @fetch()
+    @on 'change', @triggerReady
+
+  triggerReady: =>
+    @trigger 'ready'

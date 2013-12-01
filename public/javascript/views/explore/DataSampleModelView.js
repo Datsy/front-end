@@ -1,5 +1,6 @@
 (function() {
   var _ref,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -7,13 +8,46 @@
     __extends(DataSampleModelView, _super);
 
     function DataSampleModelView() {
+      this.onReady = __bind(this.onReady, this);
       _ref = DataSampleModelView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
-    DataSampleModelView.prototype.initialize = function(options) {};
+    DataSampleModelView.prototype.initialize = function(options) {
+      var urlForSample;
+      this.template = universalTemplates.modal;
+      this.datasetID = options.datasetID;
+      this.columnName = options.columnName;
+      urlForSample = '/sample?id=' + this.datasetID + '&column=' + this.columnName;
+      this.sampleData = new DatsyApp.SampleData({
+        url: urlForSample
+      });
+      return this.sampleData.once('ready', this.onReady);
+    };
 
-    DataSampleModelView.prototype.render = function() {};
+    DataSampleModelView.prototype.render = function() {
+      var attrs, body, isValid, prop, val;
+      attrs = this.sampleData.toJSON();
+      body = "<ul class='rows'>";
+      for (prop in attrs) {
+        if (!__hasProp.call(attrs, prop)) continue;
+        val = attrs[prop];
+        isValid = prop !== 'url';
+        if (isValid) {
+          body += '<li class="rowValue">' + val + '</p>';
+        }
+      }
+      body += '</ul>';
+      return this.$el.html(this.template({
+        title: 'Data samples for column: ' + this.columnName,
+        body: body
+      }));
+    };
+
+    DataSampleModelView.prototype.onReady = function() {
+      this.render();
+      return this.trigger('ready');
+    };
 
     return DataSampleModelView;
 

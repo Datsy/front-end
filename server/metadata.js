@@ -24,12 +24,19 @@ exports.setUpMetaData = function() {
 exports.getMetaData = function(tag) {
   var results = metadata.dataSets.filter(function(dataset) {
     return (dataset.tags.indexOf(tag) === -1) ? false : true;
-  })
+  });
   return results;
 };
 
 exports.getTags = function() {
   return metadata.dataSetTags;
+};
+
+exports.getSampleData = function(id, columnName) {
+  var column =  metadata.dataSets[id].columns.filter(function(column) {
+    return columnName === column.name;
+  });
+  return column[0].data_sample;
 };
 
 var readFakeJSON = function(cb1, cb2) {
