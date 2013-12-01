@@ -11,12 +11,27 @@
       return _ref;
     }
 
+    DataSetItemView.prototype.tagName = 'ul';
+
+    DataSetItemView.prototype.className = 'column-list';
+
     DataSetItemView.prototype.initialize = function(options) {
-      return this.template = options.template;
+      return this.dataSetColumnTemplate = options.dataSetColumnTemplate;
     };
 
     DataSetItemView.prototype.render = function() {
-      this.$el.html(this.template(this.model.attributes));
+      var columns,
+        _this = this;
+      columns = this.model.get('columns').map(function(column) {
+        return new DatsyApp.DataSetColumnView({
+          model: column,
+          template: _this.dataSetColumnTemplate,
+          datasetID: _this.model.get('id')
+        });
+      });
+      columns.forEach(function(column) {
+        return _this.$el.append(column.render().el);
+      });
       return this;
     };
 

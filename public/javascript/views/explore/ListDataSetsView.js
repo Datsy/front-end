@@ -14,7 +14,7 @@
     ListDataSetsView.prototype.className = 'explore-datasets';
 
     ListDataSetsView.prototype.initialize = function(options) {
-      this.itemViewTemplate = options.dataSetItemTemplate;
+      this.dataSetColumnTemplate = options.dataSetColumnTemplate;
       return this.databases = options.databases;
     };
 
@@ -23,7 +23,7 @@
       this.databases.forEach(function(model) {
         var panel;
         panel = new DatsyApp.DataSetItemView({
-          template: _this.itemViewTemplate,
+          dataSetColumnTemplate: _this.dataSetColumnTemplate,
           model: model
         });
         _this.$el.append('<h3>' + model.attributes.table_name + '</h3>');
@@ -32,7 +32,9 @@
       setTimeout((function() {
         return _this.$el.accordion({
           collapsible: true,
-          heightStyle: 'content'
+          heightStyle: 'content',
+          active: false,
+          icons: false
         });
       }), 0);
       return this;

@@ -19,7 +19,6 @@
   font-weight: 600;
   font-size: 18px;
   color: #333;
-  margin-right: 183px;
 }
 .explore header p:last-child {
   margin-right: 0px;
@@ -36,6 +35,8 @@
 .explore-datasets .ui-accordion-header {
   font-size: 18px;
   font-weight: 700;
+  color: #ddd;
+  background: #333;
 }
 .explore-datasets .ui-accordion-content {
   padding: 10px;
@@ -48,15 +49,26 @@
   list-style: none;
   margin: 7px 0 7px 0;
   padding: 15px 10px;
-  height: 90px;
 }
 .explore-datasets .ui-accordion-content ul.column-list li.column-listing div.column-descriptions p {
-  margin: 0;
+  margin: 2px 0;
   padding: 0;
 }
-.explore-datasets .ui-accordion-content ul.column-list li.column-listing div.column-descriptions button.addColumnForVis {
-  font-size: 12px;
+.explore-datasets .ui-accordion-content ul.column-list li.column-listing div.column-add-button button {
+  margin: 3px auto;
+  font-size: 10px;
+  height: 30px;
+}
+.explore-datasets .ui-accordion-content ul.column-list li.column-listing div.column-add-button button:focus {
+  outline: none;
+  box-shadow: none;
 }
 .explore-datasets .ui-accordion-content ul.column-list li.column-listing:nth-child(odd) {
   background-color: #eee;
+}
+.explore-datasets .ui-accordion-content ul.column-list li.column-listing:hover {
+  background-color: #ddd;
+}
+.explore-datasets .ui-state-hover {
+  color: #fff;
 }

@@ -19,7 +19,6 @@
       font-weight 600
       font-size 18px
       color #333
-      margin-right 183px
 
     p:last-child
       margin-right 0px
@@ -36,6 +35,8 @@
   .ui-accordion-header
     font-size 18px
     font-weight 700
+    color #ddd
+    background #333
 
   .ui-accordion-content
     padding 10px
@@ -48,18 +49,30 @@
         list-style none
         margin 7px 0 7px 0
         padding 15px 10px
-        height 90px
 
         div.column-descriptions
 
           p
-            margin 0
+            margin 2px 0
             padding 0
 
-        div.column-descriptions
+        div.column-add-button
 
-          button.addColumnForVis
-            font-size 12px
+          button
+            margin 3px auto
+            font-size 10px
+            height 30px
+
+          button:focus
+            outline none
+            box-shadow none
 
       li.column-listing:nth-child(odd)
         background-color #eee
+
+      li.column-listing:hover
+        background-color #ddd
+
+
+  .ui-state-hover
+    color #fff

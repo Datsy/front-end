@@ -15,7 +15,7 @@
 
     ExploreDataSetsView.prototype.initialize = function(options) {
       this.template = options.template;
-      this.dataSetItemTemplate = options.dataSetItemTemplate;
+      this.dataSetColumnTemplate = options.dataSetColumnTemplate;
       return this.databases = options.databases;
     };
 
@@ -23,7 +23,7 @@
       var listdataView;
       this.$el.html(this.template);
       listdataView = new DatsyApp.ListDataSetsView({
-        dataSetItemTemplate: this.dataSetItemTemplate,
+        dataSetColumnTemplate: this.dataSetColumnTemplate,
         databases: this.databases
       });
       this.$el.append(listdataView.render().el);

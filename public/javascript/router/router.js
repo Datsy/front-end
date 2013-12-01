@@ -72,7 +72,7 @@
       var exploreDataSetsViews;
       exploreDataSetsViews = new DatsyApp.ExploreDataSetsView({
         template: this.model.get('templates')['exploreDataSets'],
-        dataSetItemTemplate: this.model.get('templates')['dataSetItem'],
+        dataSetColumnTemplate: this.model.get('templates')['dataSetColumn'],
         databases: this.databases
       });
       return this.swapView(exploreDataSetsViews);
