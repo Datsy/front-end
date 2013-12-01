@@ -9,11 +9,6 @@
   padding: 2% 3% 1% 2%;
 }
 
-.visView form {
-  height: 50px;
-  margin-top: 30px;
-}
-
 path {
   stroke: steelblue;
   stroke-width: 2;
@@ -29,22 +24,18 @@ text {
   font-size: 9pt;
 }
 
-
-#dataColumnOptions {
-  min-height: 50px;
-  margin-bottom: 20px;
+.visView form {
+  height: 50px;
   margin-top: 30px;
-
-  .dataCol {
-    width: 90%;
-    margin: 3px auto;
-    text-align: center;
-    padding-top: 4px;
-    height: 30px;
-    background-color: #eee;
-  }
-  .dataCol:nth-child(even) {
-    background-color: #ddd;
-  }
 }
 
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}

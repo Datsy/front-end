@@ -23,7 +23,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     // this.data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7];
     this.width = 960;
     this.height = 500;
-    this.margin = 20;
+    this.margin = 30;
     this.y = d3.scale.linear()
          .domain([0, d3.max(this.data, function(d) { return d.value; })])
          .range([0 + this.margin, this.height - this.margin]);
@@ -50,17 +50,44 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     g.append('svg:path')
       .attr('d', line(this.data));
     
+    // Draw X-Axis Line
     g.append('svg:line')
       .attr('x1', x(0))
       .attr('y1', -1 * y(0))
       .attr('x2', x(this.width))
       .attr('y2', -1 * y(0));
 
+    // Draw Y-Axis Line
     g.append('svg:line')
       .attr('x1', x(0))
       .attr('y1', -1 * y(0))
       .attr('x2', x(0))
       .attr('y2', -1 * y(540));
+
+    // var xAxis = d3.svg.axis()
+    //   .scale(x)
+    //   .orient("bottom")
+    //   .ticks(30);
+
+    // var yAxis = d3.svg.axis()
+    //   .scale(y)
+    //   .orient('left')
+    //   .ticks(10, '$');
+
+    // chart.append("g")
+    //   .attr("class", "x axis")
+    //   .attr("transform", "translate(0," + this.height + ")")
+    //   .call(xAxis);
+
+    // chart.append('g')
+    //       .attr('class', 'y axis')
+    //       .call(yAxis)
+    //     .append('text')
+    //       .attr('transform', 'rotate(-90)')
+    //       .attr('y', 6)
+    //       .attr('dy', '.71em')
+    //       .style('text-anchor', 'end')
+    //       .text('Stock Price');
 
     g.selectAll('.xlabel')
       .data(x.ticks(30))
@@ -76,7 +103,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       .enter().append('svg:text')
       .attr('class', 'yLabel')
       .text(String)
-      .attr('x', 0)
+      .attr('x', 5)
       .attr('y', function(d) { return -1 * y(d) })
       .attr('text-anchor', 'right')
       .attr('dy', 4);
@@ -88,15 +115,15 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       .attr('x1', function(d) { return x(d); })
       .attr('y1', -1 * y(0))
       .attr('x2', function(d) { return x(d); })
-      .attr('y2', -1 * y(-0.3));
+      .attr('y2', -1 * y(5));
 
     g.selectAll('.yTicks')
-      .data(y.ticks(10))
+      .data(y.ticks(10, '$'))
       .enter().append('svg:line')
       .attr('class', 'yTicks')
-      .attr('y1', function(d) { return -1 * y(d); })
+      .attr('y1', function(d) { return -1 * y(d.value); })
       .attr('x1', x(-0.3))
-      .attr('y2', function(d) { return -1 * y(d); })
+      .attr('y2', function(d) { return -1 * y(d.value); })
       .attr('x2', x(0));
 
     return this.$el;
