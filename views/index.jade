@@ -9,6 +9,7 @@ html
     link(rel='stylesheet', href='/stylesheets/main.css')
     link(rel='stylesheet', href='/stylesheets/datasearch.css')
     link(rel='stylesheet', href='/stylesheets/explorer.css')
+    link(rel='stylesheet', href='/stylesheets/visualizer.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
@@ -33,6 +34,9 @@ html
     script#indexView(type="text/x-handlebars-template")
       include templates/main/indexView
 
+    script#popularVisualizations(type="text/x-handlebars-template")
+      include templates/main/popularVisualizations
+
     //- DATA EXPLORER TEMPLATES
     script#loadingExplore(type="text/x-handlebars-template")
       include templates/explore/loading
@@ -56,6 +60,10 @@ html
     script#modal(type="text/y-handlebars-template")
       include templates/main/modal
 
+    //- Viz
+    script#visualize(type="text/x-handlebars-template")
+      include templates/visualization/visualizations
+
     script.
       var DatsyApp = {};
 
@@ -69,7 +77,9 @@ html
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
 
-    script(src="javascript/views/helperViews/SvgBackboneView.js")
+    script(src="javascript/views/PopularVisualizationsView.js")
+      
+    //-script(src="javascript/views/helperViews/SvgBackboneView.js")
     script(src="javascript/views/helperViews/BaseModalView.js")
 
     //- Data Set Search
@@ -83,6 +93,9 @@ html
     script(src="javascript/views/explore/DataSampleModelView.js")
 
     //- Visualizer Views
+    script(src="js/views/visualization/SvgBackboneView.js")
+    script(src="js/views/visualization/ChartView.js")
+    script(src="js/views/visualization/VisView.js")
 
     script(src="javascript/router/router.js")
   
