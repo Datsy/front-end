@@ -1,0 +1,14 @@
+
+<div class="container filterResults">{{#if singular}}
+  <h1 class="text-center">{{ searchTag }} appeared in {{ occurance }} result.</h1>{{else}}
+  <h1 class="text-center">{{ searchTag }} appeared in {{ occurance }} results.</h1>{{/if}}
+  <h3 class="text-center text-muted">Add filters to refine search, or click Browse Data Sets start exploring.</h3>
+  <form role="form" class="form-inline">
+    <div class="form-group col-md-10 col-md-offset-1">
+      <label for="filter" class="sr-only">Add topics to filter results</label>
+      <input id="filterTagSearch" type="text" placeholder="Add topics to filter results." autocomplete="off" class="form-control"/>
+    </div>
+    <button id="addFilters" type="submit" class="btn btn-success glyphicon glyphicon-plus"></button>
+  </form>
+  <button id="seeDataBases" type="submit" class="btn btn-success btn-lg col-md-offset-5">Browse Data Sets</button>
+</div>

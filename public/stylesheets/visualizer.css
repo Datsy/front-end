@@ -2,35 +2,6 @@
   position: relative;
   min-height: 100px;
   width: 100%;
-<<<<<<< HEAD
-  background-color: #eeeeee;
-  border-radius: 5px;
-  margin-bottom: 30px;
-  margin-top: 10px;
-  padding: 2% 3% 1% 2%; }
-
-path {
-  stroke: steelblue;
-  stroke-width: 3;
-  fill: none; }
-
-text {
-  font-family: Arial;
-  font-size: 9pt; }
-
-.visView form {
-  height: 50px;
-  margin-top: 30px; }
-
-.axis text {
-  font: 10px sans-serif; }
-
-.axis path, .axis line {
-  fill: none;
-  stroke: black;
-  stroke-width: 2;
-  shape-rendering: crispEdges; }
-=======
   background-color: #ccc;
   border-radius: 10px;
   margin-bottom: 30px;
@@ -78,4 +49,3 @@ svg .x.axis path {
 #dataColumnOptions .dataCol:nth-child(even) {
   background-color: #ddd;
 }
->>>>>>> fe320982248d8cd2bc754c9db2cb1bfadea1ebf8
