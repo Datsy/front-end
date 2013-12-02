@@ -1,15 +1,45 @@
 .top-bar {
-  height: 100px;
+  margin: 0 20px 0 0;
 }
 .top-bar .cart {
-  height: 100%;
-  margin-bottom: 0;
+  overflow: hidden;
+}
+.top-bar .panel {
+  margin-bottom: 5px;
+}
+.top-bar .panel .panel-heading {
+  padding: 5px 0;
+}
+.top-bar .panel .panel-heading h4 {
+  margin: 0;
+  padding: 0;
+  color: #666;
+}
+.top-bar .panel .panel-body {
+  padding: 3px;
+}
+.top-bar .panel .panel-body button {
+  margin-top: 7px;
+  width: 60px;
+}
+.top-bar .panel .panel-body .cart-text {
+  text-align: center;
+  margin-top: 3px;
+}
+.top-bar .panel .panel-body .cart-text p {
+  margin: 0;
+  font-size: 13px;
+}
+.top-bar .panel .panel-body .cart-text p.total {
+  font-size: 18px;
+  font-weight: 800;
 }
 .explore {
   margin-top: 70px;
 }
 .explore h1 {
   margin-bottom: 4px;
+  margin-top: 14px;
 }
 .explore h3 {
   margin-top: 0;

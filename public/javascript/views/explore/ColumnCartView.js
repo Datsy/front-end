@@ -11,7 +11,7 @@
       return _ref;
     }
 
-    ColumnCartView.prototype.className = 'cart col-md-4 well well-lg';
+    ColumnCartView.prototype.className = 'cart col-md-4';
 
     ColumnCartView.prototype.initialize = function(options) {
       this.datsyModel = options.datsyModel;
