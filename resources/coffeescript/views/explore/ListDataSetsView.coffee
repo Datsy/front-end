@@ -3,6 +3,7 @@ class DatsyApp.ListDataSetsView extends Backbone.View
   className: 'explore-datasets',
 
   initialize: (options) ->
+    @datsyModel = options.datsyModel
     @dataSetColumnTemplate = options.dataSetColumnTemplate
     @databases = options.databases
 

@@ -1,5 +1,6 @@
 (function() {
   var _ref,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -7,6 +8,7 @@
     __extends(ExploreDataSetsView, _super);
 
     function ExploreDataSetsView() {
+      this.renderLoaded = __bind(this.renderLoaded, this);
       _ref = ExploreDataSetsView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
@@ -18,11 +20,12 @@
       this.datsyModel = options.datsyModel;
       this.loadingTemplate = this.datsyModel.get('templates')['loadingExplore'];
       this.template = this.datsyModel.get('templates')['exploreDataSets'];
-      this.dataSetColumnTemplate = this.datsyModel.get('templates')['dataSetColumn'];
       this.databases = this.getDataBases(options.path);
-      return setTimeout((function() {
-        return _this.databases.on('add', _this.renderLoaded());
-      }), 1000);
+      return this.databases.on('add', function() {
+        return setTimeout((function() {
+          return _this.renderLoaded();
+        }), 1000);
+      });
     };
 
     ExploreDataSetsView.prototype.render = function() {
@@ -31,12 +34,18 @@
     };
 
     ExploreDataSetsView.prototype.renderLoaded = function() {
-      return this.$el.html(this.template);
+      var listdataView;
+      this.$el.html(this.template);
+      listdataView = new DatsyApp.ListDataSetsView({
+        datsyModel: this.datsyModel,
+        dataSetColumnTemplate: this.datsyModel.get('templates')['dataSetColumn'],
+        databases: this.databases
+      });
+      return this.$el.append(listdataView.render().el);
     };
 
     ExploreDataSetsView.prototype.getDataBases = function(path) {
       var tags, url;
-      console.log(path);
       tags = path.split('/');
       url = '/search?';
       tags.forEach(function(tag) {

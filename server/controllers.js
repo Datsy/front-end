@@ -26,7 +26,8 @@ module.exports = {
   },
 
   sendTagMeta: function(req, res) {
-    var tag = req.query['tag'];
+    var tag = 'san francisco';
+    // FIX ME AS NEEDED
     var result = returnDatabaseMetadata(tag);
     sendResponse(res, result, 201);
   },

@@ -14,6 +14,7 @@
     ListDataSetsView.prototype.className = 'explore-datasets';
 
     ListDataSetsView.prototype.initialize = function(options) {
+      this.datsyModel = options.datsyModel;
       this.dataSetColumnTemplate = options.dataSetColumnTemplate;
       return this.databases = options.databases;
     };

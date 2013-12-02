@@ -31,7 +31,6 @@ class DatsyApp.Router extends Backbone.Router
     @swapView FilterDataSetsView
 
   explore: (params) ->
-    console.log params
     exploreDataSetsViews = new DatsyApp.ExploreDataSetsView {
       path: params,
       datsyModel: @model

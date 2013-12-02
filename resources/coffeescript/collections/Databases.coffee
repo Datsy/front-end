@@ -5,7 +5,6 @@ class DatsyApp.Databases extends Backbone.Collection
   initialize: (params) ->
     @url = params.url
     @fetch()
-    @on 'change', @triggerChange
 
   filterByTags: (tag) ->
     @models = @models.filter (model) ->

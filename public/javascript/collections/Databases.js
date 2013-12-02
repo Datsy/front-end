@@ -15,8 +15,7 @@
 
     Databases.prototype.initialize = function(params) {
       this.url = params.url;
-      this.fetch();
-      return this.on('change', this.triggerChange);
+      return this.fetch();
     };
 
     Databases.prototype.filterByTags = function(tag) {
