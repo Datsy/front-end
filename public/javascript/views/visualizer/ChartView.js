@@ -45,7 +45,11 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     if(!chartType){
       this.renderLineChart();
     } else {
-      this.renderStreamGraph();
+      if(chartType === 'lineChart'){
+        this.renderLineChart();
+      } else if(chartType === 'streamGraph'){
+        this.renderStreamGraph();
+      }
     }
 
     return this.$el;
@@ -126,13 +130,12 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   },
 
   renderLineChart: function() {
+    console.log('render line chart');
     var x = this.x;
     var y = this.y;
     var margin = this.margin;
     var minDate = this.minDate;
     var maxDate = this.maxDate;
-
-    console.log('render line chart');
 
     var chart = d3.select(this.el)
         .attr('width', this.width + this.margin.right + this.margin.left)
@@ -230,6 +233,8 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     stack = d3.layout.stack().offset("wiggle"),
     layers0 = stack(d3.range(n).map(function() { return bumpLayer(m); })),
     layers1 = stack(d3.range(n).map(function() { return bumpLayer(m); }));
+
+    d3.select(this.el).remove();
 
     var x = d3.scale.linear()
       .domain([0, m - 1])
