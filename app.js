@@ -6,7 +6,6 @@
 
 // Instantiate server
 var express = require('express'),
-    sass = require('node-sass'),
     http = require('http'),
     path = require('path');
  

@@ -1,0 +1,9 @@
+div.modal-dialog
+  div.modal-content
+    div.modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+      h4.modal-title {{ title }}
+    div.modal-body
+      {{{ body }}}
+    div.modal-footer
+      button.btn.btn-success(type="button", data-dismiss="modal") Close

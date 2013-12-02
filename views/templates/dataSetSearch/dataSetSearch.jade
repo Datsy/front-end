@@ -1,0 +1,16 @@
+div.container.filterResults
+  {{#if singular}}
+  h1.text-center {{ searchTag }} appeared in {{ occurance }} result.
+  {{else}}
+  h1.text-center {{ searchTag }} appeared in {{ occurance }} results.
+  {{/if}}
+
+  h3.text-center.text-muted Add filters to refine search, or click Browse Data Sets start exploring.
+
+  form.form-inline(role='form')
+    div.form-group.col-md-10.col-md-offset-1
+      label.sr-only(for="filter") Add topics to filter results
+      input#filterTagSearch.form-control(type='text', placeholder="Add topics to filter results.", autocomplete="off")
+    button#addFilters.btn.btn-success.glyphicon.glyphicon-plus(type="submit")
+
+  button#seeDataBases.btn.btn-success.btn-lg.col-md-offset-5(type="submit") Browse Data Sets

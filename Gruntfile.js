@@ -1,27 +1,34 @@
 module.exports = function(grunt) {
   "use strict";
 
-  // project config
   grunt.initConfig({
 
+    coffee: {
+      build: {
+        expand: true,
+        cwd: 'resources/coffeescript',
+        src: ['**/*.coffee'],
+        dest: 'public/javascript',
+        ext: '.js'
+      }
+    },
+ 
     jade: {
       compile: {
         options: {
-          client: false,
-          pretty: true
+          pretty: false
         },
         files: [ {
-          cwd: "views/src",
-          src: "**/*.jade",
-          dest: "views/release",
+          cwd: "views",
+          src: "index.jade",
+          dest: "spec/html",
           expand: true,
-          ext: ".ejs"
+          ext: ".html"
         } ]
       }
     },
 
     jasmine: {
-      // Need to fix the include order
       src: [
         'public/javascript/main.js',
         'public/javascript/models/Datsy.js',
@@ -77,15 +84,21 @@ module.exports = function(grunt) {
       jasmine: {
         files: ['public/javascript/**/*.js'],
         tasks: ['jasmine']
+      },
+      compile: {
+        files: 'resources/coffeescript/**/*.coffee',
+        tasks: [ 'compile' ],
+        options: {
+          livereload: true
       }
     }
 
   });
 
+  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jade', 'jasmine', 'watch']);
-  
+  grunt.registerTask('default', ['jade', 'coffee', 'jasmine', 'watch']);  
 };
