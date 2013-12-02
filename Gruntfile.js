@@ -16,14 +16,15 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
-          pretty: false
+          client: false,
+          pretty: true
         },
         files: [ {
-          cwd: 'views',
-          src: 'index.jade',
-          dest: 'spec/html',
+          cwd: 'views/src',
+          src: '**/*.jade',
+          dest: 'views/release',
           expand: true,
-          ext: '.html'
+          ext: '.ejs'
         } ]
       }
     },
