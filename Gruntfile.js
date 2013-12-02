@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  "use strict";
+  'use strict';
 
   grunt.initConfig({
 
@@ -19,11 +19,11 @@ module.exports = function(grunt) {
           pretty: false
         },
         files: [ {
-          cwd: "views",
-          src: "index.jade",
-          dest: "spec/html",
+          cwd: 'views',
+          src: 'index.jade',
+          dest: 'spec/html',
           expand: true,
-          ext: ".html"
+          ext: '.html'
         } ]
       }
     },
@@ -90,6 +90,7 @@ module.exports = function(grunt) {
         tasks: [ 'compile' ],
         options: {
           livereload: true
+        }
       }
     }
 
@@ -100,5 +101,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jade', 'coffee', 'jasmine', 'watch']);  
+  grunt.registerTask('default', ['jade', 'coffee', 'jasmine', 'watch']);
 };
