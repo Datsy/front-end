@@ -3,8 +3,8 @@ var path = require('path');
 exports.settings = function(app, express){
   app.configure(function(){
     app.set('port', process.env.PORT || 3000);
-    app.set('views', __dirname + '/../views/release');
-    app.set("view engine", "ejs");
+    app.set('views', __dirname + '/../views');
+    app.set("view engine", "jade");
     app.use(require('stylus').middleware({
       src: __dirname + '/../resources',
       dest: __dirname + '/../public'

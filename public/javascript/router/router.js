@@ -47,7 +47,6 @@
     Router.prototype.visualize = function() {
       var visView;
       visView = new DatsyApp.VisView({
-        template: this.model.get('templates')['visualize'],
         model: this.model
       });
       return this.swapView(visView);
