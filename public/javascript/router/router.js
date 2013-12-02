@@ -64,7 +64,7 @@
 
     Router.prototype.explore = function(params) {
       var exploreDataSetsViews;
-      params = params || [];
+      params = params || '';
       exploreDataSetsViews = new DatsyApp.ExploreDataSetsView({
         path: params,
         datsyModel: this.model

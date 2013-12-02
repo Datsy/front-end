@@ -46,12 +46,16 @@
 
     ExploreDataSetsView.prototype.getDataBases = function(path) {
       var tags, url;
-      tags = path.split('/');
       url = '/search?';
-      tags.forEach(function(tag) {
-        return url += 'tag=' + tag + '&';
-      });
-      url = url.slice(0, url.length - 1);
+      if (path.length) {
+        tags = path.split('/');
+        tags.forEach(function(tag) {
+          return url += 'tag=' + tag + '&';
+        });
+        url = url.slice(0, url.length - 1);
+      } else {
+        url += 'tag=ALL';
+      }
       return new DatsyApp.Databases({
         url: url
       });

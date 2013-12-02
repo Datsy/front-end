@@ -24,9 +24,12 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     @$el.append listdataView.render().el
 
   getDataBases: (path) ->
-    tags = path.split('/')
     url = '/search?'
-    tags.forEach (tag) ->
-      url += 'tag=' + tag + '&'
-    url = url.slice(0, url.length-1)
+    if path.length
+      tags = path.split('/')
+      tags.forEach (tag) ->
+        url += 'tag=' + tag + '&'
+      url = url.slice(0, url.length-1)
+    else
+      url += 'tag=ALL'
     new DatsyApp.Databases { url: url }
