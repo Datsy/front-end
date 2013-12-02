@@ -16,7 +16,6 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
-//          client: false,
           pretty: false
         },
         files: [ {
