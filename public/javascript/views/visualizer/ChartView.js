@@ -3,11 +3,14 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   events: {
 
   },
+
   tagName: 'svg',
 
   initialize: function(options) {
     this.currentXModel = null;
     this.currentYModel = null;
+    this.chartWidth = $('.container').width();
+    this.chartHeight = this.chartWidth / 2;
     this.fakeJSON = {
       "Date":
         ["2013-11-27","2013-11-26","2013-11-25","2013-11-22","2013-11-21","2013-11-20","2013-11-19","2013-11-18","2013-11-15","2013-11-14","2013-11-13","2013-11-12","2013-11-11","2013-11-08","2013-11-07","2013-11-06","2013-11-05","2013-11-04","2013-11-01","2013-10-31","2013-10-30","2013-10-29","2013-10-28","2013-10-25","2013-10-24","2013-10-23","2013-10-22","2013-10-21","2013-10-18","2013-10-17","2013-10-16","2013-10-15","2013-10-14","2013-10-11","2013-10-10","2013-10-09","2013-10-08","2013-10-07","2013-10-04","2013-10-03","2013-10-02","2013-10-01","2013-09-30","2013-09-27","2013-09-26","2013-09-25","2013-09-24","2013-09-23","2013-09-20","2013-09-19","2013-09-18","2013-09-17","2013-09-16","2013-09-13","2013-09-12","2013-09-11","2013-09-10","2013-09-09","2013-09-06","2013-09-05","2013-09-04","2013-09-03","2013-08-30","2013-08-29","2013-08-28","2013-08-27","2013-08-26","2013-08-23","2013-08-22","2013-08-21","2013-08-20","2013-08-19","2013-08-16","2013-08-15","2013-08-14","2013-08-13","2013-08-12","2013-08-09","2013-08-08","2013-08-07","2013-08-06","2013-08-05","2013-08-02","2013-08-01","2013-07-31","2013-07-30","2013-07-29","2013-07-26","2013-07-25","2013-07-24","2013-07-23","2013-07-22","2013-07-19","2013-07-18","2013-07-17","2013-07-16","2013-07-15","2013-07-12","2013-07-11","2013-07-10","2013-07-09","2013-07-08","2013-07-05","2013-07-03","2013-07-02","2013-07-01","2013-06-28","2013-06-27","2013-06-26","2013-06-25","2013-06-24","2013-06-21","2013-06-20","2013-06-19","2013-06-18","2013-06-17","2013-06-14","2013-06-13","2013-06-12","2013-06-11","2013-06-10","2013-06-07","2013-06-06","2013-06-05","2013-06-04","2013-06-03","2013-05-31","2013-05-30","2013-05-29","2013-05-28","2013-05-24","2013-05-23","2013-05-22","2013-05-21","2013-05-20","2013-05-17","2013-05-16","2013-05-15","2013-05-14","2013-05-13","2013-05-10","2013-05-09","2013-05-08","2013-05-07","2013-05-06","2013-05-03","2013-05-02","2013-05-01","2013-04-30","2013-04-29","2013-04-26","2013-04-25","2013-04-24","2013-04-23","2013-04-22","2013-04-19","2013-04-18","2013-04-17","2013-04-16","2013-04-15","2013-04-12","2013-04-11","2013-04-10","2013-04-09","2013-04-08","2013-04-05","2013-04-04","2013-04-03","2013-04-02","2013-04-01","2013-03-28","2013-03-27","2013-03-26","2013-03-25","2013-03-22","2013-03-21","2013-03-20","2013-03-19","2013-03-18","2013-03-15","2013-03-14","2013-03-13","2013-03-12","2013-03-11","2013-03-08","2013-03-07","2013-03-06","2013-03-05","2013-03-04","2013-03-01","2013-02-28","2013-02-27","2013-02-26","2013-02-25","2013-02-22","2013-02-21","2013-02-20","2013-02-19","2013-02-15","2013-02-14","2013-02-13","2013-02-12","2013-02-11","2013-02-08","2013-02-07","2013-02-06","2013-02-05","2013-02-04","2013-02-01","2013-01-31","2013-01-30","2013-01-29","2013-01-28","2013-01-25","2013-01-24","2013-01-23","2013-01-22","2013-01-18","2013-01-17","2013-01-16","2013-01-15","2013-01-14","2013-01-11","2013-01-10","2013-01-09","2013-01-08","2013-01-07","2013-01-04","2013-01-03","2013-01-02"],
@@ -18,12 +21,11 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     },
     this.data = this.convertJSONForD3(this.fakeJSON, 'Date', 'Result1', 'Result2');
     var xRange = this.findMinMax(this.data, 'xAxis');
-    debugger;    
     var yRange = this.findMinMax(this.data, 'series1', 'series2');
     this.margin = {top: 20, right: 20, bottom: 20, left: 20};
     this.padding = 40;
-    this.width = 960 - this.margin.left - this.margin.right;
-    this.height = 500 - this.margin.top - this.margin.bottom;
+    this.width = this.chartWidth - this.margin.left - this.margin.right;
+    this.height = this.chartHeight - this.margin.top - this.margin.bottom;
     this.minDate = xRange.min;
     this.maxDate = xRange.max;
 
@@ -39,6 +41,87 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   },
 
   render: function() {
+    
+    this.renderLineChart();
+
+    return this.$el;
+  },
+
+  renderChart: function() {
+    this.trigger('renderChart', { chartView: true, x: this.currentXModel, y: this.currentYModel });
+  },
+
+  addXModel: function(model) {
+    this.currentXModel = model;
+    this.checkForRender();
+  },
+
+  addYModel: function(model) {
+    this.currentYModel = model;
+    this.checkForRender();
+  },
+
+  checkForRender: function() {
+    if (this.currentYModel !== null && this.currentXModel !== null) {
+      $('#renderChart').prop('disabled', false);
+    }    
+  },
+
+  convertJSONForD3: function(data, x) {
+    // TODO: Add error checking
+    var d3Data = [];
+    var args = Array.prototype.slice.call(arguments,2);
+
+    for(var i=0; i < data[x].length; i++) {
+      d3Data.push({xAxis: new Date(data[x][i]).getTime(), series1: +data[args[0]][i], series2: +data[args[1]][i]});
+    }
+
+    return d3Data;
+  },
+
+  // DATA FORMAT:
+  //   { 
+  //     xAxis: [],
+  //     series1: [],
+  //     series2: [],
+  //     ...
+  //   }
+  findMinMax: function(data) {
+    var min;
+    var max;
+    var curVal;
+    var propertiesArray = Array.prototype.slice.call(arguments, 1);
+    var concatArr = [];
+
+    for(var i=0; i < data.length; i++){
+      for(var j=0; j < propertiesArray.length; j++){
+        concatArr.push(data[i][propertiesArray[j]]);
+      }
+    }
+
+    for(i=0; i < concatArr.length; i++){
+      curVal = concatArr[i];
+
+      if(!min){
+        min = curVal;
+      }
+      if(!max){
+        max = curVal;
+      }
+
+      if(curVal < min){
+        min = curVal;
+      }
+
+      if(curVal > max){
+        max = curVal;
+      }
+    }
+
+    return { min: min, max: max };
+  },
+
+  renderLineChart: function() {
     var x = this.x;
     var y = this.y;
     var margin = this.margin;
@@ -112,82 +195,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       .attr('transform', 'translate(' + this.padding + ',0)')
       .call(yAxis);
 
-    return this.$el;
-  },
-
-  renderChart: function() {
-    this.trigger('renderChart', { chartView: true, x: this.currentXModel, y: this.currentYModel });
-  },
-
-  addXModel: function(model) {
-    this.currentXModel = model;
-    this.checkForRender();
-  },
-
-  addYModel: function(model) {
-    this.currentYModel = model;
-    this.checkForRender();
-  },
-
-  checkForRender: function() {
-    if (this.currentYModel !== null && this.currentXModel !== null) {
-      $('#renderChart').prop('disabled', false);
-    }    
-  },
-
-  convertJSONForD3: function(data, x) {
-    // TODO: Add error checking
-    var d3Data = [];
-    var args = Array.prototype.slice.call(arguments,2);
-
-    for(var i=0; i < data[x].length; i++) {
-      d3Data.push({xAxis: new Date(data[x][i]).getTime(), series1: +data[args[0]][i], series2: +data[args[1]][i]});
-    }
-
-    return d3Data;
-  },
-
-  // DATA FORMAT:
-  //   { 
-  //     Date: [],
-  //     Series1: [],
-  //     Series2: [],
-  //     ...
-  //   }
-  findMinMax: function(data) {
-    // TODO: Add error checking
-    var min;
-    var max;
-    var curVal;
-    var propertiesArray = Array.prototype.slice.call(arguments, 1);
-    var concatArr = [];
-
-    for(var i=0; i < data.length; i++){
-      for(var j=0; j < propertiesArray.length; j++){
-        concatArr.push(data[i][propertiesArray[j]]);
-      }
-    }
-
-    for(i=0; i < concatArr.length; i++){
-      curVal = concatArr[i];
-
-      if(!min){
-        min = curVal;
-      }
-      if(!max){
-        max = curVal;
-      }
-
-      if(curVal < min){
-        min = curVal;
-      }
-
-      if(curVal > max){
-        max = curVal;
-      }
-    }
-
-    return { min: min, max: max };
+    return chart;
   }
 
 
