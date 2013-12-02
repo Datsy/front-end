@@ -9,6 +9,7 @@ html
     link(rel='stylesheet', href='/stylesheets/main.css')
     link(rel='stylesheet', href='/stylesheets/datasearch.css')
     link(rel='stylesheet', href='/stylesheets/explorer.css')
+    link(rel='stylesheet', href='/stylesheets/visualizer.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
@@ -50,8 +51,12 @@ html
     script#loading(type="text/x-handlebars-template")
       include templates/dataSetSearch/loading
 
-    script#modal(type="text/y-handlebars-template")
+    script#modal(type="text/x-handlebars-template")
       include templates/main/modal
+
+    //- VISUALIZE DATA
+    script#visualize(type="text/x-handlebars-template")
+      include templates/visualization/visualizations
 
     script.
       var DatsyApp = {};

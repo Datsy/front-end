@@ -2,50 +2,38 @@
   position: relative;
   min-height: 100px;
   width: 100%;
-  background-color: #ccc;
-  border-radius: 10px;
+  background-color: #eee;
+  border-radius: 5px;
   margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
   padding: 2% 3% 1% 2%;
 }
-svg {
-  cursor: pointer;
-}
-svg text {
-  fill: #fff;
-  font: 10px sans-serif;
-  text-anchor: end;
-}
-svg .bar {
-  fill: #4682b4;
-}
-svg .bar:hover {
-  fill: #8b0000;
-}
-svg .axis text {
-  font: 10px sans-serif;
-}
-svg .axis path,
-svg .axis line {
+path {
+  stroke: #4682b4;
+  stroke-width: 3;
   fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
 }
-svg .x.axis path {
-  display: none;
+text {
+  font-family: Arial;
+  font-size: 9pt;
 }
-#dataColumnOptions {
-  min-height: 50px;
-  margin-bottom: 20px;
+.btn-group {
+  margin-left: 40px;
+  margin-top: 20px;
+}
+.visView form {
+  height: 50px;
   margin-top: 30px;
 }
-#dataColumnOptions .dataCol {
-  width: 90%;
-  margin: 3px auto;
-  text-align: center;
-  padding-top: 4px;
-  height: 30px;
-  background-color: #eee;
+.axis text {
+  font: 10px sans-serif;
 }
-#dataColumnOptions .dataCol:nth-child(even) {
-  background-color: #ddd;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2;
+  shape-rendering: crispEdges;
 }

@@ -9,7 +9,7 @@ DatsyApp.VisView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.template = this.model.get('templates')['visualizations'];
+    this.template = this.model.get('templates')['visualize'];
     // this.selectedColumns = new DatsyApp.VisData();
     this.currentGraphView = new DatsyApp.ChartView();
     // this.droppableView.on('renderChart', this.swapGraph.bind(this));

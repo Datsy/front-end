@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/main.css">
     <link rel="stylesheet" href="/stylesheets/datasearch.css">
     <link rel="stylesheet" href="/stylesheets/explorer.css">
+    <link rel="stylesheet" href="/stylesheets/visualizer.css">
     <link rel="icon" type="image/png" href="images/icon.png">
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -154,7 +155,7 @@
         </div>
       </div>
     </script>
-    <script id="modal" type="text/y-handlebars-template">
+    <script id="modal" type="text/x-handlebars-template">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -167,6 +168,15 @@
           </div>
         </div>
       </div>
+    </script>
+    <script id="visualize" type="text/x-handlebars-template">
+      <form role="form" class="form-inline center">
+        <div class="btn-group">
+          <button id="lineChart" type="button" class="btn btn-default">Line</button>
+          <button id="streamGraph" type="button" class="btn btn-default">Streamgraph</button>
+        </div>
+      </form>
+      <div id="graph"></div>
     </script>
     <script>
       var DatsyApp = {};
