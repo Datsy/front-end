@@ -1,4 +1,4 @@
-var renderLineChart = function(el, data, width, height, margin, padding) {
+var renderLineChart = function(el, data, options) {
   console.log('render line chart');
   var xRange = this.findMinMax(data, 'xAxis');
   var yRange = this.findMinMax(data, 'series1', 'series2');
@@ -7,23 +7,23 @@ var renderLineChart = function(el, data, width, height, margin, padding) {
 
   var y = d3.scale.linear()
       .domain([yRange.min, yRange.max])
-      .range([height - padding, padding]);
+      .range([options.height - options.padding, options.padding]);
 
   var x = d3.time.scale()
       .domain([minDate, maxDate])
-      .range([padding, width - padding]);
+      .range([options.padding, options.width - options.padding]);
 
   var chart = d3.select(el)
-      .attr('width', width + margin.right + margin.left)
-      .attr('height', height + margin.top + margin.bottom);
+      .attr('width', options.width + options.margin.right + options.margin.left)
+      .attr('height', options.height + options.margin.top + options.margin.bottom);
 
   chart.selectAll("line.horizontalGrid").data(y.ticks(10)).enter()
       .append("line")
         .attr(
         {
           "class":"horizontalGrid",
-          "x1" : padding + margin.left,
-          "x2" : width - margin.right,
+          "x1" : options.padding + options.margin.left,
+          "x2" : options.width - options.margin.right,
           "y1" : function(d){ return y(d);},
           "y2" : function(d){ return y(d);},
           "fill" : "none",
@@ -34,12 +34,12 @@ var renderLineChart = function(el, data, width, height, margin, padding) {
         });
 
   var g = chart.append('svg:g')
-      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+      .attr('transform', 'translate(' + options.margin.left + ',' + options.margin.top + ')');
 
   // Plot first data series
   var line1 = d3.svg.line()
       .x(function(d, i) { return x(d.xAxis); })
-      .y(function(d) { return y(d.series1) - margin.top; });
+      .y(function(d) { return y(d.series1) - options.margin.top; });
   
   g.append('svg:path')
     .attr('d', line1(data))
@@ -48,7 +48,7 @@ var renderLineChart = function(el, data, width, height, margin, padding) {
   // Plot second data series
   var line2 = d3.svg.line()
       .x(function(d, i) { return x(d.xAxis); })
-      .y(function(d) { return y(d.series2) - margin.top; });
+      .y(function(d) { return y(d.series2) - options.margin.top; });
   g.append('svg:path')
     .attr('d', line2(data))
     .style('stroke', 'red');  // TODO: should be assigned a color in progressive order
@@ -61,7 +61,7 @@ var renderLineChart = function(el, data, width, height, margin, padding) {
 
   chart.append('g')
     .attr('class', 'x axis')
-    .attr('transform', 'translate(' + margin.left + ',' + (height - padding + 20) + ")")
+    .attr('transform', 'translate(' + options.margin.left + ',' + (options.height - options.padding + 20) + ")")
     .call(xAxis)
     .selectAll("text")
       .attr("y", 0)
@@ -77,7 +77,7 @@ var renderLineChart = function(el, data, width, height, margin, padding) {
 
   chart.append('g')
     .attr('class', 'y axis')
-    .attr('transform', 'translate(' + padding + ',0)')
+    .attr('transform', 'translate(' + options.padding + ',0)')
     .call(yAxis);
 
   return chart;

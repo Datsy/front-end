@@ -30,10 +30,22 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   render: function(chartType) {
     
     if(!chartType){
-      renderLineChart(this.el, this.data, this.width, this.height, this.margin, this.padding);
+      renderLineChart(this.el, this.data, 
+        { width: this.width, 
+          height: this.height, 
+          margin: this.margin, 
+          padding: this.padding
+        }
+      );
     } else {
       if(chartType === 'lineChart'){
-        renderLineChart(this.el, this.data, this.width, this.height, this.margin, this.padding);
+        renderLineChart(this.el, this.data, 
+          { width: this.width, 
+            height: this.height, 
+            margin: this.margin, 
+            padding: this.padding
+          }
+        );
       } else if(chartType === 'streamGraph'){
         renderStreamGraph();
       }
