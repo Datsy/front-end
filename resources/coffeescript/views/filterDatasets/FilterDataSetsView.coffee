@@ -10,9 +10,9 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @tags = @datsyModel.get('tags')
     @template =  @datsyModel.get('templates')['filterDatasets']
     @loadingTemplate = @datsyModel.get('templates')['loading']
-    @currentTags = [options.searchTopic]
+    @currentTags = @buildTags options.searchTopic
     @filterTags()
-    @mainTag = @uppercase options.searchTopic
+    @mainTag = @uppercase @currentTags
     @tags.on 'loaded', =>
       setTimeout (=> @renderLoaded()), 1000
     @
@@ -26,11 +26,13 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @$el.html @template({ searchTag: @mainTag, occurance: @tags.totalDataBases, singular: singular })
     @
 
-  uppercase: (tag) ->
-    tagArr = tag.split('_')
-    tagArr = tagArr.map (word) ->
-      newWord = word.charAt(0).toUpperCase() + word.slice(1)
-    tagArr.join(' ')
+  uppercase: (tags) ->
+    array = tags.map (tag) =>
+      tagArr = tag.split(' ').map (word) ->
+        return word.charAt(0).toUpperCase() + word.slice(1)
+      return tagArr.join(' ')
+    return array[0] if array.length == 1
+    return array.join(' & ')
 
   setUpTags: =>
     tagArray = @tags.list()
@@ -51,11 +53,11 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     return false if (tagArray.indexOf(newTag) == -1)
     @currentTags.push newTag
     @filterTags()
-    @updatePage newTag
+    @updatePage()
 
-  updatePage: (newTag) =>
-    newTag = @uppercase newTag
-    @mainTag += " & " + newTag
+
+  updatePage: =>
+    @mainTag = @uppercase @currentTags
     @$el.html ""
     @render()
     url = '/filterDatasets'
@@ -69,3 +71,9 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @currentTags.forEach (tag) =>
       url += '/' + tag
     Backbone.history.navigate url, {trigger: true}
+
+  buildTags: (tags) ->
+    tags = tags.split('/')
+    return tags.map (tag) =>
+      return tag.split('_').join(' ')
+

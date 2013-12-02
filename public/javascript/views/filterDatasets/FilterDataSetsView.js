@@ -27,9 +27,9 @@
       this.tags = this.datsyModel.get('tags');
       this.template = this.datsyModel.get('templates')['filterDatasets'];
       this.loadingTemplate = this.datsyModel.get('templates')['loading'];
-      this.currentTags = [options.searchTopic];
+      this.currentTags = this.buildTags(options.searchTopic);
       this.filterTags();
-      this.mainTag = this.uppercase(options.searchTopic);
+      this.mainTag = this.uppercase(this.currentTags);
       this.tags.on('loaded', function() {
         return setTimeout((function() {
           return _this.renderLoaded();
@@ -56,14 +56,20 @@
       return this;
     };
 
-    FilterDataSetsView.prototype.uppercase = function(tag) {
-      var tagArr;
-      tagArr = tag.split('_');
-      tagArr = tagArr.map(function(word) {
-        var newWord;
-        return newWord = word.charAt(0).toUpperCase() + word.slice(1);
+    FilterDataSetsView.prototype.uppercase = function(tags) {
+      var array,
+        _this = this;
+      array = tags.map(function(tag) {
+        var tagArr;
+        tagArr = tag.split(' ').map(function(word) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        });
+        return tagArr.join(' ');
       });
-      return tagArr.join(' ');
+      if (array.length === 1) {
+        return array[0];
+      }
+      return array.join(' & ');
     };
 
     FilterDataSetsView.prototype.setUpTags = function() {
@@ -97,14 +103,13 @@
       }
       this.currentTags.push(newTag);
       this.filterTags();
-      return this.updatePage(newTag);
+      return this.updatePage();
     };
 
-    FilterDataSetsView.prototype.updatePage = function(newTag) {
+    FilterDataSetsView.prototype.updatePage = function() {
       var url,
         _this = this;
-      newTag = this.uppercase(newTag);
-      this.mainTag += " & " + newTag;
+      this.mainTag = this.uppercase(this.currentTags);
       this.$el.html("");
       this.render();
       url = '/filterDatasets';
@@ -128,6 +133,14 @@
       });
       return Backbone.history.navigate(url, {
         trigger: true
+      });
+    };
+
+    FilterDataSetsView.prototype.buildTags = function(tags) {
+      var _this = this;
+      tags = tags.split('/');
+      return tags.map(function(tag) {
+        return tag.split('_').join(' ');
       });
     };
 
