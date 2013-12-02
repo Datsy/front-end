@@ -1,0 +1,33 @@
+{
+  "tags":
+  [
+    {
+      "id": 0,
+      "label": "earthquake"
+    },
+    {
+      "id": 1,
+      "label": "magnitude"
+    },
+    {
+      "id": 2,
+      "label": "geolocation"
+    },
+    {
+      "id": 3,
+      "label": "san francisco"
+    },
+    {
+      "id": 4,
+      "label": "bicycles"
+    },
+    {
+      "id": 5,
+      "label": "bike share"
+    },
+    {
+      "id": 6,
+      "label": "community"
+    }
+  ]
+}

@@ -1,18 +1,37 @@
-DatsyApp.ExploreDatasetsView = Backbone.View.extend({
+(function() {
+  var _ref,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  className: '',
-  
-  events: {
+  DatsyApp.ExploreDataSetsView = (function(_super) {
+    __extends(ExploreDataSetsView, _super);
 
-  },
+    function ExploreDataSetsView() {
+      _ref = ExploreDataSetsView.__super__.constructor.apply(this, arguments);
+      return _ref;
+    }
 
-  initialize: function() {
-    this.template = this.model.get('templates')['exploreDatasets'];
-  },
+    ExploreDataSetsView.prototype.className = 'explore container';
 
-  render: function() {
-    console.log('Explore DatasetsView');
-    return this.$el.html(this.template(this.model.attributes));
-  }
+    ExploreDataSetsView.prototype.initialize = function(options) {
+      this.template = options.template;
+      this.dataSetColumnTemplate = options.dataSetColumnTemplate;
+      return this.databases = options.databases;
+    };
 
-});
+    ExploreDataSetsView.prototype.render = function() {
+      var listdataView;
+      this.$el.html(this.template);
+      listdataView = new DatsyApp.ListDataSetsView({
+        dataSetColumnTemplate: this.dataSetColumnTemplate,
+        databases: this.databases
+      });
+      this.$el.append(listdataView.render().el);
+      return this;
+    };
+
+    return ExploreDataSetsView;
+
+  })(Backbone.View);
+
+}).call(this);
