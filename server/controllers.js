@@ -6,26 +6,29 @@ module.exports = {
   
   route: function(app) {
     app.get('/', this.index);
-    app.post('/data', this.sendData);
-    app.get('/data/:param', this.sendColumn);
+    app.get('/tags', this.sendTags);
+    app.get('/search', this.sendTagMeta);
+    app.get('/sample', this.sendSampleColumns);
   },
 
   index: function(req, res) {
     res.render('index');
   },
 
-  sendData: function(req, res) {
-    processPost(req, function(data) {
-      var options = queryOptions(data);
-      sendResponse(res, options, 201);
-    });
+  sendTags: function(req, res) {
+    var options = getAllTags();
+    sendResponse(res, options, 201);
   },
 
-  sendColumn: function(req, res) {
-    var columnName = req.params['param'];
-    returnColumnData(columnName, function(results) {
-      sendResponse(res, results, 201);
-    });
+  sendTagMeta: function(req, res) {
+    var tag = req.query['tag'];
+    var result = returnDatabaseMetadata(tag);
+    sendResponse(res, result, 201);
+  },
+
+  sendSampleColumns: function(req, res) {
+    var sample = getSampleData(req.query);
+    sendResponse(res, sample, 201);
   }
 
 };

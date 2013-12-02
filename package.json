@@ -9,13 +9,14 @@
     "express": "~3.3.5",
     "jade": "0.35.0",
     "bower": "1.2.7",
-    "node-sass": "~0.7.0",
     "pg": "~2.8.3",
-    "ejs": "~0.8.5"
+    "stylus": "~0.41.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jasmine": "~0.5.2",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-jade": "~0.8.0"
   }
 }

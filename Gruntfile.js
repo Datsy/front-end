@@ -1,44 +1,40 @@
 module.exports = function(grunt) {
   "use strict";
 
-  // project config
   grunt.initConfig({
 
+    coffee: {
+      build: {
+        expand: true,
+        cwd: 'resources/coffeescript',
+        src: ['**/*.coffee'],
+        dest: 'public/javascript',
+        ext: '.js'
+      }
+    },
+ 
     jade: {
       compile: {
         options: {
-          client: false,
-          pretty: true
+          pretty: false
         },
         files: [ {
-          cwd: "views/src",
-          src: "**/*.jade",
-          dest: "views/release",
+          cwd: "views",
+          src: "index.jade",
+          dest: "spec/html",
           expand: true,
-          ext: ".ejs"
+          ext: ".html"
         } ]
       }
     },
 
     jasmine: {
-      // Need to fix the include order
       src: [
-        'public/javascript/main.js',
-        'public/javascript/models/Datsy.js',
-        'public/javascript/models/VisDatum.js',
-        'public/javascript/collections/VisData.js',
-        'public/javascript/router/router.js',
-        'public/javascript/views/DatsyApp.js',
-        'public/javascript/views/IndexView.js',
-        'public/javascript/dataset/DatasetView.js',
-        'public/javascript/explore/ExploreDataView.js',
-        'public/javascript/explore/ExploreDatasetsView.js',
-        'public/javascript/explore/ExploreCategoriesView.js',
-        'public/javascript/visualizer/ColumnModelView.js',
-        'public/javascript/visualizer/DropAxisView.js',
-        'public/javascript/visualizer/SvgBackboneView.js',
-        'public/javascript/visualizer/GraphView.js',
-        'public/javascript/visualizer/VisualizerView.js'
+        'public/javascript/models/*.js',
+        'public/javascript/collections/*.js',
+        'public/javascript/router/*.js',
+        'public/javascript/views/helperViews/*.js',
+        'public/javascript/views/**/*.js',
       ],
       options: {
         outfile: 'spec/SpecRunner.html',
@@ -58,16 +54,25 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: ['public/javascript/**/*.js'],
-      tasks: ['default']
+      compile: {
+        files: 'resources/coffeescript/**/*.coffee',
+        tasks: [ 'compile' ],
+        options: {
+          livereload: true
+        }
+      }
     }
 
   });
 
+  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jade', 'jasmine']);
+  grunt.registerTask('compileJade', ['jade']);
+  grunt.registerTask('compileCoffee', ['coffee']);
+  grunt.registerTask('test', ['jasmine']);
+  grunt.registerTask('default', ['watch']);
   
 };

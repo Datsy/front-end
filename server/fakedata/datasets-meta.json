@@ -1,0 +1,139 @@
+{
+  "datasets":[
+    {
+      "id": 0,
+      "table_name": "San Francisco Earthquakes",
+      "user_id": 1,
+      "url": "http://www.www.com",
+      "title": "he giveth a title",
+      "description": "too cool for words",
+      "author": "homeless person",
+      "created_at": "January 1, 1970",
+      "row_count": 890877,
+      "col_count": 4,
+      "tags": ["earthquake", "magnitude", "geolocation", "san francisco"],
+      "columns": [
+        {
+          "name": "magnitude",
+          "description": "Magnitude of earthquake",
+          "column_tags": ["magnitude"],
+          "data_type": "decimal",
+          "data_sample": [
+            0.9,
+            1.1,
+            0.6,
+            0.5,
+            0.6
+          ]
+        },
+        {
+          "name": "date",
+          "description": "Date in DD/MM/YY",
+          "column_tags": ["date"],
+          "data_type": "date",
+          "data_sample": [
+            "26/11/13",
+            "26/11/13",
+            "26/11/13",
+            "26/11/13",
+            "26/11/13"
+          ]
+        },
+        {
+          "name": "time",
+          "description": "Time in 24-hour format",
+          "column_tags": ["time"],
+          "data_type": "time",
+          "data_sample":[
+            "18:36:31",
+            "18:33:43",
+            "16:46:22",
+            "16:41:05",
+            "15:56:07"
+          ]
+        },
+        {
+          "name": "latitude",
+          "description": "Latitute",
+          "column_tags": ["latitude"],
+          "data_type": "latitude",
+          "data_sample": [
+            "38.839N",
+            "38.815N",
+            "38.807N",
+            "38.822N",
+            "38.799N"
+          ] 
+        }
+        ]
+      },
+      {
+        "id": 1,
+        "table_name": "SF Bike Share Information",
+        "user_id": 1,
+        "url": "http://www.bikesharesf.com/",
+        "title": "my great data set",
+        "description": "can i haz awesomeness",
+        "author": "capt. america",
+        "created_at": "Nov 1, 2011",
+        "row_count": 9290311,
+        "col_count": 6,
+        "tags": ["bicycles", "bike share", "community", "san francisco"],
+        "columns": [
+           {
+              "name": "stationID",
+              "description": "ID of bike share station",
+              "column_tags": ["id", "station"],
+              "data_type": "integer",
+              "data_sample": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ] 
+            },
+            {
+              "name": "station name",
+              "description": "Name of bike share station",
+              "column_tags": ["name", "station"],
+              "data_type": "string",
+              "data_sample": [
+                "Market and 7th",
+                "Powell and Post (Union Square)",
+                "Golden Gate and Polk",
+                "San Francisco City Hall",
+                "South Van Ness at Market"
+              ] 
+            },
+            {
+              "name": "available bikes",
+              "description": "Number of available bikes",
+              "column_tags": ["bikes", "available"],
+              "data_type": "integer",
+              "data_sample": [
+                10,
+                2,
+                15,
+                6,
+                10
+              ] 
+            },
+            {
+              "name": "total docks",
+              "description": "Total docks available",
+              "column_tags": ["docks"],
+              "data_type": "integer",
+              "data_sample": [
+                15,
+                10,
+                15,
+                20,
+                15
+              ] 
+            } 
+        ]
+      }
+
+  ]
+}
