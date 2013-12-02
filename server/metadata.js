@@ -33,33 +33,7 @@ exports.getTags = function() {
 };
 
 exports.getFilteredTags = function(query) {
-  tag = query.tag.split('_').join(' ');
-  var allTags = metadata.dataSets.map(function(dataset) {
-    var tags = dataset.tags;
-    if (tags.indexOf(tag) !== -1) {
-      return tags.filter(function(Singletag) {
-        return Singletag !== tag;
-      });
-    }
-  });
-
-  var temp = [];
-  var result = [];
-  var total = 0;
-  allTags.forEach(function(tags) {
-    total++;
-    tags.forEach(function(singleTag) {
-      if (temp.indexOf(singleTag) === -1) {
-        temp.push(singleTag);
-        metadata.dataSetTags.forEach(function(tagObj) {
-          if (tagObj.label === singleTag) {
-            result.push(tagObj);
-          }
-        })
-      }
-    })
-  })
-  return { tags: result, total: total };
+  return { tags: metadata.dataSetTags, total: 1 };
 };
 
 exports.getSampleData = function(id, columnName) {

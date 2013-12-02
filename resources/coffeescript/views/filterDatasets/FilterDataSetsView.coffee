@@ -13,19 +13,15 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @currentTags = [options.searchTopic]
     @filterTags()
     @mainTag = @uppercase options.searchTopic
-    @tags.on 'loaded', @renderLoaded
+    @tags.on 'loaded', =>
+      setTimeout (=> @renderLoaded()), 1000
     @
 
   render: ->
     @$el.html @loadingTemplate({ searchTag: @mainTag })
     @
 
-  renderLoaded: ->
-    console.log 'loading'
-
-    # Uncaught TypeError: Cannot read property 'totalDataBases' of undefined 
-    # see Tags.coffee -> buildTags
-    
+  renderLoaded: =>
     singular = @tags.totalDataBases == 1
     @$el.html @template({ searchTag: @mainTag, occurance: @tags.totalDataBases, singular: singular })
     @
@@ -37,11 +33,12 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     tagArr.join(' ')
 
   setUpTags: =>
-    tagArray = @tags.list
+    tagArray = @tags.list()
     $('#filterTagSearch').autocomplete { minLength: 1, source: tagArray }
 
   filterTags: ->
     @tags.filter @currentTags
+
 
   allowTabs: (e) ->
     if (e.keyCode == 9)
@@ -50,21 +47,25 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
   addFilters: ->
     newTag = $('#filterTagSearch').val()
     return false if newTag == ''
-    index = @tags.indexOf newTag
-    if (index == -1)
-      return false
-    else
-      @databases.filterByTags(newTag)
+    tagArray = @tags.list()
+    return false if (tagArray.indexOf(newTag) == -1)
+    @currentTags.push newTag
+    @filterTags()
     @updatePage newTag
 
   updatePage: (newTag) =>
-    @filterTags newTag
     newTag = @uppercase newTag
     @mainTag += " & " + newTag
     @$el.html ""
     @render()
-    setTimeout (=> @databases.on 'change', @renderLoaded()), 500
+    url = '/filterDatasets'
+    @currentTags.forEach (tag) =>
+      url += '/' + tag
+    Backbone.history.navigate url, {trigger: false}
+    setTimeout (=> @renderLoaded()), 1000
 
   loadExploreView: ->
-    @trigger 'startExplore', @databases
-    Backbone.history.navigate "/exploreDataSets/" + @mainTag, {trigger: true}
+    url = '/explore'
+    @currentTags.forEach (tag) =>
+      url += '/' + tag
+    Backbone.history.navigate url, {trigger: true}

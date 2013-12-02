@@ -10,6 +10,7 @@
     function FilterDataSetsView() {
       this.updatePage = __bind(this.updatePage, this);
       this.setUpTags = __bind(this.setUpTags, this);
+      this.renderLoaded = __bind(this.renderLoaded, this);
       _ref = FilterDataSetsView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
@@ -21,6 +22,7 @@
     };
 
     FilterDataSetsView.prototype.initialize = function(options) {
+      var _this = this;
       this.datsyModel = options.datsyModel;
       this.tags = this.datsyModel.get('tags');
       this.template = this.datsyModel.get('templates')['filterDatasets'];
@@ -28,7 +30,11 @@
       this.currentTags = [options.searchTopic];
       this.filterTags();
       this.mainTag = this.uppercase(options.searchTopic);
-      this.tags.on('loaded', this.renderLoaded);
+      this.tags.on('loaded', function() {
+        return setTimeout((function() {
+          return _this.renderLoaded();
+        }), 1000);
+      });
       return this;
     };
 
@@ -41,7 +47,6 @@
 
     FilterDataSetsView.prototype.renderLoaded = function() {
       var singular;
-      console.log('loading');
       singular = this.tags.totalDataBases === 1;
       this.$el.html(this.template({
         searchTag: this.mainTag,
@@ -63,7 +68,7 @@
 
     FilterDataSetsView.prototype.setUpTags = function() {
       var tagArray;
-      tagArray = this.tags.list;
+      tagArray = this.tags.list();
       return $('#filterTagSearch').autocomplete({
         minLength: 1,
         source: tagArray
@@ -81,35 +86,47 @@
     };
 
     FilterDataSetsView.prototype.addFilters = function() {
-      var index, newTag;
+      var newTag, tagArray;
       newTag = $('#filterTagSearch').val();
       if (newTag === '') {
         return false;
       }
-      index = this.tags.indexOf(newTag);
-      if (index === -1) {
+      tagArray = this.tags.list();
+      if (tagArray.indexOf(newTag) === -1) {
         return false;
-      } else {
-        this.databases.filterByTags(newTag);
       }
+      this.currentTags.push(newTag);
+      this.filterTags();
       return this.updatePage(newTag);
     };
 
     FilterDataSetsView.prototype.updatePage = function(newTag) {
-      var _this = this;
-      this.filterTags(newTag);
+      var url,
+        _this = this;
       newTag = this.uppercase(newTag);
       this.mainTag += " & " + newTag;
       this.$el.html("");
       this.render();
+      url = '/filterDatasets';
+      this.currentTags.forEach(function(tag) {
+        return url += '/' + tag;
+      });
+      Backbone.history.navigate(url, {
+        trigger: false
+      });
       return setTimeout((function() {
-        return _this.databases.on('change', _this.renderLoaded());
-      }), 500);
+        return _this.renderLoaded();
+      }), 1000);
     };
 
     FilterDataSetsView.prototype.loadExploreView = function() {
-      this.trigger('startExplore', this.databases);
-      return Backbone.history.navigate("/exploreDataSets/" + this.mainTag, {
+      var url,
+        _this = this;
+      url = '/explore';
+      this.currentTags.forEach(function(tag) {
+        return url += '/' + tag;
+      });
+      return Backbone.history.navigate(url, {
         trigger: true
       });
     };

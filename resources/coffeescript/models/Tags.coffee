@@ -5,6 +5,7 @@ class DatsyApp.Tags extends Backbone.Model
   tagList: {},
 
   initialize: ->
+    @totalDataBases = 0
     @fetch @rootUrl
 
   fetch: (url) ->
@@ -17,6 +18,7 @@ class DatsyApp.Tags extends Backbone.Model
 
   buildTags: (data) =>
     @totalDataBases = data.total
+    @tagList = {}
     data.tags.forEach (datum) =>
       @tagList[datum.label] = datum.id
     @triggerLoaded()

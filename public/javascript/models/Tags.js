@@ -19,6 +19,7 @@
     Tags.prototype.tagList = {};
 
     Tags.prototype.initialize = function() {
+      this.totalDataBases = 0;
       return this.fetch(this.rootUrl);
     };
 
@@ -36,6 +37,7 @@
     Tags.prototype.buildTags = function(data) {
       var _this = this;
       this.totalDataBases = data.total;
+      this.tagList = {};
       data.tags.forEach(function(datum) {
         return _this.tagList[datum.label] = datum.id;
       });

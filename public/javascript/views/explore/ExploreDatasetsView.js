@@ -14,19 +14,38 @@
     ExploreDataSetsView.prototype.className = 'explore container';
 
     ExploreDataSetsView.prototype.initialize = function(options) {
-      this.template = options.template;
-      return this.dataSetColumnTemplate = options.dataSetColumnTemplate;
+      var _this = this;
+      this.datsyModel = options.datsyModel;
+      this.loadingTemplate = this.datsyModel.get('templates')['loadingExplore'];
+      this.template = this.datsyModel.get('templates')['exploreDataSets'];
+      this.dataSetColumnTemplate = this.datsyModel.get('templates')['dataSetColumn'];
+      this.databases = this.getDataBases(options.path);
+      return setTimeout((function() {
+        return _this.databases.on('add', _this.renderLoaded());
+      }), 1000);
     };
 
     ExploreDataSetsView.prototype.render = function() {
-      var listdataView;
-      this.$el.html(this.template);
-      listdataView = new DatsyApp.ListDataSetsView({
-        dataSetColumnTemplate: this.dataSetColumnTemplate,
-        databases: this.databases
-      });
-      this.$el.append(listdataView.render().el);
+      this.$el.html(this.loadingTemplate);
       return this;
+    };
+
+    ExploreDataSetsView.prototype.renderLoaded = function() {
+      return this.$el.html(this.template);
+    };
+
+    ExploreDataSetsView.prototype.getDataBases = function(path) {
+      var tags, url;
+      console.log(path);
+      tags = path.split('/');
+      url = '/search?';
+      tags.forEach(function(tag) {
+        return url += 'tag=' + tag + '&';
+      });
+      url = url.slice(0, url.length - 1);
+      return new DatsyApp.Databases({
+        url: url
+      });
     };
 
     return ExploreDataSetsView;

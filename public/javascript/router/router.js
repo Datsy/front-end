@@ -22,8 +22,8 @@
     Router.prototype.routes = {
       '': 'index',
       'visualize': 'visualize',
-      'filterDatasets/:params': 'filterDatasets',
-      'exploreDatasets': 'exploreDatasets'
+      'filterDatasets/*params': 'filterDatasets',
+      'explore/*params': 'explore'
     };
 
     Router.prototype.swapView = function(view) {
@@ -59,12 +59,12 @@
       return this.swapView(FilterDataSetsView);
     };
 
-    Router.prototype.exploreDataSets = function() {
+    Router.prototype.explore = function(params) {
       var exploreDataSetsViews;
+      console.log(params);
       exploreDataSetsViews = new DatsyApp.ExploreDataSetsView({
-        template: this.model.get('templates')['exploreDataSets'],
-        dataSetColumnTemplate: this.model.get('templates')['dataSetColumn'],
-        databases: this.databases
+        path: params,
+        datsyModel: this.model
       });
       return this.swapView(exploreDataSetsViews);
     };
