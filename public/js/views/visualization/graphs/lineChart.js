@@ -23,7 +23,7 @@ var renderLineChart = function(el, data, options) {
         {
           "class":"horizontalGrid",
           "x1" : options.padding + options.margin.left,
-          "x2" : options.width - options.margin.right,
+          "x2" : options.width - options.margin.left,
           "y1" : function(d){ return y(d);},
           "y2" : function(d){ return y(d);},
           "fill" : "none",
