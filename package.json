@@ -9,7 +9,6 @@
     "express": "~3.3.5",
     "jade": "0.35.0",
     "bower": "1.2.7",
-    "pg": "~2.8.3",
     "stylus": "~0.41.0"
   },
   "devDependencies": {
