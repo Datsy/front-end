@@ -11,6 +11,7 @@ class DatsyApp.Router extends Backbone.Router
     '': 'index',
     'visualize': 'visualize',
     'filterDatasets/*params': 'filterDatasets',
+    'filterDatasets': 'filterDatasets',
     'explore/*params': 'explore'
   
   swapView: (view) ->
@@ -27,7 +28,11 @@ class DatsyApp.Router extends Backbone.Router
     @swapView visView
 
   filterDatasets: (params) ->
-    FilterDataSetsView = new DatsyApp.FilterDataSetsView { datsyModel: @model, searchTopic: params }
+    params = params || []
+    FilterDataSetsView = new DatsyApp.FilterDataSetsView {
+      datsyModel: @model,
+      searchTopic: params
+    }
     @swapView FilterDataSetsView
 
   explore: (params) ->

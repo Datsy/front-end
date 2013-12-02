@@ -27,14 +27,21 @@
       this.tags = this.datsyModel.get('tags');
       this.template = this.datsyModel.get('templates')['filterDatasets'];
       this.loadingTemplate = this.datsyModel.get('templates')['loading'];
-      this.currentTags = this.buildTags(options.searchTopic);
-      this.filterTags();
-      this.mainTag = this.uppercase(this.currentTags);
-      this.tags.on('loaded', function() {
-        return setTimeout((function() {
+      if (options.searchTopic.length) {
+        this.currentTags = this.buildTags(options.searchTopic);
+        this.filterTags();
+        this.mainTag = this.uppercase(this.currentTags);
+        this.tags.on('loaded', function() {
+          return setTimeout((function() {
+            return _this.renderLoaded();
+          }), 1000);
+        });
+      } else {
+        this.mainTag = 'All databases';
+        setTimeout((function() {
           return _this.renderLoaded();
         }), 1000);
-      });
+      }
       return this;
     };
 
@@ -83,12 +90,6 @@
 
     FilterDataSetsView.prototype.filterTags = function() {
       return this.tags.filter(this.currentTags);
-    };
-
-    FilterDataSetsView.prototype.allowTabs = function(e) {
-      if (e.keyCode === 9) {
-        return e.preventDefault();
-      }
     };
 
     FilterDataSetsView.prototype.addFilters = function() {

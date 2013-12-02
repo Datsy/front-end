@@ -38,7 +38,7 @@
           trigger: true
         });
       } else {
-        return Backbone.history.navigate("/explore", {
+        return Backbone.history.navigate("/filterDatasets", {
           trigger: true
         });
       }

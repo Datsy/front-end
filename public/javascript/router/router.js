@@ -23,6 +23,7 @@
       '': 'index',
       'visualize': 'visualize',
       'filterDatasets/*params': 'filterDatasets',
+      'filterDatasets': 'filterDatasets',
       'explore/*params': 'explore'
     };
 
@@ -52,6 +53,7 @@
 
     Router.prototype.filterDatasets = function(params) {
       var FilterDataSetsView;
+      params = params || [];
       FilterDataSetsView = new DatsyApp.FilterDataSetsView({
         datsyModel: this.model,
         searchTopic: params

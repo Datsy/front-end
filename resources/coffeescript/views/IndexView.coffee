@@ -21,7 +21,7 @@ class DatsyApp.IndexView extends Backbone.View
       tag = tag.split(' ').join('_')
       Backbone.history.navigate "/filterDatasets/" + tag, {trigger: true}
     else
-      Backbone.history.navigate "/explore", {trigger: true}
+      Backbone.history.navigate "/filterDatasets", {trigger: true}
 
   tagExists: (tag) ->
     return @model.tagExists(tag)

@@ -10,10 +10,14 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @tags = @datsyModel.get('tags')
     @template =  @datsyModel.get('templates')['filterDatasets']
     @loadingTemplate = @datsyModel.get('templates')['loading']
-    @currentTags = @buildTags options.searchTopic
-    @filterTags()
-    @mainTag = @uppercase @currentTags
-    @tags.on 'loaded', =>
+    if (options.searchTopic.length)
+      @currentTags = @buildTags options.searchTopic
+      @filterTags()
+      @mainTag = @uppercase @currentTags
+      @tags.on 'loaded', =>
+        setTimeout (=> @renderLoaded()), 1000
+    else
+      @mainTag = 'All databases'
       setTimeout (=> @renderLoaded()), 1000
     @
 
@@ -40,11 +44,6 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
 
   filterTags: ->
     @tags.filter @currentTags
-
-
-  allowTabs: (e) ->
-    if (e.keyCode == 9)
-      e.preventDefault()
 
   addFilters: ->
     newTag = $('#filterTagSearch').val()
