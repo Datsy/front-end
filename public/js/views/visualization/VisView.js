@@ -5,6 +5,7 @@ DatsyApp.VisView = Backbone.View.extend({
     // 'keyup #inputData2, #inputData1': 'queryPossibleResults',
     // 'click #inputButton1, #inputButton2': 'addColumn'
     'click button#lineChart': 'renderLineChart',
+    'click button#stackedArea': 'renderStackedArea',
     'click button#streamGraph': 'renderStreamGraph',
     'click button#savePhoto': 'savePhoto'
   },
@@ -40,6 +41,10 @@ DatsyApp.VisView = Backbone.View.extend({
 
   renderLineChart: function() {
     this.render('lineChart');
+  },
+
+  renderStackedArea: function() {
+    this.render('stackedArea');
   },
 
   renderStreamGraph: function() {

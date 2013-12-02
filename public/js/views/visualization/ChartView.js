@@ -21,7 +21,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     },
     this.data = this.convertJSONForD3(this.fakeJSON, 'Date', 'Result1', 'Result2');
     
-    this.margin = {top: 20, right: 100, bottom: 30, left: 20};
+    this.margin = {top: 20, right: 140, bottom: 30, left: 20};
     this.padding = 50;
     this.width = this.chartWidth - this.margin.left - this.margin.right;
     this.height = this.chartHeight - this.margin.top - this.margin.bottom;
@@ -40,6 +40,14 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     } else {
       if(chartType === 'lineChart'){
         renderLineChart(this.el, this.data, 
+          { width: this.width, 
+            height: this.height, 
+            margin: this.margin, 
+            padding: this.padding
+          }
+        );
+      } else if(chartType === 'stackedArea'){
+        renderStackedAreaChart(this.el, this.data, 
           { width: this.width, 
             height: this.height, 
             margin: this.margin, 
