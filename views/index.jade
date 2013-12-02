@@ -44,11 +44,11 @@ html
       include templates/explore/dataSetColumn
 
     //- SEARCH DATA SETS
-    script#dataSetSearch(type="text/x-handlebars-template")
-      include templates/dataSetSearch/dataSetSearch
+    script#filterDatasets(type="text/x-handlebars-template")
+      include templates/filter/filterDatasets
 
     script#loading(type="text/x-handlebars-template")
-      include templates/dataSetSearch/loading
+      include templates/filter/loading
 
     script#modal(type="text/y-handlebars-template")
       include templates/main/modal
@@ -57,11 +57,10 @@ html
       var DatsyApp = {};
 
     script(src="javascript/models/Datsy.js")
-    script(src="javascript/models/Tag.js")
+    script(src="javascript/models/Tags.js")
     script(src="javascript/models/Database.js")
     script(src="javascript/models/SampleData.js")
 
-    script(src="javascript/collections/Tags.js")
     script(src="javascript/collections/Databases.js")
 
     script(src="javascript/views/DatsyApp.js")
@@ -71,7 +70,7 @@ html
     script(src="javascript/views/helperViews/BaseModalView.js")
 
     //- Data Set Search
-    script(src="javascript/views/dataSetSearch/DataSetSearchView.js")
+    script(src="javascript/views/filterDatasets/FilterDataSetsView.js")
 
     //- Explorer Views
     script(src="javascript/views/explore/ExploreDataSetsView.js")

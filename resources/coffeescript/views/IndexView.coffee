@@ -5,7 +5,7 @@ class DatsyApp.IndexView extends Backbone.View
     'click button#getStartedButton': 'intialSearch'
 
   initialize: (options) ->
-    @template = options.template
+    @template = @model.get('templates')['indexView']
     @tags = [];
     _.bindAll @, 'removeBackground'
     $(window).scroll @removeBackground
@@ -19,9 +19,9 @@ class DatsyApp.IndexView extends Backbone.View
     tag = $('#getStartedForm').val()
     if @tagExists(tag)
       tag = tag.split(' ').join('_')
-      Backbone.history.navigate "/searchDataSets/" + tag, {trigger: true}
+      Backbone.history.navigate "/filterDatasets/" + tag, {trigger: true}
     else
-      Backbone.history.navigate "/searchDataSets/null", {trigger: true}    
+      Backbone.history.navigate "/explore", {trigger: true}
 
   tagExists: (tag) ->
     return @model.tagExists(tag)

@@ -1,8 +1,12 @@
 var fs = require('fs');
 var metadata = require('./metadata');
 
-exports.getAllTags = getAllTags = function(data) {
+exports.getAllTags = getAllTags = function() {
   return metadata.getTags();
+};
+
+exports.getFilteredTags = getFilteredTags = function(query) {
+  return metadata.getFilteredTags(query);
 };
 
 exports.returnDatabaseMetadata = returnDatabaseMetadata = function(tag) {

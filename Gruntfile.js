@@ -56,7 +56,7 @@ module.exports = function(grunt) {
     watch: {
       compile: {
         files: 'resources/coffeescript/**/*.coffee',
-        tasks: [ 'compile' ],
+        tasks: [ 'compileCoffee' ],
         options: {
           livereload: true
         }

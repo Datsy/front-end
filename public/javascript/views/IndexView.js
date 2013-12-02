@@ -17,7 +17,7 @@
     };
 
     IndexView.prototype.initialize = function(options) {
-      this.template = options.template;
+      this.template = this.model.get('templates')['indexView'];
       this.tags = [];
       _.bindAll(this, 'removeBackground');
       return $(window).scroll(this.removeBackground);
@@ -34,11 +34,11 @@
       tag = $('#getStartedForm').val();
       if (this.tagExists(tag)) {
         tag = tag.split(' ').join('_');
-        return Backbone.history.navigate("/searchDataSets/" + tag, {
+        return Backbone.history.navigate("/filterDatasets/" + tag, {
           trigger: true
         });
       } else {
-        return Backbone.history.navigate("/searchDataSets/null", {
+        return Backbone.history.navigate("/explore", {
           trigger: true
         });
       }

@@ -4,34 +4,31 @@ class DatsyApp.Router extends Backbone.Router
     @$el = options.el
     @model = options.model
     @currentView = undefined
-    @tags = []
     @model.on 'loaded', @setTags
     @
 
   routes:
     '': 'index',
     'visualize': 'visualize',
-    'searchDataSets/:params': 'searchDataSets',
-    'exploreDataSets': 'exploreDataSets'
+    'filterDatasets/:params': 'filterDatasets',
+    'exploreDatasets': 'exploreDatasets'
   
   swapView: (view) ->
-    @currentView.remove() if @currentView
+    delete @currentView if @currentView
     @currentView = view
     @$el.html view.render().el
 
   index: ->
-    indexView = new DatsyApp.IndexView { template: @model.get('templates')['indexView'], model: @model }
+    indexView = new DatsyApp.IndexView { model: @model }
     @swapView indexView
 
   visualize: ->
-    visView = new DatsyApp.VisView { model: this.model }
+    visView = new DatsyApp.VisView { model: @model }
     @swapView visView
 
-  searchDataSets: (params) ->
-    params = params.toLowerCase()
-    dataSetSearchView = new DatsyApp.DataSetSearchView { template: @model.get('templates')['dataSetSearch'], loadingTemplate: @model.get('templates')['loading'], searchTopic: params, tags: @tags }
-    @swapView dataSetSearchView
-    dataSetSearchView.on 'startExplore', @setDatabases
+  filterDatasets: (params) ->
+    FilterDataSetsView = new DatsyApp.FilterDataSetsView { datsyModel: @model, searchTopic: params }
+    @swapView FilterDataSetsView
 
   exploreDataSets: ->
     exploreDataSetsViews = new DatsyApp.ExploreDataSetsView {
@@ -40,9 +37,3 @@ class DatsyApp.Router extends Backbone.Router
       databases: @databases
     }
     @swapView exploreDataSetsViews
-
-  setTags: =>
-    @tags = @model.listTags()
-
-  setDatabases: (options) =>
-    @databases = options

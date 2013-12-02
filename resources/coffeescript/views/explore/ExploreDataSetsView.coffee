@@ -5,7 +5,8 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
   initialize: (options) ->
     @template = options.template
     @dataSetColumnTemplate = options.dataSetColumnTemplate
-    @databases = options.databases
+    # @databases = new DatsyApp.Databases({ url: '/search?tag=' + options.searchTopic })
+    # setTimeout (=> @databases.on 'add', @renderLoaded()), 500
 
   render: ->
     @$el.html @template

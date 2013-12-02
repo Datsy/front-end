@@ -16,7 +16,14 @@ module.exports = {
   },
 
   sendTags: function(req, res) {
-    var options = getAllTags();
+    var options;
+    console.log('QUERY IS:', req.query)
+    if (req.query.tag) {
+      options = getFilteredTags(req.query)
+    } else {
+      options = getAllTags();
+    }
+    console.log(options);
     sendResponse(res, options, 201);
   },
 

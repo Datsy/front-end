@@ -15,8 +15,7 @@
 
     ExploreDataSetsView.prototype.initialize = function(options) {
       this.template = options.template;
-      this.dataSetColumnTemplate = options.dataSetColumnTemplate;
-      return this.databases = options.databases;
+      return this.dataSetColumnTemplate = options.dataSetColumnTemplate;
     };
 
     ExploreDataSetsView.prototype.render = function() {

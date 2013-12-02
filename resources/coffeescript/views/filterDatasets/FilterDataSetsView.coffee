@@ -1,4 +1,4 @@
-class DatsyApp.DataSetSearchView extends Backbone.View
+class DatsyApp.FilterDataSetsView extends Backbone.View
   
   events:
     'focus #filterTagSearch': 'setUpTags',
@@ -6,13 +6,14 @@ class DatsyApp.DataSetSearchView extends Backbone.View
     'click #seeDataBases': 'loadExploreView'
 
   initialize: (options) ->
-    @template = options.template
-    @loadingTemplate = options.loadingTemplate
-    @tags = options.tags
-    @filterTags options.searchTopic
+    @datsyModel = options.datsyModel
+    @tags = @datsyModel.get('tags')
+    @template =  @datsyModel.get('templates')['filterDatasets']
+    @loadingTemplate = @datsyModel.get('templates')['loading']
+    @currentTags = [options.searchTopic]
+    @filterTags()
     @mainTag = @uppercase options.searchTopic
-    @databases = new DatsyApp.Databases({ url: '/search?tag=' + options.searchTopic })
-    setTimeout (=> @databases.on 'add', @renderLoaded()), 500
+    @tags.on 'loaded', @renderLoaded
     @
 
   render: ->
@@ -20,24 +21,27 @@ class DatsyApp.DataSetSearchView extends Backbone.View
     @
 
   renderLoaded: ->
-    @databases.off 'add', @renderLoaded
-    singular = @databases.length == 1
-    @$el.html @template({ searchTag: @mainTag, occurance: @databases.length, singular: singular })
+    console.log 'loading'
+
+    # Uncaught TypeError: Cannot read property 'totalDataBases' of undefined 
+    # see Tags.coffee -> buildTags
+    
+    singular = @tags.totalDataBases == 1
+    @$el.html @template({ searchTag: @mainTag, occurance: @tags.totalDataBases, singular: singular })
     @
 
   uppercase: (tag) ->
-    tagArr = tag.split(' ')
+    tagArr = tag.split('_')
     tagArr = tagArr.map (word) ->
       newWord = word.charAt(0).toUpperCase() + word.slice(1)
     tagArr.join(' ')
 
-  setUpTags: ->
-    $('#filterTagSearch').autocomplete { minLength: 1, source: @tags }
+  setUpTags: =>
+    tagArray = @tags.list
+    $('#filterTagSearch').autocomplete { minLength: 1, source: tagArray }
 
-  filterTags: (used) ->
-    usedTerm = @tags.indexOf used
-    @tags.splice usedTerm, 1
-    @setUpTags()
+  filterTags: ->
+    @tags.filter @currentTags
 
   allowTabs: (e) ->
     if (e.keyCode == 9)
@@ -63,6 +67,4 @@ class DatsyApp.DataSetSearchView extends Backbone.View
 
   loadExploreView: ->
     @trigger 'startExplore', @databases
-
     Backbone.history.navigate "/exploreDataSets/" + @mainTag, {trigger: true}
-
