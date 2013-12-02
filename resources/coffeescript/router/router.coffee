@@ -24,7 +24,7 @@ class DatsyApp.Router extends Backbone.Router
     @swapView indexView
 
   visualize: ->
-    visView = new DatsyApp.VisView { model: this.model }
+    visView = new DatsyApp.VisView { template: @model.get('templates')['visualize'], model: @model }
     @swapView visView
 
   searchDataSets: (params) ->

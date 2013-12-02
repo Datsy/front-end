@@ -5,31 +5,30 @@
   background-color: #eee;
   border-radius: 5px;
   margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 2% 3% 1% 2%;
 }
+
 path {
-  stroke: #4682b4;
+  stroke: steelblue;
   stroke-width: 3;
   fill: none;
 }
+ 
 text {
   font-family: Arial;
   font-size: 9pt;
 }
-.btn-group {
-  margin-left: 40px;
-  margin-top: 20px;
-}
+
 .visView form {
   height: 50px;
   margin-top: 30px;
 }
+
 .axis text {
   font: 10px sans-serif;
 }
+
 .axis path,
 .axis line {
   fill: none;

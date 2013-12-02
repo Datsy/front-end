@@ -9,6 +9,7 @@ html
     link(rel='stylesheet', href='/stylesheets/main.css')
     link(rel='stylesheet', href='/stylesheets/datasearch.css')
     link(rel='stylesheet', href='/stylesheets/explorer.css')
+    link(rel='stylesheet', href='/stylesheets/visualizer.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
@@ -50,8 +51,12 @@ html
     script#loading(type="text/x-handlebars-template")
       include templates/dataSetSearch/loading
 
-    script#modal(type="text/y-handlebars-template")
+    script#modal(type="text/x-handlebars-template")
       include templates/main/modal
+
+    //- VISUALIZE DATA
+    script#visualize(type="text/x-handlebars-template")
+      include templates/visualization/visualizations
 
     script.
       var DatsyApp = {};
@@ -67,7 +72,6 @@ html
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
 
-    script(src="javascript/views/helperViews/SvgBackboneView.js")
     script(src="javascript/views/helperViews/BaseModalView.js")
 
     //- Data Set Search
@@ -81,7 +85,10 @@ html
     script(src="javascript/views/explore/DataSampleModelView.js")
 
     //- Visualizer Views
-
+    script(src="javascript/views/visualizer/SvgBackboneView.js")
+    script(src="javascript/views/visualizer/ChartView.js")
+    script(src="javascript/views/visualizer/VisualizerView.js")
+    
     script(src="javascript/router/router.js")
   
     script.
