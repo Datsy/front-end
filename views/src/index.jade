@@ -7,9 +7,8 @@ html
     link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet", href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css")
     link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel='stylesheet', href='/stylesheets/visualizer.css')
+    link(rel='stylesheet', href='/stylesheets/datasearch.css')
     link(rel='stylesheet', href='/stylesheets/explorer.css')
-    link(rel='stylesheet', href='/stylesheets/dataset.css')
 
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
@@ -18,75 +17,85 @@ html
     script(src="bower_components/backbone/backbone.js")
     script(src="bower_components/handlebars/handlebars.js")
     script(src="bower_components/d3/d3.js")
-    script(src="bower_components/jqueryui/ui/minified/jquery-ui.min.js")  
+    script(src="bower_components/jqueryui/ui/minified/jquery-ui.min.js")
 
   body
 
     //- MASTER AND INDEX TEMPLATES
     script#datsyApp(type="text/x-handlebars-template")
-      include templates/datsyApp
-      
+      include templates/main/datsyApp
+
       div#wrapper
       
-      footer
-        include templates/footer
+      footer.container
+        include templates/main/footer
 
     script#indexView(type="text/x-handlebars-template")
-      include templates/indexView
-
-    //- VISUALIZATION TEMPLATES
-    script#visualizations(type="text/x-handlebars-template")
-      include templates/visualization/visualizations
-
-    script#dropper(type="text/x-handlebars-template")
-      include templates/visualization/dropper
-
-    script#columnModel(type="text/x-handlebars-template")
-      include templates/visualization/columnModel
+      include templates/main/indexView
 
     //- DATA EXPLORER TEMPLATES
-    script#exploreData(type="text/x-handlebars-template")
-      include templates/explore/explore
+    script#exploreDataSets(type="text/x-handlebars-template")
+      include templates/explore/exploreDataSets
 
-    script#exploreCategories(type="text/x-handlebars-template")
-      include templates/explore/explore-categories
+    script#listDatasets(type="text/x-handlebars-template")
+      include templates/explore/listDataSets
 
-    script#exploreDatasets(type="text/x-handlebars-template")
-      include templates/explore/explore-datasets
+    script#dataSetColumn(type="text/x-handlebars-template")
+      include templates/explore/dataSetColumn
 
-    //- DATA SET VIEW TEMPLATES
-    script#datasetView(type="text/x-handlebars-template")
-      include templates/dataset/dataSet
+    //- SEARCH DATA SETS
+    script#dataSetSearch(type="text/x-handlebars-template")
+      include templates/dataSetSearch/dataSetSearch
+
+    script#loading(type="text/x-handlebars-template")
+      include templates/dataSetSearch/loading
+
+    script#modal(type="text/y-handlebars-template")
+      include templates/main/modal
 
     script.
       var DatsyApp = {};
 
-    //- Models
     script(src="javascript/models/Datsy.js")
-    script(src="javascript/models/VisDatum.js")
+    script(src="javascript/models/Tag.js")
+    script(src="javascript/models/Database.js")
+    script(src="javascript/models/SampleData.js")
 
-    //- Collections
-    script(src="javascript/collections/VisData.js")
+    script(src="javascript/collections/Tags.js")
+    script(src="javascript/collections/Databases.js")
 
-    //- Landing Page Views
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
 
-    //- Explorer Views
-    script(src="javascript/views/explore/ExploreDataView.js")
-    script(src="javascript/views/explore/ExploreDatasetsView.js")
-    script(src="javascript/views/explore/ExploreCategoriesView.js")
+    script(src="javascript/views/helperViews/SvgBackboneView.js")
+    script(src="javascript/views/helperViews/BaseModalView.js")
 
-    //- Dataset Views
-    script(src="javascript/views/dataset/DatasetView.js")
+    //- Data Set Search
+    script(src="javascript/views/dataSetSearch/DataSetSearchView.js")
+
+    //- Explorer Views
+    script(src="javascript/views/explore/ExploreDataSetsView.js")
+    script(src="javascript/views/explore/ListDataSetsView.js")
+    script(src="javascript/views/explore/DataSetItemView.js")
+    script(src="javascript/views/explore/DataSetColumnView.js")
+    script(src="javascript/views/explore/DataSampleModelView.js")
 
     //- Visualizer Views
-    script(src="javascript/views/visualizer/SvgBackboneView.js")
-    script(src="javascript/views/visualizer/VisualizerView.js")
-    script(src="javascript/views/visualizer/ChartView.js")
-    script(src="javascript/views/visualizer/GraphView.js")
-    script(src="javascript/views/visualizer/ColumnModelView.js")
 
     script(src="javascript/router/router.js")
+  
+    script.
+      var datsy = new DatsyApp.Datsy();
 
-    script(src="javascript/main.js")
+      var templates = {};
+      $("[type='text/x-handlebars-template']").each(function(index, div){
+        templates[div.id] = Handlebars.compile(div.innerHTML);
+      });
+      datsy.set('templates', templates);
+
+      window.universalTemplates = {};
+      $("[type='text/y-handlebars-template']").each(function(index, div){
+        universalTemplates[div.id] = Handlebars.compile(div.innerHTML);
+      });
+
+      var datsyApp = new DatsyApp.DatsyView({ model: datsy });
