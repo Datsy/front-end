@@ -1,7 +1,7 @@
 DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
   events: {
-
+    
   },
 
   tagName: 'svg',
@@ -40,10 +40,13 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
          .range([this.padding, this.width - this.padding]);
   },
 
-  render: function() {
+  render: function(chartType) {
     
-    // this.renderLineChart();
-    this.renderStreamGraph();
+    if(!chartType){
+      this.renderLineChart();
+    } else {
+      this.renderStreamGraph();
+    }
 
     return this.$el;
   },
@@ -129,6 +132,8 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     var minDate = this.minDate;
     var maxDate = this.maxDate;
 
+    console.log('render line chart');
+
     var chart = d3.select(this.el)
         .attr('width', this.width + this.margin.right + this.margin.left)
         .attr('height', this.height + this.margin.top + this.margin.bottom);
@@ -200,6 +205,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   },
 
   renderStreamGraph: function() {
+    console.log('render stream graph');
     // Inspired by Lee Byron's test data generator.
     var bumpLayer = function(n) {
 
@@ -225,8 +231,6 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     layers0 = stack(d3.range(n).map(function() { return bumpLayer(m); })),
     layers1 = stack(d3.range(n).map(function() { return bumpLayer(m); }));
 
-    // var x = this.x;
-    // var y = this.y;
     var x = d3.scale.linear()
       .domain([0, m - 1])
       .range([0, this.width]);
@@ -262,6 +266,5 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
     return chart;
   }
-  
 
 });

@@ -4,6 +4,8 @@ DatsyApp.VisView = Backbone.View.extend({
   events: {
     // 'keyup #inputData2, #inputData1': 'queryPossibleResults',
     // 'click #inputButton1, #inputButton2': 'addColumn'
+    'click button#lineChart': 'renderLineChart',
+    'click button#streamGraph': 'renderStreamGraph'
   },
 
   initialize: function() {
@@ -25,14 +27,22 @@ DatsyApp.VisView = Backbone.View.extend({
     this.$graph.append( this.currentGraphView.render() );
   },
 
-  render: function() {
+  render: function(chartType) {
     this.$el.html( this.template );
     var w = $('.container').width();
     var h = w / 2;
     this.$graph = this.$el.find('#graph');
     this.$graph.css({'height': h, 'width': w });
-    this.$graph.append( this.currentGraphView.render() );
+    this.$graph.append( this.currentGraphView.render(chartType) );
     return this;
+  },
+
+  renderLineChart: function() {
+    this.render('lineChart');
+  },
+
+  renderStreamGraph: function() {
+    this.render('streamGraph');
   }
 
   // queryPossibleResults: function(event) {
