@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  "use strict";
+  'use strict';
 
   grunt.initConfig({
 
@@ -16,25 +16,37 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
-          pretty: false
+          client: false,
+          pretty: true
         },
         files: [ {
-          cwd: "views",
-          src: "index.jade",
-          dest: "spec/html",
+          cwd: 'views/src',
+          src: '**/*.jade',
+          dest: 'views/release',
           expand: true,
-          ext: ".html"
+          ext: '.ejs'
         } ]
       }
     },
 
     jasmine: {
       src: [
-        'public/javascript/models/*.js',
-        'public/javascript/collections/*.js',
-        'public/javascript/router/*.js',
-        'public/javascript/views/helperViews/*.js',
-        'public/javascript/views/**/*.js',
+        'public/javascript/main.js',
+        'public/javascript/models/Datsy.js',
+        'public/javascript/models/VisDatum.js',
+        'public/javascript/collections/VisData.js',
+        'public/javascript/router/router.js',
+        'public/javascript/views/DatsyApp.js',
+        'public/javascript/views/IndexView.js',
+        'public/javascript/dataset/DatasetView.js',
+        'public/javascript/explore/ExploreDataView.js',
+        'public/javascript/explore/ExploreDatasetsView.js',
+        'public/javascript/explore/ExploreCategoriesView.js',
+        'public/javascript/visualizer/ColumnModelView.js',
+        'public/javascript/visualizer/ChartView.js',
+        'public/javascript/visualizer/SvgBackboneView.js',
+        'public/javascript/visualizer/GraphView.js',
+        'public/javascript/visualizer/VisualizerView.js'
       ],
       options: {
         outfile: 'spec/SpecRunner.html',
@@ -53,7 +65,27 @@ module.exports = function(grunt) {
       }
     },
 
+    nodemon: {
+      dev: {
+        options: {
+          file: 'app.js',
+          nodeArgs: ['--debug'],
+          env: {
+            PORT: '3000'
+          }
+        }
+      }
+    },
+
     watch: {
+      jade: {
+        files: ['views/src/**/*.jade'],
+        tasks: ['jade']
+      },
+      jasmine: {
+        files: ['public/javascript/**/*.js'],
+        tasks: ['jasmine']
+      },
       compile: {
         files: 'resources/coffeescript/**/*.coffee',
         tasks: [ 'compileCoffee' ],
@@ -70,9 +102,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('compileJade', ['jade']);
-  grunt.registerTask('compileCoffee', ['coffee']);
-  grunt.registerTask('test', ['jasmine']);
-  grunt.registerTask('default', ['watch']);
-  
+  grunt.registerTask('default', ['jade', 'coffee', 'jasmine', 'watch']);
 };

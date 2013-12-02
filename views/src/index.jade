@@ -57,10 +57,14 @@ html
     script#loading(type="text/x-handlebars-template")
       include templates/filter/loading
 
-    script#modal(type="text/y-handlebars-template")
+    script#modal(type="text/x-handlebars-template")
       include templates/main/modal
 
+<<<<<<< HEAD:views/index.jade
     //- Viz
+=======
+    //- VISUALIZE DATA
+>>>>>>> c996b9a669525c7af7e513bb7cf73bee6e5b02af:views/src/index.jade
     script#visualize(type="text/x-handlebars-template")
       include templates/visualization/visualizations
 
@@ -77,9 +81,12 @@ html
     script(src="javascript/views/DatsyApp.js")
     script(src="javascript/views/IndexView.js")
 
+<<<<<<< HEAD:views/index.jade
     script(src="javascript/views/PopularVisualizationsView.js")
       
     //-script(src="javascript/views/helperViews/SvgBackboneView.js")
+=======
+>>>>>>> c996b9a669525c7af7e513bb7cf73bee6e5b02af:views/src/index.jade
     script(src="javascript/views/helperViews/BaseModalView.js")
 
     //- Data Set Search
@@ -93,10 +100,17 @@ html
     script(src="javascript/views/explore/DataSampleModelView.js")
 
     //- Visualizer Views
+<<<<<<< HEAD:views/index.jade
     script(src="js/views/visualization/SvgBackboneView.js")
     script(src="js/views/visualization/ChartView.js")
     script(src="js/views/visualization/VisView.js")
 
+=======
+    script(src="javascript/views/visualizer/SvgBackboneView.js")
+    script(src="javascript/views/visualizer/ChartView.js")
+    script(src="javascript/views/visualizer/VisualizerView.js")
+    
+>>>>>>> c996b9a669525c7af7e513bb7cf73bee6e5b02af:views/src/index.jade
     script(src="javascript/router/router.js")
   
     script.
