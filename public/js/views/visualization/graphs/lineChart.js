@@ -68,7 +68,8 @@ var renderLineChart = function(el, data, options) {
       .attr("x", 9)
       .attr("dy", ".35em")
       .attr("transform", "rotate(90)")
-      .style("text-anchor", "start");
+      .style("text-anchor", "start")
+      .style('font-size', '1.1em');
 
   var yAxis = d3.svg.axis()
     .scale(y)
@@ -78,7 +79,9 @@ var renderLineChart = function(el, data, options) {
   chart.append('g')
     .attr('class', 'y axis')
     .attr('transform', 'translate(' + options.padding + ',0)')
-    .call(yAxis);
+    .call(yAxis)
+    .selectAll('text')
+      .style('font-size', '1.1em');
 
   return chart;
 };
