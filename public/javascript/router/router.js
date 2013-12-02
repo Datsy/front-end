@@ -24,7 +24,8 @@
       'visualize': 'visualize',
       'filterDatasets/*params': 'filterDatasets',
       'filterDatasets': 'filterDatasets',
-      'explore/*params': 'explore'
+      'explore/*params': 'explore',
+      'explore': 'explore'
     };
 
     Router.prototype.swapView = function(view) {
@@ -63,6 +64,7 @@
 
     Router.prototype.explore = function(params) {
       var exploreDataSetsViews;
+      params = params || [];
       exploreDataSetsViews = new DatsyApp.ExploreDataSetsView({
         path: params,
         datsyModel: this.model

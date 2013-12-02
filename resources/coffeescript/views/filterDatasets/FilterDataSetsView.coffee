@@ -17,6 +17,7 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
       @tags.on 'loaded', =>
         setTimeout (=> @renderLoaded()), 1000
     else
+      @currentTags = []
       @mainTag = 'All databases'
       setTimeout (=> @renderLoaded()), 1000
     @
@@ -67,8 +68,9 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
 
   loadExploreView: ->
     url = '/explore'
-    @currentTags.forEach (tag) =>
-      url += '/' + tag
+    if @currentTags.length
+      @currentTags.forEach (tag) =>
+        url += '/' + tag
     Backbone.history.navigate url, {trigger: true}
 
   buildTags: (tags) ->

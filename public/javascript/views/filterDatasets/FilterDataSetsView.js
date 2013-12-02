@@ -37,6 +37,7 @@
           }), 1000);
         });
       } else {
+        this.currentTags = [];
         this.mainTag = 'All databases';
         setTimeout((function() {
           return _this.renderLoaded();
@@ -129,9 +130,11 @@
       var url,
         _this = this;
       url = '/explore';
-      this.currentTags.forEach(function(tag) {
-        return url += '/' + tag;
-      });
+      if (this.currentTags.length) {
+        this.currentTags.forEach(function(tag) {
+          return url += '/' + tag;
+        });
+      }
       return Backbone.history.navigate(url, {
         trigger: true
       });
