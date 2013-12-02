@@ -34,14 +34,18 @@
     };
 
     ExploreDataSetsView.prototype.renderLoaded = function() {
-      var listdataView;
+      var cartView, listdataView;
       this.$el.html(this.template);
       listdataView = new DatsyApp.ListDataSetsView({
         datsyModel: this.datsyModel,
         dataSetColumnTemplate: this.datsyModel.get('templates')['dataSetColumn'],
         databases: this.databases
       });
-      return this.$el.append(listdataView.render().el);
+      this.$el.append(listdataView.render().el);
+      cartView = new DatsyApp.ColumnCartView({
+        datsyModel: this.datsyModel
+      });
+      return this.$el.find('.top-bar').append(cartView.render().el);
     };
 
     ExploreDataSetsView.prototype.getDataBases = function(path) {

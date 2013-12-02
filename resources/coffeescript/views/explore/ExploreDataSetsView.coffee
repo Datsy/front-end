@@ -22,6 +22,8 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
       databases: @databases
     }
     @$el.append listdataView.render().el
+    cartView = new DatsyApp.ColumnCartView { datsyModel: @datsyModel }
+    @$el.find('.top-bar').append cartView.render().el
 
   getDataBases: (path) ->
     url = '/search?'
