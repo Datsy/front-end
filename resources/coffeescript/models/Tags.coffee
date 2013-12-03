@@ -2,9 +2,8 @@ class DatsyApp.Tags extends Backbone.Model
 
   rootUrl: '/tags',
 
-  tagList: {},
-
   initialize: ->
+    @tagList = {}
     @totalDataBases = 0
     @fetch @rootUrl
 

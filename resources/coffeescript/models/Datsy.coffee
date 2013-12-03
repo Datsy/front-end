@@ -12,3 +12,6 @@ class DatsyApp.Datsy extends Backbone.Model
   listTags: ->
     tags = @get 'tags'
     return tags.list();
+
+  triggerAddColumn: (columnName, datasetID) ->
+    @trigger 'addColumn', { columnName: columnName, datasetID: datasetID }

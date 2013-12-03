@@ -29,6 +29,13 @@
       return tags.list();
     };
 
+    Datsy.prototype.triggerAddColumn = function(columnName, datasetID) {
+      return this.trigger('addColumn', {
+        columnName: columnName,
+        datasetID: datasetID
+      });
+    };
+
     return Datsy;
 
   })(Backbone.Model);

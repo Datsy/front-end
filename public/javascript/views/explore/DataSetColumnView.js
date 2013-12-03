@@ -25,7 +25,8 @@
 
     DataSetColumnView.prototype.initialize = function(options) {
       this.template = options.template;
-      return this.datasetID = options.datasetID;
+      this.datasetID = options.datasetID;
+      return this.datsyModel = options.datsyModel;
     };
 
     DataSetColumnView.prototype.render = function() {
@@ -43,10 +44,7 @@
     };
 
     DataSetColumnView.prototype.addColumnForVis = function() {
-      console.log(this.model);
-      return this.trigger('addColumn', {
-        id: 0
-      });
+      return this.datsyModel.triggerAddColumn(this.model.name, this.datasetID);
     };
 
     DataSetColumnView.prototype.showModal = function() {

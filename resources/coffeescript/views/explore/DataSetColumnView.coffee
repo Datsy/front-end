@@ -11,6 +11,7 @@ class DatsyApp.DataSetColumnView extends Backbone.View
   initialize: (options) ->
     @template = options.template
     @datasetID = options.datasetID
+    @datsyModel = options.datsyModel
 
   render: ->
     @$el.html @template(@model)
@@ -22,8 +23,7 @@ class DatsyApp.DataSetColumnView extends Backbone.View
     @sampleDataModelView.once 'done', @deleteModalView
 
   addColumnForVis: ->
-    console.log @model
-    @trigger 'addColumn', { id: 0 }
+    @datsyModel.triggerAddColumn @model.name, @datasetID
 
   showModal: =>
     @sampleDataModelView.show()

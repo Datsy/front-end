@@ -16,9 +16,8 @@
 
     Tags.prototype.rootUrl = '/tags';
 
-    Tags.prototype.tagList = {};
-
     Tags.prototype.initialize = function() {
+      this.tagList = {};
       this.totalDataBases = 0;
       return this.fetch(this.rootUrl);
     };
