@@ -11,7 +11,6 @@ module.exports = {
     app.get('/search', this.sendTagMeta);
     app.get('/sample', this.sendSampleColumns);
     app.get('/column', this.sendColumnData);
-    app.post('/png', this.SVGtoPNG);
   },
 
   index: function(req, res) {
@@ -49,18 +48,6 @@ module.exports = {
     getColumnData(req.query.id, req.query.name, function(columnData) {
       sendResponse(res, columnData, 201);
     });
-  },
-
-  SVGtoPNG: function(req, res) {
-    console.log('xml', req.body);
-    
-    // fs.writeFile('server/svg2png/test.svg', xml, function(err) {
-    //   if(err){
-    //     console.log('Failed to write SVG file.')
-    //   }
-    // });
-
-    sendResponse(res, 'fuck yeah son', 200);
   }
 
 };

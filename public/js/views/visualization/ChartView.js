@@ -37,11 +37,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       renderStackedMultiBar(this.data);
     } else if(chartType === 'scatterBubble'){
       renderScatterBubbleGraph();
-    } 
-
-    // else if(chartType === 'streamGraph'){
-    //   renderStreamGraph();
-    // }
+    }
 
     return this.$el;
   },
