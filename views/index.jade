@@ -53,6 +53,9 @@ html
     script#dataSetColumn(type="text/x-handlebars-template")
       include templates/explore/dataSetColumn
 
+    script#columnCart(type="text/x-handlebars-template")
+      include templates/explore/cart
+
     //- SEARCH DATA SETS
     script#filterDatasets(type="text/x-handlebars-template")
       include templates/filter/filterDatasets
@@ -94,6 +97,7 @@ html
     script(src="javascript/views/explore/DataSetItemView.js")
     script(src="javascript/views/explore/DataSetColumnView.js")
     script(src="javascript/views/explore/DataSampleModelView.js")
+    script(src="javascript/views/explore/ColumnCartView.js")
 
     //- Visualizer Views
     script(src="js/views/visualization/SvgBackboneView.js")

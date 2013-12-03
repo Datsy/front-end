@@ -21,13 +21,14 @@
 
     ListDataSetsView.prototype.render = function() {
       var _this = this;
-      this.databases.forEach(function(model) {
+      this.databases.each(function(model) {
         var panel;
         panel = new DatsyApp.DataSetItemView({
+          datsyModel: _this.datsyModel,
           dataSetColumnTemplate: _this.dataSetColumnTemplate,
           model: model
         });
-        _this.$el.append('<h3>' + model.attributes.table_name + '</h3>');
+        _this.$el.append('<div><div class="dataset-table-name">' + model.attributes.table_name + '</div><div class="dataset-source">' + model.attributes.author + '</div><div class="dataset-rating"><span class="glyphicon glyphicon-star"></span></div></div>');
         return _this.$el.append(panel.render().el);
       });
       setTimeout((function() {

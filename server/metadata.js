@@ -22,11 +22,9 @@ exports.setUpMetaData = function() {
 };
 
 exports.getMetaData = function(tag) {
-  console.log(tag);
   var results = metadata.dataSets.filter(function(dataset) {
     return (dataset.tags.indexOf(tag) === -1) ? false : true;
   });
-  console.log('metadata:', results);
   return results;
 };
 
