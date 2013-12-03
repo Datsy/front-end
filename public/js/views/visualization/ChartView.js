@@ -28,36 +28,19 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   },
 
   render: function(chartType) {
-    
-    if(!chartType){
-      renderLineChart(this.el, this.data, 
-        { width: this.width, 
-          height: this.height, 
-          margin: this.margin, 
-          padding: this.padding
-        }
-      );
-    } else {
-      if(chartType === 'lineChart'){
-        renderLineChart(this.el, this.data, 
-          { width: this.width, 
-            height: this.height, 
-            margin: this.margin, 
-            padding: this.padding
-          }
-        );
-      } else if(chartType === 'stackedArea'){
-        renderStackedAreaChart(this.el, this.data, 
-          { width: this.width, 
-            height: this.height, 
-            margin: this.margin, 
-            padding: this.padding
-          }
-        );
-      } else if(chartType === 'streamGraph'){
-        renderStreamGraph();
-      }
+    if(!chartType || chartType === 'lineChart'){
+      renderLineChart();
+    } else if(chartType === 'stackedArea'){
+      renderStackedAreaChart();
+    } else if(chartType === 'scatterBubble'){
+      renderScatterBubbleGraph();
+    } else if(chartType === 'stackedMultiBar'){
+      renderStackedMultiBar();
     }
+
+    // else if(chartType === 'streamGraph'){
+    //   renderStreamGraph();
+    // }
 
     return this.$el;
   },
