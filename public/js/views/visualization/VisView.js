@@ -56,11 +56,23 @@ DatsyApp.VisView = Backbone.View.extend({
   // },
 
   downloadPhoto: function() {
-    var svg = $('svg').parent().html();
-    canvg('canvas', svg);
-    var canvas = document.getElementById('canvas');
+    var chartArea = document.getElementsByTagName('svg')[0].parentNode;
+    var svg = chartArea.innerHTML;
+    var canvas = document.createElement('canvas');
+    canvas.setAttribute('width', chartArea.offsetWidth);
+    canvas.setAttribute('height', chartArea.offsetHeight);
+    
+    
+    canvas.setAttribute(
+        'style',
+        'position: absolute; ' +
+        'top: ' + (-chartArea.offsetHeight * 2) + 'px;' +
+        'left: ' + (-chartArea.offsetWidth * 2) + 'px;');
+    document.body.appendChild(canvas);
+    canvg(canvas, svg);
     var img_PNG = Canvas2Image.saveAsPNG(canvas);
-     
+    canvas.parentNode.removeChild(canvas);
+
     // Get the D3 SVG element
     // var svg = document.getElementsByTagName("svg")[0];
 
