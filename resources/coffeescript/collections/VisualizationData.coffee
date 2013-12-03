@@ -1,9 +1,9 @@
 class DatsyApp.VisualizationData extends Backbone.Collection
 
   initialize: (options) ->
-    console.log 'getting up collection'
+    allColumns = options.columns
     @columnsForY = []
-    options.forEach (column) ->
-      newY = new DatsyApp.VisualizationDataColumn { column: column }
+    allColumns.forEach (column) =>
+      newY = new DatsyApp.VisualizationDataColumn { columnName: column.columnName, datasetID: column.datasetID }
       @columnsForY.push newY
 

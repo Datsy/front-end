@@ -12,14 +12,17 @@
     }
 
     VisualizationData.prototype.initialize = function(options) {
-      console.log('getting up collection');
+      var allColumns,
+        _this = this;
+      allColumns = options.columns;
       this.columnsForY = [];
-      return options.forEach(function(column) {
+      return allColumns.forEach(function(column) {
         var newY;
         newY = new DatsyApp.VisualizationDataColumn({
-          column: column
+          columnName: column.columnName,
+          datasetID: column.datasetID
         });
-        return this.columnsForY.push(newY);
+        return _this.columnsForY.push(newY);
       });
     };
 

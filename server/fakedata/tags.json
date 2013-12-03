@@ -28,6 +28,22 @@
     {
       "id": 6,
       "label": "community"
+    },
+    {
+      "id": 7,
+      "label": "stocks"
+    },
+    {
+      "id": 8,
+      "label": "apple"
+    },
+    {
+      "id": 9,
+      "label": "microsoft"
+    },
+    {
+      "id": 10,
+      "label": "finance"
     }
   ]
 }

@@ -4,13 +4,15 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
     @columnName = options.columnName
     @datasetID = options.datasetID
     @url = '/column?id=' + @datasetID + '&name=' + @columnName
-    console.log @url
+    @fetch url
 
   fetch: (url) ->
     $.ajax {
       url: url,
       method: 'GET',
       success: (data) =>
-        @buildTags data
+        @setColumnData data
     }
 
+  setColumnData: (data) =>
+    console.log data

@@ -32,11 +32,11 @@
           "column_tags": ["date"],
           "data_type": "date",
           "data_sample": [
-            "26/11/13",
-            "26/11/13",
-            "26/11/13",
-            "26/11/13",
-            "26/11/13"
+            "2013-11-27",
+            "2013-11-26",
+            "2013-11-25",
+            "2013-11-22",
+            "2013-11-21"
           ]
         },
         {
@@ -65,75 +65,141 @@
             "38.799N"
           ] 
         }
-        ]
-      },
-      {
-        "id": 1,
-        "table_name": "SF Bike Share Information",
-        "user_id": 1,
-        "url": "http://www.bikesharesf.com/",
-        "title": "my great data set",
-        "description": "can i haz awesomeness",
-        "author": "SF Bike Share CoOp",
-        "created_at": "Nov 1, 2011",
-        "row_count": 9290311,
-        "col_count": 6,
-        "tags": ["bicycles", "bike share", "community", "san francisco"],
-        "columns": [
-           {
-              "name": "stationID",
-              "description": "ID of bike share station",
-              "column_tags": ["id", "station"],
-              "data_type": "integer",
-              "data_sample": [
-                1,
-                2,
-                3,
-                4,
-                5
-              ] 
-            },
-            {
-              "name": "station name",
-              "description": "Name of bike share station",
-              "column_tags": ["name", "station"],
-              "data_type": "string",
-              "data_sample": [
-                "Market and 7th",
-                "Powell and Post (Union Square)",
-                "Golden Gate and Polk",
-                "San Francisco City Hall",
-                "South Van Ness at Market"
-              ] 
-            },
-            {
-              "name": "available bikes",
-              "description": "Number of available bikes",
-              "column_tags": ["bikes", "available"],
-              "data_type": "integer",
-              "data_sample": [
-                10,
-                2,
-                15,
-                6,
-                10
-              ] 
-            },
-            {
-              "name": "total docks",
-              "description": "Total docks available",
-              "column_tags": ["docks"],
-              "data_type": "integer",
-              "data_sample": [
-                15,
-                10,
-                15,
-                20,
-                15
-              ] 
-            } 
-        ]
-      }
-
+      ]
+    },
+    {
+      "id": 1,
+      "table_name": "SF Bike Share Information",
+      "user_id": 1,
+      "url": "http://www.bikesharesf.com/",
+      "title": "my great data set",
+      "description": "can i haz awesomeness",
+      "author": "SF Bike Share CoOp",
+      "created_at": "Nov 1, 2011",
+      "row_count": 9290311,
+      "col_count": 5,
+      "tags": ["bicycles", "bike share", "community", "san francisco"],
+      "columns": [
+        {
+          "name": "date",
+          "description": "date of read",
+          "column_tags": ["date"],
+          "data_type": "string",
+          "data_sample": [
+            "2013-11-27",
+            "2013-11-26",
+            "2013-11-25",
+            "2013-11-22",
+            "2013-11-21"
+          ]
+        },
+        {
+          "name": "stationID",
+          "description": "ID of bike share station",
+          "column_tags": ["id", "station"],
+          "data_type": "integer",
+          "data_sample": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ] 
+        },
+        {
+          "name": "station name",
+          "description": "Name of bike share station",
+          "column_tags": ["name", "station"],
+          "data_type": "string",
+          "data_sample": [
+            "Powell and Post (Union Square)",
+            "Powell and Post (Union Square)",
+            "Powell and Post (Union Square)",
+            "Powell and Post (Union Square)",
+            "Powell and Post (Union Square)"
+          ] 
+        },
+        {
+          "name": "available bikes",
+          "description": "Number of available bikes",
+          "column_tags": ["bikes", "available"],
+          "data_type": "integer",
+          "data_sample": [
+            10,
+            2,
+            14,
+            8,
+            12
+          ] 
+        },
+        {
+          "name": "total docks",
+          "description": "Total docks available",
+          "column_tags": ["docks"],
+          "data_type": "integer",
+          "data_sample": [
+            15,
+            15,
+            15,
+            15,
+            15
+          ] 
+        } 
+      ]
+    },
+    {
+      "id": 2,
+      "table_name": "Some Fucking Stock Data",
+      "user_id": 3,
+      "url": "http://www.wallstreet.com/",
+      "title": "Stocks n shit",
+      "description": "Someone is getting rich, but it ain't me",
+      "author": "Wall Street, Inc",
+      "created_at": "Nov 1, 2011",
+      "row_count": 20000,
+      "col_count": 3,
+      "tags": ["stocks", "apple", "microsoft", "finance"],
+      "columns": [
+        {
+          "name": "date",
+          "description": "Date price was set",
+          "column_tags": ["date", "price"],
+          "data_type": "date",
+          "data_sample": [
+            "2013-11-27",
+            "2013-11-26",
+            "2013-11-25",
+            "2013-11-22",
+            "2013-11-21"
+          ] 
+        },
+        {
+          "name": "apple",
+          "description": "Apple closing prices",
+          "column_tags": ["apple", "price", "closing"],
+          "data_type": "string",
+          "data_sample": [
+            "545.96",
+            "533.40",
+            "523.74",
+            "519.80",
+            "521.14"
+          ] 
+        },
+        {
+          "name": "microsoft",
+          "description": "Microsoft closing prices",
+          "column_tags": ["microsoft", "price", "closing"],
+          "data_type": "string",
+          "data_sample": [
+            "1063.11",
+            "1058.41",
+            "1045.93",
+            "1031.89",
+            "1034.07"
+          ] 
+        } 
+      ]
+    }
   ]
 }
