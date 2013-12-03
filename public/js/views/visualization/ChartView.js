@@ -68,8 +68,8 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
   convertJSONForD3: function(data, x) {
     // TODO: Add error checking
-    var d3Data = [ { key: 'Microsoft', values: [], color: 'red'},
-                   { key: 'Apple', values: [], color: 'blue'}
+    var d3Data = [ { key: 'MSFT', values: [], color: 'red'},
+                   { key: 'AAPL', values: [], color: 'blue'}
                  ];
     var args = Array.prototype.slice.call(arguments,2);
 

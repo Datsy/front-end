@@ -56,18 +56,23 @@ DatsyApp.VisView = Backbone.View.extend({
   // },
 
   downloadPhoto: function() {
+    var svg = $('svg').parent().html();
+    canvg('canvas', svg);
+    var canvas = document.getElementById('canvas');
+    var img_PNG = Canvas2Image.saveAsPNG(canvas);
+     
     // Get the D3 SVG element
-    var svg = document.getElementsByTagName("svg")[0];
+    // var svg = document.getElementsByTagName("svg")[0];
 
-    // Extract the data as SVG text string
-    var svg_xml = (new XMLSerializer).serializeToString(svg);
-    console.log('xml', svg_xml);
+    // // Extract the data as SVG text string
+    // var svg_xml = (new XMLSerializer).serializeToString(svg);
+    // console.log('xml', svg_xml);
 
-    // Submit to the server.
-    // The result will be an attachment file to download.
-    $.post('http://localhost:3000/png', svg_xml, function(data) {
-      alert(data);
-    });
+    // // Submit to the server.
+    // // The result will be an attachment file to download.
+    // $.post('http://localhost:3000/png', svg_xml, function(data) {
+    //   alert(data);
+    // });
   }
 
 });

@@ -26,6 +26,9 @@ text {
   margin-left: 40px;
   margin-top: 20px;
 }
+.hidden {
+  display: none;
+}
 .visView form {
   height: 50px;
   margin-top: 30px;
