@@ -73,18 +73,19 @@ var renderLineChart = function(data) {
      
     chart.xAxis
     .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); });
-    // .tickFormat(d3.format(',f'));
+
+    chart.x2Axis
+    .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); });
 
     chart.yAxis
-    .tickFormat(d3.format(',.2f'));
+    .tickFormat(d3.format('$,.2f'));
      
     chart.y2Axis
-    .tickFormat(d3.format(',.2f'));
+    .tickFormat(d3.format('$,.2f'));
 
     d3.select('#graph svg')
-    // .datum(testData())
     .datum(data)
-    .transition().duration(500)
+    .transition().duration(1000)
     .call(chart);
      
     nv.utils.windowResize(chart.update);
