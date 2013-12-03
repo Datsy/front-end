@@ -86,17 +86,15 @@
 
     ExploreDataSetsView.prototype.addColumn = function(params) {
       this.columnsForViewing.push(params);
-      $('.total-columns-added').text(this.columnsForViewing.length);
-      return console.log(this.columnsForViewing);
+      return $('.total-columns-added').text(this.columnsForViewing.length);
     };
 
     ExploreDataSetsView.prototype.clearCart = function() {
-      this.columnsForViewing.length = 0;
-      return console.log(this.columnsForViewing);
+      return this.columnsForViewing.length = 0;
     };
 
     ExploreDataSetsView.prototype.loadVisualization = function() {
-      this.datsyModel.set('visualizationData', this.columnsForViewing);
+      this.datsyModel.setVisualizationData(this.columnsForViewing);
       return Backbone.history.navigate("/visualize", {
         trigger: true
       });

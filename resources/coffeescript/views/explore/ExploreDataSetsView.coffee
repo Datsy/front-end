@@ -54,13 +54,11 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
   addColumn: (params) =>
     @columnsForViewing.push params
     $('.total-columns-added').text(@columnsForViewing.length)
-    console.log @columnsForViewing
 
   clearCart: =>
     @columnsForViewing.length = 0
-    console.log @columnsForViewing
 
   loadVisualization: =>
-    @datsyModel.set('visualizationData', @columnsForViewing)
+    @datsyModel.setVisualizationData @columnsForViewing
     Backbone.history.navigate "/visualize", {trigger: true}
 

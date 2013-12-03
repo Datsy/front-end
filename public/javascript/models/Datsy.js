@@ -36,6 +36,12 @@
       });
     };
 
+    Datsy.prototype.setVisualizationData = function(columns) {
+      return this.set('visualizationData', new DatsyApp.VisualizationData({
+        columns: columns
+      }));
+    };
+
     return Datsy;
 
   })(Backbone.Model);
