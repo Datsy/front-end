@@ -1,6 +1,6 @@
 DatsyApp.VisView = Backbone.View.extend({
 
-  className: 'visView',
+  className: 'visView container',
   events: {
     'click button#lineChart': 'renderLineChart',
     'click button#stackedArea': 'renderStackedArea',

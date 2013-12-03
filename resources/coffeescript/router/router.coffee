@@ -25,8 +25,8 @@ class DatsyApp.Router extends Backbone.Router
     @swapView indexView
 
   visualize: ->
-    visView = new DatsyApp.VisView { model: @model }
-    @swapView visView
+    visualizerView = new DatsyApp.VisView { model: @model }
+    @swapView visualizerView
 
   filterDatasets: (params) ->
     params = params || []

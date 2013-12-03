@@ -1,3 +1,6 @@
+.chart-access-buttons .btn-group {
+  margin-top: 20px;
+}
 #graph {
   position: relative;
   min-height: 100px;
@@ -21,10 +24,6 @@ path {
 text {
   font-family: Arial;
   font-size: 9pt;
-}
-.btn-group {
-  margin-left: 40px;
-  margin-top: 20px;
 }
 .hidden {
   display: none;

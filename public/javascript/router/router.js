@@ -45,11 +45,11 @@
     };
 
     Router.prototype.visualize = function() {
-      var visView;
-      visView = new DatsyApp.VisView({
+      var visualizerView;
+      visualizerView = new DatsyApp.VisView({
         model: this.model
       });
-      return this.swapView(visView);
+      return this.swapView(visualizerView);
     };
 
     Router.prototype.filterDatasets = function(params) {
