@@ -12,6 +12,8 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     @databases = @getDataBases options.path
     @databases.on 'add', =>
       setTimeout (=> @renderLoaded()), 1000
+    @datsyModel.on 'addColumn', @addColumn
+    @columnsForViewing = []
 
   render: ->
     @$el.html @loadingTemplate
@@ -26,6 +28,7 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     }
     @$el.append listdataView.render().el
     cartView = new DatsyApp.ColumnCartView { datsyModel: @datsyModel }
+    cartView.on 'clearCart', @clearCart
     @$el.find('.top-bar').append cartView.render().el
 
   getDataBases: (path) ->
@@ -44,3 +47,12 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     @databases.sortBy target.slice(5,target.length).toLowerCase()
     @$el.html ''
     @renderLoaded()
+
+  addColumn: (params) =>
+    @columnsForViewing.push params
+    $('.total-columns-added').text(@columnsForViewing.length)
+    console.log @columnsForViewing
+
+  clearCart: =>
+    @columnsForViewing.length = 0
+    console.log @columnsForViewing

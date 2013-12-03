@@ -8,6 +8,8 @@
     __extends(ExploreDataSetsView, _super);
 
     function ExploreDataSetsView() {
+      this.clearCart = __bind(this.clearCart, this);
+      this.addColumn = __bind(this.addColumn, this);
       this.renderLoaded = __bind(this.renderLoaded, this);
       _ref = ExploreDataSetsView.__super__.constructor.apply(this, arguments);
       return _ref;
@@ -25,11 +27,13 @@
       this.loadingTemplate = this.datsyModel.get('templates')['loadingExplore'];
       this.template = this.datsyModel.get('templates')['exploreDataSets'];
       this.databases = this.getDataBases(options.path);
-      return this.databases.on('add', function() {
+      this.databases.on('add', function() {
         return setTimeout((function() {
           return _this.renderLoaded();
         }), 1000);
       });
+      this.datsyModel.on('addColumn', this.addColumn);
+      return this.columnsForViewing = [];
     };
 
     ExploreDataSetsView.prototype.render = function() {
@@ -49,6 +53,7 @@
       cartView = new DatsyApp.ColumnCartView({
         datsyModel: this.datsyModel
       });
+      cartView.on('clearCart', this.clearCart);
       return this.$el.find('.top-bar').append(cartView.render().el);
     };
 
@@ -75,6 +80,17 @@
       this.databases.sortBy(target.slice(5, target.length).toLowerCase());
       this.$el.html('');
       return this.renderLoaded();
+    };
+
+    ExploreDataSetsView.prototype.addColumn = function(params) {
+      this.columnsForViewing.push(params);
+      $('.total-columns-added').text(this.columnsForViewing.length);
+      return console.log(this.columnsForViewing);
+    };
+
+    ExploreDataSetsView.prototype.clearCart = function() {
+      this.columnsForViewing.length = 0;
+      return console.log(this.columnsForViewing);
     };
 
     return ExploreDataSetsView;

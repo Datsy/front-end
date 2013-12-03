@@ -5,7 +5,6 @@ class DatsyApp.Databases extends Backbone.Collection
     @databases = []
     @fetch()
 
-
   filterByTags: (tag) ->
     @models = @models.filter (model) ->
       return model.get('tags').indexOf(tag) != -1

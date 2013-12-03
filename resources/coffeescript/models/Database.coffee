@@ -1,4 +1,4 @@
-class DatsyApp.Database
+class DatsyApp.Database extends Backbone.Model
 
   constructor: (@attributes) ->
 

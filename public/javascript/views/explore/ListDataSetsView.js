@@ -24,6 +24,7 @@
       this.databases.each(function(model) {
         var panel;
         panel = new DatsyApp.DataSetItemView({
+          datsyModel: _this.datsyModel,
           dataSetColumnTemplate: _this.dataSetColumnTemplate,
           model: model
         });
