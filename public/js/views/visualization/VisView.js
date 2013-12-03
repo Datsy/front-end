@@ -47,23 +47,23 @@ DatsyApp.VisView = Backbone.View.extend({
   },
 
   renderLineChart: function() {
-    this.render('lineChart');
+    this.renderLoaded('lineChart');
   },
 
   renderStackedArea: function() {
-    this.render('stackedArea');
+    this.renderLoaded('stackedArea');
   },
 
   renderStackedMultiBar: function() {
-    this.render('stackedMultiBar');
+    this.renderLoaded('stackedMultiBar');
   },
 
   renderScatterBubble: function() {
-    this.render('scatterBubble');
+    this.renderLoaded('scatterBubble');
   },
 
   // renderStreamGraph: function() {
-  //   this.render('streamGraph');
+  //   this.renderLoaded('streamGraph');
   // },
 
   downloadPhoto: function() {
