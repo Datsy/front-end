@@ -17,4 +17,6 @@ class DatsyApp.Datsy extends Backbone.Model
     @trigger 'addColumn', { columnName: columnName, datasetID: datasetID }
 
   setVisualizationData: (columns) ->
-    @set 'visualizationData', new DatsyApp.VisualizationData { columns: columns }
+    visualizationData = new DatsyApp.VisualizationData { columns: columns }
+    @set 'visualizationData', visualizationData
+    visualizationData.on 'loaded', @trigger 'visualizationDataLoaded'
