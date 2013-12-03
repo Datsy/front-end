@@ -2,9 +2,9 @@ class DatsyApp.Databases extends Backbone.Collection
 
   initialize: (params) ->
     @url = params.url
+    @databases = []
     @fetch()
 
-  databases: [],
 
   filterByTags: (tag) ->
     @models = @models.filter (model) ->
@@ -23,13 +23,15 @@ class DatsyApp.Databases extends Backbone.Collection
     data.forEach (database) =>
       model = new DatsyApp.Database database
       @databases.push model
-    @sortBy ('name')
+    @sortBy ('table_name')
     @trigger 'add'
 
   sortBy: (sortType) ->
-    @databases.sort (a,b) =>
-      return 1 if a.sortType > b.sortType
-      return -1 if a.sortType < b.sortType
+    @databases.sort (a,b) ->
+      if a.attributes[sortType].toLowerCase() > b.attributes[sortType].toLowerCase()
+        return 1
+      if a.attributes[sortType].toLowerCase() < b.attributes[sortType].toLowerCase()
+        return -1
       return 0
 
   each: (cb) =>

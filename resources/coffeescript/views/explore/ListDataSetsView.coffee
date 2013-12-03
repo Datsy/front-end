@@ -10,7 +10,7 @@ class DatsyApp.ListDataSetsView extends Backbone.View
   render: ->
     @databases.each (model) =>
       panel = new DatsyApp.DataSetItemView { dataSetColumnTemplate: @dataSetColumnTemplate, model: model }
-      @$el.append('<h3>' + model.attributes.table_name + '</h3>')
+      @$el.append('<div><div class="dataset-table-name">' + model.attributes.table_name + '</div><div class="dataset-source">' + model.attributes.author + '</div><div class="dataset-rating"><span class="glyphicon glyphicon-star"></span></div></div>')
       @$el.append(panel.render().el)
     setTimeout (=> @$el.accordion({ collapsible: true, heightStyle: 'content', active: false, icons: false }) ), 0
     @

@@ -16,7 +16,7 @@
     ExploreDataSetsView.prototype.className = 'explore container';
 
     ExploreDataSetsView.prototype.events = {
-      'click #sortName, #sortSource, #sortStars': 'sort'
+      'click #sort_table_name, #sort_author, #sort_rating': 'sort'
     };
 
     ExploreDataSetsView.prototype.initialize = function(options) {
@@ -72,7 +72,9 @@
     ExploreDataSetsView.prototype.sort = function(event) {
       var target;
       target = event.target.id;
-      return this.databases.sortBy(target.slice(4, target.length).toLowerCase());
+      this.databases.sortBy(target.slice(5, target.length).toLowerCase());
+      this.$el.html('');
+      return this.renderLoaded();
     };
 
     return ExploreDataSetsView;

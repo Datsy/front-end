@@ -16,10 +16,9 @@
 
     Databases.prototype.initialize = function(params) {
       this.url = params.url;
+      this.databases = [];
       return this.fetch();
     };
-
-    Databases.prototype.databases = [];
 
     Databases.prototype.filterByTags = function(tag) {
       this.models = this.models.filter(function(model) {
@@ -46,17 +45,16 @@
         model = new DatsyApp.Database(database);
         return _this.databases.push(model);
       });
-      this.sortBy('name');
+      this.sortBy('table_name');
       return this.trigger('add');
     };
 
     Databases.prototype.sortBy = function(sortType) {
-      var _this = this;
       return this.databases.sort(function(a, b) {
-        if (a.sortType > b.sortType) {
+        if (a.attributes[sortType].toLowerCase() > b.attributes[sortType].toLowerCase()) {
           return 1;
         }
-        if (a.sortType < b.sortType) {
+        if (a.attributes[sortType].toLowerCase() < b.attributes[sortType].toLowerCase()) {
           return -1;
         }
         return 0;
