@@ -52,7 +52,7 @@ module.exports = {
   },
 
   SVGtoPNG: function(req, res) {
-    console.log('xml', Object.keys(req.body));
+    console.log('xml', req.body);
     
     // fs.writeFile('server/svg2png/test.svg', xml, function(err) {
     //   if(err){

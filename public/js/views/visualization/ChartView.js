@@ -32,12 +32,12 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     if(!chartType || chartType === 'lineChart'){
       renderLineChart(this.data);
     } else if(chartType === 'stackedArea'){
-      renderStackedAreaChart();
+      renderStackedAreaChart(this.data);
+    } else if(chartType === 'stackedMultiBar'){
+      renderStackedMultiBar(this.data);
     } else if(chartType === 'scatterBubble'){
       renderScatterBubbleGraph();
-    } else if(chartType === 'stackedMultiBar'){
-      renderStackedMultiBar();
-    }
+    } 
 
     // else if(chartType === 'streamGraph'){
     //   renderStreamGraph();
@@ -68,8 +68,8 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
   convertJSONForD3: function(data, x) {
     // TODO: Add error checking
-    var d3Data = [ { key: 'Apple', values: []},
-                   { key: 'Microsoft', values: []}
+    var d3Data = [ { key: 'MSFT', values: [], color: 'red'},
+                   { key: 'AAPL', values: [], color: 'blue'}
                  ];
     var args = Array.prototype.slice.call(arguments,2);
 
