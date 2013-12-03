@@ -1,3 +1,12 @@
+function exampleData() {
+  return stream_layers(3,10+Math.random()*100,.1).map(function(data, i) {
+    return {
+      key: 'Stream' + i,
+      values: data
+    };
+  });
+}
+
 var renderStackedMultiBar = function() {
 
   nv.addGraph(function() {
@@ -8,21 +17,12 @@ var renderStackedMultiBar = function() {
 
     chart.yAxis
     .tickFormat(d3.format(',.1f')); 
-    d3.select('#chart1 svg')
+    d3.select('#graph svg')
     .datum(exampleData())
     .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
      
     return chart;
-  });
-}
- 
-function exampleData() {
-  return stream_layers(3,10+Math.random()*100,.1).map(function(data, i) {
-    return {
-      key: 'Stream' + i,
-      values: data
-    };
   });
 }

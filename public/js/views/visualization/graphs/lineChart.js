@@ -67,8 +67,6 @@ function testData() {
 
 var renderLineChart = function(data) {
   return nv.addGraph(function() {
-    console.log('data', data);
-    console.log('testdata', testData());
     var chart = nv.models.lineWithFocusChart();
      
     chart.xAxis
