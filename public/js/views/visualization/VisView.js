@@ -30,9 +30,9 @@ DatsyApp.VisView = Backbone.View.extend({
     var w = $('.container').width();
     var h = w / 2;
     this.$graph = this.$el.find('#graph');
-    this.$graph.empty();
+    debugger;
     this.$graph.css({'height': h, 'width': w });
-    this.$graph.append( this.currentGraphView.render(chartType) );
+    this.$graph.append(this.currentGraphView.render(chartType));
     return this;
   },
 

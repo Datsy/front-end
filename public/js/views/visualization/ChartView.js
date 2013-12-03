@@ -27,7 +27,8 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     this.height = this.chartHeight - this.margin.top - this.margin.bottom;
   },
 
-  render: function(chartType) {
+  render: function(chartType){
+    d3.select(this.el).selectAll('*').remove();
     if(!chartType || chartType === 'lineChart'){
       renderLineChart();
     } else if(chartType === 'stackedArea'){
