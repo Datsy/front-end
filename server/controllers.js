@@ -42,7 +42,6 @@ module.exports = {
   SVGtoPNG: function(req, res) {
     console.log('xml', Object.keys(req.body));
     
-
     // fs.writeFile('server/svg2png/test.svg', xml, function(err) {
     //   if(err){
     //     console.log('Failed to write SVG file.')

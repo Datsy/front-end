@@ -30,7 +30,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   render: function(chartType){
     d3.select(this.el).selectAll('*').remove();
     if(!chartType || chartType === 'lineChart'){
-      renderLineChart();
+      renderLineChart(this.data);
     } else if(chartType === 'stackedArea'){
       renderStackedAreaChart();
     } else if(chartType === 'scatterBubble'){
@@ -68,14 +68,29 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
   convertJSONForD3: function(data, x) {
     // TODO: Add error checking
-    var d3Data = [];
+    var d3Data = [ { key: 'Apple', values: []},
+                   { key: 'Microsoft', values: []}
+                 ];
     var args = Array.prototype.slice.call(arguments,2);
 
     for(var i=0; i < data[x].length; i++) {
-      d3Data.push({xAxis: new Date(data[x][i]).getTime(), series1: +data[args[0]][i], series2: +data[args[1]][i]});
+      d3Data[0].values.push({x: new Date(data[x][i]).getTime(), y: +data[args[0]][i] });
+      d3Data[1].values.push({x: new Date(data[x][i]).getTime(), y: +data[args[1]][i] });
     }
 
     return d3Data;
   }
+
+  // convertJSONForD3: function(data, x) {
+  //   // TODO: Add error checking
+  //   var d3Data = [];
+  //   var args = Array.prototype.slice.call(arguments,2);
+
+  //   for(var i=0; i < data[x].length; i++) {
+  //     d3Data.push({xAxis: new Date(data[x][i]).getTime(), series1: +data[args[0]][i], series2: +data[args[1]][i]});
+  //   }
+
+  //   return d3Data;
+  // }
 
 });

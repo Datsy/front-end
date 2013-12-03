@@ -65,21 +65,25 @@ function testData() {
   });
 };
 
-var renderLineChart = function() {
-   return nv.addGraph(function() {
+var renderLineChart = function(data) {
+  return nv.addGraph(function() {
+    console.log('data', data);
+    console.log('testdata', testData());
     var chart = nv.models.lineWithFocusChart();
      
     chart.xAxis
-    .tickFormat(d3.format(',f'));
-     
+    .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); });
+    // .tickFormat(d3.format(',f'));
+
     chart.yAxis
     .tickFormat(d3.format(',.2f'));
      
     chart.y2Axis
     .tickFormat(d3.format(',.2f'));
-     
+
     d3.select('#graph svg')
-    .datum(testData())
+    // .datum(testData())
+    .datum(data)
     .transition().duration(500)
     .call(chart);
      
