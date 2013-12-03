@@ -46,7 +46,9 @@ module.exports = {
   },
 
   sendColumnData: function(req, res) {
-    console.log('send columns data: ',req.params);
+    getColumnData(req.query.id, req.query.name, function(columnData) {
+      sendResponse(res, columnData, 201);
+    });
   },
 
   SVGtoPNG: function(req, res) {

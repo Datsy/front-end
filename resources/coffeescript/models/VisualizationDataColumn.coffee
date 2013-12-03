@@ -15,4 +15,4 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
     }
 
   setColumnData: (data) =>
-    console.log data
+    @columnsData = data;

@@ -32,7 +32,7 @@
     };
 
     VisualizationDataColumn.prototype.setColumnData = function(data) {
-      return console.log(data);
+      return this.columnsData = data;
     };
 
     return VisualizationDataColumn;

@@ -14,16 +14,16 @@
     VisualizationData.prototype.initialize = function(options) {
       var allColumns,
         _this = this;
-      allColumns = options.columns;
-      this.columnsForY = [];
-      return allColumns.forEach(function(column) {
-        var newY;
-        newY = new DatsyApp.VisualizationDataColumn({
-          columnName: column.columnName,
-          datasetID: column.datasetID
-        });
-        return _this.columnsForY.push(newY);
+      allColumns = {};
+      options.columns.forEach(function(column) {
+        allColumns[column.datasetID] = allColumns[column.datasetID] || [];
+        allColumns[column.datasetID].push(column.columnName);
+        if (allColumns[column.datasetID].indexOf('date') === -1) {
+          return allColumns[column.datasetID].push('date');
+        }
       });
+      console.log(allColumns);
+      return this.columnsForY = [];
     };
 
     return VisualizationData;

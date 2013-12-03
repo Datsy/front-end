@@ -21,6 +21,12 @@ exports.setUpMetaData = function() {
   });
 };
 
+exports.getColumnData = function(databaseID, columnName, cb) {
+  readDataBaseColumn(databaseID, columnName, function(data) {
+    cb(data);
+  });
+};
+
 exports.getAllMetaData = function() {
   return metadata.dataSets;
 };
@@ -57,3 +63,16 @@ var readFakeJSON = function(cb1, cb2) {
     cb2(JSON.parse(data));
   });
 };
+
+var readDataBaseColumn = function(id, columnName, cb) {
+  var filename = './server/fakedata/' + id + '-dataset-full.json';
+  fs.readFile(filename, 'binary', function(err, data) {
+    data = JSON.parse(data);
+    data.columns.forEach(function(column) {
+      if (column.name === columnName) {
+        cb(column.data);
+      }
+    });
+  });
+};
+

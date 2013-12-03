@@ -9,6 +9,10 @@ exports.getFilteredTags = getFilteredTags = function(query) {
   return metadata.getFilteredTags(query);
 };
 
+exports.getColumnData = getColumnData = function(databaseID, columnName, cb) {
+  metadata.getColumnData(databaseID, columnName, cb);
+};
+
 exports.returnDatabaseMetadata = returnDatabaseMetadata = function(tag) {
   return metadata.getMetaData(tag);
 };
