@@ -12,18 +12,49 @@
     }
 
     VisualizationData.prototype.initialize = function(options) {
-      var allColumns,
-        _this = this;
-      allColumns = {};
-      options.columns.forEach(function(column) {
-        allColumns[column.datasetID] = allColumns[column.datasetID] || [];
-        allColumns[column.datasetID].push(column.columnName);
-        if (allColumns[column.datasetID].indexOf('date') === -1) {
-          return allColumns[column.datasetID].push('date');
+      this.allColumns = {};
+      this.buildColumnRequest(options.columns);
+      this.columnsForY = [];
+      this.columnsForX = [];
+      return this.makeRequests();
+    };
+
+    VisualizationData.prototype.buildColumnRequest = function(columns) {
+      var _this = this;
+      return columns.forEach(function(column) {
+        _this.allColumns[column.datasetID] = _this.allColumns[column.datasetID] || [];
+        _this.allColumns[column.datasetID].push(column.columnName);
+        if (_this.allColumns[column.datasetID].indexOf('date') === -1) {
+          return _this.allColumns[column.datasetID].push('date');
         }
       });
-      console.log(allColumns);
-      return this.columnsForY = [];
+    };
+
+    VisualizationData.prototype.makeRequests = function() {
+      var columnArray, id, _ref1, _results,
+        _this = this;
+      _ref1 = this.allColumns;
+      _results = [];
+      for (id in _ref1) {
+        columnArray = _ref1[id];
+        _results.push(columnArray.forEach(function(name) {
+          var newX, newY;
+          if (name === 'date') {
+            newX = new DatsyApp.VisualizationDataColumn({
+              columnName: 'date',
+              datasetID: id
+            });
+            return _this.columnsForX.push(newX);
+          } else {
+            newY = new DatsyApp.VisualizationDataColumn({
+              columnName: name,
+              datasetID: id
+            });
+            return _this.columnsForY.push(newY);
+          }
+        }));
+      }
+      return _results;
     };
 
     return VisualizationData;
