@@ -81,16 +81,4 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     return d3Data;
   }
 
-  // convertJSONForD3: function(data, x) {
-  //   // TODO: Add error checking
-  //   var d3Data = [];
-  //   var args = Array.prototype.slice.call(arguments,2);
-
-  //   for(var i=0; i < data[x].length; i++) {
-  //     d3Data.push({xAxis: new Date(data[x][i]).getTime(), series1: +data[args[0]][i], series2: +data[args[1]][i]});
-  //   }
-
-  //   return d3Data;
-  // }
-
 });
