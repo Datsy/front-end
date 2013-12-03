@@ -7,7 +7,7 @@ DatsyApp.VisView = Backbone.View.extend({
     'click button#scatterBubble': 'renderScatterBubble',
     'click button#stackedMultiBar': 'renderStackedMultiBar',
     // 'click button#streamGraph': 'renderStreamGraph',
-    'click button#savePhoto': 'savePhoto'
+    'click button#downloadPhoto': 'downloadPhoto'
   },
 
   initialize: function() {
@@ -30,7 +30,6 @@ DatsyApp.VisView = Backbone.View.extend({
     var w = $('.container').width();
     var h = w / 2;
     this.$graph = this.$el.find('#graph');
-    debugger;
     this.$graph.css({'height': h, 'width': w });
     this.$graph.append(this.currentGraphView.render(chartType));
     return this;
@@ -56,14 +55,19 @@ DatsyApp.VisView = Backbone.View.extend({
   //   this.render('streamGraph');
   // },
 
-  savePhoto: function() {
-    // the canvg call that takes the svg xml and converts it to a canvas
+  downloadPhoto: function() {
+    // Get the D3 SVG element
+    var svg = document.getElementsByTagName("svg")[0];
 
-    canvg('canvas', $('svg').html());
+    // Extract the data as SVG text string
+    var svg_xml = (new XMLSerializer).serializeToString(svg);
+    console.log('xml', svg_xml);
 
-    // the canvas calls to output a png
-    var canvas = document.getElementById('canvas');
-    var img = canvas.toDataURL('image/png');
+    // Submit to the server.
+    // The result will be an attachment file to download.
+    $.post('http://localhost:3000/png', svg_xml, function(data) {
+      alert(data);
+    });
   }
 
 });
