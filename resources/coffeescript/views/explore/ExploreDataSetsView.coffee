@@ -28,7 +28,10 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     }
     @$el.append listdataView.render().el
     cartView = new DatsyApp.ColumnCartView { datsyModel: @datsyModel }
+    
     cartView.on 'clearCart', @clearCart
+    cartView.on 'loadVisualization', @loadVisualization
+
     @$el.find('.top-bar').append cartView.render().el
 
   getDataBases: (path) ->
@@ -56,3 +59,8 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
   clearCart: =>
     @columnsForViewing.length = 0
     console.log @columnsForViewing
+
+  loadVisualization: =>
+    @datsyModel.set('visualizationData', @columnsForViewing)
+    Backbone.history.navigate "/visualize", {trigger: true}
+

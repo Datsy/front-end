@@ -8,6 +8,7 @@
     __extends(ExploreDataSetsView, _super);
 
     function ExploreDataSetsView() {
+      this.loadVisualization = __bind(this.loadVisualization, this);
       this.clearCart = __bind(this.clearCart, this);
       this.addColumn = __bind(this.addColumn, this);
       this.renderLoaded = __bind(this.renderLoaded, this);
@@ -54,6 +55,7 @@
         datsyModel: this.datsyModel
       });
       cartView.on('clearCart', this.clearCart);
+      cartView.on('loadVisualization', this.loadVisualization);
       return this.$el.find('.top-bar').append(cartView.render().el);
     };
 
@@ -91,6 +93,13 @@
     ExploreDataSetsView.prototype.clearCart = function() {
       this.columnsForViewing.length = 0;
       return console.log(this.columnsForViewing);
+    };
+
+    ExploreDataSetsView.prototype.loadVisualization = function() {
+      this.datsyModel.set('visualizationData', this.columnsForViewing);
+      return Backbone.history.navigate("/visualize", {
+        trigger: true
+      });
     };
 
     return ExploreDataSetsView;
