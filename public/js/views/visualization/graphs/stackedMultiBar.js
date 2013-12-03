@@ -7,19 +7,20 @@ function exampleData() {
   });
 }
 
-var renderStackedMultiBar = function() {
+var renderStackedMultiBar = function(data) {
 
   nv.addGraph(function() {
     var chart = nv.models.multiBarChart();
      
     chart.xAxis
-    .tickFormat(d3.format(',f'));
-
+      .tickFormat(function(d) { return d3.time.format('%b')(new Date(d)); });
+     
     chart.yAxis
-    .tickFormat(d3.format(',.1f')); 
+      .tickFormat(d3.format('$,.2f'));
+
     d3.select('#graph svg')
-    .datum(exampleData())
-    .transition().duration(500).call(chart);
+      .datum(data)
+      .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
      

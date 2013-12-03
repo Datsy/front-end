@@ -83,7 +83,7 @@ var renderLineChart = function(data) {
 
     d3.select('#graph svg')
     .datum(data)
-    .transition().duration(1000)
+    .transition().duration(500)
     .call(chart);
      
     nv.utils.windowResize(chart.update);
