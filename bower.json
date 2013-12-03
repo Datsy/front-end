@@ -15,6 +15,7 @@
     "handlebars": "1.0.0",
     "bootstrap": "~3.0.2",
     "d3": "~3.3.10",
-    "jqueryui": "~1.10.3"
+    "jqueryui": "~1.10.3",
+    "nvd3": "~1.1.14-beta"
   }
 }
