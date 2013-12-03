@@ -16,3 +16,7 @@ exports.returnDatabaseMetadata = returnDatabaseMetadata = function(tag) {
 exports.getSampleData = getSampleData = function(queryObj) {
   return metadata.getSampleData(queryObj.id, queryObj.column);
 };
+
+exports.returnAllDatabaseMetadata = returnAllDatabaseMetadata = function() {
+  return metadata.getAllMetaData();
+}

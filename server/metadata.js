@@ -21,6 +21,10 @@ exports.setUpMetaData = function() {
   });
 };
 
+exports.getAllMetaData = function() {
+  return metadata.dataSets;
+};
+
 exports.getMetaData = function(tag) {
   var results = metadata.dataSets.filter(function(dataset) {
     return (dataset.tags.indexOf(tag) === -1) ? false : true;

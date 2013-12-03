@@ -28,10 +28,16 @@ module.exports = {
   },
 
   sendTagMeta: function(req, res) {
-    var tag = 'san francisco';
-    // FIX ME AS NEEDED
-    var result = returnDatabaseMetadata(tag);
-    sendResponse(res, result, 201);
+    console.log(req.query);
+    if (req.query.tag = "ALL") {
+      var result = returnAllDatabaseMetadata();
+      sendResponse(res, result, 201);      
+    } else {
+      var tag = 'san francisco';
+      // FIX ME AS NEEDED
+      var result = returnDatabaseMetadata(tag);
+      sendResponse(res, result, 201);
+    }
   },
 
   sendSampleColumns: function(req, res) {
