@@ -22,11 +22,11 @@
     DataSetItemView.prototype.render = function() {
       var columns,
         _this = this;
-      columns = this.model.get('columns').map(function(column) {
+      columns = this.model.getColumns().map(function(column) {
         return new DatsyApp.DataSetColumnView({
           model: column,
           template: _this.dataSetColumnTemplate,
-          datasetID: _this.model.get('id')
+          datasetID: _this.model.getId()
         });
       });
       columns.forEach(function(column) {

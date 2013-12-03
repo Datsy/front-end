@@ -8,7 +8,7 @@ class DatsyApp.ListDataSetsView extends Backbone.View
     @databases = options.databases
 
   render: ->
-    @databases.forEach (model) =>
+    @databases.each (model) =>
       panel = new DatsyApp.DataSetItemView { dataSetColumnTemplate: @dataSetColumnTemplate, model: model }
       @$el.append('<h3>' + model.attributes.table_name + '</h3>')
       @$el.append(panel.render().el)

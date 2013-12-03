@@ -15,6 +15,10 @@
 
     ExploreDataSetsView.prototype.className = 'explore container';
 
+    ExploreDataSetsView.prototype.events = {
+      'click #sortName, #sortSource, #sortStars': 'sort'
+    };
+
     ExploreDataSetsView.prototype.initialize = function(options) {
       var _this = this;
       this.datsyModel = options.datsyModel;
@@ -63,6 +67,12 @@
       return new DatsyApp.Databases({
         url: url
       });
+    };
+
+    ExploreDataSetsView.prototype.sort = function(event) {
+      var target;
+      target = event.target.id;
+      return this.databases.sortBy(target.slice(4, target.length).toLowerCase());
     };
 
     return ExploreDataSetsView;

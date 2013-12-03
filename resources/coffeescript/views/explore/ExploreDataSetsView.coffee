@@ -2,6 +2,9 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
 
   className: 'explore container'
 
+  events:
+    'click #sortName, #sortSource, #sortStars': 'sort'
+
   initialize: (options) ->
     @datsyModel = options.datsyModel
     @loadingTemplate = @datsyModel.get('templates')['loadingExplore']
@@ -35,3 +38,7 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     else
       url += 'tag=ALL'
     new DatsyApp.Databases { url: url }
+
+  sort: (event) ->
+    target = event.target.id
+    @databases.sortBy target.slice(4,target.length).toLowerCase()

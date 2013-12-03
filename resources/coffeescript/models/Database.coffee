@@ -1,5 +1,9 @@
-class DatsyApp.Database extends Backbone.Model
+class DatsyApp.Database
 
-  defaults:
-    label: "",
-    id: undefined
+  constructor: (@attributes) ->
+
+  getColumns: ->
+    return @attributes.columns
+
+  getId: ->
+    return @attributes.id

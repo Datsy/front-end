@@ -21,7 +21,7 @@
 
     ListDataSetsView.prototype.render = function() {
       var _this = this;
-      this.databases.forEach(function(model) {
+      this.databases.each(function(model) {
         var panel;
         panel = new DatsyApp.DataSetItemView({
           dataSetColumnTemplate: _this.dataSetColumnTemplate,
