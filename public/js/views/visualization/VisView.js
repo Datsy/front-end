@@ -11,8 +11,14 @@ DatsyApp.VisView = Backbone.View.extend({
   },
 
   initialize: function() {
+    this.loadingTemplate = this.model.get('templates')['visualizeLoading'];
     this.template = this.model.get('templates')['visualize'];
     this.currentGraphView = new DatsyApp.ChartView();
+    var _this = this;
+    setTimeout(function() {
+        _this.renderLoaded()
+//      this.model.on('visualizationDataLoaded', this.renderLoaded.bind(this));    
+    },1000);
   },
 
   resize: function() {
@@ -25,7 +31,12 @@ DatsyApp.VisView = Backbone.View.extend({
     this.$graph.append( this.currentGraphView.render() );
   },
 
-  render: function(chartType) {
+  render: function() {
+    this.$el.html(this.loadingTemplate());
+    return this;
+  },
+
+  renderLoaded: function(chartType) {
     this.$el.html( this.template );
     var w = $('.container').width();
     var h = w / 2;
