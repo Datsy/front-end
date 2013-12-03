@@ -16,8 +16,8 @@
     VisualizationDataColumn.prototype.initialize = function(options) {
       this.columnName = options.columnName;
       this.datasetID = options.datasetID;
-      this.url = '/column?id=' + this.datasetID + '&name=' + this.columnName;
-      return this.fetch(url);
+      this.url = '/column?id=' + this.datasetID + '&name=' + this.columnName + '&rows=ALL';
+      return this.fetch(this.url);
     };
 
     VisualizationDataColumn.prototype.fetch = function(url) {

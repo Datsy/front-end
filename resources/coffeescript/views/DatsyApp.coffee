@@ -1,7 +1,7 @@
 class DatsyApp.DatsyView extends Backbone.View
 
   events:
-    '.click .navbar-brand': 'loadIndex',
+    'click .navbar-brand': 'loadIndex',
     'click #explore': "navigateToExplore",
     'click #visualizer': "navigateToVisualizer"
 

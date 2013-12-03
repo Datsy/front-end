@@ -10,6 +10,7 @@ module.exports = {
     app.get('/tags', this.sendTags);
     app.get('/search', this.sendTagMeta);
     app.get('/sample', this.sendSampleColumns);
+    app.get('/column', this.sendColumnData);
     app.post('/png', this.SVGtoPNG);
   },
 
@@ -28,7 +29,6 @@ module.exports = {
   },
 
   sendTagMeta: function(req, res) {
-    console.log(req.query);
     if (req.query.tag = "ALL") {
       var result = returnAllDatabaseMetadata();
       sendResponse(res, result, 201);      
@@ -43,6 +43,10 @@ module.exports = {
   sendSampleColumns: function(req, res) {
     var sample = getSampleData(req.query);
     sendResponse(res, sample, 201);
+  },
+
+  sendColumnData: function(req, res) {
+    console.log('send columns data: ',req.params);
   },
 
   SVGtoPNG: function(req, res) {

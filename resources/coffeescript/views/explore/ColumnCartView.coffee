@@ -13,7 +13,7 @@ class DatsyApp.ColumnCartView extends Backbone.View
     @template = @datsyModel.get('templates')['columnCart']
     @datsyModel.on 'addColumn', @addColumn
     @columnData = []
-    @popoverContent = 'No columns selected'
+    @popoverContent = '<p class="popover-item">No columns selected</p>'
 
   render: ->
     @$el.html @template
@@ -22,7 +22,7 @@ class DatsyApp.ColumnCartView extends Backbone.View
 
   clearCart: ->
     $('.total-columns-added').text('0')
-    @popoverContent = 'No columns selected'
+    @popoverContent = '<p class="popover-item">No columns selected</p>'
     @trigger 'clearCart'
 
   loadVisualization: ->
@@ -37,4 +37,6 @@ class DatsyApp.ColumnCartView extends Backbone.View
 
   addColumn: (columnData) =>
     @columnData.push columnData
-    @popoverContent = columnData.columnName
+    if @popoverContent == '<p class="popover-item">No columns selected</p>'
+      @popoverContent = ''
+    @popoverContent += '<p class="popover-item">' + columnData.columnName + '</p>'

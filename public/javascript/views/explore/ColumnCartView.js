@@ -27,7 +27,7 @@
       this.template = this.datsyModel.get('templates')['columnCart'];
       this.datsyModel.on('addColumn', this.addColumn);
       this.columnData = [];
-      return this.popoverContent = 'No columns selected';
+      return this.popoverContent = '<p class="popover-item">No columns selected</p>';
     };
 
     ColumnCartView.prototype.render = function() {
@@ -43,7 +43,7 @@
 
     ColumnCartView.prototype.clearCart = function() {
       $('.total-columns-added').text('0');
-      this.popoverContent = 'No columns selected';
+      this.popoverContent = '<p class="popover-item">No columns selected</p>';
       return this.trigger('clearCart');
     };
 
@@ -62,7 +62,10 @@
 
     ColumnCartView.prototype.addColumn = function(columnData) {
       this.columnData.push(columnData);
-      return this.popoverContent = columnData.columnName;
+      if (this.popoverContent === '<p class="popover-item">No columns selected</p>') {
+        this.popoverContent = '';
+      }
+      return this.popoverContent += '<p class="popover-item">' + columnData.columnName + '</p>';
     };
 
     return ColumnCartView;
