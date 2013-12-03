@@ -70,47 +70,27 @@ var renderLineChart = function(data) {
     var chart = nv.models.lineWithFocusChart();
      
     chart.xAxis
-    .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); });
+      .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); });
 
     chart.x2Axis
-    .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); });
+      .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); });
 
     chart.yAxis
-    .tickFormat(d3.format('$,.2f'));
+      .tickFormat(d3.format('$,.2f'));
      
     chart.y2Axis
-    .tickFormat(d3.format('$,.2f'));
+      .tickFormat(d3.format('$,.2f'));
 
     d3.select('#graph svg')
-    .datum(data)
-    .transition().duration(500)
-    .call(chart);
+      .datum(data)
+      .transition().duration(500)
+      .call(chart);
      
     nv.utils.windowResize(chart.update);
      
     return chart;
   });
-  // return nv.addGraph(function() {  
-  //   var chart = nv.models.lineChart();
-     
-  //   chart.xAxis
-  //   .axisLabel('Time (ms)')
-  //   .tickFormat(d3.format(',r'));
-     
-  //   chart.yAxis
-  //   .axisLabel('Voltage (v)')
-  //   .tickFormat(d3.format('.02f'));
-     
-  //   d3.select('#graph svg')
-  //   .datum(sinAndCos())
-  //   .transition().duration(500)
-  //   .call(chart);
-     
-  //   nv.utils.windowResize(function() { d3.select('#chart svg').call(chart) });
-     
-  //   return chart;
-  // });
-}
+};
 
 // var renderLineChart = function(el, data, options) {
 //   console.log('render line chart');
