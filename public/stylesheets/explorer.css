@@ -17,6 +17,7 @@
 }
 .top-bar .panel .panel-body {
   padding: 3px;
+  cursor: pointer;
 }
 .top-bar .panel .panel-body button {
   margin-top: 7px;
