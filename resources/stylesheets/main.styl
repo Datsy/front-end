@@ -8,7 +8,7 @@ html
   background-color #fff
 
 header
-  #visualizer, #explore
+  #visualizer, #explore, #login
     cursor pointer
 
   .navbar-brand
@@ -30,7 +30,7 @@ header
       padding 0px 5px
       width 300px
       height 28px
-      background-color #444
+      background-color #222
       border 1px solid #555
 
     input[type='text']:focus
@@ -169,6 +169,23 @@ footer
       height 495px
       margin-top -425px
 
-
   .about-datsy-strip
     margin-top 70px
+
+@media all and (max-width: 990px) and (min-width: 768px)
+  header
+    #headerSearchTag
+      margin-left 0
+
+      input[type='text']
+        width 200px
+
+@media all and (max-width: 768px) and (min-width: 570px)
+
+  #headerSearchTag
+    margin-left 10px
+
+@media all and (max-width: 570px)
+
+  #headerSearchTag
+    display none

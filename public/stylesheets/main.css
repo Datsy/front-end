@@ -8,7 +8,8 @@ html {
   background-color: #fff;
 }
 header #visualizer,
-header #explore {
+header #explore,
+header #login {
   cursor: pointer;
 }
 header .navbar-brand {
@@ -30,7 +31,7 @@ header #headerSearchTag input[type='text'] {
   padding: 0px 5px;
   width: 300px;
   height: 28px;
-  background-color: #444;
+  background-color: #222;
   border: 1px solid #555;
 }
 header #headerSearchTag input[type='text']:focus {
@@ -174,5 +175,23 @@ footer {
   }
   .about-datsy-strip {
     margin-top: 70px;
+  }
+}
+@media all and (max-width: 990px) and (min-width: 768px) {
+  header #headerSearchTag {
+    margin-left: 0;
+  }
+  header #headerSearchTag input[type='text'] {
+    width: 200px;
+  }
+}
+@media all and (max-width: 768px) and (min-width: 570px) {
+  #headerSearchTag {
+    margin-left: 10px;
+  }
+}
+@media all and (max-width: 570px) {
+  #headerSearchTag {
+    display: none;
   }
 }

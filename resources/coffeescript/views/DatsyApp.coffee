@@ -4,6 +4,7 @@ class DatsyApp.DatsyView extends Backbone.View
     'click .navbar-brand': 'loadIndex',
     'click #explore': 'navigateToExplore',
     'click #visualizer': 'navigateToVisualizer',
+    'click #login': 'navigateToLogin'
     'focus .header-search-box': 'fadeInSubmit',
     'blur .header-search-box': 'fadeOutSubmit',
     'click .header-search-submit': 'searchKeyword',
@@ -37,3 +38,6 @@ class DatsyApp.DatsyView extends Backbone.View
     event && event.preventDefault()
     tag = $('.header-search-box').val()
     @router.navigate "/filterDatasets/" + tag, { trigger: true }
+
+  navigateToLogin: (event) ->
+    event && event.preventDefault()
