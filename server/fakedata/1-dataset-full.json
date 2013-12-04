@@ -5,7 +5,7 @@
     {
       "name": "date",
       "description": "date of read",
-      "column_tags": ["date",],
+      "column_tags": ["date"],
       "data_type": "string",
       "data": [
         "2013-11-27",
