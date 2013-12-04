@@ -13,8 +13,11 @@
 
     DatsyView.prototype.events = {
       'click .navbar-brand': 'loadIndex',
-      'click #explore': "navigateToExplore",
-      'click #visualizer': "navigateToVisualizer"
+      'click #explore': 'navigateToExplore',
+      'click #visualizer': 'navigateToVisualizer',
+      'focus .header-search-box': 'fadeInSubmit',
+      'blur .header-search-box': 'fadeOutSubmit',
+      'click .header-search-submit': 'searchKeyword'
     };
 
     DatsyView.prototype.initialize = function() {
@@ -48,6 +51,23 @@
 
     DatsyView.prototype.navigateToVisualizer = function() {
       return this.router.navigate("/popularVisualizations", {
+        trigger: true
+      });
+    };
+
+    DatsyView.prototype.fadeInSubmit = function() {
+      return $('.header-search-submit').fadeIn(300);
+    };
+
+    DatsyView.prototype.fadeOutSubmit = function() {
+      return $('.header-search-submit').fadeOut(300);
+    };
+
+    DatsyView.prototype.searchKeyword = function(event) {
+      var tag;
+      event && event.preventDefault();
+      tag = $('.header-search-box').val();
+      return this.router.navigate("/filterDatasets/" + tag, {
         trigger: true
       });
     };
