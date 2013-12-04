@@ -15,9 +15,12 @@
       return _ref;
     }
 
+    FilterDataSetsView.prototype.className = 'container filter-page';
+
     FilterDataSetsView.prototype.events = {
       'focus #filterTagSearch': 'setUpTags',
-      'click #addFilters': 'addFilters',
+      'click .input-group-btn': 'addFilters',
+      'click .tag-suggestion': 'addSuggestedFilter',
       'click #seeDataBases': 'loadExploreView'
     };
 
@@ -54,9 +57,16 @@
     };
 
     FilterDataSetsView.prototype.renderLoaded = function() {
-      var singular;
+      var singular, suggested, tags;
+      tags = this.tags.list();
+      suggested = new SuggestedTagsView({
+        model: this.datsyModel,
+        tags: tags
+      });
+      this.$el.html(suggested.render().el);
       singular = this.tags.totalDataBases === 1;
       this.$el.html(this.template({
+        tags: tags,
         searchTag: this.mainTag,
         occurance: this.tags.totalDataBases,
         singular: singular
@@ -106,6 +116,11 @@
       this.currentTags.push(newTag);
       this.filterTags();
       return this.updatePage();
+    };
+
+    FilterDataSetsView.prototype.addSuggestedFilter = function(event) {
+      var tag;
+      return tag = event.target.innerHTML;
     };
 
     FilterDataSetsView.prototype.updatePage = function() {

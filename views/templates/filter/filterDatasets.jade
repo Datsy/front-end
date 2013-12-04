@@ -1,4 +1,4 @@
-div.container.filterResults
+div.filterResults.col-md-9
   {{#if singular}}
   h1.text-center {{ searchTag }} appeared in {{ occurance }} result.
   {{else}}
@@ -10,7 +10,9 @@ div.container.filterResults
   form.form-inline(role='form')
     div.form-group.col-md-10.col-md-offset-1
       label.sr-only(for="filter") Add topics to filter results
-      input#filterTagSearch.form-control(type='text', placeholder="Add topics to filter results.", autocomplete="off")
-    button#addFilters.btn.btn-success.glyphicon.glyphicon-plus(type="submit")
+      div.input-group
+        input#filterTagSearch.form-control(type='text', placeholder="Add topics to filter results.", autocomplete="off")
+        span.input-group-btn
+          button.btn.btn-default(type="button") Add
 
-  button#seeDataBases.btn.btn-success.btn-lg.col-md-offset-5(type="submit") Browse Data Sets
+  button#seeDataBases.btn.btn-success.btn-lg(type="submit") Browse Data Sets

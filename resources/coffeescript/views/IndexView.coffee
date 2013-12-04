@@ -17,11 +17,11 @@ class DatsyApp.IndexView extends Backbone.View
   intialSearch: (e) ->
     e && e.preventDefault();
     tag = $('#getStartedForm').val()
-    if @tagExists(tag)
+    if tag == ''
+      Backbone.history.navigate "/filterDatasets", {trigger: true}
+    else
       tag = tag.split(' ').join('_')
       Backbone.history.navigate "/filterDatasets/" + tag, {trigger: true}
-    else
-      Backbone.history.navigate "/filterDatasets", {trigger: true}
 
   tagExists: (tag) ->
     return @model.tagExists(tag)
