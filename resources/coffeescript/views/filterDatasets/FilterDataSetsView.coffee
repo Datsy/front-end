@@ -1,8 +1,11 @@
 class DatsyApp.FilterDataSetsView extends Backbone.View
   
+  className: 'container filter-page',
+
   events:
     'focus #filterTagSearch': 'setUpTags',
-    'click #addFilters': 'addFilters',
+    'click .input-group-btn': 'addFilters',
+    'click .tag-suggestion': 'addSuggestedFilter',
     'click #seeDataBases': 'loadExploreView'
 
   initialize: (options) ->
@@ -27,8 +30,11 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @
 
   renderLoaded: =>
+    tags = @tags.list()
+    suggested = new SuggestedTagsView { model: @datsyModel, tags: tags }
+    @$el.html suggested.render().el
     singular = @tags.totalDataBases == 1
-    @$el.html @template({ searchTag: @mainTag, occurance: @tags.totalDataBases, singular: singular })
+    @$el.html @template({ tags: tags, searchTag: @mainTag, occurance: @tags.totalDataBases, singular: singular })
     @
 
   uppercase: (tags) ->
@@ -55,6 +61,9 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @filterTags()
     @updatePage()
 
+  addSuggestedFilter: (event) ->
+    tag = event.target.innerHTML
+    # Add filter, update view
 
   updatePage: =>
     @mainTag = @uppercase @currentTags

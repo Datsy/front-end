@@ -32,13 +32,13 @@
       var tag;
       e && e.preventDefault();
       tag = $('#getStartedForm').val();
-      if (this.tagExists(tag)) {
-        tag = tag.split(' ').join('_');
-        return Backbone.history.navigate("/filterDatasets/" + tag, {
+      if (tag === '') {
+        return Backbone.history.navigate("/filterDatasets", {
           trigger: true
         });
       } else {
-        return Backbone.history.navigate("/filterDatasets", {
+        tag = tag.split(' ').join('_');
+        return Backbone.history.navigate("/filterDatasets/" + tag, {
           trigger: true
         });
       }

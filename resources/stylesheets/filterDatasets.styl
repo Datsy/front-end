@@ -1,0 +1,80 @@
+.verticalCenter
+  height 300px
+  margin-top 50px
+  margin-bottom 60px
+
+  h1
+    margin 0
+
+  h2
+    margin 5px 0 15px 0
+
+  img
+    margin 0 auto
+
+.filter-page
+  margin-top 100px
+
+  .filter-suggestions
+
+    .panel-body
+      padding 3px 2px
+
+    div.tag-suggestion
+
+      p
+        margin 0
+        padding 3px 5px
+        cursor pointer
+
+      p:hover
+        font-weight 600
+
+    div.tag-suggestion:nth-child(even)
+      background-color #eee
+
+  .filterResults
+    
+    h3
+      margin-top 3px
+
+    form
+      margin-top 20px
+
+    input[type='text']
+      text-align center
+      font-size 18px
+    
+    input[type='text']:focus
+      border-color #999
+      box-shadow none
+
+    input[type='text']:focus::-webkit-input-placeholder
+      color transparent
+    
+    input[type='text']:focus::-moz-placeholder
+      color transparent
+
+    #seeDataBases
+      margin-top 40px
+      margin-bottom 20px
+
+@media all and (max-width: 990px) and (min-width: 640px)
+  .col-md-10
+    width 100%
+  .col-md-offset-5
+    margin-left 37.66666667%
+
+@media all and (max-width: 767px)
+  .verticalCenter
+    margin-top 80px
+
+  .filterResults
+    margin-top 70px
+
+  .col-md-9
+    width 100%
+  
+  .col-md-offset-5
+    width 90%
+    margin-left 5%

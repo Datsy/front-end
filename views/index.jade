@@ -8,7 +8,7 @@ html
     link(rel="stylesheet", href="bower_components/jqueryui/themes/base/minified/jquery-ui.min.css")
     link(rel="stylesheet", href="bower_components/nvd3/nv.d3.min.css")
     link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel='stylesheet', href='/stylesheets/datasearch.css')
+    link(rel='stylesheet', href='/stylesheets/filterDatasets.css')
     link(rel='stylesheet', href='/stylesheets/explorer.css')
     link(rel='stylesheet', href='/stylesheets/visualizer.css')
     
@@ -66,6 +66,9 @@ html
     script#loading(type="text/x-handlebars-template")
       include templates/filter/loading
 
+    script#suggestedTags(type="text/x-handlebars-template")
+      include templates/filter/suggestedTags
+
     script#modal(type="text/y-handlebars-template")
       include templates/main/modal
 
@@ -99,6 +102,7 @@ html
 
     //- Data Set Search
     script(src="javascript/views/filterDatasets/FilterDataSetsView.js")
+    script(src="javascript/views/filterDatasets/SuggestedTagsView.js")
 
     //- Explorer Views
     script(src="javascript/views/explore/ExploreDataSetsView.js")

@@ -1,0 +1,8 @@
+div.filter-suggestions.panel.panel-default
+  div.panel-heading
+    h4.panel-title Topic Suggestions
+  div.panel-body
+    {{#each tags}}
+    div.tag-suggestion
+      p {{ this }}
+    {{/each}}
