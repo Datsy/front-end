@@ -15,6 +15,7 @@
       'click .navbar-brand': 'loadIndex',
       'click #explore': 'navigateToExplore',
       'click #visualizer': 'navigateToVisualizer',
+      'click #login': 'navigateToLogin',
       'focus .header-search-box': 'fadeInSubmit',
       'blur .header-search-box': 'fadeOutSubmit',
       'click .header-search-submit': 'searchKeyword'
@@ -70,6 +71,10 @@
       return this.router.navigate("/filterDatasets/" + tag, {
         trigger: true
       });
+    };
+
+    DatsyView.prototype.navigateToLogin = function(event) {
+      return event && event.preventDefault();
     };
 
     return DatsyView;

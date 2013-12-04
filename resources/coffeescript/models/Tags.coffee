@@ -1,5 +1,5 @@
 class DatsyApp.Tags extends Backbone.Model
-
+  
   rootUrl: '/tags',
 
   initialize: ->

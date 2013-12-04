@@ -27,6 +27,9 @@
         method: 'GET',
         success: function(data) {
           return _this.setColumnData(data);
+        },
+        error: function(res, err, error) {
+          return console.log(error.message);
         }
       });
     };

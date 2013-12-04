@@ -12,6 +12,8 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
       method: 'GET',
       success: (data) =>
         @setColumnData data
+      error: (res, err, error) =>
+        console.log error.message
     }
 
   setColumnData: (data) =>
