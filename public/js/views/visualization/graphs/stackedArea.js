@@ -27,6 +27,7 @@ var renderStackedAreaChart = function(data){
       .clipEdge(true);
      
     chart.xAxis
+      .showMaxMin(false)
       .tickFormat(function(d) { return d3.time.format('%b')(new Date(d)); });
      
     chart.yAxis

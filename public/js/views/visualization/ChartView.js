@@ -64,7 +64,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   checkForRender: function() {
     if (this.currentYModel !== null && this.currentXModel !== null) {
       $('#renderChart').prop('disabled', false);
-    }    
+    }
   },
 
   convertJSONForD3: function(data) {

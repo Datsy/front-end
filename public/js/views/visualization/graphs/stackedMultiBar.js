@@ -7,6 +7,7 @@ function exampleData() {
   });
 }
 
+// Stacked MultiBar Chart
 var renderStackedMultiBar = function(data) {
 
   nv.addGraph(function() {
