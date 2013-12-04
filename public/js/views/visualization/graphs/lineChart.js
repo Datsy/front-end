@@ -68,7 +68,7 @@ function testData() {
 var renderLineChart = function(data) {
   return nv.addGraph(function() {
     var chart = nv.models.lineWithFocusChart();
-     
+
     chart.xAxis
       .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); });
 
