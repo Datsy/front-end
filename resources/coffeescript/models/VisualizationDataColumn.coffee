@@ -15,4 +15,8 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
     }
 
   setColumnData: (data) =>
-    @columnsData = data;
+    @columnData = { name: @columnName, data: data };
+    @trigger 'loaded'
+
+  getColumnData: ->
+    return @columnData.data
