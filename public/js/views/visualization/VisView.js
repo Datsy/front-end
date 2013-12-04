@@ -6,7 +6,6 @@ DatsyApp.VisView = Backbone.View.extend({
     'click button#stackedArea': 'renderStackedArea',
     'click button#scatterBubble': 'renderScatterBubble',
     'click button#stackedMultiBar': 'renderStackedMultiBar',
-    // 'click button#streamGraph': 'renderStreamGraph',
     'click button#downloadPhoto': 'downloadPhoto'
   },
 
@@ -80,21 +79,8 @@ DatsyApp.VisView = Backbone.View.extend({
         'left: ' + (-chartArea.offsetWidth * 2) + 'px;');
     document.body.appendChild(canvas);
     canvg(canvas, svg);
-    var img_PNG = Canvas2Image.saveAsPNG(canvas);
+    Canvas2Image.saveAsPNG(canvas);
     canvas.parentNode.removeChild(canvas);
-
-    // Get the D3 SVG element
-    // var svg = document.getElementsByTagName("svg")[0];
-
-    // // Extract the data as SVG text string
-    // var svg_xml = (new XMLSerializer).serializeToString(svg);
-    // console.log('xml', svg_xml);
-
-    // // Submit to the server.
-    // // The result will be an attachment file to download.
-    // $.post('http://localhost:3000/png', svg_xml, function(data) {
-    //   alert(data);
-    // });
   }
 
 });

@@ -42,11 +42,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       renderStackedMultiBar(this.data);
     } else if(chartType === 'scatterBubble'){
       renderScatterBubbleGraph();
-    } 
-
-    // else if(chartType === 'streamGraph'){
-    //   renderStreamGraph();
-    // }
+    }
 
     return this.$el;
   },
@@ -68,7 +64,7 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
   checkForRender: function() {
     if (this.currentYModel !== null && this.currentXModel !== null) {
       $('#renderChart').prop('disabled', false);
-    }    
+    }
   },
 
   convertJSONForD3: function(data) {
@@ -79,11 +75,13 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       d3Data.push({key: key, values: [], color: colors[i] })
       i++;
     }
+    
     for(var i = 0; i < data.x.length; i++) {
       d3Data.forEach(function(item) {
         item.values.push({x: new Date(data.x[i]).getTime(), y: +data.yValues[item.key][i] });
       });
     }
+
     return d3Data;
   }
 
