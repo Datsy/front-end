@@ -5,7 +5,10 @@ class DatsyApp.VisualizationData extends Backbone.Collection
     @buildColumnRequest options.columns
     @columnsForY = []
     @columnsForX = []
+    @totalLoaded = 0
+    @total = 0
     @makeRequests()
+    @
     # Multiple X columns? DEAL WITH ME FUCKER
 
   buildColumnRequest: (columns) ->
@@ -17,9 +20,18 @@ class DatsyApp.VisualizationData extends Backbone.Collection
   makeRequests: ->
     for id, columnArray of @allColumns
       columnArray.forEach (name) =>
+        @total++
         if name is 'date'
           newX = new DatsyApp.VisualizationDataColumn { columnName: 'date', datasetID: id }
           @columnsForX.push newX
+          newX.on 'loaded', @tagLoaded
         else
           newY = new DatsyApp.VisualizationDataColumn { columnName: name, datasetID: id }
           @columnsForY.push newY
+          newY.on 'loaded', @tagLoaded
+
+  tagLoaded: =>
+    @totalLoaded++
+    if @totalLoaded == @total
+      @trigger 'loaded'
+    @
