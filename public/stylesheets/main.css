@@ -11,6 +11,7 @@ header #visualizer,
 header #explore,
 header #login {
   cursor: pointer;
+  margin-top: 3px;
 }
 header .navbar-brand {
   margin-top: 3px;
@@ -165,7 +166,7 @@ footer {
   padding: 50px 10px 50px 10px;
   background-color: #fff;
 }
-@media all and (max-width: 1200px) and (min-width: 990px) {
+@media all and (max-width: 1200px) and (min-width: 991px) {
   #wrapper .landing-copy {
     margin-top: 40px;
   }
@@ -177,21 +178,34 @@ footer {
     margin-top: 70px;
   }
 }
-@media all and (max-width: 990px) and (min-width: 768px) {
+@media all and (max-width: 991px) and (min-width: 768px) {
+  header .container {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
   header #headerSearchTag {
     margin-left: 0;
   }
   header #headerSearchTag input[type='text'] {
-    width: 200px;
+    width: 160px;
   }
 }
 @media all and (max-width: 768px) and (min-width: 570px) {
   #headerSearchTag {
     margin-left: 10px;
   }
+  #wrapper .landing-copy h1 {
+    font-size: 50px;
+  }
 }
 @media all and (max-width: 570px) {
   #headerSearchTag {
     display: none;
+  }
+  #wrapper .landing-copy h1 {
+    font-size: 45px;
+  }
+  #wrapper .landing-copy h3 {
+    font-size: 25px;
   }
 }

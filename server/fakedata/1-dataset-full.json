@@ -166,7 +166,7 @@
       "description": "Total docks available",
       "column_tags": ["docks"],
       "data_type": "integer",
-      "data_sample": [
+      "data": [
         15,
         15,
         15,
