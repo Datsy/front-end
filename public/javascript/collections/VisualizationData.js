@@ -1,5 +1,6 @@
 (function() {
   var _ref,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -7,6 +8,7 @@
     __extends(VisualizationData, _super);
 
     function VisualizationData() {
+      this.tagLoaded = __bind(this.tagLoaded, this);
       _ref = VisualizationData.__super__.constructor.apply(this, arguments);
       return _ref;
     }
@@ -16,7 +18,10 @@
       this.buildColumnRequest(options.columns);
       this.columnsForY = [];
       this.columnsForX = [];
-      return this.makeRequests();
+      this.totalLoaded = 0;
+      this.total = 0;
+      this.makeRequests();
+      return this;
     };
 
     VisualizationData.prototype.buildColumnRequest = function(columns) {
@@ -39,22 +44,33 @@
         columnArray = _ref1[id];
         _results.push(columnArray.forEach(function(name) {
           var newX, newY;
+          _this.total++;
           if (name === 'date') {
             newX = new DatsyApp.VisualizationDataColumn({
               columnName: 'date',
               datasetID: id
             });
-            return _this.columnsForX.push(newX);
+            _this.columnsForX.push(newX);
+            return newX.on('loaded', _this.tagLoaded);
           } else {
             newY = new DatsyApp.VisualizationDataColumn({
               columnName: name,
               datasetID: id
             });
-            return _this.columnsForY.push(newY);
+            _this.columnsForY.push(newY);
+            return newY.on('loaded', _this.tagLoaded);
           }
         }));
       }
       return _results;
+    };
+
+    VisualizationData.prototype.tagLoaded = function() {
+      this.totalLoaded++;
+      if (this.totalLoaded === this.total) {
+        this.trigger('loaded');
+      }
+      return this;
     };
 
     return VisualizationData;

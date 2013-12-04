@@ -15,9 +15,8 @@ DatsyApp.VisView = Backbone.View.extend({
     this.template = this.model.get('templates')['visualize'];
     this.currentGraphView = new DatsyApp.ChartView();
     var _this = this;
-    setTimeout(function() {
-        _this.renderLoaded()
-//      this.model.on('visualizationDataLoaded', this.renderLoaded.bind(this));    
+    this.model.on('visualizationDataLoaded', function() {
+      _this.renderLoaded.bind(_this)();
     },1000);
   },
 
