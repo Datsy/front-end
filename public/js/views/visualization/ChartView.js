@@ -75,11 +75,13 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
       d3Data.push({key: key, values: [], color: colors[i] })
       i++;
     }
+    
     for(var i = 0; i < data.x.length; i++) {
       d3Data.forEach(function(item) {
         item.values.push({x: new Date(data.x[i]).getTime(), y: +data.yValues[item.key][i] });
       });
     }
+
     return d3Data;
   }
 
