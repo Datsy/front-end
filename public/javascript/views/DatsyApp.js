@@ -47,7 +47,7 @@
     };
 
     DatsyView.prototype.navigateToVisualizer = function() {
-      return this.router.navigate("/visualize", {
+      return this.router.navigate("/popularVisualizations", {
         trigger: true
       });
     };

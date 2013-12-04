@@ -25,7 +25,8 @@
       'filterDatasets/*params': 'filterDatasets',
       'filterDatasets': 'filterDatasets',
       'explore/*params': 'explore',
-      'explore': 'explore'
+      'explore': 'explore',
+      'popularVisualizations': 'popularVisualizations'
     };
 
     Router.prototype.swapView = function(view) {
@@ -70,6 +71,14 @@
         datsyModel: this.model
       });
       return this.swapView(exploreDataSetsViews);
+    };
+
+    Router.prototype.popularVisualizations = function() {
+      var popularVisualizations;
+      popularVisualizations = new DatsyApp.PopularVisualizationsView({
+        model: this.model
+      });
+      return this.swapView(popularVisualizations);
     };
 
     return Router;

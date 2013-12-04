@@ -22,4 +22,4 @@ class DatsyApp.DatsyView extends Backbone.View
     @router.navigate "/explore", {trigger: true}
 
   navigateToVisualizer: ->
-    @router.navigate "/visualize", {trigger: true}
+    @router.navigate "/popularVisualizations", {trigger: true}
