@@ -34,17 +34,20 @@
     };
 
     Datsy.prototype.addColumn = function(columnName, datasetID) {
-      var cart;
+      var cart, total;
       cart = this.get('cart');
-      cart.addColumn(columnName, datasetID);
+      total = cart.addColumn(columnName, datasetID);
       return this.trigger('addColumn', {
+        total: total,
         columnName: columnName,
         datasetID: datasetID
       });
     };
 
     Datsy.prototype.setVisualizationData = function(columns) {
-      this.set('visualizationData', visualizationData);
+      var visualizationData;
+      visualizationData = this.get('visualizationData');
+      visualizationData.setVisualizationData();
       return visualizationData.on('loaded', this.triggerVisDataLoaded);
     };
 

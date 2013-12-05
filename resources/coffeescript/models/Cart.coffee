@@ -1,30 +1,28 @@
 class DatsyApp.Cart extends Backbone.Model
 
   initialize: ->
-    @cart = {}
+    @cart = { total: 0, values: { } }
     @canStoreCart = @supportsStorage()
     if @canStoreCart
-      localStorage.clear()
       @storageName = "datsy-app"
       @checkStorage(@storageName)
 
   addColumn: (name, id) ->
-    @cart[id][name] = true
-    console.log @cart
+    @cart['values'][id] = @cart['values'][id] || {}
+    @cart['values'][id][name] = true
+    @cart['total']++
     if @canStoreCart
       @addCartToStorage()
-    @cart.length
+    @cart.total
 
   checkStorage: (name) ->
     cart = localStorage[name]
-    console.log cart
     if cart isnt undefined
-      @cart = cart
+      @cart = JSON.parse cart
 
   addCartToStorage: ->
-    JSON.stringify(@cart)
-    localStorage[@storageName] = @cart
-    console.log localStorage[@storageName]
+    cart = JSON.stringify @cart
+    localStorage[@storageName] = cart
 
   supportsStorage: ->
     try

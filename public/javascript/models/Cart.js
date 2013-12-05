@@ -12,37 +12,39 @@
     }
 
     Cart.prototype.initialize = function() {
-      this.cart = {};
+      this.cart = {
+        total: 0,
+        values: {}
+      };
       this.canStoreCart = this.supportsStorage();
       if (this.canStoreCart) {
-        localStorage.clear();
         this.storageName = "datsy-app";
         return this.checkStorage(this.storageName);
       }
     };
 
     Cart.prototype.addColumn = function(name, id) {
-      this.cart[id][name] = true;
-      console.log(this.cart);
+      this.cart['values'][id] = this.cart['values'][id] || {};
+      this.cart['values'][id][name] = true;
+      this.cart['total']++;
       if (this.canStoreCart) {
         this.addCartToStorage();
       }
-      return this.cart.length;
+      return this.cart.total;
     };
 
     Cart.prototype.checkStorage = function(name) {
       var cart;
       cart = localStorage[name];
-      console.log(cart);
       if (cart !== void 0) {
-        return this.cart = cart;
+        return this.cart = JSON.parse(cart);
       }
     };
 
     Cart.prototype.addCartToStorage = function() {
-      JSON.stringify(this.cart);
-      localStorage[this.storageName] = this.cart;
-      return console.log(localStorage[this.storageName]);
+      var cart;
+      cart = JSON.stringify(this.cart);
+      return localStorage[this.storageName] = cart;
     };
 
     Cart.prototype.supportsStorage = function() {
