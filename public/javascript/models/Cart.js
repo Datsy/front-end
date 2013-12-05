@@ -12,30 +12,37 @@
     }
 
     Cart.prototype.initialize = function() {
-      this.cart = [];
+      this.cart = {};
       this.canStoreCart = this.supportsStorage();
       if (this.canStoreCart) {
+        localStorage.clear();
         this.storageName = "datsy-app";
         return this.checkStorage(this.storageName);
       }
     };
 
     Cart.prototype.addColumn = function(name, id) {
-      this.cart.push([name, id]);
-      this.addCartToStorage();
+      this.cart[id][name] = true;
+      console.log(this.cart);
+      if (this.canStoreCart) {
+        this.addCartToStorage();
+      }
       return this.cart.length;
     };
 
     Cart.prototype.checkStorage = function(name) {
       var cart;
       cart = localStorage[name];
-      if (cart !== null) {
+      console.log(cart);
+      if (cart !== void 0) {
         return this.cart = cart;
       }
     };
 
     Cart.prototype.addCartToStorage = function() {
-      return localStorage[this.storageName] = this.cart;
+      JSON.stringify(this.cart);
+      localStorage[this.storageName] = this.cart;
+      return console.log(localStorage[this.storageName]);
     };
 
     Cart.prototype.supportsStorage = function() {
