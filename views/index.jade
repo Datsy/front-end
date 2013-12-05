@@ -12,7 +12,6 @@ html
     link(rel='stylesheet', href='/stylesheets/explorer.css')
     link(rel='stylesheet', href='/stylesheets/visualizer.css')
     
-
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
     script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
@@ -138,3 +137,6 @@ html
       });
 
       var datsyApp = new DatsyApp.DatsyView({ model: datsy });
+
+      _.extend(window, Backbone.Events);
+      window.onresize = function() { window.trigger('resize') };

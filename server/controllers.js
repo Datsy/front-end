@@ -1,7 +1,6 @@
 var helpers = require('./helpers.js');
 var db_helpers = require('./database_helpers.js');
 var fs = require('fs');
-var xml2js = require('xml2js');
 
 module.exports = {
   

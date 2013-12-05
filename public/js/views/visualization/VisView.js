@@ -13,14 +13,15 @@ DatsyApp.VisView = Backbone.View.extend({
     this.loadingTemplate = this.model.get('templates')['visualizeLoading'];
     this.template = this.model.get('templates')['visualize'];
     var _this = this;
+    this.listenTo(window, 'resize', this.resize);
     this.model.on('visualizationDataLoaded', function() {
-       _this.currentGraphView = new DatsyApp.ChartView({ data: _this.model.get('visualizationData') });
+       _this.currentGraphView = new DatsyApp.ChartView({ model: _this.model, data: _this.model.get('visualizationData') });
       _this.renderLoaded.bind(_this)();
-    },1000);
+    });
   },
 
   resize: function() {
-    // SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW.
+    // SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
     this.currentGraphView.remove();
     var width = $('.container').width();
     var height = width / 2;
@@ -45,24 +46,24 @@ DatsyApp.VisView = Backbone.View.extend({
   },
 
   renderLineChart: function() {
-    this.renderLoaded('lineChart');
+    this.model.set('chartType', 'lineChart');
+    this.renderLoaded();
   },
 
   renderStackedArea: function() {
-    this.renderLoaded('stackedArea');
+    this.model.set('chartType', 'stackedArea');
+    this.renderLoaded();
   },
 
   renderStackedMultiBar: function() {
-    this.renderLoaded('stackedMultiBar');
+    this.model.set('chartType', 'stackedMultiBar');
+    this.renderLoaded();
   },
 
   renderScatterBubble: function() {
-    this.renderLoaded('scatterBubble');
+    this.model.set('chartType', 'scatterBubble');
+    this.renderLoaded();
   },
-
-  // renderStreamGraph: function() {
-  //   this.renderLoaded('streamGraph');
-  // },
 
   downloadPhoto: function() {
     var chartArea = document.getElementsByTagName('svg')[0].parentNode;
@@ -70,8 +71,8 @@ DatsyApp.VisView = Backbone.View.extend({
     var canvas = document.createElement('canvas');
     canvas.setAttribute('width', chartArea.offsetWidth);
     canvas.setAttribute('height', chartArea.offsetHeight);
-    
-    
+    canvas.setAttribute('display', 'none');
+  
     canvas.setAttribute(
         'style',
         'position: absolute; ' +

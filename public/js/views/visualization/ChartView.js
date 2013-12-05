@@ -32,16 +32,18 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     this.data = this.convertJSONForD3(this.rawData);
   },
 
-  render: function(chartType){
+  render: function(){
     d3.select(this.el).selectAll('*').remove();
-    if(!chartType || chartType === 'lineChart'){
+    var chartType = this.model.get('chartType');
+
+    if(chartType === 'lineChart'){
       renderLineChart(this.data);
     } else if(chartType === 'stackedArea'){
       renderStackedAreaChart(this.data);
     } else if(chartType === 'stackedMultiBar'){
       renderStackedMultiBar(this.data);
     } else if(chartType === 'scatterBubble'){
-      renderScatterBubbleGraph();
+      renderScatterBubbleGraph(this.data);
     }
 
     return this.$el;
@@ -51,25 +53,9 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     this.trigger('renderChart', { chartView: true, x: this.currentXModel, y: this.currentYModel });
   },
 
-  addXModel: function(model) {
-    this.currentXModel = model;
-    this.checkForRender();
-  },
-
-  addYModel: function(model) {
-    this.currentYModel = model;
-    this.checkForRender();
-  },
-
-  checkForRender: function() {
-    if (this.currentYModel !== null && this.currentXModel !== null) {
-      $('#renderChart').prop('disabled', false);
-    }
-  },
-
   convertJSONForD3: function(data) {
     var d3Data = [];
-    var colors = ['red','blue','green','black','yellow','magenta','cyan'];
+    var colors = ['red','blue','green','black','magenta','cyan'];
     i = 0;
     for (key in data.yValues) {
       d3Data.push({key: key, values: [], color: colors[i] })
