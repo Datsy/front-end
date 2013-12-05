@@ -14,10 +14,10 @@
       return _ref;
     }
 
-    Tags.prototype.rootUrl = '/tags';
+    Tags.prototype.rootUrl = 'http://datsy-dev.azurewebsites.net/search/tag';
 
     Tags.prototype.initialize = function() {
-      this.tagList = {};
+      this.tagList = [];
       this.totalDataBases = 0;
       return this.fetch(this.rootUrl);
     };
@@ -35,11 +35,15 @@
 
     Tags.prototype.buildTags = function(data) {
       var _this = this;
+      console.log(data);
       this.totalDataBases = data.total;
-      this.tagList = {};
-      data.tags.forEach(function(datum) {
-        return _this.tagList[datum.label] = datum.id;
+      data.tag.forEach(function(tag) {
+        tag = tag.toLowerCase();
+        if (_this.tagList.indexOf(tag) === -1) {
+          return _this.tagList.push(tag);
+        }
       });
+      console.log('CHECK WITH BACK END API TEAM IF DUPES ARE ALREDY removed');
       return this.triggerLoaded();
     };
 
@@ -52,10 +56,7 @@
     };
 
     Tags.prototype.list = function() {
-      var _this = this;
-      return _(this.tagList).map(function(id, tag) {
-        return tag;
-      });
+      return this.tagList;
     };
 
     Tags.prototype.filter = function(tags) {

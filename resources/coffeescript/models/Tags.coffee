@@ -1,9 +1,9 @@
 class DatsyApp.Tags extends Backbone.Model
   
-  rootUrl: '/tags',
+  rootUrl: 'http://datsy-dev.azurewebsites.net/search/tag',
 
   initialize: ->
-    @tagList = {}
+    @tagList = []
     @totalDataBases = 0
     @fetch @rootUrl
 
@@ -16,18 +16,19 @@ class DatsyApp.Tags extends Backbone.Model
     }
 
   buildTags: (data) =>
+    console.log data
     @totalDataBases = data.total
-    @tagList = {}
-    data.tags.forEach (datum) =>
-      @tagList[datum.label] = datum.id
+    data.tag.forEach (tag) =>
+      tag = tag.toLowerCase()
+      @tagList.push tag if @tagList.indexOf(tag) is -1
+    console.log 'CHECK WITH BACK END API TEAM IF DUPES ARE ALREDY removed'
     @triggerLoaded()
 
   has: (tag) ->
     return if @tagList[tag] then true else false
 
   list: ->
-    return _(@tagList).map (id, tag) =>
-      return tag
+    return @tagList
 
   filter: (tags) ->
     url = @rootUrl + '?'
