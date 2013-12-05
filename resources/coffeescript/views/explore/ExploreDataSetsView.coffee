@@ -14,8 +14,7 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     
     @cartView = new DatsyApp.ColumnCartView { datsyModel: @datsyModel }    
     @cartView.on 'clearCart', @clearCart
-
-    @datsyModel.on 'visualizationDataLoaded', @loadVisualization
+    @cartView.on 'loadVisualization', @loadVisualization
 
   render: ->
     @$el.html @loadingTemplate

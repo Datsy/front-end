@@ -36,7 +36,7 @@
         datsyModel: this.datsyModel
       });
       this.cartView.on('clearCart', this.clearCart);
-      return this.datsyModel.on('visualizationDataLoaded', this.loadVisualization);
+      return this.cartView.on('loadVisualization', this.loadVisualization);
     };
 
     ExploreDataSetsView.prototype.render = function() {

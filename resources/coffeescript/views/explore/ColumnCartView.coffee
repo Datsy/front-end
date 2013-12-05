@@ -27,7 +27,9 @@ class DatsyApp.ColumnCartView extends Backbone.View
     @trigger 'clearCart'
 
   loadVisualization: ->
+    @trigger 'loadVisualization'
     @datsyModel.setVisualizationData()
+
 
   setTopPos: =>
     @$el.css({'margin-top': $(window).scrollTop() })

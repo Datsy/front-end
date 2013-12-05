@@ -49,6 +49,7 @@
     };
 
     ColumnCartView.prototype.loadVisualization = function() {
+      this.trigger('loadVisualization');
       return this.datsyModel.setVisualizationData();
     };
 
