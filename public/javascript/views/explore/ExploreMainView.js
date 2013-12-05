@@ -8,7 +8,6 @@
     __extends(ExploreMainView, _super);
 
     function ExploreMainView() {
-      this.addColumn = __bind(this.addColumn, this);
       this.triggerReady = __bind(this.triggerReady, this);
       _ref = ExploreMainView.__super__.constructor.apply(this, arguments);
       return _ref;
@@ -22,7 +21,6 @@
 
     ExploreMainView.prototype.initialize = function(options) {
       this.datsyModel = options.datsyModel;
-      this.columnsForViewing = [];
       this.setUpDatabases(options.path);
       return this.template = this.datsyModel.get('templates')['exploreMainView'];
     };
@@ -72,11 +70,6 @@
 
     ExploreMainView.prototype.triggerReady = function() {
       return this.trigger('ready');
-    };
-
-    ExploreMainView.prototype.addColumn = function(params) {
-      this.columnsForViewing.push(params);
-      return $('.total-columns-added').text(this.columnsForViewing.length);
     };
 
     return ExploreMainView;

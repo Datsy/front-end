@@ -10,12 +10,10 @@ class DatsyApp.ColumnCartView extends Backbone.View
     @datsyModel = options.datsyModel
     @template = @datsyModel.get('templates')['columnCart']
     @datsyModel.on 'addColumn', @addColumn
-    @columnData = []
     $(window).scroll (=> @setTopPos())
 
   render: ->
     @$el.html @template
-    setTimeout (=> $('.cart-text').popover {content: @popoverContent } ), 2
     @
 
   clearCart: ->
@@ -23,11 +21,10 @@ class DatsyApp.ColumnCartView extends Backbone.View
     @trigger 'clearCart'
 
   loadVisualization: ->
-    @trigger 'loadVisualization'
-
-  addColumn: (columnData) =>
-    @columnData.push columnData
+    @datsyModel.setVisualizationData()
 
   setTopPos: =>
     @$el.css({'margin-top': $(window).scrollTop() })
-    
+
+  addColumn: (params) =>
+    $('.total-columns-added').text(params.total)

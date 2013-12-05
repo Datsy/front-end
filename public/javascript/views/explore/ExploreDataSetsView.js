@@ -17,10 +17,6 @@
 
     ExploreDataSetsView.prototype.className = 'explore container';
 
-    ExploreDataSetsView.prototype.events = {
-      'click #sort_table_name, #sort_author, #sort_rating': 'sort'
-    };
-
     ExploreDataSetsView.prototype.initialize = function(options) {
       var _this = this;
       this.datsyModel = options.datsyModel;
@@ -33,7 +29,7 @@
       });
       this.exploreMainView.on('ready', function() {
         return setTimeout((function() {
-          return console.log('hello', _this.renderLoaded());
+          return _this.renderLoaded();
         }), 1000);
       });
       this.cartView = new DatsyApp.ColumnCartView({

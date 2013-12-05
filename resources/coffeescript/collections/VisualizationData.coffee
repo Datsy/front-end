@@ -2,12 +2,12 @@ class DatsyApp.VisualizationData extends Backbone.Collection
 
   initialize: (options) ->
     @allColumns =  {}
-    @buildColumnRequest options.columns
+    #@buildColumnRequest options.columns
     @columnsForY = []
     @columnsForX = []
     @totalLoaded = 0
     @total = 0
-    @makeRequests()
+    #@makeRequests()
     @
     # Multiple X columns? DEAL WITH ME FUCKER
 

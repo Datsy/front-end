@@ -8,8 +8,8 @@
     __extends(ColumnCartView, _super);
 
     function ColumnCartView() {
-      this.setTopPos = __bind(this.setTopPos, this);
       this.addColumn = __bind(this.addColumn, this);
+      this.setTopPos = __bind(this.setTopPos, this);
       _ref = ColumnCartView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
@@ -26,20 +26,13 @@
       this.datsyModel = options.datsyModel;
       this.template = this.datsyModel.get('templates')['columnCart'];
       this.datsyModel.on('addColumn', this.addColumn);
-      this.columnData = [];
       return $(window).scroll((function() {
         return _this.setTopPos();
       }));
     };
 
     ColumnCartView.prototype.render = function() {
-      var _this = this;
       this.$el.html(this.template);
-      setTimeout((function() {
-        return $('.cart-text').popover({
-          content: _this.popoverContent
-        });
-      }), 2);
       return this;
     };
 
@@ -49,17 +42,17 @@
     };
 
     ColumnCartView.prototype.loadVisualization = function() {
-      return this.trigger('loadVisualization');
-    };
-
-    ColumnCartView.prototype.addColumn = function(columnData) {
-      return this.columnData.push(columnData);
+      return this.datsyModel.setVisualizationData();
     };
 
     ColumnCartView.prototype.setTopPos = function() {
       return this.$el.css({
         'margin-top': $(window).scrollTop()
       });
+    };
+
+    ColumnCartView.prototype.addColumn = function(params) {
+      return $('.total-columns-added').text(params.total);
     };
 
     return ColumnCartView;

@@ -7,7 +7,6 @@ class DatsyApp.ExploreMainView extends Backbone.View
 
   initialize: (options) ->
     @datsyModel = options.datsyModel
-    @columnsForViewing = []
     @setUpDatabases(options.path)
     @template = @datsyModel.get('templates')['exploreMainView']
 
@@ -45,10 +44,3 @@ class DatsyApp.ExploreMainView extends Backbone.View
 
   triggerReady: =>
     @trigger 'ready'
-
-#
-#   THis is cart logic, should be moved
-#
-  addColumn: (params) =>
-    @columnsForViewing.push params
-    $('.total-columns-added').text(@columnsForViewing.length)

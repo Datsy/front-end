@@ -2,9 +2,6 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
 
   className: 'explore container'
 
-  events:
-    'click #sort_table_name, #sort_author, #sort_rating': 'sort'
-
   initialize: (options) ->
     @datsyModel = options.datsyModel
     @path = options.path
@@ -13,7 +10,7 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     
     @exploreMainView = new DatsyApp.ExploreMainView { datsyModel: @datsyModel, path: @path }
     @exploreMainView.on 'ready', =>
-      setTimeout (=> console.log 'hello', @renderLoaded()), 1000
+      setTimeout (=> @renderLoaded()), 1000
     
     @cartView = new DatsyApp.ColumnCartView { datsyModel: @datsyModel }    
     @cartView.on 'clearCart', @clearCart

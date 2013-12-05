@@ -16,6 +16,8 @@
     Datsy.prototype.initialize = function() {
       this.set('AppName', 'Datsy');
       this.set('tags', new DatsyApp.Tags());
+      this.set('visualizationData', new DatsyApp.VisualizationData());
+      this.set('cart', new DatsyApp.Cart());
       return this;
     };
 
@@ -31,7 +33,10 @@
       return tags.list();
     };
 
-    Datsy.prototype.triggerAddColumn = function(columnName, datasetID) {
+    Datsy.prototype.addColumn = function(columnName, datasetID) {
+      var cart;
+      cart = this.get('cart');
+      cart.addColumn(columnName, datasetID);
       return this.trigger('addColumn', {
         columnName: columnName,
         datasetID: datasetID
@@ -39,10 +44,6 @@
     };
 
     Datsy.prototype.setVisualizationData = function(columns) {
-      var visualizationData;
-      visualizationData = new DatsyApp.VisualizationData({
-        columns: columns
-      });
       this.set('visualizationData', visualizationData);
       return visualizationData.on('loaded', this.triggerVisDataLoaded);
     };

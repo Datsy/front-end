@@ -15,12 +15,10 @@
 
     VisualizationData.prototype.initialize = function(options) {
       this.allColumns = {};
-      this.buildColumnRequest(options.columns);
       this.columnsForY = [];
       this.columnsForX = [];
       this.totalLoaded = 0;
       this.total = 0;
-      this.makeRequests();
       return this;
     };
 
