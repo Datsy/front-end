@@ -9,6 +9,7 @@
 
     function ExploreMainView() {
       this.addColumn = __bind(this.addColumn, this);
+      this.triggerReady = __bind(this.triggerReady, this);
       _ref = ExploreMainView.__super__.constructor.apply(this, arguments);
       return _ref;
     }

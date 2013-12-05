@@ -17,10 +17,12 @@
     };
 
     IndexView.prototype.initialize = function(options) {
+      var _this = this;
       this.template = this.model.get('templates')['indexView'];
       this.tags = [];
-      _.bindAll(this, 'removeBackground');
-      return $(window).scroll(this.removeBackground);
+      return $(window).scroll((function() {
+        return _this.removeBackground();
+      }));
     };
 
     IndexView.prototype.render = function() {

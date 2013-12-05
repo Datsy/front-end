@@ -40,7 +40,7 @@ class DatsyApp.ExploreMainView extends Backbone.View
     @$el.html ''
     @renderLoaded()
 
-  triggerReady: ->
+  triggerReady: =>
     @trigger 'ready'
 
 #

@@ -14,6 +14,7 @@ class DatsyApp.ColumnCartView extends Backbone.View
     @datsyModel.on 'addColumn', @addColumn
     @columnData = []
     @popoverContent = '<p class="popover-item">No columns selected</p>'
+    $(window).scroll (=> @setTopPos())
 
   render: ->
     @$el.html @template
@@ -40,3 +41,6 @@ class DatsyApp.ColumnCartView extends Backbone.View
     if @popoverContent == '<p class="popover-item">No columns selected</p>'
       @popoverContent = ''
     @popoverContent += '<p class="popover-item">' + columnData.columnName + '</p>'
+
+  setTopPos: =>
+    @$el.css({'margin-top': $(window).scrollTop() })

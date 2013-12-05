@@ -13,15 +13,14 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
     
     @exploreMainView = new DatsyApp.ExploreMainView { datsyModel: @datsyModel, path: @path }
     @exploreMainView.on 'ready', =>
-      setTimeout (=> @renderLoaded()), 1000
+      setTimeout (=> console.log 'hello', @renderLoaded()), 1000
     
     @cartView = new DatsyApp.ColumnCartView { datsyModel: @datsyModel }    
     @cartView.on 'clearCart', @clearCart
     @cartView.on 'loadVisualization', @loadVisualization
 
   render: ->
-    @renderLoaded()
-    # @$el.html @loadingTemplate
+    @$el.html @loadingTemplate
     @
   
   renderLoaded: =>

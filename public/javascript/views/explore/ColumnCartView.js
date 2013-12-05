@@ -8,6 +8,7 @@
     __extends(ColumnCartView, _super);
 
     function ColumnCartView() {
+      this.setTopPos = __bind(this.setTopPos, this);
       this.addColumn = __bind(this.addColumn, this);
       _ref = ColumnCartView.__super__.constructor.apply(this, arguments);
       return _ref;
@@ -23,11 +24,15 @@
     };
 
     ColumnCartView.prototype.initialize = function(options) {
+      var _this = this;
       this.datsyModel = options.datsyModel;
       this.template = this.datsyModel.get('templates')['columnCart'];
       this.datsyModel.on('addColumn', this.addColumn);
       this.columnData = [];
-      return this.popoverContent = '<p class="popover-item">No columns selected</p>';
+      this.popoverContent = '<p class="popover-item">No columns selected</p>';
+      return $(window).scroll((function() {
+        return _this.setTopPos();
+      }));
     };
 
     ColumnCartView.prototype.render = function() {
@@ -66,6 +71,12 @@
         this.popoverContent = '';
       }
       return this.popoverContent += '<p class="popover-item">' + columnData.columnName + '</p>';
+    };
+
+    ColumnCartView.prototype.setTopPos = function() {
+      return this.$el.css({
+        'margin-top': $(window).scrollTop()
+      });
     };
 
     return ColumnCartView;

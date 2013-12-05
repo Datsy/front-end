@@ -33,7 +33,7 @@
       });
       this.exploreMainView.on('ready', function() {
         return setTimeout((function() {
-          return _this.renderLoaded();
+          return console.log('hello', _this.renderLoaded());
         }), 1000);
       });
       this.cartView = new DatsyApp.ColumnCartView({
@@ -44,7 +44,7 @@
     };
 
     ExploreDataSetsView.prototype.render = function() {
-      this.renderLoaded();
+      this.$el.html(this.loadingTemplate);
       return this;
     };
 

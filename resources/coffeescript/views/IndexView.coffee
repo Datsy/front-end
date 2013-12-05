@@ -7,8 +7,7 @@ class DatsyApp.IndexView extends Backbone.View
   initialize: (options) ->
     @template = @model.get('templates')['indexView']
     @tags = [];
-    _.bindAll @, 'removeBackground'
-    $(window).scroll @removeBackground
+    $(window).scroll (=> @removeBackground())
 
   render: ->
     @$el.html @template

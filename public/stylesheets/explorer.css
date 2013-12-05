@@ -1,39 +1,36 @@
-.top-bar {
-  margin: 0 20px 0 0;
-}
-.top-bar .cart {
-  overflow: hidden;
-}
-.top-bar .panel {
+.cart .panel {
   margin-bottom: 5px;
 }
-.top-bar .panel .panel-heading {
+.cart .panel .panel-heading {
   padding: 5px 0;
 }
-.top-bar .panel .panel-heading h4 {
+.cart .panel .panel-heading h4 {
   margin: 0;
   padding: 0;
   color: #666;
 }
-.top-bar .panel .panel-body {
+.cart .panel .panel-body {
   padding: 3px;
   cursor: pointer;
 }
-.top-bar .panel .panel-body button {
+.cart .panel .panel-body button {
   margin-top: 7px;
   width: 60px;
 }
-.top-bar .panel .panel-body .cart-text {
+.cart .panel .panel-body .cart-text {
   text-align: center;
   margin-top: 3px;
 }
-.top-bar .panel .panel-body .cart-text p {
+.cart .panel .panel-body .cart-text p {
   margin: 0;
   font-size: 13px;
 }
-.top-bar .panel .panel-body .cart-text p.total-columns-added {
+.cart .panel .panel-body .cart-text p.total-columns-added {
   font-size: 18px;
   font-weight: 800;
+}
+.top-bar {
+  margin: 0 20px 0 0;
 }
 .explore {
   margin-top: 70px;
@@ -71,15 +68,16 @@
   margin: 10px 0 20px 0;
 }
 .explore-datasets .dataset-table-name {
-  width: 40%;
+  width: 45%;
   font-weight: 800;
   display: inline-block;
-  float: left;
+  font-size: 14px;
 }
 .explore-datasets .dataset-source {
-  width: 40%;
+  width: 35%;
   font-weight: 300;
   display: inline-block;
+  font-size: 14px;
 }
 .explore-datasets .dataset-rating {
   width: 10%;
