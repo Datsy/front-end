@@ -1,6 +1,7 @@
 DatsyApp.VisView = Backbone.View.extend({
 
   className: 'visView container',
+  
   events: {
     'click button#lineChart': 'renderLineChart',
     'click button#stackedArea': 'renderStackedArea',
@@ -23,6 +24,7 @@ DatsyApp.VisView = Backbone.View.extend({
   resize: function() {
     // SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
     this.currentGraphView.remove();
+    this.currentGraphView = new DatsyApp.ChartView({ model: _this.model, data: _this.model.get('visualizationData') });
     var width = $('.container').width();
     var height = width / 2;
     this.$graph = this.$el.find('#graph');
@@ -31,11 +33,12 @@ DatsyApp.VisView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.loadingTemplate());
+    this.$el.html(this.loadingTemplate);
     return this;
   },
 
   renderLoaded: function(chartType) {
+    console.log('render loaded');
     this.$el.html( this.template );
     var w = $('.container').width();
     var h = w / 2;

@@ -37,7 +37,7 @@ var renderStackedAreaChart = function(data){
       .datum(newData)
         .transition().duration(500).call(chart);
 
-    nv.utils.windowResize(chart.update);
+    // nv.utils.windowResize(chart.update);
 
     return chart;
   });

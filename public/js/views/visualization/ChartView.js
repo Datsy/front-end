@@ -23,15 +23,6 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
     this.height = this.chartHeight - this.margin.top - this.margin.bottom;
   },
 
-  convertData: function(data) {
-    _this = this;
-    this.rawData.x = data.columnsForX[0].getColumnData();
-    data.columnsForY.forEach(function(column) {
-      _this.rawData.yValues[column.columnName] = column.getColumnData();
-    });
-    this.data = this.convertJSONForD3(this.rawData);
-  },
-
   render: function(){
     d3.select(this.el).selectAll('*').remove();
     var chartType = this.model.get('chartType');
@@ -51,6 +42,15 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
   renderChart: function() {
     this.trigger('renderChart', { chartView: true, x: this.currentXModel, y: this.currentYModel });
+  },
+
+  convertData: function(data) {
+    _this = this;
+    this.rawData.x = data.columnsForX[0].getColumnData();
+    data.columnsForY.forEach(function(column) {
+      _this.rawData.yValues[column.columnName] = column.getColumnData();
+    });
+    this.data = this.convertJSONForD3(this.rawData);
   },
 
   convertJSONForD3: function(data) {
