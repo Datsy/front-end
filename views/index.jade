@@ -50,6 +50,9 @@ html
     script#exploreDataSets(type="text/x-handlebars-template")
       include templates/explore/exploreDataSets
 
+    script#exploreMainView(type="text/x-handlebars-template")
+      include templates/explore/exploreMainView
+
     script#listDatasets(type="text/x-handlebars-template")
       include templates/explore/listDataSets
 
@@ -106,6 +109,7 @@ html
 
     //- Explorer Views
     script(src="javascript/views/explore/ExploreDataSetsView.js")
+    script(src="javascript/views/explore/ExploreMainView.js")
     script(src="javascript/views/explore/ListDataSetsView.js")
     script(src="javascript/views/explore/DataSetItemView.js")
     script(src="javascript/views/explore/DataSetColumnView.js")

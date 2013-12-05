@@ -1,6 +1,6 @@
 class DatsyApp.ColumnCartView extends Backbone.View
 
-  className: 'cart col-md-4'
+  className: 'cart col-md-3'
 
   events:
     'click #clear' : 'clearCart',

@@ -13,7 +13,7 @@
       return _ref;
     }
 
-    ColumnCartView.prototype.className = 'cart col-md-4';
+    ColumnCartView.prototype.className = 'cart col-md-3';
 
     ColumnCartView.prototype.events = {
       'click #clear': 'clearCart',

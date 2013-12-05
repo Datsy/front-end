@@ -10,7 +10,6 @@
     function ExploreDataSetsView() {
       this.loadVisualization = __bind(this.loadVisualization, this);
       this.clearCart = __bind(this.clearCart, this);
-      this.addColumn = __bind(this.addColumn, this);
       this.renderLoaded = __bind(this.renderLoaded, this);
       _ref = ExploreDataSetsView.__super__.constructor.apply(this, arguments);
       return _ref;
@@ -25,68 +24,34 @@
     ExploreDataSetsView.prototype.initialize = function(options) {
       var _this = this;
       this.datsyModel = options.datsyModel;
+      this.path = options.path;
       this.loadingTemplate = this.datsyModel.get('templates')['loadingExplore'];
       this.template = this.datsyModel.get('templates')['exploreDataSets'];
-      this.databases = this.getDataBases(options.path);
-      this.databases.on('add', function() {
+      this.exploreMainView = new DatsyApp.ExploreMainView({
+        datsyModel: this.datsyModel,
+        path: this.path
+      });
+      this.exploreMainView.on('ready', function() {
         return setTimeout((function() {
           return _this.renderLoaded();
         }), 1000);
       });
-      this.datsyModel.on('addColumn', this.addColumn);
-      return this.columnsForViewing = [];
+      this.cartView = new DatsyApp.ColumnCartView({
+        datsyModel: this.datsyModel
+      });
+      this.cartView.on('clearCart', this.clearCart);
+      return this.cartView.on('loadVisualization', this.loadVisualization);
     };
 
     ExploreDataSetsView.prototype.render = function() {
-      this.$el.html(this.loadingTemplate);
+      this.renderLoaded();
       return this;
     };
 
     ExploreDataSetsView.prototype.renderLoaded = function() {
-      var cartView, listdataView;
       this.$el.html(this.template);
-      listdataView = new DatsyApp.ListDataSetsView({
-        datsyModel: this.datsyModel,
-        dataSetColumnTemplate: this.datsyModel.get('templates')['dataSetColumn'],
-        databases: this.databases
-      });
-      this.$el.append(listdataView.render().el);
-      cartView = new DatsyApp.ColumnCartView({
-        datsyModel: this.datsyModel
-      });
-      cartView.on('clearCart', this.clearCart);
-      cartView.on('loadVisualization', this.loadVisualization);
-      return this.$el.find('.top-bar').append(cartView.render().el);
-    };
-
-    ExploreDataSetsView.prototype.getDataBases = function(path) {
-      var tags, url;
-      url = '/search?';
-      if (path.length) {
-        tags = path.split('/');
-        tags.forEach(function(tag) {
-          return url += 'tag=' + tag + '&';
-        });
-        url = url.slice(0, url.length - 1);
-      } else {
-        url += 'tag=ALL';
-      }
-      return new DatsyApp.Databases({
-        url: url
-      });
-    };
-
-    ExploreDataSetsView.prototype.sort = function(event) {
-      var target;
-      target = event.target.id;
-      this.databases.sortBy(target.slice(5, target.length).toLowerCase());
-      this.$el.html('');
-      return this.renderLoaded();
-    };
-
-    ExploreDataSetsView.prototype.addColumn = function(params) {
-      this.columnsForViewing.push(params);
-      return $('.total-columns-added').text(this.columnsForViewing.length);
+      this.$el.append(this.exploreMainView.render().el);
+      return this.$el.append(this.cartView.render().el);
     };
 
     ExploreDataSetsView.prototype.clearCart = function() {
