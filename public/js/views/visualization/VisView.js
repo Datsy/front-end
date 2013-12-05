@@ -69,6 +69,7 @@ DatsyApp.VisView = Backbone.View.extend({
   },
 
   downloadPhoto: function() {
+   
     var chartArea = document.getElementsByTagName('svg')[0].parentNode;
     var svg = chartArea.innerHTML;
     var canvas = document.createElement('canvas');
@@ -76,6 +77,25 @@ DatsyApp.VisView = Backbone.View.extend({
     canvas.setAttribute('height', chartArea.offsetHeight);
     canvas.setAttribute('display', 'none');
   
+    var style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+
+    style.textContent += '<![CDATA[\n';
+
+    // get stylesheet for svg
+    for (var i=0;i<document.styleSheets.length; i++) {
+      str = document.styleSheets[i].href;
+      if (str === "http://localhost:3000/bower_components/nvd3/nv.d3.min.css"){
+        var rules = document.styleSheets[i].rules;
+        for (var j=0; j<rules.length;j++){
+          style.textContent += (rules[j].cssText + "\n");
+        }
+        break;
+      }
+    }
+    style.textContent += "]]>";
+
+    $('svg').append(style);
+    
     canvas.setAttribute(
         'style',
         'position: absolute; ' +
@@ -83,6 +103,7 @@ DatsyApp.VisView = Backbone.View.extend({
         'left: ' + (-chartArea.offsetWidth * 2) + 'px;');
     document.body.appendChild(canvas);
     canvg(canvas, svg);
+    // canvg(canvas, (new XMLSerializer()).serializeToString(svg), { ignoreMouse: true, ignoreAnimation: true });
     Canvas2Image.saveAsPNG(canvas);
     canvas.parentNode.removeChild(canvas);
   }
