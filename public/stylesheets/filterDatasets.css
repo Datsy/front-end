@@ -29,6 +29,9 @@
 .filter-page .filter-suggestions div.tag-suggestion:nth-child(even) {
   background-color: #eee;
 }
+.filter-page .filterResults h1 {
+  margin-top: 0;
+}
 .filter-page .filterResults h3 {
   margin-top: 3px;
 }
@@ -50,6 +53,7 @@
   color: transparent;
 }
 .filter-page .filterResults #seeDataBases {
+  text-align: center;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -66,7 +70,7 @@
     margin-top: 80px;
   }
   .filterResults {
-    margin-top: 70px;
+    margin-top: 0;
   }
   .col-md-9 {
     width: 100%;

@@ -30,11 +30,13 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @
 
   renderLoaded: =>
-    tags = @tags.list()
-    suggested = new SuggestedTagsView { model: @datsyModel, tags: tags }
-    @$el.html suggested.render().el
+    tags = @tags.list()    
     singular = @tags.totalDataBases == 1
     @$el.html @template({ tags: tags, searchTag: @mainTag, occurance: @tags.totalDataBases, singular: singular })
+
+    suggested = new DatsyApp.SuggestedTagsView { model: @datsyModel, tags: tags }
+    suggested.on 'addTag', (=> @addSuggestedFilter )
+    @$el.append suggested.render().el
     @
 
   uppercase: (tags) ->
@@ -63,7 +65,9 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
 
   addSuggestedFilter: (event) ->
     tag = event.target.innerHTML
-    # Add filter, update view
+    @currentTags.push tag
+    @filterTags()
+    @updatePage()
 
   updatePage: =>
     @mainTag = @uppercase @currentTags

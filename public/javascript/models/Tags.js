@@ -14,10 +14,9 @@
       return _ref;
     }
 
-    Tags.prototype.rootUrl = 'http://datsy-dev.azurewebsites.net/search/tag';
+    Tags.prototype.rootUrl = '/tags';
 
     Tags.prototype.initialize = function() {
-      this.time = new Date().getTime();
       this.tagList = {};
       this.totalDataBases = 0;
       return this.fetch(this.rootUrl);
@@ -35,19 +34,11 @@
     };
 
     Tags.prototype.buildTags = function(data) {
-      var newTime,
-        _this = this;
-      console.log(data);
-      newTime = new Date().getTime();
-      console.log(newTime - this.time);
-      data = {
-        total: 1,
-        tags: data
-      };
+      var _this = this;
       this.totalDataBases = data.total;
       this.tagList = {};
       data.tags.forEach(function(datum) {
-        return _this.tagList[datum] = true;
+        return _this.tagList[datum.label] = datum.id;
       });
       return this.triggerLoaded();
     };
@@ -68,7 +59,14 @@
     };
 
     Tags.prototype.filter = function(tags) {
-      return this.fetch(this.rootUrl);
+      var url,
+        _this = this;
+      url = this.rootUrl + '?';
+      tags.forEach(function(tag) {
+        return url += 'tag=' + tag + '&';
+      });
+      url = url.slice(0, url.length - 1);
+      return this.fetch(url);
     };
 
     Tags.prototype.triggerLoaded = function() {

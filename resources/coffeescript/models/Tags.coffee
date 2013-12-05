@@ -1,9 +1,8 @@
 class DatsyApp.Tags extends Backbone.Model
   
-  rootUrl: 'http://datsy-dev.azurewebsites.net/search/tag',
+  rootUrl: '/tags',
 
   initialize: ->
-    @time = new Date().getTime()
     @tagList = {}
     @totalDataBases = 0
     @fetch @rootUrl
@@ -17,14 +16,10 @@ class DatsyApp.Tags extends Backbone.Model
     }
 
   buildTags: (data) =>
-    console.log data
-    newTime = new Date().getTime()
-    console.log newTime - @time
-    data = { total: 1, tags: data }
     @totalDataBases = data.total
     @tagList = {}
     data.tags.forEach (datum) =>
-      @tagList[datum] = true
+      @tagList[datum.label] = datum.id
     @triggerLoaded()
 
   has: (tag) ->
@@ -35,11 +30,11 @@ class DatsyApp.Tags extends Backbone.Model
       return tag
 
   filter: (tags) ->
-    # url = @rootUrl + '?'
-    # tags.forEach (tag) =>
-    #   url += 'tag=' + tag + '&'
-    # url = url.slice 0, url.length-1
-    @fetch @rootUrl
+    url = @rootUrl + '?'
+    tags.forEach (tag) =>
+      url += 'tag=' + tag + '&'
+    url = url.slice 0, url.length-1
+    @fetch url
 
   triggerLoaded: =>
     @trigger 'loaded'

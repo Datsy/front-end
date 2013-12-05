@@ -24,12 +24,14 @@
     };
 
     SuggestedTagsView.prototype.render = function() {
-      this.$el.html(this.template());
+      this.$el.html(this.template({
+        tags: this.tags
+      }));
       return this;
     };
 
     SuggestedTagsView.prototype.addTagToFilters = function() {
-      return console.log(event.target.innerHTML);
+      return this.trigger('addTag');
     };
 
     return SuggestedTagsView;

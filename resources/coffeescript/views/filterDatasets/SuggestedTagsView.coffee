@@ -11,9 +11,8 @@ class DatsyApp.SuggestedTagsView extends Backbone.View
     @
 
   render: ->
-    @$el.html @template()
+    @$el.html @template { tags: @tags }
     @
 
   addTagToFilters: ->
-    console.log event.target.innerHTML
- 
+    @trigger 'addTag'

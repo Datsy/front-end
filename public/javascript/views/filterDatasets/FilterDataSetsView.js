@@ -57,13 +57,9 @@
     };
 
     FilterDataSetsView.prototype.renderLoaded = function() {
-      var singular, suggested, tags;
+      var singular, suggested, tags,
+        _this = this;
       tags = this.tags.list();
-      suggested = new SuggestedTagsView({
-        model: this.datsyModel,
-        tags: tags
-      });
-      this.$el.html(suggested.render().el);
       singular = this.tags.totalDataBases === 1;
       this.$el.html(this.template({
         tags: tags,
@@ -71,6 +67,14 @@
         occurance: this.tags.totalDataBases,
         singular: singular
       }));
+      suggested = new DatsyApp.SuggestedTagsView({
+        model: this.datsyModel,
+        tags: tags
+      });
+      suggested.on('addTag', (function() {
+        return _this.addSuggestedFilter;
+      }));
+      this.$el.append(suggested.render().el);
       return this;
     };
 
@@ -120,7 +124,10 @@
 
     FilterDataSetsView.prototype.addSuggestedFilter = function(event) {
       var tag;
-      return tag = event.target.innerHTML;
+      tag = event.target.innerHTML;
+      this.currentTags.push(tag);
+      this.filterTags();
+      return this.updatePage();
     };
 
     FilterDataSetsView.prototype.updatePage = function() {
