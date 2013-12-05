@@ -22,41 +22,15 @@ class DatsyApp.Datsy extends Backbone.Model
 
   setVisualizationData: (columns) ->
     visualizationData = @get 'visualizationData'
-    visualizationData.setVisualizationData();
+    cart = @get('cart').getColumns()
+    visualizationData.setVisualizationData cart
     visualizationData.on 'loaded', @triggerVisDataLoaded
 
   triggerVisDataLoaded: =>
     @trigger 'visualizationDataLoaded'
 
-  # setCookie: (c_name, value, exdays) ->
-  #   exdate = new Date()
-  #   exdate.setDate(exdate.getDate() + exdays)
-  #   if (exdays == null) 
-  #     addTime = ""
-  #   else
-  #     addTime = "; expires=" + exdate.toUTCString()
-  #   c_value = escape(value) + addTime
-  #   document.cookie = c_name + "=" + c_value;
-  
-  # getCookie: (c_name) ->
-  #   c_value = document.cookie;
-  #   c_start = c_value.indexOf(" " + c_name + "=")
-  #   if (c_start == -1)
-  #     c_start = c_value.indexOf(c_name + "=")
-  #   if (c_start == -1)
-  #     c_value = null
-  #   else
-  #     c_start = c_value.indexOf("=", c_start) + 1
-  #     c_end = c_value.indexOf(";", c_start)
-  #     if (c_end == -1)
-  #       c_end = c_value.length
-  #     c_value = unescape(c_value.substring(c_start,c_end))
-  #   c_value
+  clearCart: ->
+    @get('cart').clearCart()
 
-  # checkCookie: (title) ->
-  #   cart = @getCookie(title);
-  #   if (cart != null && cart != "")
-  #     @cart = cart
-
-  # eraseCookie: (name) ->
-  #   @setCookie(name,"",-1)
+  cartInStorage: ->
+    return @get('cart').cartInStorage()

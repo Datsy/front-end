@@ -8,8 +8,8 @@ class DatsyApp.Cart extends Backbone.Model
       @checkStorage(@storageName)
 
   addColumn: (name, id) ->
-    @cart['values'][id] = @cart['values'][id] || {}
-    @cart['values'][id][name] = true
+    @cart['values'][id] = @cart['values'][id] || []
+    @cart['values'][id].push name
     @cart['total']++
     if @canStoreCart
       @addCartToStorage()
@@ -23,6 +23,19 @@ class DatsyApp.Cart extends Backbone.Model
   addCartToStorage: ->
     cart = JSON.stringify @cart
     localStorage[@storageName] = cart
+
+  clearCart: ->
+    @cart = { total: 0, values: { } }
+    @addCartToStorage()
+
+  cartInStorage: ->
+    if @canStoreCart && @cart.total > 0
+      return @cart
+    else
+      return false
+
+  getColumns: ->
+    return @cart.values
 
   supportsStorage: ->
     try

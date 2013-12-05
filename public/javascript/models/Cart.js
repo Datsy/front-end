@@ -24,8 +24,8 @@
     };
 
     Cart.prototype.addColumn = function(name, id) {
-      this.cart['values'][id] = this.cart['values'][id] || {};
-      this.cart['values'][id][name] = true;
+      this.cart['values'][id] = this.cart['values'][id] || [];
+      this.cart['values'][id].push(name);
       this.cart['total']++;
       if (this.canStoreCart) {
         this.addCartToStorage();
@@ -45,6 +45,26 @@
       var cart;
       cart = JSON.stringify(this.cart);
       return localStorage[this.storageName] = cart;
+    };
+
+    Cart.prototype.clearCart = function() {
+      this.cart = {
+        total: 0,
+        values: {}
+      };
+      return this.addCartToStorage();
+    };
+
+    Cart.prototype.cartInStorage = function() {
+      if (this.canStoreCart && this.cart.total > 0) {
+        return this.cart;
+      } else {
+        return false;
+      }
+    };
+
+    Cart.prototype.getColumns = function() {
+      return this.cart.values;
     };
 
     Cart.prototype.supportsStorage = function() {

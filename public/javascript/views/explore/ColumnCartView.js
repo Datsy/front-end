@@ -32,12 +32,19 @@
     };
 
     ColumnCartView.prototype.render = function() {
+      var _this = this;
       this.$el.html(this.template);
+      setTimeout((function() {
+        _this.columnList = $('#selectedColumns');
+        return _this.addExistingCart(_this.datsyModel.cartInStorage());
+      }), 1);
       return this;
     };
 
     ColumnCartView.prototype.clearCart = function() {
       $('.total-columns-added').text('0');
+      $('#go').prop('disabled', true);
+      $('#selectedColumns').html('<li class="list-group-item">No Columns Selected</li>');
       return this.trigger('clearCart');
     };
 
@@ -52,7 +59,33 @@
     };
 
     ColumnCartView.prototype.addColumn = function(params) {
-      return $('.total-columns-added').text(params.total);
+      if ($('#selectedColumns .list-group-item').get(0).innerHTML === 'No Columns Selected') {
+        $('#selectedColumns .list-group-item').get(0).remove();
+      }
+      this.columnList.append('<li class="list-group-item">' + params.columnName + '</li>');
+      $('.total-columns-added').text(params.total);
+      return $('#go').prop('disabled', false);
+    };
+
+    ColumnCartView.prototype.addExistingCart = function(cart) {
+      var columnArray, id, _ref1, _results,
+        _this = this;
+      if (cart) {
+        $('#go').prop('disabled', false);
+        _ref1 = cart.values;
+        _results = [];
+        for (id in _ref1) {
+          columnArray = _ref1[id];
+          _results.push(columnArray.forEach(function(column) {
+            return _this.addColumn({
+              columnName: column
+            });
+          }));
+        }
+        return _results;
+      } else {
+        return $('#go').prop('disabled', true);
+      }
     };
 
     return ColumnCartView;

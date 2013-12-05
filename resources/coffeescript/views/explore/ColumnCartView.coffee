@@ -14,10 +14,16 @@ class DatsyApp.ColumnCartView extends Backbone.View
 
   render: ->
     @$el.html @template
+    setTimeout (=>
+      @columnList = $('#selectedColumns')
+      @addExistingCart @datsyModel.cartInStorage()
+    ),1
     @
 
   clearCart: ->
     $('.total-columns-added').text('0')
+    $('#go').prop 'disabled', true
+    $('#selectedColumns').html('<li class="list-group-item">No Columns Selected</li>')
     @trigger 'clearCart'
 
   loadVisualization: ->
@@ -27,4 +33,17 @@ class DatsyApp.ColumnCartView extends Backbone.View
     @$el.css({'margin-top': $(window).scrollTop() })
 
   addColumn: (params) =>
+    if $('#selectedColumns .list-group-item').get(0).innerHTML == 'No Columns Selected'
+      $('#selectedColumns .list-group-item').get(0).remove()
+    @columnList.append('<li class="list-group-item">' + params.columnName + '</li>')
     $('.total-columns-added').text(params.total)
+    $('#go').prop 'disabled', false
+
+  addExistingCart: (cart) ->
+    if cart
+      $('#go').prop 'disabled', false
+      for id, columnArray of cart.values
+        columnArray.forEach (column) =>
+          @addColumn { columnName: column }
+    else
+      $('#go').prop 'disabled', true

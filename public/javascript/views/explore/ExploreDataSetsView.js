@@ -36,7 +36,7 @@
         datsyModel: this.datsyModel
       });
       this.cartView.on('clearCart', this.clearCart);
-      return this.cartView.on('loadVisualization', this.loadVisualization);
+      return this.datsyModel.on('visualizationDataLoaded', this.loadVisualization);
     };
 
     ExploreDataSetsView.prototype.render = function() {
@@ -51,11 +51,10 @@
     };
 
     ExploreDataSetsView.prototype.clearCart = function() {
-      return this.columnsForViewing.length = 0;
+      return this.datsyModel.clearCart();
     };
 
     ExploreDataSetsView.prototype.loadVisualization = function() {
-      this.datsyModel.setVisualizationData(this.columnsForViewing);
       return Backbone.history.navigate("/visualize", {
         trigger: true
       });

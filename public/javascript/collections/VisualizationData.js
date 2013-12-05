@@ -14,7 +14,6 @@
     }
 
     VisualizationData.prototype.initialize = function(options) {
-      this.allColumns = {};
       this.columnsForY = [];
       this.columnsForX = [];
       this.totalLoaded = 0;
@@ -22,25 +21,23 @@
       return this;
     };
 
-    VisualizationData.prototype.buildColumnRequest = function(columns) {
-      var _this = this;
-      return columns.forEach(function(column) {
-        _this.allColumns[column.datasetID] = _this.allColumns[column.datasetID] || [];
-        _this.allColumns[column.datasetID].push(column.columnName);
-        if (_this.allColumns[column.datasetID].indexOf('date') === -1) {
-          return _this.allColumns[column.datasetID].push('date');
+    VisualizationData.prototype.setVisualizationData = function(cart) {
+      var columnArray, id;
+      for (id in cart) {
+        columnArray = cart[id];
+        if (columnArray.indexOf('date') === -1) {
+          columnArray.push('date');
         }
-      });
+      }
+      return this.makeRequests(cart);
     };
 
-    VisualizationData.prototype.makeRequests = function() {
-      var columnArray, id, _ref1, _results,
+    VisualizationData.prototype.makeRequests = function(cart) {
+      var columnArray, id,
         _this = this;
-      _ref1 = this.allColumns;
-      _results = [];
-      for (id in _ref1) {
-        columnArray = _ref1[id];
-        _results.push(columnArray.forEach(function(name) {
+      for (id in cart) {
+        columnArray = cart[id];
+        columnArray.forEach(function(name) {
           var newX, newY;
           _this.total++;
           if (name === 'date') {
@@ -58,9 +55,9 @@
             _this.columnsForY.push(newY);
             return newY.on('loaded', _this.tagLoaded);
           }
-        }));
+        });
       }
-      return _results;
+      return this;
     };
 
     VisualizationData.prototype.tagLoaded = function() {
