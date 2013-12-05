@@ -16,6 +16,10 @@
 
     ExploreMainView.prototype.className = 'mainView col-md-9';
 
+    ExploreMainView.prototype.events = {
+      'click #sort_table_name, #sort_author, #sort_rating': 'sort'
+    };
+
     ExploreMainView.prototype.initialize = function(options) {
       this.datsyModel = options.datsyModel;
       this.columnsForViewing = [];
@@ -63,7 +67,7 @@
       target = event.target.id;
       this.databases.sortBy(target.slice(5, target.length).toLowerCase());
       this.$el.html('');
-      return this.renderLoaded();
+      return this.render();
     };
 
     ExploreMainView.prototype.triggerReady = function() {

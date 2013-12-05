@@ -21,7 +21,6 @@
 
     ListDataSetsView.prototype.render = function() {
       var _this = this;
-      console.log(this.databases);
       this.databases.each(function(model) {
         var panel;
         panel = new DatsyApp.DataSetItemView({
@@ -29,7 +28,6 @@
           dataSetColumnTemplate: _this.dataSetColumnTemplate,
           model: model
         });
-        console.log(panel);
         _this.$el.append('<div><div class="dataset-table-name">' + model.attributes.table_name + '</div><div class="dataset-source">' + model.attributes.author + '</div><div class="dataset-rating"><span class="glyphicon glyphicon-star"></span></div></div>');
         return _this.$el.append(panel.render().el);
       });

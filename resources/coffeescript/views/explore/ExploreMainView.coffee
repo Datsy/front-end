@@ -2,6 +2,9 @@ class DatsyApp.ExploreMainView extends Backbone.View
 
   className: 'mainView col-md-9'
 
+  events:
+    'click #sort_table_name, #sort_author, #sort_rating': 'sort'
+
   initialize: (options) ->
     @datsyModel = options.datsyModel
     @columnsForViewing = []
@@ -38,7 +41,7 @@ class DatsyApp.ExploreMainView extends Backbone.View
     target = event.target.id
     @databases.sortBy target.slice(5,target.length).toLowerCase()
     @$el.html ''
-    @renderLoaded()
+    @render()
 
   triggerReady: =>
     @trigger 'ready'

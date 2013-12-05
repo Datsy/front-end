@@ -18,9 +18,7 @@
 
     ColumnCartView.prototype.events = {
       'click #clear': 'clearCart',
-      'click #go': 'loadVisualization',
-      'mouseover .cart-text': 'viewSelectedColumns',
-      'mouseout .cart-text': 'hideSelectedColumns'
+      'click #go': 'loadVisualization'
     };
 
     ColumnCartView.prototype.initialize = function(options) {
@@ -29,7 +27,6 @@
       this.template = this.datsyModel.get('templates')['columnCart'];
       this.datsyModel.on('addColumn', this.addColumn);
       this.columnData = [];
-      this.popoverContent = '<p class="popover-item">No columns selected</p>';
       return $(window).scroll((function() {
         return _this.setTopPos();
       }));
@@ -48,7 +45,6 @@
 
     ColumnCartView.prototype.clearCart = function() {
       $('.total-columns-added').text('0');
-      this.popoverContent = '<p class="popover-item">No columns selected</p>';
       return this.trigger('clearCart');
     };
 
@@ -56,21 +52,8 @@
       return this.trigger('loadVisualization');
     };
 
-    ColumnCartView.prototype.viewSelectedColumns = function() {
-      $('.cart-text').popover('show');
-      return $('.popover-content').html(this.popoverContent);
-    };
-
-    ColumnCartView.prototype.hideSelectedColumns = function() {
-      return $('.cart-text').popover('hide');
-    };
-
     ColumnCartView.prototype.addColumn = function(columnData) {
-      this.columnData.push(columnData);
-      if (this.popoverContent === '<p class="popover-item">No columns selected</p>') {
-        this.popoverContent = '';
-      }
-      return this.popoverContent += '<p class="popover-item">' + columnData.columnName + '</p>';
+      return this.columnData.push(columnData);
     };
 
     ColumnCartView.prototype.setTopPos = function() {
