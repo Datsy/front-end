@@ -27,3 +27,4 @@ class DatsyApp.ListDataSetsView extends Backbone.View
       names.author = names.author.slice(0,23)
       names.author += '...'
     names
+    
