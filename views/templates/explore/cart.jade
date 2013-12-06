@@ -1,13 +1,20 @@
-div.row.cart
-  div.panel.panel-default
-    div.panel-heading
-      h4.text-center.panel-title Column Cart
-    div.panel-body
-      div.cart-text.col-sm-5(data-container="body", data-trigger="hover", data-toggle="popover", data-placement="bottom", data-title="Selected Columns")
-        p Total Columns:
-        p.total-columns-added 0
-      div.clear-button.col-sm-3
+div.panel.panel-default
+  div.panel-heading
+    h4.text-center.panel-title Column Cart
+  div.panel-body
+    div.cart-text.col-sm-12
+      p Total Columns Selected: 
+        span.total-columns-added 0
+    div.row
+      div.clear-button.col-md-6.text-center
         button#clear.btn.btn-sm.btn-success Clear
-      div.go-button.col-sm-3
+      div.go-button.col-md-6.text-center
         button#go.btn.btn-sm.btn-success Go!
 
+div.panel.panel-default.selected-columns
+  div.panel-heading
+    h4.text-center.panel-title Selected Columns
+  div.panel-body
+    ul#selectedColumns.list-group
+      li.list-group-item No Columns Selected
+//- (data-container="body", data-trigger="hover", data-toggle="popover", data-placement="bottom", data-title="Selected Columns")

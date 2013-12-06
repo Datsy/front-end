@@ -1,0 +1,130 @@
+.verticalCenter
+  height 300px
+  margin-top 50px
+  margin-bottom 60px
+
+  h1
+    margin 0
+
+  h2
+    margin 5px 0 15px 0
+
+  img
+    margin 0 auto
+
+.filter-page
+  margin-top 100px
+
+  .filter-suggestions
+
+    .panel-heading
+      h5
+        font-size 13px
+        font-weight 700
+
+    .panel-body
+      padding 3px 2px
+
+      ul
+        margin-bottom 0
+
+        .list-group-item
+          padding 5px 15px
+          font-size 12px
+          text-align center
+          cursor pointer
+          background-color #fff
+
+        .list-group-item:hover
+          background-color #ddd
+
+    div.tag-suggestion
+
+      p
+        margin 0
+        padding 3px 5px
+        cursor pointer
+
+      p:hover
+        font-weight 600
+
+    div.tag-suggestion:nth-child(even)
+      background-color #eee
+
+  .results-box
+    padding-top 15px
+
+  .filterResults
+
+    h1
+      margin-top 0
+    
+    h3
+      margin-top 3px
+  
+    .current-tags
+      margin 20px 0
+
+      h4
+        display inline-block
+        margin 0 5px
+
+        .glyphicon
+          padding-left 8px
+          padding-right 15px
+          cursor pointer
+
+    .panel-heading
+      padding 5px 0 7px 0
+
+      h3
+        font-weight 600
+        color #777
+
+    form
+      margin-top 20px
+      height 40px
+
+    input[type='text']
+      text-align center
+      font-size 18px
+    
+    input[type='text']:focus
+      border-color #999
+      box-shadow none
+
+    input[type='text']:focus::-webkit-input-placeholder
+      color transparent
+    
+    input[type='text']:focus::-moz-placeholder
+      color transparent
+
+    #seeDataBases
+      text-align center
+      margin-top 10px
+      margin-bottom 20px
+      letter-spacing 1.5px
+      font-weight 800
+
+      span
+        padding-left 5px
+
+@media all and (max-width: 990px) and (min-width: 640px)
+  .col-md-10
+    width 100%
+  .col-md-offset-5
+    margin-left 37.66666667%
+
+@media all and (max-width: 767px)
+  .verticalCenter
+    margin-top 80px
+
+  .filterResults
+    margin-top 0
+
+  .col-md-9
+    width 100%
+  
+  .col-md-offset-5
+    width 90%
+    margin-left 5%

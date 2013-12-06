@@ -17,6 +17,8 @@
       this.set('AppName', 'Datsy');
       this.set('chartType', 'lineChart');
       this.set('tags', new DatsyApp.Tags());
+      this.set('visualizationData', new DatsyApp.VisualizationData());
+      this.set('cart', new DatsyApp.Cart());
       return this;
     };
 
@@ -32,24 +34,35 @@
       return tags.list();
     };
 
-    Datsy.prototype.triggerAddColumn = function(columnName, datasetID) {
+    Datsy.prototype.addColumn = function(columnName, datasetID) {
+      var cart, total;
+      cart = this.get('cart');
+      total = cart.addColumn(columnName, datasetID);
       return this.trigger('addColumn', {
+        total: total,
         columnName: columnName,
         datasetID: datasetID
       });
     };
 
     Datsy.prototype.setVisualizationData = function(columns) {
-      var visualizationData;
-      visualizationData = new DatsyApp.VisualizationData({
-        columns: columns
-      });
-      this.set('visualizationData', visualizationData);
+      var cart, visualizationData;
+      visualizationData = this.get('visualizationData');
+      cart = this.get('cart').getColumns();
+      visualizationData.setVisualizationData(cart);
       return visualizationData.on('loaded', this.triggerVisDataLoaded);
     };
 
     Datsy.prototype.triggerVisDataLoaded = function() {
       return this.trigger('visualizationDataLoaded');
+    };
+
+    Datsy.prototype.clearCart = function() {
+      return this.get('cart').clearCart();
+    };
+
+    Datsy.prototype.cartInStorage = function() {
+      return this.get('cart').cartInStorage();
     };
 
     return Datsy;

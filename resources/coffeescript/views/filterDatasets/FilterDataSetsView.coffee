@@ -1,9 +1,13 @@
 class DatsyApp.FilterDataSetsView extends Backbone.View
   
+  className: 'container filter-page',
+
   events:
     'focus #filterTagSearch': 'setUpTags',
-    'click #addFilters': 'addFilters',
-    'click #seeDataBases': 'loadExploreView'
+    'click .input-group-btn': 'addFilters',
+    'click .tag-suggestion': 'addSuggestedFilter',
+    'click #seeDataBases': 'loadExploreView',
+    'click .glyphicon-remove-sign': 'removeTopic'
 
   initialize: (options) ->
     @datsyModel = options.datsyModel
@@ -27,8 +31,14 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @
 
   renderLoaded: =>
+    maintags = @mainTag.split(' & ')
+    tags = @tags.list()    
     singular = @tags.totalDataBases == 1
-    @$el.html @template({ searchTag: @mainTag, occurance: @tags.totalDataBases, singular: singular })
+    @$el.html @template({ tags: maintags, occurance: @tags.totalDataBases, singular: singular })
+
+    suggested = new DatsyApp.SuggestedTagsView { model: @datsyModel, tags: tags }
+    suggested.on 'addTag', (=> @addSuggestedFilter )
+    @$el.append suggested.render().el
     @
 
   uppercase: (tags) ->
@@ -46,6 +56,14 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
   filterTags: ->
     @tags.filter @currentTags
 
+  removeTopic: ->
+    tag = event.target.parentElement.innerText.toLowerCase()
+    index = @currentTags.indexOf(tag)
+    @currentTags.splice index, index+1
+    debugger
+    @filterTags()
+    @updatePage()
+
   addFilters: ->
     newTag = $('#filterTagSearch').val()
     return false if newTag == ''
@@ -55,6 +73,11 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @filterTags()
     @updatePage()
 
+  addSuggestedFilter: (event) ->
+    tag = event.target.innerHTML
+    @currentTags.push tag
+    @filterTags()
+    @updatePage()
 
   updatePage: =>
     @mainTag = @uppercase @currentTags

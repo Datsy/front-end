@@ -15,10 +15,14 @@
       return _ref;
     }
 
+    FilterDataSetsView.prototype.className = 'container filter-page';
+
     FilterDataSetsView.prototype.events = {
       'focus #filterTagSearch': 'setUpTags',
-      'click #addFilters': 'addFilters',
-      'click #seeDataBases': 'loadExploreView'
+      'click .input-group-btn': 'addFilters',
+      'click .tag-suggestion': 'addSuggestedFilter',
+      'click #seeDataBases': 'loadExploreView',
+      'click .glyphicon-remove-sign': 'removeTopic'
     };
 
     FilterDataSetsView.prototype.initialize = function(options) {
@@ -54,13 +58,24 @@
     };
 
     FilterDataSetsView.prototype.renderLoaded = function() {
-      var singular;
+      var maintags, singular, suggested, tags,
+        _this = this;
+      maintags = this.mainTag.split(' & ');
+      tags = this.tags.list();
       singular = this.tags.totalDataBases === 1;
       this.$el.html(this.template({
-        searchTag: this.mainTag,
+        tags: maintags,
         occurance: this.tags.totalDataBases,
         singular: singular
       }));
+      suggested = new DatsyApp.SuggestedTagsView({
+        model: this.datsyModel,
+        tags: tags
+      });
+      suggested.on('addTag', (function() {
+        return _this.addSuggestedFilter;
+      }));
+      this.$el.append(suggested.render().el);
       return this;
     };
 
@@ -93,6 +108,16 @@
       return this.tags.filter(this.currentTags);
     };
 
+    FilterDataSetsView.prototype.removeTopic = function() {
+      var index, tag;
+      tag = event.target.parentElement.innerText.toLowerCase();
+      index = this.currentTags.indexOf(tag);
+      this.currentTags.splice(index, index + 1);
+      debugger;
+      this.filterTags();
+      return this.updatePage();
+    };
+
     FilterDataSetsView.prototype.addFilters = function() {
       var newTag, tagArray;
       newTag = $('#filterTagSearch').val();
@@ -104,6 +129,14 @@
         return false;
       }
       this.currentTags.push(newTag);
+      this.filterTags();
+      return this.updatePage();
+    };
+
+    FilterDataSetsView.prototype.addSuggestedFilter = function(event) {
+      var tag;
+      tag = event.target.innerHTML;
+      this.currentTags.push(tag);
       this.filterTags();
       return this.updatePage();
     };

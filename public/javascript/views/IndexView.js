@@ -17,10 +17,12 @@
     };
 
     IndexView.prototype.initialize = function(options) {
+      var _this = this;
       this.template = this.model.get('templates')['indexView'];
       this.tags = [];
-      _.bindAll(this, 'removeBackground');
-      return $(window).scroll(this.removeBackground);
+      return $(window).scroll((function() {
+        return _this.removeBackground();
+      }));
     };
 
     IndexView.prototype.render = function() {
@@ -32,13 +34,13 @@
       var tag;
       e && e.preventDefault();
       tag = $('#getStartedForm').val();
-      if (this.tagExists(tag)) {
-        tag = tag.split(' ').join('_');
-        return Backbone.history.navigate("/filterDatasets/" + tag, {
+      if (tag === '') {
+        return Backbone.history.navigate("/filterDatasets", {
           trigger: true
         });
       } else {
-        return Backbone.history.navigate("/filterDatasets", {
+        tag = tag.split(' ').join('_');
+        return Backbone.history.navigate("/filterDatasets/" + tag, {
           trigger: true
         });
       }

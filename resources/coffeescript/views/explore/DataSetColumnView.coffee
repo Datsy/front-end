@@ -23,7 +23,7 @@ class DatsyApp.DataSetColumnView extends Backbone.View
     @sampleDataModelView.once 'done', @deleteModalView
 
   addColumnForVis: ->
-    @datsyModel.triggerAddColumn @model.name, @datasetID
+    @datsyModel.addColumn @model.name, @datasetID
 
   showModal: =>
     @sampleDataModelView.show()
