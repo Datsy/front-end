@@ -2,6 +2,7 @@ class DatsyApp.Datsy extends Backbone.Model
 
   initialize: ->
     @set 'AppName', 'Datsy'
+    @set 'chartType', 'lineChart'
     @set 'tags', new DatsyApp.Tags()
     @set 'visualizationData',  new DatsyApp.VisualizationData()
     @set 'cart', new DatsyApp.Cart()

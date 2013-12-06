@@ -3,6 +3,16 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    connect: {
+      test: {
+        options: {
+          port: 9001,
+          hostname: 'localhost',
+          base: '.'
+        }
+      }
+    },
+
     coffee: {
       build: {
         expand: true,
@@ -16,7 +26,7 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
-          pretty: false
+          pretty: true
         },
         files: [ {
           cwd: "views",
@@ -34,7 +44,7 @@ module.exports = function(grunt) {
         'public/javascript/collections/*.js',
         'public/javascript/router/*.js',
         'public/javascript/views/helperViews/*.js',
-        'public/javascript/views/**/*.js',
+        'public/javascript/views/**/*.js'
       ],
       options: {
         outfile: 'spec/SpecRunner.html',
@@ -65,6 +75,7 @@ module.exports = function(grunt) {
 
   });
 
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');

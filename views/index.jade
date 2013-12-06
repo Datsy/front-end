@@ -12,7 +12,6 @@ html
     link(rel='stylesheet', href='/stylesheets/explorer.css')
     link(rel='stylesheet', href='/stylesheets/visualizer.css')
     
-
     link(rel="icon", type="image/png", href="images/icon.png")
     script(src="bower_components/jquery/jquery.min.js")
     script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
@@ -22,9 +21,9 @@ html
     script(src="bower_components/d3/d3.js")
     script(src="bower_components/nvd3/nv.d3.min.js")  
     script(src="bower_components/jqueryui/ui/minified/jquery-ui.min.js")
-    script(src="js/vendor/rgbcolor.js")
-    script(src="js/vendor/canvg.js")
-    script(src="js/vendor/canvas2image.js")
+    script(src="vendor/rgbcolor.js")
+    script(src="vendor/canvg.js")
+    script(src="vendor/canvas2image.js")
 
   body
 
@@ -118,17 +117,13 @@ html
     script(src="javascript/views/explore/ColumnCartView.js")
 
     //- Visualizer Views
-    script(src="js/views/visualization/SvgBackboneView.js")
-    script(src="js/views/visualization/ChartView.js")
-    script(src="js/views/visualization/VisView.js")
+    script(src="javascript/views/visualization/SvgBackboneView.js")
+    script(src="javascript/views/visualization/ChartView.js")
+    script(src="javascript/views/visualization/VisView.js")
 
     //- Chart Types
-    script(src="js/views/visualization/graphs/chartHelpers.js")
-    script(src="js/views/visualization/graphs/lineChart.js")
-    script(src="js/views/visualization/graphs/stackedArea.js")
-    script(src="js/views/visualization/graphs/stackedMultiBar.js")      
-    script(src="js/views/visualization/graphs/scatterBubble.js")  
-    //- script(src="js/views/visualization/graphs/streamGraph.js")
+    script(src="javascript/views/visualization/graphs/chartHelpers.js")
+    script(src="javascript/views/visualization/graphs/charts.js")
 
     script(src="javascript/router/router.js")
   
@@ -147,3 +142,6 @@ html
       });
 
       var datsyApp = new DatsyApp.DatsyView({ model: datsy });
+
+      _.extend(window, Backbone.Events);
+      window.onresize = function() { window.trigger('resize') };
