@@ -15,6 +15,7 @@
 
     Datsy.prototype.initialize = function() {
       this.set('AppName', 'Datsy');
+      this.set('chartType', 'lineChart');
       this.set('tags', new DatsyApp.Tags());
       return this;
     };
