@@ -15,8 +15,8 @@
 
     VisualizationDataColumn.prototype.initialize = function(options) {
       this.columnName = options.columnName;
-      this.datasetID = options.datasetID;
-      this.url = '/column?id=' + this.datasetID + '&name=' + this.columnName + '&rows=ALL';
+      this.datasetName = options.datasetName;
+      this.url = 'http://datsy-dev.azurewebsites.net/search/table?name' + this.datasetName + '&row=ALL&column=' + this.columnName;
       return this.fetch(this.url);
     };
 

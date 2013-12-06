@@ -2,8 +2,8 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
 
   initialize: (options) ->
     @columnName = options.columnName
-    @datasetID = options.datasetID
-    @url = '/column?id=' + @datasetID + '&name=' + @columnName + '&rows=ALL'
+    @datasetName = options.datasetName
+    @url = 'http://datsy-dev.azurewebsites.net/search/table?name' + @datasetName + '&row=ALL&column=' + @columnName
     @fetch @url
 
   fetch: (url) ->
