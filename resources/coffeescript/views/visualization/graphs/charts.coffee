@@ -38,13 +38,18 @@ class DatsyApp.Charts
     testdata[6].type = "bar"
     testdata[6].yAxis = 2
 
+    data[0].type = "line"
+    data[0].yAxis = 1
+    data[1].type = "line"
+    data[1].yAxis = 2
+
     return nv.addGraph ->
       chart = nv.models.multiChart()
         .margin({top: 30, right: 60, bottom: 50, left: 70})
         .color(d3.scale.category10().range())
 
-      chart.xAxis
-        .tickFormat(d3.format(',f'))
+      chart.xAxis.tickFormat (d) ->
+        d3.time.format("%b") new Date(d)
 
       chart.yAxis1
         .tickFormat(d3.format(',.1f'))
@@ -54,7 +59,7 @@ class DatsyApp.Charts
 
 
       d3.select('#graph svg')
-          .datum(testdata)
+          .datum(data)
         .transition().duration(500).call(chart)
 
       return chart

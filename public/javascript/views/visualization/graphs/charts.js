@@ -46,6 +46,10 @@
       testdata[5].yAxis = 2;
       testdata[6].type = "bar";
       testdata[6].yAxis = 2;
+      data[0].type = "line";
+      data[0].yAxis = 1;
+      data[1].type = "line";
+      data[1].yAxis = 2;
       return nv.addGraph(function() {
         var chart;
         chart = nv.models.multiChart().margin({
@@ -54,10 +58,12 @@
           bottom: 50,
           left: 70
         }).color(d3.scale.category10().range());
-        chart.xAxis.tickFormat(d3.format(',f'));
+        chart.xAxis.tickFormat(function(d) {
+          return d3.time.format("%b")(new Date(d));
+        });
         chart.yAxis1.tickFormat(d3.format(',.1f'));
         chart.yAxis2.tickFormat(d3.format(',.1f'));
-        d3.select('#graph svg').datum(testdata).transition().duration(500).call(chart);
+        d3.select('#graph svg').datum(data).transition().duration(500).call(chart);
         return chart;
       });
     };
