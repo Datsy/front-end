@@ -23,7 +23,6 @@ class DatsyApp.Tags extends Backbone.Model
     data.tag.forEach (tag) =>
       tag = tag.toLowerCase()
       @tagList.push tag if @tagList.indexOf(tag) is -1
-    console.log 'CHECK WITH BACK END API TEAM IF DUPES ARE ALREDY removed'
     @allTags = @tagList if !@allTags.length
     @triggerLoaded()
 

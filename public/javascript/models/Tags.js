@@ -46,7 +46,6 @@
           return _this.tagList.push(tag);
         }
       });
-      console.log('CHECK WITH BACK END API TEAM IF DUPES ARE ALREDY removed');
       if (!this.allTags.length) {
         this.allTags = this.tagList;
       }

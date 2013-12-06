@@ -31,6 +31,8 @@ class DatsyApp.ExploreMainView extends Backbone.View
       url += '?'
       tags = path.split('/')
       tags.forEach (tag) ->
+        if tag.split('_').length > 1
+          tag = tag.split('_').join('+')
         url += 'tag=' + tag + '&'
       url = url.slice(0, url.length-1)
     new DatsyApp.Databases { url: url }

@@ -29,6 +29,7 @@
 
     Databases.prototype.fetch = function() {
       var _this = this;
+      console.log(this.url);
       return $.ajax({
         url: this.url,
         method: 'GET',

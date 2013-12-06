@@ -96,6 +96,8 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     url = '/explore'
     if @currentTags.length
       @currentTags.forEach (tag) =>
+        if tag.split(' ').length > 1
+          tag = tag.split(' ').join('_')
         url += '/' + tag
     Backbone.history.navigate url, {trigger: true}
 

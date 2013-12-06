@@ -50,6 +50,9 @@
         url += '?';
         tags = path.split('/');
         tags.forEach(function(tag) {
+          if (tag.split('_').length > 1) {
+            tag = tag.split('_').join('+');
+          }
           return url += 'tag=' + tag + '&';
         });
         url = url.slice(0, url.length - 1);

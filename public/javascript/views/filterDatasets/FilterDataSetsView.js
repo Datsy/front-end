@@ -166,6 +166,9 @@
       url = '/explore';
       if (this.currentTags.length) {
         this.currentTags.forEach(function(tag) {
+          if (tag.split(' ').length > 1) {
+            tag = tag.split(' ').join('_');
+          }
           return url += '/' + tag;
         });
       }

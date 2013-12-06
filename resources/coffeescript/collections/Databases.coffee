@@ -11,6 +11,7 @@ class DatsyApp.Databases extends Backbone.Collection
     @length = @models.length
 
   fetch: ->
+    console.log @url
     $.ajax {
       url: @url,
       method: 'GET',
