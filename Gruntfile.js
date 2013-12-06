@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
-          pretty: false
+          pretty: true
         },
         files: [ {
           cwd: "views",
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         'public/javascript/collections/*.js',
         'public/javascript/router/*.js',
         'public/javascript/views/helperViews/*.js',
-        'public/javascript/views/**/*.js',
+        'public/javascript/views/**/*.js'
       ],
       options: {
         outfile: 'spec/SpecRunner.html',
