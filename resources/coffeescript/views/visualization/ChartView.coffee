@@ -1,53 +1,79 @@
 class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
+  events: {}
+  tagName: "svg"
 
-  tagName: 'svg'
-
-  initialize (options) ->
-    this.currentXModel = null
-    this.currentYModel = null
-    this.chartWidth = $('.container').width()
-    this.chartHeight = this.chartWidth / 2
-    this.rawData = {
-      x: [],
+  initialize: (options) ->
+    @currentXModel = null
+    @currentYModel = null
+    @chartWidth = $(".container").width()
+    @chartHeight = @chartWidth / 2
+    @rawData =
+      x: []
       yValues: {}
-    }
-    this.convertData(options.data)
-    
-    this.margin = {top: 20, right: 140, bottom: 30, left: 20}
-    this.padding = 50
-    this.width = this.chartWidth - this.margin.left - this.margin.right
-    this.height = this.chartHeight - this.margin.top - this.margin.bottom
+    debugger
+    @convertData options
 
-  render ->
-    d3.select(this.el).selectAll('*').remove()
-    chartType = this.model.get('chartType')
+    @margin =
+      top: 20
+      right: 140
+      bottom: 30
+      left: 20
 
-    renderLineChart(this.data) if chartType === 'lineChart'
-    renderLineChart2Y(this.data) if chartType === 'lineChart2Y'
-    renderStackedAreaChart(this.data) if chartType === 'stackedArea'
-    renderStackedMultiBar(this.data) if chartType === 'stackedMultiBar'
-    renderScatterBubbleGraph(this.data) if chartType === 'scatterBubble'
+    @padding = 50
+    @width = @chartWidth - @margin.left - @margin.right
+    @height = @chartHeight - @margin.top - @margin.bottom
+    @chartHelpers = new DatsyApp.ChartHelpers()
+    @graphs = new DatsyApp.Graphs()
 
-    return this.$el;
+  render: ->
+    d3.select(@el).selectAll("*").remove()
+    chartType = @model.get("chartType")
+    if chartType is "lineChart"
+      console.log('data: ', @data)
+      @graphs.renderLineChart @data
+    else if chartType is "lineChart2Y"
+      @visualizations.graphs.renderLineChart2Y @data
+    else if chartType is "stackedArea"
+      @visualizations.graphs.renderStackedAreaChart @data
+    else if chartType is "stackedMultiBar"
+      @visualizations.graphs.renderStackedMultiBar @data
+    else @visualizations.graphs.renderScatterBubbleGraph @data if chartType is "scatterBubble"
+    @$el
 
-  renderChart ->
-    this.trigger('renderChart', { chartView: true, x: this.currentXModel, y: this.currentYModel })
+  renderChart: ->
+    @trigger "renderChart",
+      chartView: true
+      x: @currentXModel
+      y: @currentYModel
 
-  convertData (data) ->
+
+  convertData: (options) ->
     _this = this
-    this.rawData.x = data.columnsForX[0].getColumnData()
-    _this.rawData.yValues[column.columnName] = column.getColumnData() for column in data.columnsForY
-    this.data = this.convertJSONForD3(this.rawData)
+    @rawData.x = options.data.columnsForX[0].getColumnData()
+    options.data.columnsForY.forEach (column) ->
+      _this.rawData.yValues[column.columnName] = column.getColumnData()
 
-  convertJSONForD3 (data) ->
+    @data = @convertJSONForD3(@rawData)
+
+  convertJSONForD3: (data) ->
     d3Data = []
-    colors = ['red','blue','green','black','magenta','cyan']
+    colors = ["red", "blue", "green", "black", "magenta", "cyan"]
     i = 0
-    for (key in data.yValues)
-      d3Data.push({key: key, values: [], color: colors[i] })
-      i++
-  
-    for(var i = 0; i < data.x.length; i++)
-      item.values.push({x: new Date(data.x[i]).getTime(), y: +data.yValues[item.key][i] }) for item in d3Data
+    for key of data.yValues
+      d3Data.push
+        key: key
+        values: []
+        color: colors[i]
 
-    return d3Data
+      i++
+    i = 0
+
+    while i < data.x.length
+      d3Data.forEach (item) ->
+        item.values.push
+          x: new Date(data.x[i]).getTime()
+          y: +data.yValues[item.key][i]
+
+
+      i++
+    d3Data

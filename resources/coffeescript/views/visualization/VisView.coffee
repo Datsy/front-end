@@ -1,109 +1,116 @@
-class DatsyApp.VisView extend Backbone.View
-
-  className: 'visView container'
-  
+class DatsyApp.VisView extends Backbone.View
+  className: "visView container"
   events:
-    'click button#lineChart': 'renderLineChart',
-    'click button#lineChart2Y': 'renderLineChart2Y',
-    'click button#stackedArea': 'renderStackedArea',
-    'click button#scatterBubble': 'renderScatterBubble',
-    'click button#stackedMultiBar': 'renderStackedMultiBar',
-    'click button#downloadPhoto': 'downloadPhoto'
+    "click button#lineChart": "renderLineChart"
+    "click button#lineChart2Y": "renderLineChart2Y"
+    "click button#stackedArea": "renderStackedArea"
+    "click button#scatterBubble": "renderScatterBubble"
+    "click button#stackedMultiBar": "renderStackedMultiBar"
+    "click button#downloadPhoto": "downloadPhoto"
 
-  initialize ->
-    this.loadingTemplate = this.model.get('templates')['visualizeLoading']
-    this.template = this.model.get('templates')['visualize']
-    var _this = this
-    this.listenTo(window, 'resize', this.resize)
-    this.model.on 'visualizationDataLoaded', ->
-       _this.currentGraphView = new DatsyApp.ChartView({ model: _this.model, data: _this.model.get('visualizationData') })
+  initialize: ->
+    @loadingTemplate = @model.get("templates")["visualizeLoading"]
+    @template = @model.get("templates")["visualize"]
+    _this = this
+    @listenTo window, "resize", @resize
+    @model.on "visualizationDataLoaded", ->
+      _this.currentGraphView = new DatsyApp.ChartView(
+        model: _this.model
+        data: _this.model.get("visualizationData")
+      )
       _this.renderLoaded.bind(_this)()
 
-  resize ->
+
+  resize: ->
+    
     # SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
-    this.currentGraphView.remove()
-    this.currentGraphView = new DatsyApp.ChartView({ model: _this.model, data: _this.model.get('visualizationData') })
-    var width = $('.container').width()
-    var height = width / 2
-    this.$graph = this.$el.find('#graph')
-    this.$graph.css({'height': height, 'width': width })
-    this.$graph.append( this.currentGraphView.render() )
+    @currentGraphView.remove()
+    @currentGraphView = new DatsyApp.ChartView(
+      model: _this.model
+      data: _this.model.get("visualizationData")
+    )
+    width = $(".container").width()
+    height = width / 2
+    @$graph = @$el.find("#graph")
+    @$graph.css
+      height: height
+      width: width
 
-  render ->
-    this.$el.html(this.loadingTemplate)
-    return this
+    @$graph.append @currentGraphView.render()
 
-  renderLoaded (chartType) ->
-    console.log('render loaded')
-    this.$el.html( this.template )
-    var w = $('.container').width()
-    var h = w / 2
-    this.$graph = this.$el.find('#graph')
-    this.$graph.css({'height': h, 'width': w })
-    this.$graph.append(this.currentGraphView.render(chartType))
-    return this
+  render: ->
+    @$el.html @loadingTemplate
+    this
 
-  renderLineChart ->
-    this.model.set('chartType', 'lineChart')
-    this.renderLoaded()
+  renderLoaded: (chartType) ->
+    console.log "render loaded"
+    @$el.html @template
+    w = $(".container").width()
+    h = w / 2
+    @$graph = @$el.find("#graph")
+    @$graph.css
+      height: h
+      width: w
 
-  renderLineChart2Y ->
-    this.model.set('chartType', 'lineChart2Y')
-    this.renderLoaded()
+    @$graph.append @currentGraphView.render(chartType)
+    this
 
-  renderStackedArea ->
-    this.model.set('chartType', 'stackedArea')
-    this.renderLoaded()
+  renderLineChart: ->
+    @model.set "chartType", "lineChart"
+    @renderLoaded()
 
-  renderStackedMultiBar ->
-    this.model.set('chartType', 'stackedMultiBar')
-    this.renderLoaded()
+  renderLineChart2Y: ->
+    @model.set "chartType", "lineChart2Y"
+    @renderLoaded()
 
-  renderScatterBubble ->
-    this.model.set('chartType', 'scatterBubble')
-    this.renderLoaded()
+  renderStackedArea: ->
+    @model.set "chartType", "stackedArea"
+    @renderLoaded()
 
-  downloadPhoto ->
-    dumpComputedStyles (elem,prop) ->
+  renderStackedMultiBar: ->
+    @model.set "chartType", "stackedMultiBar"
+    @renderLoaded()
+
+  renderScatterBubble: ->
+    @model.set "chartType", "scatterBubble"
+    @renderLoaded()
+
+  downloadPhoto: ->
+    dumpComputedStyles = (elem, prop) ->
       styles = {}
-      cs = window.getComputedStyle(elem,null)
-
-      if(cs)
+      cs = window.getComputedStyle(elem, null)
+      if cs
         len = cs.length
-        for (i=0;i<len;i++)
+        i = 0
+
+        while i < len
           style = cs[i]
           styles[style] = cs.getPropertyValue(style)
-      
-      return styles
-
-
-    svg = document.getElementsByTagName('svg')[0]
-    chartArea = document.getElementsByTagName('svg')[0].parentNode
-    canvas = document.createElement('canvas')
-    canvas.setAttribute('width', chartArea.offsetWidth)
-    canvas.setAttribute('height', chartArea.offsetHeight)
-    canvas.setAttribute('display', 'none')
-    
-    canvas.setAttribute(
-        'style',
-        'position: absolute; ' +
-        'top: ' + (-chartArea.offsetHeight * 2) + 'px;' +
-        'left: ' + (-chartArea.offsetWidth * 2) + 'px;')
-    document.body.appendChild(canvas)
-    
-    appendStyles (node) ->
+          i++
+      styles
+    svg = document.getElementsByTagName("svg")[0]
+    chartArea = document.getElementsByTagName("svg")[0].parentNode
+    canvas = document.createElement("canvas")
+    canvas.setAttribute "width", chartArea.offsetWidth
+    canvas.setAttribute "height", chartArea.offsetHeight
+    canvas.setAttribute "display", "none"
+    canvas.setAttribute "style", "position: absolute; " + "top: " + (-chartArea.offsetHeight * 2) + "px;" + "left: " + (-chartArea.offsetWidth * 2) + "px;"
+    document.body.appendChild canvas
+    appendStyles = (node) ->
       styles = dumpComputedStyles(node)
-      # node.style = styles
-      for(var key in styles)
+      
+      # node.style = styles;
+      for key of styles
         node[key] = styles[key]
+      debugger
+      i = 0
 
-      for(i = 0; i < node.childNodes.length; i++)
-        appendStyles(node.childNodes[i])
-
-      return node
+      while i < node.childNodes.length
+        appendStyles node.childNodes[i]
+        i++
+      node
 
     svg = appendStyles(svg)
-
-    canvg(canvas, svg.parentNode.innerHTML)
-    Canvas2Image.saveAsPNG(canvas)
-    canvas.parentNode.removeChild(canvas)
+    canvg canvas, svg.parentNode.innerHTML
+    Canvas2Image.saveAsPNG canvas
+    canvas.parentNode.removeChild canvas
