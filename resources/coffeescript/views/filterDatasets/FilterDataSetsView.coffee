@@ -30,9 +30,10 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @
 
   renderLoaded: =>
+    maintags = @mainTag.split(' & ')
     tags = @tags.list()    
     singular = @tags.totalDataBases == 1
-    @$el.html @template({ tags: tags, searchTag: @mainTag, occurance: @tags.totalDataBases, singular: singular })
+    @$el.html @template({ tags: maintags, occurance: @tags.totalDataBases, singular: singular })
 
     suggested = new DatsyApp.SuggestedTagsView { model: @datsyModel, tags: tags }
     suggested.on 'addTag', (=> @addSuggestedFilter )

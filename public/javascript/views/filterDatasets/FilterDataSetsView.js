@@ -57,13 +57,13 @@
     };
 
     FilterDataSetsView.prototype.renderLoaded = function() {
-      var singular, suggested, tags,
+      var maintags, singular, suggested, tags,
         _this = this;
+      maintags = this.mainTag.split(' & ');
       tags = this.tags.list();
       singular = this.tags.totalDataBases === 1;
       this.$el.html(this.template({
-        tags: tags,
-        searchTag: this.mainTag,
+        tags: maintags,
         occurance: this.tags.totalDataBases,
         singular: singular
       }));
