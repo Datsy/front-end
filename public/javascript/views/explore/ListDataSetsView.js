@@ -22,13 +22,14 @@
     ListDataSetsView.prototype.render = function() {
       var _this = this;
       this.databases.each(function(model) {
-        var panel;
+        var panel, shortenedNames;
         panel = new DatsyApp.DataSetItemView({
           datsyModel: _this.datsyModel,
           dataSetColumnTemplate: _this.dataSetColumnTemplate,
           model: model
         });
-        _this.$el.append('<div><div class="dataset-table-name">' + model.attributes.table_name + '</div><div class="dataset-source">' + model.attributes.author + '</div><div class="dataset-rating"><span class="glyphicon glyphicon-star"></span></div></div>');
+        shortenedNames = _this.shortenNames(model.attributes);
+        _this.$el.append('<div><div class="dataset-table-name">' + shortenedNames.title + '</div><div class="dataset-source">' + shortenedNames.author + '</div><div class="dataset-rating"><span class="glyphicon glyphicon-star"></span></div></div>');
         return _this.$el.append(panel.render().el);
       });
       setTimeout((function() {
@@ -40,6 +41,22 @@
         });
       }), 0);
       return this;
+    };
+
+    ListDataSetsView.prototype.shortenNames = function(attributes) {
+      var names;
+      names = {};
+      names.title = attributes.title;
+      if (names.title.length > 25) {
+        names.title = names.title.slice(0, 25);
+        names.title += '...';
+      }
+      names.author = attributes.author;
+      if (names.author.length > 23) {
+        names.author = names.author.slice(0, 23);
+        names.author += '...';
+      }
+      return names;
     };
 
     return ListDataSetsView;
