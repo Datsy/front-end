@@ -15,8 +15,25 @@
 .filter-page {
   margin-top: 100px;
 }
+.filter-page .filter-suggestions .panel-heading h5 {
+  font-size: 13px;
+  font-weight: 700;
+}
 .filter-page .filter-suggestions .panel-body {
   padding: 3px 2px;
+}
+.filter-page .filter-suggestions .panel-body ul {
+  margin-bottom: 0;
+}
+.filter-page .filter-suggestions .panel-body ul .list-group-item {
+  padding: 5px 15px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+}
+.filter-page .filter-suggestions .panel-body ul .list-group-item:hover {
+  background-color: #ddd;
 }
 .filter-page .filter-suggestions div.tag-suggestion p {
   margin: 0;

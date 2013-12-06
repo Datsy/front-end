@@ -1,8 +1,8 @@
-div.filter-suggestions.panel.panel-default
+div.panel.panel-default.filter-suggestions
   div.panel-heading
-    h4.panel-title Topic Suggestions
+    h5.text-center.panel-title Suggested Search Topics
   div.panel-body
-    {{#each tags}}
-    div.tag-suggestion
-      p {{ this }}
-    {{/each}}
+    ul.list-group
+      {{#each tags}}
+      li.list-group-item {{this}}
+      {{/each}}
