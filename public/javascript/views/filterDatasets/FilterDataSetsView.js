@@ -21,7 +21,8 @@
       'focus #filterTagSearch': 'setUpTags',
       'click .input-group-btn': 'addFilters',
       'click .tag-suggestion': 'addSuggestedFilter',
-      'click #seeDataBases': 'loadExploreView'
+      'click #seeDataBases': 'loadExploreView',
+      'click .glyphicon-remove-sign': 'removeTopic'
     };
 
     FilterDataSetsView.prototype.initialize = function(options) {
@@ -57,13 +58,13 @@
     };
 
     FilterDataSetsView.prototype.renderLoaded = function() {
-      var singular, suggested, tags,
+      var maintags, singular, suggested, tags,
         _this = this;
+      maintags = this.mainTag.split(' & ');
       tags = this.tags.list();
       singular = this.tags.totalDataBases === 1;
       this.$el.html(this.template({
-        tags: tags,
-        searchTag: this.mainTag,
+        tags: maintags,
         occurance: this.tags.totalDataBases,
         singular: singular
       }));
@@ -105,6 +106,16 @@
 
     FilterDataSetsView.prototype.filterTags = function() {
       return this.tags.filter(this.currentTags);
+    };
+
+    FilterDataSetsView.prototype.removeTopic = function() {
+      var index, tag;
+      tag = event.target.parentElement.innerText.toLowerCase();
+      index = this.currentTags.indexOf(tag);
+      this.currentTags.splice(index, index + 1);
+      debugger;
+      this.filterTags();
+      return this.updatePage();
     };
 
     FilterDataSetsView.prototype.addFilters = function() {
