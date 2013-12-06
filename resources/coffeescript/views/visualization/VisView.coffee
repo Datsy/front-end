@@ -102,7 +102,7 @@ class DatsyApp.VisView extends Backbone.View
       # node.style = styles;
       for key of styles
         node[key] = styles[key]
-      debugger
+
       i = 0
 
       while i < node.childNodes.length

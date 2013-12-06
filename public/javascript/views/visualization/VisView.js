@@ -130,7 +130,6 @@
         for (key in styles) {
           node[key] = styles[key];
         }
-        debugger;
         i = 0;
         while (i < node.childNodes.length) {
           appendStyles(node.childNodes[i]);
