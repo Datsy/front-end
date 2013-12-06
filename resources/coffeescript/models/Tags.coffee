@@ -17,6 +17,7 @@ class DatsyApp.Tags extends Backbone.Model
     }
 
   buildTags: (data) =>
+    console.log data
     @tagList = []
     @totalDataBases = data.total
     data.tag.forEach (tag) =>
@@ -35,6 +36,8 @@ class DatsyApp.Tags extends Backbone.Model
   filter: (tags) ->
     url = @rootUrl + '?'
     tags.forEach (tag) =>
+      if tag.split(' ').length > 1
+        tag = tag.split(' ').join('+')
       url += 'tag=' + tag + '&'
     url = url.slice 0, url.length-1
     @fetch url

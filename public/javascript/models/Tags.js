@@ -37,6 +37,7 @@
 
     Tags.prototype.buildTags = function(data) {
       var _this = this;
+      console.log(data);
       this.tagList = [];
       this.totalDataBases = data.total;
       data.tag.forEach(function(tag) {
@@ -69,6 +70,9 @@
         _this = this;
       url = this.rootUrl + '?';
       tags.forEach(function(tag) {
+        if (tag.split(' ').length > 1) {
+          tag = tag.split(' ').join('+');
+        }
         return url += 'tag=' + tag + '&';
       });
       url = url.slice(0, url.length - 1);
