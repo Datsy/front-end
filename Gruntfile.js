@@ -3,6 +3,16 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    connect: {
+      test: {
+        options: {
+          port: 9001,
+          hostname: 'localhost',
+          base: '.'
+        }
+      }
+    },
+
     coffee: {
       build: {
         expand: true,
@@ -65,6 +75,7 @@ module.exports = function(grunt) {
 
   });
 
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
