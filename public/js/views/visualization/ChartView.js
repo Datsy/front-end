@@ -29,7 +29,9 @@ DatsyApp.ChartView = DatsyApp.SvgBackboneView.extend({
 
     if(chartType === 'lineChart'){
       renderLineChart(this.data);
-    } else if(chartType === 'stackedArea'){
+    } else if(chartType === 'lineChart2Y'){
+      renderLineChart2Y(this.data);
+    } else if(chartType === 'stackedArea') {
       renderStackedAreaChart(this.data);
     } else if(chartType === 'stackedMultiBar'){
       renderStackedMultiBar(this.data);

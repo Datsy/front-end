@@ -4,6 +4,7 @@ DatsyApp.VisView = Backbone.View.extend({
   
   events: {
     'click button#lineChart': 'renderLineChart',
+    'click button#lineChart2Y': 'renderLineChart2Y',
     'click button#stackedArea': 'renderStackedArea',
     'click button#scatterBubble': 'renderScatterBubble',
     'click button#stackedMultiBar': 'renderStackedMultiBar',
@@ -53,6 +54,11 @@ DatsyApp.VisView = Backbone.View.extend({
     this.renderLoaded();
   },
 
+  renderLineChart2Y: function() {
+    this.model.set('chartType', 'lineChart2Y');
+    this.renderLoaded();
+  },
+
   renderStackedArea: function() {
     this.model.set('chartType', 'stackedArea');
     this.renderLoaded();
@@ -69,32 +75,26 @@ DatsyApp.VisView = Backbone.View.extend({
   },
 
   downloadPhoto: function() {
-   
+    function dumpComputedStyles(elem,prop) {
+      var styles = {};
+      var cs = window.getComputedStyle(elem,null);
+
+      if(cs) {
+        var len = cs.length;
+        for (var i=0;i<len;i++) {
+          var style = cs[i];
+          styles[style] = cs.getPropertyValue(style);
+        }
+      }
+      return styles;
+    }
+
+    var svg = document.getElementsByTagName('svg')[0];
     var chartArea = document.getElementsByTagName('svg')[0].parentNode;
-    var svg = chartArea.innerHTML;
     var canvas = document.createElement('canvas');
     canvas.setAttribute('width', chartArea.offsetWidth);
     canvas.setAttribute('height', chartArea.offsetHeight);
     canvas.setAttribute('display', 'none');
-  
-    var style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
-
-    style.textContent += '<![CDATA[\n';
-
-    // get stylesheet for svg
-    for (var i=0;i<document.styleSheets.length; i++) {
-      str = document.styleSheets[i].href;
-      if (str === "http://localhost:3000/bower_components/nvd3/nv.d3.min.css"){
-        var rules = document.styleSheets[i].rules;
-        for (var j=0; j<rules.length;j++){
-          style.textContent += (rules[j].cssText + "\n");
-        }
-        break;
-      }
-    }
-    style.textContent += "]]>";
-
-    $('svg').append(style);
     
     canvas.setAttribute(
         'style',
@@ -102,8 +102,25 @@ DatsyApp.VisView = Backbone.View.extend({
         'top: ' + (-chartArea.offsetHeight * 2) + 'px;' +
         'left: ' + (-chartArea.offsetWidth * 2) + 'px;');
     document.body.appendChild(canvas);
-    canvg(canvas, svg);
-    // canvg(canvas, (new XMLSerializer()).serializeToString(svg), { ignoreMouse: true, ignoreAnimation: true });
+    
+    var appendStyles = function(node){
+      var styles = dumpComputedStyles(node);
+      // node.style = styles;
+      for(var key in styles){
+        node[key] = styles[key];
+      }
+      debugger;
+
+      for(var i = 0; i < node.childNodes.length; i++){
+        appendStyles(node.childNodes[i]);
+      }
+
+      return node;
+    };
+
+    svg = appendStyles(svg);
+
+    canvg(canvas, svg.parentNode.innerHTML);
     Canvas2Image.saveAsPNG(canvas);
     canvas.parentNode.removeChild(canvas);
   }
