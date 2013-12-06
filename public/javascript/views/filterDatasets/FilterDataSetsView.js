@@ -9,6 +9,7 @@
 
     function FilterDataSetsView() {
       this.updatePage = __bind(this.updatePage, this);
+      this.newSearchForTag = __bind(this.newSearchForTag, this);
       this.setUpTags = __bind(this.setUpTags, this);
       this.renderLoaded = __bind(this.renderLoaded, this);
       _ref = FilterDataSetsView.__super__.constructor.apply(this, arguments);
@@ -58,8 +59,7 @@
     };
 
     FilterDataSetsView.prototype.renderLoaded = function() {
-      var maintags, singular, suggested, tags,
-        _this = this;
+      var maintags, singular, suggested, suggestedTags, tags;
       maintags = this.mainTag.split(' & ');
       tags = this.tags.list();
       singular = this.tags.totalDataBases === 1;
@@ -68,15 +68,18 @@
         occurance: this.tags.totalDataBases,
         singular: singular
       }));
+      suggestedTags = this.getRandomTags();
       suggested = new DatsyApp.SuggestedTagsView({
         model: this.datsyModel,
-        tags: tags
+        tags: suggestedTags
       });
-      suggested.on('addTag', (function() {
-        return _this.addSuggestedFilter;
-      }));
+      suggested.on('addTag', this.newSearchForTag);
       this.$el.append(suggested.render().el);
       return this;
+    };
+
+    FilterDataSetsView.prototype.getRandomTags = function() {
+      return this.tags.random(10);
     };
 
     FilterDataSetsView.prototype.uppercase = function(tags) {
@@ -133,10 +136,8 @@
       return this.updatePage();
     };
 
-    FilterDataSetsView.prototype.addSuggestedFilter = function(event) {
-      var tag;
-      tag = event.target.innerHTML;
-      this.currentTags.push(tag);
+    FilterDataSetsView.prototype.newSearchForTag = function(tag) {
+      this.currentTags = this.buildTags(tag);
       this.filterTags();
       return this.updatePage();
     };

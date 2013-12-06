@@ -36,10 +36,14 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     singular = @tags.totalDataBases == 1
     @$el.html @template({ tags: maintags, occurance: @tags.totalDataBases, singular: singular })
 
-    suggested = new DatsyApp.SuggestedTagsView { model: @datsyModel, tags: tags }
-    suggested.on 'addTag', (=> @addSuggestedFilter )
+    suggestedTags = @getRandomTags()
+    suggested = new DatsyApp.SuggestedTagsView { model: @datsyModel, tags: suggestedTags }
+    suggested.on 'addTag', @newSearchForTag
     @$el.append suggested.render().el
     @
+
+  getRandomTags: ->
+    return @tags.random(10)
 
   uppercase: (tags) ->
     array = tags.map (tag) =>
@@ -73,9 +77,8 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @filterTags()
     @updatePage()
 
-  addSuggestedFilter: (event) ->
-    tag = event.target.innerHTML
-    @currentTags.push tag
+  newSearchForTag: (tag) =>
+    @currentTags = @buildTags tag
     @filterTags()
     @updatePage()
 

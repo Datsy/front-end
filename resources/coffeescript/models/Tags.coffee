@@ -3,6 +3,7 @@ class DatsyApp.Tags extends Backbone.Model
   rootUrl: 'http://datsy-dev.azurewebsites.net/search/tag',
 
   initialize: ->
+    @allTags = []
     @tagList = []
     @totalDataBases = 0
     @fetch @rootUrl
@@ -16,12 +17,13 @@ class DatsyApp.Tags extends Backbone.Model
     }
 
   buildTags: (data) =>
-    console.log data
+    @tagList = []
     @totalDataBases = data.total
     data.tag.forEach (tag) =>
       tag = tag.toLowerCase()
       @tagList.push tag if @tagList.indexOf(tag) is -1
     console.log 'CHECK WITH BACK END API TEAM IF DUPES ARE ALREDY removed'
+    @allTags = @tagList if !@allTags.length
     @triggerLoaded()
 
   has: (tag) ->
@@ -39,3 +41,16 @@ class DatsyApp.Tags extends Backbone.Model
 
   triggerLoaded: =>
     @trigger 'loaded'
+
+  random: (num) =>
+    return @allTags if num >= @allTags.length
+    result = []
+    used = {}
+    [1..num].forEach =>
+      index = Math.floor(Math.random() * @allTags.length)
+      while used[index] == true
+        index = Math.floor(Math.random() * @allTags.length)
+      used[index] = true
+      result.push @allTags[index]
+    return result
+
