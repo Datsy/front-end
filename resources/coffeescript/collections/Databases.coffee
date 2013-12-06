@@ -22,6 +22,7 @@ class DatsyApp.Databases extends Backbone.Collection
     data.forEach (database) =>
       model = new DatsyApp.Database database
       @databases.push model
+    console.log @databases
     @sortBy ('table_name')
     @trigger 'add'
 

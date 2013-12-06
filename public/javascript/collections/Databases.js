@@ -45,6 +45,7 @@
         model = new DatsyApp.Database(database);
         return _this.databases.push(model);
       });
+      console.log(this.databases);
       this.sortBy('table_name');
       return this.trigger('add');
     };
