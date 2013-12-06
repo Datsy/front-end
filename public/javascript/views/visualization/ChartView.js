@@ -24,7 +24,6 @@
         x: [],
         yValues: {}
       };
-      debugger;
       this.convertData(options);
       this.margin = {
         top: 20,
@@ -35,8 +34,7 @@
       this.padding = 50;
       this.width = this.chartWidth - this.margin.left - this.margin.right;
       this.height = this.chartHeight - this.margin.top - this.margin.bottom;
-      this.chartHelpers = new DatsyApp.ChartHelpers();
-      return this.graphs = new DatsyApp.Graphs();
+      return this.graphs = new DatsyApp.Charts();
     };
 
     ChartView.prototype.render = function() {
@@ -44,17 +42,16 @@
       d3.select(this.el).selectAll("*").remove();
       chartType = this.model.get("chartType");
       if (chartType === "lineChart") {
-        console.log('data: ', this.data);
         this.graphs.renderLineChart(this.data);
       } else if (chartType === "lineChart2Y") {
-        this.visualizations.graphs.renderLineChart2Y(this.data);
+        this.graphs.renderLineChart2Y(this.data);
       } else if (chartType === "stackedArea") {
-        this.visualizations.graphs.renderStackedAreaChart(this.data);
+        this.graphs.renderStackedAreaChart(this.data);
       } else if (chartType === "stackedMultiBar") {
-        this.visualizations.graphs.renderStackedMultiBar(this.data);
+        this.graphs.renderStackedMultiBar(this.data);
       } else {
         if (chartType === "scatterBubble") {
-          this.visualizations.graphs.renderScatterBubbleGraph(this.data);
+          this.graphs.renderScatterBubbleGraph(this.data);
         }
       }
       return this.$el;

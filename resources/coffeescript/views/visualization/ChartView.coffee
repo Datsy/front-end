@@ -10,7 +10,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     @rawData =
       x: []
       yValues: {}
-    debugger
+
     @convertData options
 
     @margin =
@@ -22,22 +22,20 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     @padding = 50
     @width = @chartWidth - @margin.left - @margin.right
     @height = @chartHeight - @margin.top - @margin.bottom
-    @chartHelpers = new DatsyApp.ChartHelpers()
-    @graphs = new DatsyApp.Graphs()
+    @graphs = new DatsyApp.Charts()
 
   render: ->
     d3.select(@el).selectAll("*").remove()
     chartType = @model.get("chartType")
     if chartType is "lineChart"
-      console.log('data: ', @data)
       @graphs.renderLineChart @data
     else if chartType is "lineChart2Y"
-      @visualizations.graphs.renderLineChart2Y @data
+      @graphs.renderLineChart2Y @data
     else if chartType is "stackedArea"
-      @visualizations.graphs.renderStackedAreaChart @data
+      @graphs.renderStackedAreaChart @data
     else if chartType is "stackedMultiBar"
-      @visualizations.graphs.renderStackedMultiBar @data
-    else @visualizations.graphs.renderScatterBubbleGraph @data if chartType is "scatterBubble"
+      @graphs.renderStackedMultiBar @data
+    else @graphs.renderScatterBubbleGraph @data if chartType is "scatterBubble"
     @$el
 
   renderChart: ->

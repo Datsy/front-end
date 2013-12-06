@@ -1,4 +1,6 @@
-class DatsyApp.Graphs extends DatsyApp.ChartView
+class DatsyApp.Charts
+  helpers: new DatsyApp.ChartHelpers()
+
   renderLineChart: (data) ->
     nv.addGraph ->
       chart = nv.models.lineWithFocusChart()
@@ -14,8 +16,8 @@ class DatsyApp.Graphs extends DatsyApp.ChartView
       
       chart
 
-  renderLineChart2Y = (data) ->
-    testdata = stream_layers(7, 10 + Math.random() * 100, .1).map (data, i) ->
+  renderLineChart2Y: (data) ->
+    testdata = Charts.prototype.helpers.stream_layers(7, 10 + Math.random() * 100, .1).map (data, i) ->
       key: "Stream" + i
       values: data.map (a) ->
         a.y = a.y * (if i <= 1 then -1 else 1)
@@ -57,17 +59,17 @@ class DatsyApp.Graphs extends DatsyApp.ChartView
 
       return chart
 
-  renderScatterBubbleGraph = ->
+  renderScatterBubbleGraph: ->
     nv.addGraph ->
       chart = nv.models.scatterChart().showDistX(true).showDistY(true).color(d3.scale.category10().range())
       chart.xAxis.tickFormat d3.format(".02f")
       chart.yAxis.tickFormat d3.format(".02f")
-      d3.select("#graph svg").datum(randomData(4, 40)).transition().duration(500).call chart
+      d3.select("#graph svg").datum(Charts.prototype.helpers.randomData(4, 40)).transition().duration(500).call chart
       
       # nv.utils.windowResize(chart.update);
       chart
 
-  renderStackedMultiBar = (data) ->
+  renderStackedMultiBar: (data) ->
     nv.addGraph ->
       chart = nv.models.multiBarChart()
        
@@ -84,38 +86,38 @@ class DatsyApp.Graphs extends DatsyApp.ChartView
       
       return chart
 
-renderStackedAreaChart = (data) ->
-  convertData = (data) ->
-    convertedData = []
-    series = 0
+  renderStackedAreaChart:  (data) ->
+    convertData = (data) ->
+      convertedData = []
+      series = 0
 
-    while series < data.length
-      convertedData[series] =
-        key: data[series].key
-        values: []
-        color: data[series].color
+      while series < data.length
+        convertedData[series] =
+          key: data[series].key
+          values: []
+          color: data[series].color
 
-      i = 0
+        i = 0
 
-      while i < data[series].values.length
-        convertedData[series].values[i] = [data[series].values[i].x, data[series].values[i].y]
-        i++
-      series++
-    convertedData
+        while i < data[series].values.length
+          convertedData[series].values[i] = [data[series].values[i].x, data[series].values[i].y]
+          i++
+        series++
+      convertedData
 
-  newData = convertData(data)
-  nv.addGraph ->
-    chart = nv.models.stackedAreaChart().x((d) ->
-      d[0]
-    ).y((d) ->
-      d[1]
-    ).clipEdge(true)
-    chart.xAxis.showMaxMin(false).tickFormat (d) ->
-      d3.time.format("%b") new Date(d)
+    newData = convertData(data)
+    nv.addGraph ->
+      chart = nv.models.stackedAreaChart().x((d) ->
+        d[0]
+      ).y((d) ->
+        d[1]
+      ).clipEdge(true)
+      chart.xAxis.showMaxMin(false).tickFormat (d) ->
+        d3.time.format("%b") new Date(d)
 
-    chart.yAxis.tickFormat d3.format("$,.2f")
-    d3.select("#graph svg").datum(newData).transition().duration(500).call chart
-    
-    # nv.utils.windowResize(chart.update);
-    chart
+      chart.yAxis.tickFormat d3.format("$,.2f")
+      d3.select("#graph svg").datum(newData).transition().duration(500).call chart
+      
+      # nv.utils.windowResize(chart.update);
+      chart
 

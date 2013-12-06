@@ -13,7 +13,7 @@ class DatsyApp.VisView extends Backbone.View
     @template = @model.get("templates")["visualize"]
     _this = this
     @listenTo window, "resize", @resize
-    @model.on "visualizationDataLoaded", ->
+    @model.on "visualizationDataLoaded", =>
       _this.currentGraphView = new DatsyApp.ChartView(
         model: _this.model
         data: _this.model.get("visualizationData")
@@ -26,8 +26,8 @@ class DatsyApp.VisView extends Backbone.View
     # SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
     @currentGraphView.remove()
     @currentGraphView = new DatsyApp.ChartView(
-      model: _this.model
-      data: _this.model.get("visualizationData")
+      model: @model
+      data: @model.get("visualizationData")
     )
     width = $(".container").width()
     height = width / 2

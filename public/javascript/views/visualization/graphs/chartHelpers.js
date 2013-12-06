@@ -1,17 +1,6 @@
 (function() {
-  var _ref,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-  DatsyApp.ChartHelpers = (function(_super) {
-    var convertDataforStackedAreaChart, randomData;
-
-    __extends(ChartHelpers, _super);
-
-    function ChartHelpers() {
-      _ref = ChartHelpers.__super__.constructor.apply(this, arguments);
-      return _ref;
-    }
+  DatsyApp.ChartHelpers = (function() {
+    function ChartHelpers() {}
 
     ChartHelpers.prototype.sinAndCos = function() {
       var cos, i, sin;
@@ -43,22 +32,22 @@
     };
 
     ChartHelpers.prototype.stream_layers = function(n, m, o) {
-      var bump, w;
+      var bump;
       bump = function(a) {
-        var i, x, y, z;
+        var i, w, x, y, z;
         x = 1 / (.1 + Math.random());
         y = 2 * Math.random() - .5;
         z = 10 / (.1 + Math.random());
-        return i = 0;
+        i = 0;
+        while (i < m) {
+          w = (i / m - y) * z;
+          a[i] += x * Math.exp(-w * w);
+          i++;
+        }
+        if (arguments.length < 3) {
+          return o = 0;
+        }
       };
-      while (i < m) {
-        w = (i / m - y) * z;
-        a[i] += x * Math.exp(-w * w);
-        i++;
-      }
-      if (arguments_.length < 3) {
-        o = 0;
-      }
       return d3.range(n).map(function() {
         var a, i;
         a = [];
@@ -73,7 +62,7 @@
           bump(a);
           i++;
         }
-        return a.map(stream_index);
+        return a.map(ChartHelpers.prototype.stream_index);
       });
     };
 
@@ -83,7 +72,7 @@
           var x;
           x = 20 * j / m - i / 3;
           return 2 * x * Math.exp(-.5 * x);
-        }).map(stream_index);
+        }).map(DatsyApp.ChartHelpers.stream_index);
       });
     };
 
@@ -130,7 +119,7 @@
       };
     };
 
-    randomData = function(groups, points) {
+    ChartHelpers.prototype.randomData = function(groups, points) {
       var data, i, j, random, shapes;
       data = [];
       shapes = ["circle", "cross", "triangle-up", "triangle-down", "diamond", "square"];
@@ -155,28 +144,8 @@
       return data;
     };
 
-    convertDataforStackedAreaChart = function(data) {
-      var convertedData, i, series;
-      convertedData = [];
-      series = 0;
-      while (series < data.length) {
-        convertedData[series] = {
-          key: data[series].key,
-          values: [],
-          color: data[series].color
-        };
-        i = 0;
-        while (i < data[series].values.length) {
-          convertedData[series].values[i] = [data[series].values[i].x, data[series].values[i].y];
-          i++;
-        }
-        series++;
-      }
-      return convertedData;
-    };
-
     return ChartHelpers;
 
-  })(DatsyApp.ChartView);
+  })();
 
 }).call(this);

@@ -1,4 +1,4 @@
-class DatsyApp.ChartHelpers extends DatsyApp.ChartView
+class DatsyApp.ChartHelpers
   sinAndCos: ->
     sin = []
     cos = []
@@ -32,11 +32,11 @@ class DatsyApp.ChartHelpers extends DatsyApp.ChartView
       z = 10 / (.1 + Math.random())
       i = 0
 
-    while i < m
-      w = (i / m - y) * z
-      a[i] += x * Math.exp(-w * w)
-      i++
-    o = 0  if arguments_.length < 3
+      while i < m
+        w = (i / m - y) * z
+        a[i] += x * Math.exp(-w * w)
+        i++
+      o = 0  if arguments.length < 3
     d3.range(n).map ->
       a = []
       i = undefined
@@ -48,8 +48,7 @@ class DatsyApp.ChartHelpers extends DatsyApp.ChartView
       while i < 5
         bump a
         i++
-      a.map stream_index
-
+      a.map ChartHelpers.prototype.stream_index
 
   # Another layer generator using gamma distributions. 
   stream_waves: (n, m) ->
@@ -57,7 +56,7 @@ class DatsyApp.ChartHelpers extends DatsyApp.ChartView
       d3.range(m).map((j) ->
         x = 20 * j / m - i / 3
         2 * x * Math.exp(-.5 * x)
-      ).map stream_index
+      ).map DatsyApp.ChartHelpers.stream_index
 
   stream_index: (d, i) ->
     x: i
@@ -87,7 +86,7 @@ class DatsyApp.ChartHelpers extends DatsyApp.ChartView
 
     return { min: min, max: max }
 
-  randomData = (groups, points) -> ## groups,# points per group
+  randomData: (groups, points) -> ## groups,# points per group
     data = []
     shapes = ["circle", "cross", "triangle-up", "triangle-down", "diamond", "square"]
     random = d3.random.normal()
@@ -110,21 +109,4 @@ class DatsyApp.ChartHelpers extends DatsyApp.ChartView
     #, shape: shapes[j % 6]
     data
 
-  convertDataforStackedAreaChart = (data) ->
-    convertedData = []
-    series = 0
-
-    while series < data.length
-      convertedData[series] =
-        key: data[series].key
-        values: []
-        color: data[series].color
-
-      i = 0
-
-      while i < data[series].values.length
-        convertedData[series].values[i] = [data[series].values[i].x, data[series].values[i].y]
-        i++
-      series++
-    convertedData
 

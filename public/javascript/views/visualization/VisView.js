@@ -23,7 +23,7 @@
     };
 
     VisView.prototype.initialize = function() {
-      var _this;
+      var _this = this;
       this.loadingTemplate = this.model.get("templates")["visualizeLoading"];
       this.template = this.model.get("templates")["visualize"];
       _this = this;
@@ -41,8 +41,8 @@
       var height, width;
       this.currentGraphView.remove();
       this.currentGraphView = new DatsyApp.ChartView({
-        model: _this.model,
-        data: _this.model.get("visualizationData")
+        model: this.model,
+        data: this.model.get("visualizationData")
       });
       width = $(".container").width();
       height = width / 2;
