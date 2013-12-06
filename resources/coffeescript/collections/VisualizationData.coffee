@@ -6,23 +6,22 @@ class DatsyApp.VisualizationData extends Backbone.Collection
     @totalLoaded = 0
     @total = 0
     @
-    # Multiple X columns? DEAL WITH ME FUCKER
 
   setVisualizationData: (cart) ->
     for id, columnArray of cart
-      columnArray.push('date') if columnArray.indexOf('date') is -1
+      columnArray.push('Date') if columnArray.indexOf('Date') is -1
     @makeRequests cart
 
   makeRequests: (cart) ->
     for id, columnArray of cart
       columnArray.forEach (name) =>
         @total++
-        if name is 'date'
-          newX = new DatsyApp.VisualizationDataColumn { columnName: 'date', datasetID: id }
+        if name is 'Date'
+          newX = new DatsyApp.VisualizationDataColumn { columnName: 'Date', datasetName: id }
           @columnsForX.push newX
           newX.on 'loaded', @tagLoaded
         else
-          newY = new DatsyApp.VisualizationDataColumn { columnName: name, datasetID: id }
+          newY = new DatsyApp.VisualizationDataColumn { columnName: name, datasetName: id }
           @columnsForY.push newY
           newY.on 'loaded', @tagLoaded
     @

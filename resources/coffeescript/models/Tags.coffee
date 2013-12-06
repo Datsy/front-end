@@ -17,7 +17,7 @@ class DatsyApp.Tags extends Backbone.Model
     }
 
   buildTags: (data) =>
-    console.log data
+    console.log 'Tags loaded'
     @tagList = []
     @totalDataBases = data.total
     data.tag.forEach (tag) =>

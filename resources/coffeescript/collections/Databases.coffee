@@ -11,7 +11,6 @@ class DatsyApp.Databases extends Backbone.Collection
     @length = @models.length
 
   fetch: ->
-    console.log @url
     $.ajax {
       url: @url,
       method: 'GET',
@@ -23,7 +22,6 @@ class DatsyApp.Databases extends Backbone.Collection
     data.forEach (database) =>
       model = new DatsyApp.Database database
       @databases.push model
-    console.log @databases
     @sortBy ('table_name')
     @trigger 'add'
 

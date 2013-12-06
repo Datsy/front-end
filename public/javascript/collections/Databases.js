@@ -29,7 +29,6 @@
 
     Databases.prototype.fetch = function() {
       var _this = this;
-      console.log(this.url);
       return $.ajax({
         url: this.url,
         method: 'GET',
@@ -46,7 +45,6 @@
         model = new DatsyApp.Database(database);
         return _this.databases.push(model);
       });
-      console.log(this.databases);
       this.sortBy('table_name');
       return this.trigger('add');
     };

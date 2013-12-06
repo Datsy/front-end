@@ -16,7 +16,7 @@
     VisualizationDataColumn.prototype.initialize = function(options) {
       this.columnName = options.columnName;
       this.datasetName = options.datasetName;
-      this.url = 'http://datsy-dev.azurewebsites.net/search/table?name' + this.datasetName + '&row=ALL&column=' + this.columnName;
+      this.url = 'http://datsy-dev.azurewebsites.net/search/table?name=' + this.datasetName + '&row=ALL&column=' + this.columnName;
       return this.fetch(this.url);
     };
 
@@ -35,10 +35,14 @@
     };
 
     VisualizationDataColumn.prototype.setColumnData = function(data) {
+      var _this = this;
       this.columnData = {
-        name: this.columnName,
-        data: data
+        name: this.columnName
       };
+      this.columnData['data'] = data.Result.row.map(function(rowObj) {
+        return rowObj[_this.columnName];
+      });
+      console.log(this.columnData);
       return this.trigger('loaded');
     };
 

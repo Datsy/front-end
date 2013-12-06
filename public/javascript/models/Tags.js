@@ -37,7 +37,7 @@
 
     Tags.prototype.buildTags = function(data) {
       var _this = this;
-      console.log(data);
+      console.log('Tags loaded');
       this.tagList = [];
       this.totalDataBases = data.total;
       data.tag.forEach(function(tag) {

@@ -12,7 +12,7 @@
     }
 
     Database.prototype.getColumns = function() {
-      return this.attributes.column;
+      return this.attributes.columns;
     };
 
     Database.prototype.getId = function() {

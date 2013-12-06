@@ -23,7 +23,6 @@
       this.datasetName = options.datasetName;
       this.columnName = options.columnName;
       urlForSample = 'http://datsy-dev.azurewebsites.net/search/table?name=' + this.datasetName + '&row=5&column=' + this.columnName;
-      console.log(urlForSample);
       this.sampleData = new DatsyApp.SampleData({
         url: urlForSample
       });
@@ -33,14 +32,13 @@
     DataSampleModelView.prototype.render = function() {
       var attrs, body, isValid, prop, val;
       attrs = this.sampleData.toJSON().Result.row;
-      console.log(attrs);
       body = "<ul class='rows'>";
       for (prop in attrs) {
         if (!__hasProp.call(attrs, prop)) continue;
         val = attrs[prop];
         isValid = prop !== 'url';
         if (isValid) {
-          body += '<li class="rowValue">' + val + '</p>';
+          body += '<li class="rowValue">' + val[this.columnName] + '</p>';
         }
       }
       body += '</ul>';

@@ -1,7 +1,7 @@
 class DatsyApp.Database extends Backbone.Model
 
   getColumns: ->
-    return @attributes.column
+    return @attributes.columns
 
   getId: ->
     return @attributes.table_name
