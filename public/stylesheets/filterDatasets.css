@@ -92,14 +92,16 @@
 .filter-page .filterResults input[type='text']:focus::-moz-placeholder {
   color: transparent;
 }
-.filter-page .filterResults #seeDataBases {
+.filter-page .filterResults #seeDataBases,
+.filter-page .filterResults #seeAllDataBases {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 20px;
   letter-spacing: 1.5px;
   font-weight: 800;
 }
-.filter-page .filterResults #seeDataBases span {
+.filter-page .filterResults #seeDataBases span,
+.filter-page .filterResults #seeAllDataBases span {
   padding-left: 5px;
 }
 @media all and (max-width: 990px) and (min-width: 640px) {

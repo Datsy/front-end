@@ -2,11 +2,15 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
 
   initialize: (options) ->
     @columnName = options.columnName
-    @datasetID = options.datasetID
-    @url = '/column?id=' + @datasetID + '&name=' + @columnName + '&rows=ALL'
+    columnToSend = @columnName
+    if columnToSend.split(' ').length > 1
+      columnToSend = columnToSend.split(' ').join('+')
+    @datasetName = options.datasetName
+    @url = 'http://datsy-dev.azurewebsites.net/search/table?name=' + @datasetName + '&row=ALL&column=' + columnToSend
     @fetch @url
 
   fetch: (url) ->
+    console.log url
     $.ajax {
       url: url,
       method: 'GET',
@@ -17,7 +21,9 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
     }
 
   setColumnData: (data) =>
-    @columnData = { name: @columnName, data: data };
+    @columnData = { name: @columnName };
+    @columnData['data'] = data.Result.row.map (rowObj) =>
+      return rowObj[@columnName]
     @trigger 'loaded'
 
   getColumnData: ->

@@ -45,15 +45,17 @@
 
     ExploreMainView.prototype.getDataBases = function(path) {
       var tags, url;
-      url = '/search?';
+      url = 'http://datsy-dev.azurewebsites.net/search/meta';
       if (path.length) {
+        url += '?';
         tags = path.split('/');
         tags.forEach(function(tag) {
+          if (tag.split('_').length > 1) {
+            tag = tag.split('_').join('+');
+          }
           return url += 'tag=' + tag + '&';
         });
         url = url.slice(0, url.length - 1);
-      } else {
-        url += 'tag=ALL';
       }
       return new DatsyApp.Databases({
         url: url

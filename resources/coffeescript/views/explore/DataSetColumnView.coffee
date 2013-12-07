@@ -10,7 +10,7 @@ class DatsyApp.DataSetColumnView extends Backbone.View
 
   initialize: (options) ->
     @template = options.template
-    @datasetID = options.datasetID
+    @datasetName = options.datasetName
     @datsyModel = options.datsyModel
 
   render: ->
@@ -18,12 +18,12 @@ class DatsyApp.DataSetColumnView extends Backbone.View
     @
 
   viewSampleData: ->
-    @sampleDataModelView = new DatsyApp.DataSampleModelView { datasetID: @datasetID, columnName: @model.name }
+    @sampleDataModelView = new DatsyApp.DataSampleModelView { datasetName: @datasetName, columnName: @model.name }
     @sampleDataModelView.once 'ready', @showModal
     @sampleDataModelView.once 'done', @deleteModalView
 
   addColumnForVis: ->
-    @datsyModel.addColumn @model.name, @datasetID
+    @datsyModel.addColumn @model.name, @datasetName
 
   showModal: =>
     @sampleDataModelView.show()

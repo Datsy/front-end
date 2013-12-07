@@ -9,20 +9,27 @@ class DatsyApp.VisView extends Backbone.View
     "click button#downloadPhoto": "downloadPhoto"
 
   initialize: ->
+    @dataLoaded = false
     @loadingTemplate = @model.get("templates")["visualizeLoading"]
     @template = @model.get("templates")["visualize"]
     _this = this
     @listenTo window, "resize", @resize
+    setTimeout (=>
+      console.log '10 seconds pasted'
+      if !@dataLoaded
+        @renderFailed()
+    ),10000
     @model.on "visualizationDataLoaded", =>
-      _this.currentGraphView = new DatsyApp.ChartView(
-        model: _this.model
-        data: _this.model.get("visualizationData")
+      console.log 'vis data is loaded'
+      @dataLoaded = true
+      @currentGraphView = new DatsyApp.ChartView(
+        model: @model
+        data: @model.get("visualizationData")
       )
-      _this.renderLoaded.bind(_this)()
+      @renderLoaded()
 
 
   resize: ->
-    
     # SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
     @currentGraphView.remove()
     @currentGraphView = new DatsyApp.ChartView(
@@ -38,9 +45,14 @@ class DatsyApp.VisView extends Backbone.View
 
     @$graph.append @currentGraphView.render()
 
+  renderFailed: ->
+    console.log 'failed template loading'
+    @$el.html @failedTemplate
+    @
+
   render: ->
     @$el.html @loadingTemplate
-    this
+    @
 
   renderLoaded: (chartType) ->
     console.log "render loaded"

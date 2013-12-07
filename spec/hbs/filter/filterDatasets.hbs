@@ -1,0 +1,24 @@
+
+<div class="results-box panel panel-default col-md-9">
+  <div class="filterResults">{{#if singular}}
+    <h1 class="text-center">Your search appeared in {{ occurance }} result.</h1>{{else}}
+    <h1 class="text-center">Your search appeared in {{ occurance }} results.</h1>{{/if}}
+    {{#if tagsToShow}}
+    <div class="row current-tags text-center">{{#each tags}}
+      <h4 class="selected-keyword"><span class="label label-success">{{this}}<span class="glyphicon glyphicon-remove-sign"></span></span></h4>{{/each}}
+    </div>{{/if}}
+    <form role="form" class="form-inline">
+      <div class="form-group col-md-10 col-md-offset-1">
+        <label for="filter" class="sr-only">Add topics to filter results</label>
+        <div class="input-group">
+          <input id="filterTagSearch" type="text" placeholder="Add topics to filter results." autocomplete="off" class="form-control"/><span class="input-group-btn">
+            <button type="button" class="btn btn-default">Add</button></span>
+        </div>
+      </div>
+    </form>
+    <h4 class="text-center text-muted">Screw this noise! Lets see some data!</h4>
+    <div style="text-align:center">
+      <button id="seeDataBases" type="submit" class="btn btn-success btn-lg">Go!<span class="glyphicon glyphicon-chevron-right"></span></button>
+    </div>
+  </div>
+</div>

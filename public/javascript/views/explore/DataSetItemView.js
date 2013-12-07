@@ -28,7 +28,7 @@
           datsyModel: _this.datsyModel,
           model: column,
           template: _this.dataSetColumnTemplate,
-          datasetID: _this.model.getId()
+          datasetName: _this.model.getId()
         });
       });
       columns.forEach(function(column) {

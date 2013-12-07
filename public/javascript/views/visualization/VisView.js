@@ -24,16 +24,25 @@
 
     VisView.prototype.initialize = function() {
       var _this = this;
+      this.dataLoaded = false;
       this.loadingTemplate = this.model.get("templates")["visualizeLoading"];
       this.template = this.model.get("templates")["visualize"];
       _this = this;
       this.listenTo(window, "resize", this.resize);
+      setTimeout((function() {
+        console.log('10 seconds pasted');
+        if (!_this.dataLoaded) {
+          return _this.renderFailed();
+        }
+      }), 10000);
       return this.model.on("visualizationDataLoaded", function() {
+        console.log('vis data is loaded');
+        _this.dataLoaded = true;
         _this.currentGraphView = new DatsyApp.ChartView({
           model: _this.model,
           data: _this.model.get("visualizationData")
         });
-        return _this.renderLoaded.bind(_this)();
+        return _this.renderLoaded();
       });
     };
 
@@ -52,6 +61,12 @@
         width: width
       });
       return this.$graph.append(this.currentGraphView.render());
+    };
+
+    VisView.prototype.renderFailed = function() {
+      console.log('failed template loading');
+      this.$el.html(this.failedTemplate);
+      return this;
     };
 
     VisView.prototype.render = function() {

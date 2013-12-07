@@ -45,12 +45,12 @@
       });
     };
 
-    Datsy.prototype.setVisualizationData = function(columns) {
+    Datsy.prototype.setVisualizationData = function() {
       var cart, visualizationData;
       visualizationData = this.get('visualizationData');
+      visualizationData.on('loaded', this.triggerVisDataLoaded);
       cart = this.get('cart').getColumns();
-      visualizationData.setVisualizationData(cart);
-      return visualizationData.on('loaded', this.triggerVisDataLoaded);
+      return visualizationData.setVisualizationData(cart);
     };
 
     Datsy.prototype.triggerVisDataLoaded = function() {

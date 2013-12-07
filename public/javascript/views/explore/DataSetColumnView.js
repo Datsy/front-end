@@ -25,7 +25,7 @@
 
     DataSetColumnView.prototype.initialize = function(options) {
       this.template = options.template;
-      this.datasetID = options.datasetID;
+      this.datasetName = options.datasetName;
       return this.datsyModel = options.datsyModel;
     };
 
@@ -36,7 +36,7 @@
 
     DataSetColumnView.prototype.viewSampleData = function() {
       this.sampleDataModelView = new DatsyApp.DataSampleModelView({
-        datasetID: this.datasetID,
+        datasetName: this.datasetName,
         columnName: this.model.name
       });
       this.sampleDataModelView.once('ready', this.showModal);
@@ -44,7 +44,7 @@
     };
 
     DataSetColumnView.prototype.addColumnForVis = function() {
-      return this.datsyModel.addColumn(this.model.name, this.datasetID);
+      return this.datsyModel.addColumn(this.model.name, this.datasetName);
     };
 
     DataSetColumnView.prototype.showModal = function() {

@@ -47,5 +47,6 @@ class DatsyApp.ColumnCartView extends Backbone.View
       for id, columnArray of cart.values
         columnArray.forEach (column) =>
           @addColumn { columnName: column }
+      $('.total-columns-added').text(cart.total)
     else
       $('#go').prop 'disabled', true
