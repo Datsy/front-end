@@ -8,7 +8,7 @@ describe('DatsyAppView', function() {
     datsyAppView = new DatsyApp.DatsyView({ model: datsy });
   });
 
-  it('should have a model', function() {
+  xit('should have a model', function() {
     expect(datsyAppView.model).toBe(datsy);
   });
 
