@@ -101,6 +101,36 @@
       return d3Data;
     };
 
+    ChartView.prototype.createBubbleSort = function(array, prop) {
+      return function(array, key) {
+        var i, j, notYetSorted, thisVal;
+        if (!Array.isArray(array)) {
+          throw array;
+        }
+        notYetSorted = true;
+        i = 0;
+        while (notYetSorted) {
+          notYetSorted = false;
+          j = 0;
+          while (j < array.length - 1) {
+            thisVal = array[j];
+            console.log(thisVal[prop]);
+            if (thisVal[prop] > array[j + 1][prop]) {
+              array[j] = array[j + 1];
+              array[j + 1] = thisVal;
+              notYetSorted = true;
+            }
+            j++;
+          }
+          if (notYetSorted === false) {
+            return array;
+          }
+          i++;
+        }
+        return array;
+      };
+    };
+
     return ChartView;
 
   })(DatsyApp.SvgBackboneView);

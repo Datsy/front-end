@@ -137,7 +137,7 @@
         }
         return node;
       };
-      svg = appendStyles(svg);
+      appendStyles(svg);
       canvg(canvas, svg.parentNode.innerHTML);
       Canvas2Image.saveAsPNG(canvas);
       return canvas.parentNode.removeChild(canvas);

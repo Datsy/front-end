@@ -23,14 +23,14 @@ describe("Node Server Request Listener Function", function() {
     });
   });
 
-  it("Should answer GET requests for /sample", function(done) {
+  xit("Should answer GET requests for /sample", function(done) {
    request("http://localhost:3000/sample", function(err, res, body){
       expect(res.statusCode).toEqual(200);
       done();
     });
   });
 
-  it("Should answer GET requests for /column", function(done) {
+  xit("Should answer GET requests for /column", function(done) {
     request("http://localhost:3000/column", function(err, res, body){
       expect(res.statusCode).toEqual(200);
       done();

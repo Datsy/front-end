@@ -44,7 +44,6 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       x: @currentXModel
       y: @currentYModel
 
-
   convertData: (options) ->
     _this = this
     @rawData.x = options.data.columnsForX[0].getColumnData()
@@ -74,4 +73,37 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
 
 
       i++
+
+    # TODO: Sort dates
+    # bubbleSort = @createBubbleSort()
+    # i = 0
+    # while i < d3Data.length
+    #   j = 0
+
+    #   while i < d3Data[i].values.length
+    #     bubbleSort d3Data[i][j], "x"
+    #     j++
+    #   i++
+
     d3Data
+
+  createBubbleSort: (array, prop) ->
+
+    (array, key) ->
+      throw array unless Array.isArray(array)
+      notYetSorted = true
+      i = 0 # initializing i to pass the test
+      while notYetSorted
+        notYetSorted = false
+        j = 0
+        while j < array.length - 1
+          thisVal = array[j]
+          console.log(thisVal[prop])
+          if thisVal[prop] > array[j + 1][prop]
+            array[j] = array[j + 1]
+            array[j + 1] = thisVal
+            notYetSorted = true
+          j++
+        return array  if notYetSorted is false
+        i++
+      array
