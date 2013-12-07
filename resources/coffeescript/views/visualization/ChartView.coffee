@@ -45,10 +45,9 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       y: @currentYModel
 
   convertData: (options) ->
-    _this = this
     @rawData.x = options.data.columnsForX[0].getColumnData()
-    options.data.columnsForY.forEach (column) ->
-      _this.rawData.yValues[column.columnName] = column.getColumnData()
+    options.data.columnsForY.forEach (column) =>
+      @rawData.yValues[column.columnName] = column.getColumnData()
 
     @data = @convertJSONForD3(@rawData)
 
@@ -73,6 +72,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
 
 
       i++
+<<<<<<< HEAD
 
     # TODO: Sort dates
     # bubbleSort = @createBubbleSort()
@@ -107,3 +107,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
         return array  if notYetSorted is false
         i++
       array
+=======
+    d3Data
+    
+>>>>>>> adbe9f077aaa945806dacbff580a1f20231070bb

@@ -29,11 +29,26 @@ module.exports = function(grunt) {
           pretty: true
         },
         files: [ {
-          cwd: "views",
-          src: "index.jade",
-          dest: "spec/html",
+          cwd: "views/templates",
+          src: "**/*.jade",
+          dest: "spec/hbs",
           expand: true,
-          ext: ".html"
+          ext: ".hbs"
+        } ]
+      }
+    },
+
+    handlebars: {
+      compile: {
+        options: {
+          namespace: "compTemplates",
+        },
+        files: [ {
+          expand: true,
+          cwd: 'spec/hbs',
+          src: '**/*.hbs',
+          dest: 'spec/helpers',
+          ext: '.js'
         } ]
       }
     },
@@ -59,7 +74,7 @@ module.exports = function(grunt) {
           'public/bower_components/d3/d3.min.js'
         ],
         specs: 'spec/tests/*.js',
-        helpers: 'spec/helpers/*.js'
+        helpers: 'spec/helpers/**/*.js'
       }
     },
 
@@ -71,9 +86,23 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      compile: {
-        files: 'resources/coffeescript/**/*.coffee',
-        tasks: [ 'compileCoffee' ],
+      compileCoffeeScript: {
+        files: [ 'resources/coffeescript/**/*.coffee' ],
+        tasks: [ 'compileCoffee', 'test' ],
+        options: {
+          livereload: true
+        }
+      },
+      compileJadeTemplates: {
+        files: [ 'views/templates/**/*.jade' ],
+        tasks: [ 'compileJade', 'hbs' ],
+        options: {
+          livereload: true
+        }
+      },
+      runTests: {
+        files: [ 'spec/tests/*.js'],
+        tasks: [ 'test' ],
         options: {
           livereload: true
         }
@@ -87,12 +116,14 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
+  grunt.registerTask('hbs', ['handlebars']);
   grunt.registerTask('compileJade', ['jade']);
   grunt.registerTask('compileCoffee', ['coffee']);
   grunt.registerTask('test', ['jasmine']);

@@ -20,9 +20,9 @@
     DataSampleModelView.prototype.initialize = function(options) {
       var urlForSample;
       this.template = universalTemplates.modal;
-      this.datasetID = options.datasetID;
+      this.datasetName = options.datasetName;
       this.columnName = options.columnName;
-      urlForSample = '/sample?id=' + this.datasetID + '&column=' + this.columnName;
+      urlForSample = 'http://datsy-dev.azurewebsites.net/search/table?name=' + this.datasetName + '&row=5&column=' + this.columnName;
       this.sampleData = new DatsyApp.SampleData({
         url: urlForSample
       });
@@ -31,14 +31,14 @@
 
     DataSampleModelView.prototype.render = function() {
       var attrs, body, isValid, prop, val;
-      attrs = this.sampleData.toJSON();
+      attrs = this.sampleData.toJSON().Result.row;
       body = "<ul class='rows'>";
       for (prop in attrs) {
         if (!__hasProp.call(attrs, prop)) continue;
         val = attrs[prop];
         isValid = prop !== 'url';
         if (isValid) {
-          body += '<li class="rowValue">' + val + '</p>';
+          body += '<li class="rowValue">' + val[this.columnName] + '</p>';
         }
       }
       body += '</ul>';

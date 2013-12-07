@@ -60,8 +60,10 @@
     };
 
     ColumnCartView.prototype.addColumn = function(params) {
-      if ($('#selectedColumns .list-group-item').get(0).innerHTML === 'No Columns Selected') {
-        $('#selectedColumns .list-group-item').get(0).remove();
+      if ($('#selectedColumns .list-group-item').get(0)) {
+        if ($('#selectedColumns .list-group-item').get(0).innerHTML === 'No Columns Selected') {
+          $('#selectedColumns .list-group-item').get(0).remove();
+        }
       }
       this.columnList.append('<li class="list-group-item">' + params.columnName + '</li>');
       $('.total-columns-added').text(params.total);
@@ -69,21 +71,20 @@
     };
 
     ColumnCartView.prototype.addExistingCart = function(cart) {
-      var columnArray, id, _ref1, _results,
+      var columnArray, id, _ref1,
         _this = this;
       if (cart) {
         $('#go').prop('disabled', false);
         _ref1 = cart.values;
-        _results = [];
         for (id in _ref1) {
           columnArray = _ref1[id];
-          _results.push(columnArray.forEach(function(column) {
+          columnArray.forEach(function(column) {
             return _this.addColumn({
               columnName: column
             });
-          }));
+          });
         }
-        return _results;
+        return $('.total-columns-added').text(cart.total);
       } else {
         return $('#go').prop('disabled', true);
       }

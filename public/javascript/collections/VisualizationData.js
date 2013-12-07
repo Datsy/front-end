@@ -25,8 +25,8 @@
       var columnArray, id;
       for (id in cart) {
         columnArray = cart[id];
-        if (columnArray.indexOf('date') === -1) {
-          columnArray.push('date');
+        if (columnArray.indexOf('Date') === -1) {
+          columnArray.push('Date');
         }
       }
       return this.makeRequests(cart);
@@ -40,17 +40,17 @@
         columnArray.forEach(function(name) {
           var newX, newY;
           _this.total++;
-          if (name === 'date') {
+          if (name === 'Date') {
             newX = new DatsyApp.VisualizationDataColumn({
-              columnName: 'date',
-              datasetID: id
+              columnName: 'Date',
+              datasetName: id
             });
             _this.columnsForX.push(newX);
             return newX.on('loaded', _this.tagLoaded);
           } else {
             newY = new DatsyApp.VisualizationDataColumn({
               columnName: name,
-              datasetID: id
+              datasetName: id
             });
             _this.columnsForY.push(newY);
             return newY.on('loaded', _this.tagLoaded);

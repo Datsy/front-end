@@ -5,18 +5,18 @@ class DatsyApp.DataSampleModelView extends DatsyApp.BaseModalView
 
   initialize: (options) ->
     @template = universalTemplates.modal
-    @datasetID = options.datasetID
+    @datasetName = options.datasetName
     @columnName = options.columnName
-    urlForSample = '/sample?id=' + @datasetID + '&column=' + @columnName
+    urlForSample = 'http://datsy-dev.azurewebsites.net/search/table?name=' + @datasetName + '&row=5&column=' + @columnName
     @sampleData = new DatsyApp.SampleData { url: urlForSample }
     @sampleData.once 'ready', @onReady
     
   render: ->
-    attrs = @sampleData.toJSON()
+    attrs = @sampleData.toJSON().Result.row
     body = "<ul class='rows'>"
     for own prop, val of attrs
       isValid = prop != 'url'
-      body += '<li class="rowValue">' + val + '</p>' if isValid 
+      body += '<li class="rowValue">' + val[@columnName] + '</p>' if isValid 
     body += '</ul>'
     @$el.html @template { title: 'Data samples for column: ' + @columnName, body: body }
 

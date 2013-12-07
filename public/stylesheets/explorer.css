@@ -1,3 +1,18 @@
+#showMoreBox {
+  position: fixed;
+  z-index: 1000;
+  min-height: 10px;
+  width: 300px;
+  border-radius: 5px;
+  padding: 10px 10px;
+  background-color: #fff;
+  border: 2px solid #999;
+  box-shadow: 0 1px 3px #888;
+}
+#showMoreBox p {
+  margin: 0;
+  padding: 0;
+}
 .cart .selected-columns {
   margin-top: 10px;
 }

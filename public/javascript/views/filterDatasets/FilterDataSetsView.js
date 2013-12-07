@@ -9,6 +9,7 @@
 
     function FilterDataSetsView() {
       this.updatePage = __bind(this.updatePage, this);
+      this.newSearchForTag = __bind(this.newSearchForTag, this);
       this.setUpTags = __bind(this.setUpTags, this);
       this.renderLoaded = __bind(this.renderLoaded, this);
       _ref = FilterDataSetsView.__super__.constructor.apply(this, arguments);
@@ -22,6 +23,7 @@
       'click .input-group-btn': 'addFilters',
       'click .tag-suggestion': 'addSuggestedFilter',
       'click #seeDataBases': 'loadExploreView',
+      'click #seeAllDataBases': 'loadAllExploreView',
       'click .glyphicon-remove-sign': 'removeTopic'
     };
 
@@ -31,6 +33,7 @@
       this.tags = this.datsyModel.get('tags');
       this.template = this.datsyModel.get('templates')['filterDatasets'];
       this.loadingTemplate = this.datsyModel.get('templates')['loading'];
+      this.noResultsTemplate = this.datsyModel.get('templates')['noResultsTemplate'];
       if (options.searchTopic.length) {
         this.currentTags = this.buildTags(options.searchTopic);
         this.filterTags();
@@ -58,25 +61,41 @@
     };
 
     FilterDataSetsView.prototype.renderLoaded = function() {
-      var maintags, singular, suggested, tags,
-        _this = this;
-      maintags = this.mainTag.split(' & ');
-      tags = this.tags.list();
-      singular = this.tags.totalDataBases === 1;
-      this.$el.html(this.template({
-        tags: maintags,
-        occurance: this.tags.totalDataBases,
-        singular: singular
-      }));
+      var maintags, singular, suggested, suggestedTags, tags, tagsToShow;
+      if (this.tags.totalDataBases) {
+        maintags = this.mainTag.split(' & ');
+        if (maintags[0] === "") {
+          tagsToShow = false;
+        } else {
+          tagsToShow = true;
+        }
+        tags = this.tags.list();
+        singular = this.tags.totalDataBases === 1;
+        this.$el.html(this.template({
+          tagsToShow: tagsToShow,
+          tags: maintags,
+          occurance: this.tags.totalDataBases,
+          singular: singular
+        }));
+      } else {
+        this.$el.html(this.noResultsTemplate({
+          tagsToShow: tagsToShow,
+          tags: maintags,
+          singular: singular
+        }));
+      }
+      suggestedTags = this.getRandomTags();
       suggested = new DatsyApp.SuggestedTagsView({
         model: this.datsyModel,
-        tags: tags
+        tags: suggestedTags
       });
-      suggested.on('addTag', (function() {
-        return _this.addSuggestedFilter;
-      }));
+      suggested.on('addTag', this.newSearchForTag);
       this.$el.append(suggested.render().el);
       return this;
+    };
+
+    FilterDataSetsView.prototype.getRandomTags = function() {
+      return this.tags.random(10);
     };
 
     FilterDataSetsView.prototype.uppercase = function(tags) {
@@ -113,7 +132,6 @@
       tag = event.target.parentElement.innerText.toLowerCase();
       index = this.currentTags.indexOf(tag);
       this.currentTags.splice(index, index + 1);
-      debugger;
       this.filterTags();
       return this.updatePage();
     };
@@ -122,10 +140,12 @@
       var newTag, tagArray;
       newTag = $('#filterTagSearch').val();
       if (newTag === '') {
+        this.noteError('Please enter a keyword to search');
         return false;
       }
       tagArray = this.tags.list();
       if (tagArray.indexOf(newTag) === -1) {
+        this.noteError('This keyword has no matches to your current search');
         return false;
       }
       this.currentTags.push(newTag);
@@ -133,10 +153,8 @@
       return this.updatePage();
     };
 
-    FilterDataSetsView.prototype.addSuggestedFilter = function(event) {
-      var tag;
-      tag = event.target.innerHTML;
-      this.currentTags.push(tag);
+    FilterDataSetsView.prototype.newSearchForTag = function(tag) {
+      this.currentTags = this.buildTags(tag);
       this.filterTags();
       return this.updatePage();
     };
@@ -162,13 +180,24 @@
     FilterDataSetsView.prototype.loadExploreView = function() {
       var url,
         _this = this;
+      this.datsyModel.clearCart();
       url = '/explore';
       if (this.currentTags.length) {
         this.currentTags.forEach(function(tag) {
+          if (tag.split(' ').length > 1) {
+            tag = tag.split(' ').join('_');
+          }
           return url += '/' + tag;
         });
       }
       return Backbone.history.navigate(url, {
+        trigger: true
+      });
+    };
+
+    FilterDataSetsView.prototype.loadAllExploreView = function() {
+      this.datsyModel.clearCart();
+      return Backbone.history.navigate('/explore', {
         trigger: true
       });
     };
@@ -179,6 +208,13 @@
       return tags.map(function(tag) {
         return tag.split('_').join(' ');
       });
+    };
+
+    FilterDataSetsView.prototype.noteError = function(error) {
+      if ($('#filterTagSearch').val() !== '') {
+        $('#filterTagSearch').val('');
+      }
+      return $('#filterTagSearch').attr("placeholder", error);
     };
 
     return FilterDataSetsView;
