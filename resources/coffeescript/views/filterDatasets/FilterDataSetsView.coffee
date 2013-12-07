@@ -73,9 +73,13 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
 
   addFilters: ->
     newTag = $('#filterTagSearch').val()
-    return false if newTag == ''
+    if newTag == ''
+      @noteError 'Please enter a keyword to search'
+      return false
     tagArray = @tags.list()
-    return false if (tagArray.indexOf(newTag) == -1)
+    if (tagArray.indexOf(newTag) == -1)
+      @noteError 'This keyword has no matches to your current search'
+      return false
     @currentTags.push newTag
     @filterTags()
     @updatePage()
@@ -109,3 +113,8 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     return tags.map (tag) =>
       return tag.split('_').join(' ')
 
+  noteError: (error) ->
+    console.log error
+    if ($('#filterTagSearch').val() != '')
+      $('#filterTagSearch').val('')
+    $('#filterTagSearch').attr("placeholder", error)

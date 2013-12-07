@@ -48,7 +48,6 @@
       this.columnData['data'] = data.Result.row.map(function(rowObj) {
         return rowObj[_this.columnName];
       });
-      console.log(this.columnData);
       return this.trigger('loaded');
     };
 

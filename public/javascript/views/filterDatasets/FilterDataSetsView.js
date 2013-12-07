@@ -130,10 +130,12 @@
       var newTag, tagArray;
       newTag = $('#filterTagSearch').val();
       if (newTag === '') {
+        this.noteError('Please enter a keyword to search');
         return false;
       }
       tagArray = this.tags.list();
       if (tagArray.indexOf(newTag) === -1) {
+        this.noteError('This keyword has no matches to your current search');
         return false;
       }
       this.currentTags.push(newTag);
@@ -188,6 +190,14 @@
       return tags.map(function(tag) {
         return tag.split('_').join(' ');
       });
+    };
+
+    FilterDataSetsView.prototype.noteError = function(error) {
+      console.log(error);
+      if ($('#filterTagSearch').val() !== '') {
+        $('#filterTagSearch').val('');
+      }
+      return $('#filterTagSearch').attr("placeholder", error);
     };
 
     return FilterDataSetsView;

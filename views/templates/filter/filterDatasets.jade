@@ -5,6 +5,7 @@ div.results-box.panel.panel-default.col-md-9
     {{else}}
     h1.text-center Your search appeared in {{ occurance }} results.
     {{/if}}
+
     {{#if tagsToShow}}
     div.row.current-tags.text-center
       {{#each tags}}
@@ -13,6 +14,7 @@ div.results-box.panel.panel-default.col-md-9
           span.glyphicon.glyphicon-remove-sign
       {{/each}}
     {{/if}}
+
     form.form-inline(role='form')
       div.form-group.col-md-10.col-md-offset-1
         label.sr-only(for="filter") Add topics to filter results

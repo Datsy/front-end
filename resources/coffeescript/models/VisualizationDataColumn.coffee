@@ -24,7 +24,6 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
     @columnData = { name: @columnName };
     @columnData['data'] = data.Result.row.map (rowObj) =>
       return rowObj[@columnName]
-    console.log @columnData
     @trigger 'loaded'
 
   getColumnData: ->
