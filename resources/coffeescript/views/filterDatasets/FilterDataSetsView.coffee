@@ -105,6 +105,7 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     setTimeout (=> @renderLoaded()), 1000
 
   loadExploreView: ->
+    @datsyModel.clearCart()
     url = '/explore'
     if @currentTags.length
       @currentTags.forEach (tag) =>
@@ -114,6 +115,7 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     Backbone.history.navigate url, {trigger: true}
 
   loadAllExploreView: ->
+    @datsyModel.clearCart()
     Backbone.history.navigate '/explore', {trigger: true}
 
   buildTags: (tags) ->

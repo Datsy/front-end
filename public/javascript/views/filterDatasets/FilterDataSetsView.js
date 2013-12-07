@@ -180,6 +180,7 @@
     FilterDataSetsView.prototype.loadExploreView = function() {
       var url,
         _this = this;
+      this.datsyModel.clearCart();
       url = '/explore';
       if (this.currentTags.length) {
         this.currentTags.forEach(function(tag) {
@@ -195,6 +196,7 @@
     };
 
     FilterDataSetsView.prototype.loadAllExploreView = function() {
+      this.datsyModel.clearCart();
       return Backbone.history.navigate('/explore', {
         trigger: true
       });
