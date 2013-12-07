@@ -44,7 +44,7 @@
     };
 
     DataSetColumnView.prototype.addColumnForVis = function() {
-      return this.datsyModel.addColumn(this.model.name, this.datasetName);
+      return this.datsyModel.addColumn(this.model.name, this.datasetName, this.model.data_type);
     };
 
     DataSetColumnView.prototype.showModal = function() {
