@@ -59,11 +59,17 @@
     };
 
     FilterDataSetsView.prototype.renderLoaded = function() {
-      var maintags, singular, suggested, suggestedTags, tags;
+      var maintags, singular, suggested, suggestedTags, tags, tagsToShow;
       maintags = this.mainTag.split(' & ');
+      if (maintags[0] === "") {
+        tagsToShow = false;
+      } else {
+        tagsToShow = true;
+      }
       tags = this.tags.list();
       singular = this.tags.totalDataBases === 1;
       this.$el.html(this.template({
+        tagsToShow: tagsToShow,
         tags: maintags,
         occurance: this.tags.totalDataBases,
         singular: singular
@@ -116,7 +122,6 @@
       tag = event.target.parentElement.innerText.toLowerCase();
       index = this.currentTags.indexOf(tag);
       this.currentTags.splice(index, index + 1);
-      debugger;
       this.filterTags();
       return this.updatePage();
     };

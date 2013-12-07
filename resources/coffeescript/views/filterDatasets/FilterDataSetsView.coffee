@@ -32,9 +32,13 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
 
   renderLoaded: =>
     maintags = @mainTag.split(' & ')
+    if maintags[0] == ""
+      tagsToShow = false
+    else
+      tagsToShow = true
     tags = @tags.list()    
     singular = @tags.totalDataBases == 1
-    @$el.html @template({ tags: maintags, occurance: @tags.totalDataBases, singular: singular })
+    @$el.html @template({ tagsToShow: tagsToShow, tags: maintags, occurance: @tags.totalDataBases, singular: singular })
 
     suggestedTags = @getRandomTags()
     suggested = new DatsyApp.SuggestedTagsView { model: @datsyModel, tags: suggestedTags }
@@ -64,7 +68,6 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     tag = event.target.parentElement.innerText.toLowerCase()
     index = @currentTags.indexOf(tag)
     @currentTags.splice index, index+1
-    debugger
     @filterTags()
     @updatePage()
 
