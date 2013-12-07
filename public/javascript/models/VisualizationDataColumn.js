@@ -14,14 +14,20 @@
     }
 
     VisualizationDataColumn.prototype.initialize = function(options) {
+      var columnToSend;
       this.columnName = options.columnName;
+      columnToSend = this.columnName;
+      if (columnToSend.split(' ').length > 1) {
+        columnToSend = columnToSend.split(' ').join('+');
+      }
       this.datasetName = options.datasetName;
-      this.url = 'http://datsy-dev.azurewebsites.net/search/table?name=' + this.datasetName + '&row=ALL&column=' + this.columnName;
+      this.url = 'http://datsy-dev.azurewebsites.net/search/table?name=' + this.datasetName + '&row=ALL&column=' + columnToSend;
       return this.fetch(this.url);
     };
 
     VisualizationDataColumn.prototype.fetch = function(url) {
       var _this = this;
+      console.log(url);
       return $.ajax({
         url: url,
         method: 'GET',

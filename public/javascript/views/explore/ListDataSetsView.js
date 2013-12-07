@@ -13,6 +13,12 @@
 
     ListDataSetsView.prototype.className = 'explore-datasets';
 
+    ListDataSetsView.prototype.events = {
+      'mouseover .dataset-table-listing': 'showMoreInfo',
+      'mousemove .dataset-table-listing': 'updateXY',
+      'mouseleave .dataset-table-listing': 'hideMoreInfo'
+    };
+
     ListDataSetsView.prototype.initialize = function(options) {
       this.datsyModel = options.datsyModel;
       this.dataSetColumnTemplate = options.dataSetColumnTemplate;
@@ -29,7 +35,7 @@
           model: model
         });
         shortenedNames = _this.shortenNames(model.attributes);
-        _this.$el.append('<div><div class="dataset-table-name">' + shortenedNames.title + '</div><div class="dataset-source">' + shortenedNames.author + '</div><div class="dataset-rating"><span class="glyphicon glyphicon-star"></span></div></div>');
+        _this.$el.append('<div class="dataset-table-listing" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"><div class="dataset-table-name" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.title + '</div><div class="dataset-source" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.author + '</div><div class="dataset-rating" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"><span class="glyphicon glyphicon-star" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"></span></div></div>');
         return _this.$el.append(panel.render().el);
       });
       setTimeout((function() {
@@ -47,16 +53,43 @@
       var names;
       names = {};
       names.title = attributes.title;
-      if (names.title.length > 25) {
-        names.title = names.title.slice(0, 25);
+      if (names.title.length > 30) {
+        names.title = names.title.slice(0, 30);
         names.title += '...';
       }
       names.author = attributes.author;
-      if (names.author.length > 23) {
-        names.author = names.author.slice(0, 23);
+      if (names.author.length > 26) {
+        names.author = names.author.slice(0, 26);
         names.author += '...';
       }
       return names;
+    };
+
+    ListDataSetsView.prototype.showMoreInfo = function(event) {
+      var _this = this;
+      if (this.showMore) {
+        clearTimeout(this.showMore);
+      }
+      return this.showMore = setTimeout((function() {
+        var name, source;
+        if (_this.showMore) {
+          name = event.target.dataset.name;
+          source = event.target.dataset.source;
+          return $('#showMoreBox').html('<p>' + name + '</p><p>' + source + '</p>').fadeIn(300);
+        }
+      }), 1000);
+    };
+
+    ListDataSetsView.prototype.hideMoreInfo = function() {
+      clearTimeout(this.showMore);
+      return $('#showMoreBox').fadeOut(300);
+    };
+
+    ListDataSetsView.prototype.updateXY = function() {
+      return $('#showMoreBox').css({
+        top: event.clientY + 20,
+        left: event.clientX - 150
+      });
     };
 
     return ListDataSetsView;
