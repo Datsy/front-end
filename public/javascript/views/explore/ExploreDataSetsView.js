@@ -8,6 +8,7 @@
     __extends(ExploreDataSetsView, _super);
 
     function ExploreDataSetsView() {
+      this.navigateToHome = __bind(this.navigateToHome, this);
       this.loadVisualization = __bind(this.loadVisualization, this);
       this.clearCart = __bind(this.clearCart, this);
       this.renderFailed = __bind(this.renderFailed, this);
@@ -17,6 +18,10 @@
     }
 
     ExploreDataSetsView.prototype.className = 'explore container';
+
+    ExploreDataSetsView.prototype.events = {
+      'click .try-again-button': 'navigateToHome'
+    };
 
     ExploreDataSetsView.prototype.initialize = function(options) {
       var _this = this;
@@ -70,6 +75,12 @@
 
     ExploreDataSetsView.prototype.loadVisualization = function() {
       return Backbone.history.navigate("/visualize", {
+        trigger: true
+      });
+    };
+
+    ExploreDataSetsView.prototype.navigateToHome = function() {
+      return Backbone.history.navigate('/', {
         trigger: true
       });
     };

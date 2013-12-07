@@ -2,6 +2,9 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
 
   className: 'explore container'
 
+  events:
+    'click .try-again-button': 'navigateToHome'
+
   initialize: (options) ->
     @dataLoaded = false
     @datsyModel = options.datsyModel
@@ -42,4 +45,7 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
 
   loadVisualization: =>
     Backbone.history.navigate "/visualize", {trigger: true}
+
+  navigateToHome: =>
+    Backbone.history.navigate '/', { trigger: true }
 

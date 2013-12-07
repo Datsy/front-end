@@ -7,6 +7,7 @@ class DatsyApp.VisView extends Backbone.View
     "click button#scatterBubble": "renderScatterBubble"
     "click button#stackedMultiBar": "renderStackedMultiBar"
     "click button#downloadPhoto": "downloadPhoto"
+    'click .try-again-button': 'navigateToHome'
 
   initialize: ->
     @dataLoaded = false
@@ -125,3 +126,7 @@ class DatsyApp.VisView extends Backbone.View
     canvg canvas, svg.parentNode.innerHTML
     Canvas2Image.saveAsPNG canvas
     canvas.parentNode.removeChild canvas
+
+  navigateToHome: =>
+    Backbone.history.navigate '/', { trigger: true }
+

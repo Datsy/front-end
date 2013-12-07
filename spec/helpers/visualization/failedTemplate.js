@@ -6,5 +6,5 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "\n<div class=\"content\">\n  <div class=\"col-md-8 col-md-offset-2 verticalCenter\">\n    <h1 class=\"text-center\">We're sorry, an error has occured.</h1>\n    <h2 class=\"text-center text-muted\">Data failed to load. Please hand complaints to the API team</h2>\n  </div>\n</div>";
+  return "\n<div class=\"content failed-template\">\n  <div class=\"col-md-8 col-md-offset-2 verticalCenter\">\n    <h1 class=\"text-center\">We're sorry, an error has occured.</h1>\n    <h2 class=\"text-center text-muted\">Data failed to load. Please hand complaints to the API team</h2>\n    <div class=\"text-center\">\n      <button class=\"try-again-button btn btn-lg btn-success\">Back</button>\n    </div>\n  </div>\n</div>";
   });

@@ -1,5 +1,6 @@
 (function() {
   var _ref,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -7,6 +8,7 @@
     __extends(VisView, _super);
 
     function VisView() {
+      this.navigateToHome = __bind(this.navigateToHome, this);
       _ref = VisView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
@@ -19,7 +21,8 @@
       "click button#stackedArea": "renderStackedArea",
       "click button#scatterBubble": "renderScatterBubble",
       "click button#stackedMultiBar": "renderStackedMultiBar",
-      "click button#downloadPhoto": "downloadPhoto"
+      "click button#downloadPhoto": "downloadPhoto",
+      'click .try-again-button': 'navigateToHome'
     };
 
     VisView.prototype.initialize = function() {
@@ -155,6 +158,12 @@
       canvg(canvas, svg.parentNode.innerHTML);
       Canvas2Image.saveAsPNG(canvas);
       return canvas.parentNode.removeChild(canvas);
+    };
+
+    VisView.prototype.navigateToHome = function() {
+      return Backbone.history.navigate('/', {
+        trigger: true
+      });
     };
 
     return VisView;
