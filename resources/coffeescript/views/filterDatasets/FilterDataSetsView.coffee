@@ -7,6 +7,7 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     'click .input-group-btn': 'addFilters',
     'click .tag-suggestion': 'addSuggestedFilter',
     'click #seeDataBases': 'loadExploreView',
+    'click #seeAllDataBases': 'loadAllExploreView'
     'click .glyphicon-remove-sign': 'removeTopic'
 
   initialize: (options) ->
@@ -14,6 +15,7 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @tags = @datsyModel.get('tags')
     @template =  @datsyModel.get('templates')['filterDatasets']
     @loadingTemplate = @datsyModel.get('templates')['loading']
+    @noResultsTemplate = @datsyModel.get('templates')['noResultsTemplate']
     if (options.searchTopic.length)
       @currentTags = @buildTags options.searchTopic
       @filterTags()
@@ -31,14 +33,17 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
     @
 
   renderLoaded: =>
-    maintags = @mainTag.split(' & ')
-    if maintags[0] == ""
-      tagsToShow = false
+    if @tags.totalDataBases
+      maintags = @mainTag.split(' & ')
+      if maintags[0] == ""
+        tagsToShow = false
+      else
+        tagsToShow = true
+      tags = @tags.list()    
+      singular = @tags.totalDataBases == 1
+      @$el.html @template({ tagsToShow: tagsToShow, tags: maintags, occurance: @tags.totalDataBases, singular: singular })
     else
-      tagsToShow = true
-    tags = @tags.list()    
-    singular = @tags.totalDataBases == 1
-    @$el.html @template({ tagsToShow: tagsToShow, tags: maintags, occurance: @tags.totalDataBases, singular: singular })
+      @$el.html @noResultsTemplate({ tagsToShow: tagsToShow, tags: maintags, singular: singular })
 
     suggestedTags = @getRandomTags()
     suggested = new DatsyApp.SuggestedTagsView { model: @datsyModel, tags: suggestedTags }
@@ -108,13 +113,15 @@ class DatsyApp.FilterDataSetsView extends Backbone.View
         url += '/' + tag
     Backbone.history.navigate url, {trigger: true}
 
+  loadAllExploreView: ->
+    Backbone.history.navigate '/explore', {trigger: true}
+
   buildTags: (tags) ->
     tags = tags.split('/')
     return tags.map (tag) =>
       return tag.split('_').join(' ')
 
   noteError: (error) ->
-    console.log error
     if ($('#filterTagSearch').val() != '')
       $('#filterTagSearch').val('')
     $('#filterTagSearch').attr("placeholder", error)

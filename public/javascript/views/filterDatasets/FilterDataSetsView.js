@@ -23,6 +23,7 @@
       'click .input-group-btn': 'addFilters',
       'click .tag-suggestion': 'addSuggestedFilter',
       'click #seeDataBases': 'loadExploreView',
+      'click #seeAllDataBases': 'loadAllExploreView',
       'click .glyphicon-remove-sign': 'removeTopic'
     };
 
@@ -32,6 +33,7 @@
       this.tags = this.datsyModel.get('tags');
       this.template = this.datsyModel.get('templates')['filterDatasets'];
       this.loadingTemplate = this.datsyModel.get('templates')['loading'];
+      this.noResultsTemplate = this.datsyModel.get('templates')['noResultsTemplate'];
       if (options.searchTopic.length) {
         this.currentTags = this.buildTags(options.searchTopic);
         this.filterTags();
@@ -60,20 +62,28 @@
 
     FilterDataSetsView.prototype.renderLoaded = function() {
       var maintags, singular, suggested, suggestedTags, tags, tagsToShow;
-      maintags = this.mainTag.split(' & ');
-      if (maintags[0] === "") {
-        tagsToShow = false;
+      if (this.tags.totalDataBases) {
+        maintags = this.mainTag.split(' & ');
+        if (maintags[0] === "") {
+          tagsToShow = false;
+        } else {
+          tagsToShow = true;
+        }
+        tags = this.tags.list();
+        singular = this.tags.totalDataBases === 1;
+        this.$el.html(this.template({
+          tagsToShow: tagsToShow,
+          tags: maintags,
+          occurance: this.tags.totalDataBases,
+          singular: singular
+        }));
       } else {
-        tagsToShow = true;
+        this.$el.html(this.noResultsTemplate({
+          tagsToShow: tagsToShow,
+          tags: maintags,
+          singular: singular
+        }));
       }
-      tags = this.tags.list();
-      singular = this.tags.totalDataBases === 1;
-      this.$el.html(this.template({
-        tagsToShow: tagsToShow,
-        tags: maintags,
-        occurance: this.tags.totalDataBases,
-        singular: singular
-      }));
       suggestedTags = this.getRandomTags();
       suggested = new DatsyApp.SuggestedTagsView({
         model: this.datsyModel,
@@ -184,6 +194,12 @@
       });
     };
 
+    FilterDataSetsView.prototype.loadAllExploreView = function() {
+      return Backbone.history.navigate('/explore', {
+        trigger: true
+      });
+    };
+
     FilterDataSetsView.prototype.buildTags = function(tags) {
       var _this = this;
       tags = tags.split('/');
@@ -193,7 +209,6 @@
     };
 
     FilterDataSetsView.prototype.noteError = function(error) {
-      console.log(error);
       if ($('#filterTagSearch').val() !== '') {
         $('#filterTagSearch').val('');
       }
