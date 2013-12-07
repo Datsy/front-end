@@ -43,4 +43,31 @@ describe('Datsy Model', function() {
     expect(cart.cart.values['stock_data'].indexOf('price')).not.toBe(-1);
   });
 
+  it('should call the cart model\'s clearCart() function', function() {
+    var cart = datsy.get('cart');
+    spyOn(cart, 'clearCart');
+    datsy.clearCart();
+    expect(cart.clearCart).toHaveBeenCalled();
+  });
+
+  it('should call on the cart model to check for a cart in localStorage', function() {
+    var cart = datsy.get('cart');
+    spyOn(cart,'cartInStorage');
+    datsy.cartInStorage();
+    expect(cart.cartInStorage).toHaveBeenCalled();
+  });
+
+  it('should trigger the cart data to be pooled into data for visulization', function() {
+    var cart = datsy.get('cart');
+    var vizData = datsy.get('visualizationData');
+    spyOn(datsy, 'triggerVisDataLoaded');
+    spyOn(vizData, 'setVisualizationData').andCallFake(function (cart) {
+      this.trigger('loaded');
+    });
+    datsy.addColumn('price', 'stock_data');
+    datsy.setVisualizationData();
+    expect(vizData.setVisualizationData).toHaveBeenCalled();
+    expect(datsy.triggerVisDataLoaded).toHaveBeenCalled();
+  });
+
 });
