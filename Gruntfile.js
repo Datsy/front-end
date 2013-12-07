@@ -97,6 +97,6 @@ module.exports = function(grunt) {
   grunt.registerTask('compileCoffee', ['coffee']);
   grunt.registerTask('test', ['jasmine']);
   grunt.registerTask('karma', ['karma']);
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['coffee', 'jade', 'watch']);
   
 };

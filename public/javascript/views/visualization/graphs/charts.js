@@ -14,8 +14,8 @@
         chart.x2Axis.tickFormat(function(d) {
           return d3.time.format("%b %d")(new Date(d));
         });
-        chart.yAxis.tickFormat(d3.format("$,.2f"));
-        chart.y2Axis.tickFormat(d3.format("$,.2f"));
+        chart.yAxis.tickFormat(d3.format(",.2f"));
+        chart.y2Axis.tickFormat(d3.format(",.2f"));
         d3.select("#graph svg").datum(data).transition().duration(500).call(chart);
         return chart;
       });
@@ -86,7 +86,7 @@
         chart.xAxis.tickFormat(function(d) {
           return d3.time.format('%b')(new Date(d));
         });
-        chart.yAxis.tickFormat(d3.format('$,.2f'));
+        chart.yAxis.tickFormat(d3.format(',.2f'));
         d3.select('#graph svg').datum(data).transition().duration(500).call(chart);
         return chart;
       });
@@ -124,7 +124,7 @@
         chart.xAxis.showMaxMin(false).tickFormat(function(d) {
           return d3.time.format("%b")(new Date(d));
         });
-        chart.yAxis.tickFormat(d3.format("$,.2f"));
+        chart.yAxis.tickFormat(d3.format(",.2f"));
         d3.select("#graph svg").datum(newData).transition().duration(500).call(chart);
         return chart;
       });
