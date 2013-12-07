@@ -79,9 +79,23 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      compile: {
-        files: 'resources/coffeescript/**/*.coffee',
-        tasks: [ 'compileCoffee' ],
+      compileCoffeeScript: {
+        files: [ 'resources/coffeescript/**/*.coffee' ],
+        tasks: [ 'compileCoffee', 'test' ],
+        options: {
+          livereload: true
+        }
+      },
+      compileJadeTemplates: {
+        files: [ 'views/templates/**/*.jade' ],
+        tasks: [ 'compileJade', 'hbs' ],
+        options: {
+          livereload: true
+        }
+      },
+      runTests: {
+        files: [ 'spec/tests/*.js'],
+        tasks: [ 'test' ],
         options: {
           livereload: true
         }
