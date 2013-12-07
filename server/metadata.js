@@ -56,7 +56,7 @@ exports.getSampleData = function(id, columnName) {
 var readFakeJSON = function(cb1, cb2) {
   
   fs.readFile('./server/fakedata/tags.json', 'binary', function(err, data) {
-     cb1(JSON.parse(data));
+    cb1(JSON.parse(data));
   });
 
   fs.readFile('./server/fakedata/datasets-meta.json', 'binary', function(err, data) {
