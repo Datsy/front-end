@@ -24,12 +24,12 @@ class DatsyApp.ListDataSetsView extends Backbone.View
   shortenNames: (attributes) ->
     names = {}
     names.title = attributes.title
-    if names.title.length > 30
-      names.title = names.title.slice(0,30)
+    if names.title.length > 27
+      names.title = names.title.slice(0,27)
       names.title += '...'
     names.author = attributes.author
-    if names.author.length > 26
-      names.author = names.author.slice(0,26)
+    if names.author.length > 20
+      names.author = names.author.slice(0,20)
       names.author += '...'
     names
 
