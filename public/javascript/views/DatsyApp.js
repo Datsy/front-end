@@ -23,7 +23,6 @@
 
     DatsyView.prototype.initialize = function() {
       this.template = this.model.get('templates')['datsyApp'];
-      console.log(this.template);
       $('body').prepend(this.render().el);
       this.router = new DatsyApp.Router({
         el: this.$el.find('#wrapper'),
@@ -69,6 +68,7 @@
       var tag;
       event && event.preventDefault();
       tag = $('.header-search-box').val();
+      $('.header-search-box').val('');
       return this.router.navigate("/filterDatasets/" + tag, {
         trigger: true
       });

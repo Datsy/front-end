@@ -6,12 +6,14 @@ div.results-box.panel.panel-default.col-md-9
     h1.text-center Your search appeared in {{ occurance }} results.
     {{/if}}
 
+    {{#if tagsToShow}}
     div.row.current-tags.text-center
       {{#each tags}}
       h4.selected-keyword
         span.label.label-success {{this}}
           span.glyphicon.glyphicon-remove-sign
       {{/each}}
+    {{/if}}
 
     form.form-inline(role='form')
       div.form-group.col-md-10.col-md-offset-1
