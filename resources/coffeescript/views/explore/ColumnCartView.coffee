@@ -35,8 +35,9 @@ class DatsyApp.ColumnCartView extends Backbone.View
     @$el.css({'margin-top': $(window).scrollTop() })
 
   addColumn: (params) =>
-    if $('#selectedColumns .list-group-item').get(0).innerHTML == 'No Columns Selected'
-      $('#selectedColumns .list-group-item').get(0).remove()
+    if $('#selectedColumns .list-group-item').get(0)
+      if $('#selectedColumns .list-group-item').get(0).innerHTML == 'No Columns Selected'
+        $('#selectedColumns .list-group-item').get(0).remove()
     @columnList.append('<li class="list-group-item">' + params.columnName + '</li>')
     $('.total-columns-added').text(params.total)
     $('#go').prop 'disabled', false

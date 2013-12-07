@@ -30,13 +30,12 @@
       _this = this;
       this.listenTo(window, "resize", this.resize);
       setTimeout((function() {
-        console.log('10 seconds pasted');
         if (!_this.dataLoaded) {
+          console.log('10 seconds past, no response');
           return _this.renderFailed();
         }
       }), 10000);
       return this.model.on("visualizationDataLoaded", function() {
-        console.log('vis data is loaded');
         _this.dataLoaded = true;
         _this.currentGraphView = new DatsyApp.ChartView({
           model: _this.model,
@@ -76,7 +75,6 @@
 
     VisView.prototype.renderLoaded = function(chartType) {
       var h, w;
-      console.log("render loaded");
       this.$el.html(this.template);
       w = $(".container").width();
       h = w / 2;

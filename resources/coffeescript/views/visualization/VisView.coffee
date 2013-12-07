@@ -15,12 +15,11 @@ class DatsyApp.VisView extends Backbone.View
     _this = this
     @listenTo window, "resize", @resize
     setTimeout (=>
-      console.log '10 seconds pasted'
       if !@dataLoaded
+        console.log '10 seconds past, no response'
         @renderFailed()
     ),10000
     @model.on "visualizationDataLoaded", =>
-      console.log 'vis data is loaded'
       @dataLoaded = true
       @currentGraphView = new DatsyApp.ChartView(
         model: @model
@@ -55,7 +54,6 @@ class DatsyApp.VisView extends Backbone.View
     @
 
   renderLoaded: (chartType) ->
-    console.log "render loaded"
     @$el.html @template
     w = $(".container").width()
     h = w / 2
@@ -65,7 +63,7 @@ class DatsyApp.VisView extends Backbone.View
       width: w
 
     @$graph.append @currentGraphView.render(chartType)
-    this
+    @
 
   renderLineChart: ->
     @model.set "chartType", "lineChart"

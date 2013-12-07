@@ -60,8 +60,10 @@
     };
 
     ColumnCartView.prototype.addColumn = function(params) {
-      if ($('#selectedColumns .list-group-item').get(0).innerHTML === 'No Columns Selected') {
-        $('#selectedColumns .list-group-item').get(0).remove();
+      if ($('#selectedColumns .list-group-item').get(0)) {
+        if ($('#selectedColumns .list-group-item').get(0).innerHTML === 'No Columns Selected') {
+          $('#selectedColumns .list-group-item').get(0).remove();
+        }
       }
       this.columnList.append('<li class="list-group-item">' + params.columnName + '</li>');
       $('.total-columns-added').text(params.total);
