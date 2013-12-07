@@ -27,6 +27,7 @@
       this.dataLoaded = false;
       this.loadingTemplate = this.model.get("templates")["visualizeLoading"];
       this.template = this.model.get("templates")["visualize"];
+      this.failedTemplate = this.model.get('templates')['failedTemplate'];
       _this = this;
       this.listenTo(window, "resize", this.resize);
       setTimeout((function() {

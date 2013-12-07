@@ -6,5 +6,5 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "\n<p>Data failed to load. Fuck this API.</p>";
+  return "\n<div class=\"content\">\n  <div class=\"col-md-8 col-md-offset-2 verticalCenter\">\n    <h1 class=\"text-center\">We're sorry, an error has occured.</h1>\n    <h2 class=\"text-center text-muted\">Data failed to load. Please hand complaints to the API team</h2>\n  </div>\n</div>";
   });

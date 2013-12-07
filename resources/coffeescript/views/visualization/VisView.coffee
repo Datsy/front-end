@@ -12,6 +12,7 @@ class DatsyApp.VisView extends Backbone.View
     @dataLoaded = false
     @loadingTemplate = @model.get("templates")["visualizeLoading"]
     @template = @model.get("templates")["visualize"]
+    @failedTemplate = @model.get('templates')['failedTemplate']
     _this = this
     @listenTo window, "resize", @resize
     setTimeout (=>
