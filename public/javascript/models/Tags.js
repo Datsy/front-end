@@ -53,11 +53,10 @@
     };
 
     Tags.prototype.has = function(tag) {
-      if (this.tagList[tag]) {
-        return true;
-      } else {
+      if (this.tagList.indexOf(tag) === -1) {
         return false;
       }
+      return true;
     };
 
     Tags.prototype.list = function() {

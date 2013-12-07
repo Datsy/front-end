@@ -27,7 +27,9 @@ class DatsyApp.Tags extends Backbone.Model
     @triggerLoaded()
 
   has: (tag) ->
-    return if @tagList[tag] then true else false
+    if @tagList.indexOf(tag) is -1
+      return false
+    true
 
   list: ->
     return @tagList
