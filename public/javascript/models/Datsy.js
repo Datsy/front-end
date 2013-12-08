@@ -58,6 +58,7 @@
     };
 
     Datsy.prototype.clearCart = function() {
+      this.get('visualizationData').clearOldData();
       return this.get('cart').clearCart();
     };
 

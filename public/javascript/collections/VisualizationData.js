@@ -68,6 +68,10 @@
       return this;
     };
 
+    VisualizationData.prototype.clearOldData = function() {
+      return this.initialize();
+    };
+
     return VisualizationData;
 
   })(Backbone.Collection);

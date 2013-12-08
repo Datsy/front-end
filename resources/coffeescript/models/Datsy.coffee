@@ -31,6 +31,7 @@ class DatsyApp.Datsy extends Backbone.Model
     @trigger 'visualizationDataLoaded'
 
   clearCart: ->
+    @get('visualizationData').clearOldData()
     @get('cart').clearCart()
 
   cartInStorage: ->

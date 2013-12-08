@@ -31,3 +31,6 @@ class DatsyApp.VisualizationData extends Backbone.Collection
     if @totalLoaded == @total
       @trigger 'loaded'
     @
+
+  clearOldData: ->
+    @initialize()

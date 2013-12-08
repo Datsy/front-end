@@ -13,6 +13,18 @@ describe('Cart Model', function() {
     expect(cart.cart.values).toEqual(jasmine.any(Object));
   });
 
+  it('should reset the cart when clearCart is called' , function() {
+    cart.cart.total = 2;
+    cart.cart.values['one'] = 'one';
+    cart.cart.values['two'] = 'two';
+    spyOn(cart, 'clearCart').andCallThrough();
+    datsy.clearCart();
+    expect(cart.clearCart).toHaveBeenCalled();
+  });
+
+    spyOn(cart, 'addColumn').andCallThrough();
+    datsy.addColumn('price','stock_data');
+    expect(cart.addColumn).toHaveBeenCalled();
 
 
 });
