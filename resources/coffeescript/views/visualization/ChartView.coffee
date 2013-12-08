@@ -63,7 +63,6 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
 
       i++
     i = 0
-
     while i < data.x.length
       d3Data.forEach (item) ->
         item.values.push
@@ -73,8 +72,8 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
 
       i++
     
-    console.log 'd3Data:', d3Data
-    @bubbleSort(d3Data)
+    d3Data = @bubbleSort(d3Data)
+    d3Data
 
   bubbleSort: (object) ->
     recurse = (array) ->
@@ -96,9 +95,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       array
 
     series = 0
-
     while series < object.length
       recurse object[series].values
       series++
-    console.log "obj", object
     object

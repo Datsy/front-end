@@ -5,10 +5,11 @@ class DatsyApp.Charts
     nv.addGraph ->
       chart = nv.models.lineWithFocusChart()
       chart.xAxis.tickFormat (d) ->
-        d3.time.format("%b %d") new Date(d)
+        d3.time.format("%b %d, '%y") new Date(d)
+        
 
       chart.x2Axis.tickFormat (d) ->
-        d3.time.format("%b %d") new Date(d)
+        d3.time.format("%b %d, '%y") new Date(d)
 
       chart.yAxis.tickFormat d3.format(",.2f")
       chart.y2Axis.tickFormat d3.format(",.2f")
