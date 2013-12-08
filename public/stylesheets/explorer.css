@@ -118,6 +118,8 @@
 .explore-datasets .ui-accordion-header {
   font-size: 18px;
   font-weight: 700;
+  padding-top: 4px;
+  padding-bottom: 4px;
   letter-spacing: 1px;
   color: #fff;
   background: #4cae4c;
@@ -127,36 +129,72 @@
   background: #409c40;
 }
 .explore-datasets .ui-accordion-content {
-  padding: 10px;
+  padding: 10px !important;
   padding: 0;
   margin: 0;
 }
 .explore-datasets .ui-accordion-content li.column-listing {
   list-style: none;
-  margin: 7px 0 7px 0;
-  padding: 15px 10px;
+  margin: 0;
+  padding: 5px 10px;
+  border-bottom: 1px solid #bbb;
 }
 .explore-datasets .ui-accordion-content li.column-listing div.column-descriptions p {
   margin: 2px 0;
+  color: #555;
+  font-size: 12px;
   padding: 0;
+  font-weight: 800;
+}
+.explore-datasets .ui-accordion-content li.column-listing div.column-descriptions p span.column-descriptions-var {
+  padding-left: 6px;
+  font-weight: 400;
+}
+.explore-datasets .ui-accordion-content li.column-listing div.column-add-button {
+  margin-top: 6px;
 }
 .explore-datasets .ui-accordion-content li.column-listing div.column-add-button button {
   margin: 3px auto;
   font-size: 10px;
-  height: 30px;
+  height: 35px;
 }
 .explore-datasets .ui-accordion-content li.column-listing div.column-add-button button:focus {
   outline: none;
   box-shadow: none;
 }
-.explore-datasets .ui-accordion-content li.column-listing:nth-child(odd) {
+.explore-datasets .ui-accordion-content li.column-listing:hover {
   background-color: #eee;
 }
-.explore-datasets .ui-accordion-content li.column-listing:hover {
-  background-color: #e3ffe9;
+.explore-datasets .ui-accordion-content li.column-listing:last-child {
+  border-bottom: 0;
 }
 .explore-datasets .ui-state-hover {
   color: #fff;
+}
+.popover-listing-desc {
+  padding: 0;
+  margin: 0;
+}
+.popover-listing-desc li.popover-listing-title {
+  padding: 2px 8px;
+  font-weight: 700;
+  margin: 3px 0;
+  list-style: none;
+  font-size: 13px;
+  text-align: center;
+  background-color: #ddd;
+}
+.popover-listing-desc li.popover-listing-title:first-child {
+  margin-top: 5px;
+}
+.popover-listing-desc li.popover-listing-param {
+  margin-bottom: 8px;
+  list-style: none;
+  font-size: 14px;
+  text-align: center;
+}
+.popover-listing-desc li.popover-listing-param:last-child {
+  margin-bottom: 0;
 }
 .modal .rows {
   padding: 0;

@@ -121,6 +121,8 @@
   .ui-accordion-header
     font-size 18px
     font-weight 700
+    padding-top 4px
+    padding-bottom 4px
     letter-spacing 1px
     color #FFF
     background #4cae4c
@@ -130,42 +132,75 @@
     background #409C40
 
   .ui-accordion-content
-    padding 10px
+    padding 10px !important
     padding 0
     margin 0
   
     li.column-listing
       list-style none
-      margin 7px 0 7px 0
-      padding 15px 10px
+      margin 0
+      padding 5px 10px
+      border-bottom 1px solid #bbb
 
       div.column-descriptions
 
         p
           margin 2px 0
+          color #555
+          font-size 12px
           padding 0
+          font-weight 800
+
+          span.column-descriptions-var
+            padding-left 6px
+            font-weight 400
 
       div.column-add-button
+        margin-top 6px
 
         button
           margin 3px auto
           font-size 10px
-          height 30px
+          height 35px
 
         button:focus
           outline none
           box-shadow none
 
-    li.column-listing:nth-child(odd)
+    li.column-listing:hover
       background-color #eee
 
-    li.column-listing:hover
-      background-color #E3FFE9
-
+    li.column-listing:last-child
+      border-bottom 0
 
   .ui-state-hover
     color #fff
 
+.popover-listing-desc
+  padding 0
+  margin 0
+
+  li.popover-listing-title
+    padding 2px 8px
+    font-weight 700
+    margin 3px 0
+    list-style none
+    font-size 13px
+    text-align center
+    background-color #ddd
+
+  li.popover-listing-title:first-child
+    margin-top 5px
+
+  li.popover-listing-param
+    margin-bottom 8px
+    list-style none
+    font-size 14px
+    text-align center
+
+  li.popover-listing-param:last-child
+    margin-bottom 0
+  
 .modal
 
   .rows

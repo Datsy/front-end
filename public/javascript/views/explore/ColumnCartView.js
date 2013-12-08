@@ -56,9 +56,11 @@
     };
 
     ColumnCartView.prototype.setTopPos = function() {
-      return this.$el.css({
-        'margin-top': $(window).scrollTop()
-      });
+      if ($(window).width() > 991) {
+        return this.$el.css({
+          'margin-top': $(window).scrollTop()
+        });
+      }
     };
 
     ColumnCartView.prototype.addColumn = function(params) {
@@ -68,9 +70,12 @@
           $('#selectedColumns .list-group-item').get(0).remove();
         }
       }
-      this.columnList.append('<li class="list-group-item" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="' + params.columnName + '">' + params.columnName + '</li>');
+      this.columnList.append('<li class="list-group-item" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom">' + params.columnName + '</li>');
       newColumn = this.columnList.find('li').last();
-      newColumn.popover();
+      newColumn.popover({
+        html: true,
+        content: '<ul class="popover-listing-desc"><li class="popover-listing-title">Dataset Name:</li><li class="popover-listing-param">' + params.datasetID.split('_').join(' ') + '</li><li class="popover-listing-title">Column Name:</li><li class="popover-listing-param">' + params.columnName + '</li></ul>'
+      });
       $('.total-columns-added').text(params.total);
       return $('#go').prop('disabled', false);
     };
@@ -85,7 +90,8 @@
           columnArray = _ref1[id];
           columnArray.forEach(function(column) {
             return _this.addColumn({
-              columnName: column
+              columnName: column,
+              datasetID: id
             });
           });
         }
