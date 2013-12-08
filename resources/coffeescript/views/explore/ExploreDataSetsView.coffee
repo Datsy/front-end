@@ -48,4 +48,3 @@ class DatsyApp.ExploreDataSetsView extends Backbone.View
 
   navigateToHome: =>
     Backbone.history.navigate '/', { trigger: true }
-

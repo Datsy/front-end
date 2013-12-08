@@ -9,7 +9,7 @@ var express = require('express'),
     http = require('http'),
     path = require('path');
  
-var app = express();
+exports.app = app = express();
 
 var controllers = require('./server/controllers');
 var middleware = require('./server/middleware');

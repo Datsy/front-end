@@ -3,8 +3,8 @@ class DatsyApp.ColumnCartView extends Backbone.View
   className: 'cart col-md-3'
 
   events:
-    'click #clear' : 'clearCart',
-    'click #go' : 'loadVisualization'
+    'click #clear': 'clearCart',
+    'click #go': 'loadVisualization'
 
   initialize: (options) ->
     @datsyModel = options.datsyModel
@@ -29,7 +29,6 @@ class DatsyApp.ColumnCartView extends Backbone.View
   loadVisualization: ->
     @trigger 'loadVisualization'
     @datsyModel.setVisualizationData()
-
 
   setTopPos: =>
     @$el.css({'margin-top': $(window).scrollTop() })

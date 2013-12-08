@@ -44,7 +44,6 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       x: @currentXModel
       y: @currentYModel
 
-
   convertData: (options) ->
     @rawData.x = options.data.columnsForX[0].getColumnData()
     options.data.columnsForY.forEach (column) =>
@@ -73,5 +72,39 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
 
 
       i++
-    d3Data
+    i = 0
+    while i < d3Data.length
+      d3Data[i].values["x"] = bubbleSort(d3Data[i].values["x"])
+      i++
     
+    @bubbleSort(d3Data)
+    d3Data
+
+  bubbleSort = (object) ->
+    recurse = (array) ->
+      throw array  unless Array.isArray(array)
+      notYetSorted = true
+      i = 0 # initializing i to pass the test
+      while notYetSorted
+        notYetSorted = false
+        j = 0
+        while j < array.length - 1
+          thisVal = array[j]
+          thisY = object[series].values.y[j]
+          if thisVal > array[j + 1]
+            array[j] = array[j + 1]
+            array[j + 1] = thisVal
+            object[series].values.y[j] = object[series].values.y[j + 1]
+            object[series].values.y[j + 1] = thisY
+            notYetSorted = true
+          j++
+        return array  if notYetSorted is false
+        i++
+      array
+
+    series = 0
+
+    while series < object.length
+      recurse object[series].values.x
+      series++
+    object

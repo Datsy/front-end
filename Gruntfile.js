@@ -78,6 +78,13 @@ module.exports = function(grunt) {
       }
     },
 
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        background: true
+      }
+    },
+
     watch: {
       compileCoffeeScript: {
         files: [ 'resources/coffeescript/**/*.coffee' ],
@@ -99,6 +106,10 @@ module.exports = function(grunt) {
         options: {
           livereload: true
         }
+      },
+      karma: {
+        files: ['public/javascript/**/*.js', 'spec/tests/**/*.js'],
+        tasks: ['karma:unit:run']
       }
     }
 
@@ -109,12 +120,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('hbs', ['handlebars']);
   grunt.registerTask('compileJade', ['jade']);
   grunt.registerTask('compileCoffee', ['coffee']);
   grunt.registerTask('test', ['jasmine']);
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('karma', ['karma']);
+  grunt.registerTask('default', ['coffee', 'jade', 'watch']);
   
 };
