@@ -9,10 +9,10 @@
         var chart;
         chart = nv.models.lineWithFocusChart();
         chart.xAxis.tickFormat(function(d) {
-          return d3.time.format("%b %d")(new Date(d));
+          return d3.time.format("%b %d, '%y")(new Date(d));
         });
         chart.x2Axis.tickFormat(function(d) {
-          return d3.time.format("%b %d")(new Date(d));
+          return d3.time.format("%b %d, '%y")(new Date(d));
         });
         chart.yAxis.tickFormat(d3.format(",.2f"));
         chart.y2Axis.tickFormat(d3.format(",.2f"));

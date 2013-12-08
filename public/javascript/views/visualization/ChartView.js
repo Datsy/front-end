@@ -97,8 +97,8 @@
         });
         i++;
       }
-      console.log('d3Data:', d3Data);
-      return this.bubbleSort(d3Data);
+      d3Data = this.bubbleSort(d3Data);
+      return d3Data;
     };
 
     ChartView.prototype.bubbleSort = function(object) {
@@ -134,7 +134,6 @@
         recurse(object[series].values);
         series++;
       }
-      console.log("obj", object);
       return object;
     };
 
