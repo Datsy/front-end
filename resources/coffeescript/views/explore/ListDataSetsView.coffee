@@ -23,7 +23,7 @@ class DatsyApp.ListDataSetsView extends Backbone.View
 
   shortenNames: (attributes) ->
     names = {}
-    names.title = attributes.title
+    names.title = attributes.title.split('_').join(' ')
     if names.title.length > 27
       names.title = names.title.slice(0,27)
       names.title += '...'

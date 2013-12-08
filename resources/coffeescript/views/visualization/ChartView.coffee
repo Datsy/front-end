@@ -71,12 +71,8 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
 
 
       i++
-    i = 0
-    while i < d3Data.length
-      d3Data[i].values["x"] = bubbleSort(d3Data[i].values["x"])
-      i++
-    console.log d3Data
-    @bubbleSort(d3Data)
+    
+    d3Data = @bubbleSort(d3Data)
     d3Data
 
   bubbleSort: (object) ->

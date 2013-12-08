@@ -23,6 +23,8 @@
     DataSetItemView.prototype.render = function() {
       var columns,
         _this = this;
+      console.log(this.model);
+      this.$el.append('<li class="dataset-item-header well well-md">About this dataset: ' + this.model.get("description") + '</li>');
       columns = this.model.getColumns().map(function(column) {
         return new DatsyApp.DataSetColumnView({
           datsyModel: _this.datsyModel,
