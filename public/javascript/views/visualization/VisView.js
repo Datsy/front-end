@@ -19,8 +19,6 @@
       "click button#lineChart": "renderLineChart",
       "click button#lineChart2Y": "renderLineChart2Y",
       "click button#stackedArea": "renderStackedArea",
-      "click button#scatterBubble": "renderScatterBubble",
-      "click button#stackedMultiBar": "renderStackedMultiBar",
       "click button#downloadPhoto": "downloadPhoto",
       'click .try-again-button': 'navigateToHome'
     };
