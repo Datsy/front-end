@@ -44,6 +44,7 @@
     };
 
     DataSetColumnView.prototype.addColumnForVis = function() {
+      event.target.setAttribute('disabled', true);
       return this.datsyModel.addColumn(this.model.name, this.datasetName, this.model.data_type);
     };
 

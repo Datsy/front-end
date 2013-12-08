@@ -23,6 +23,7 @@ class DatsyApp.DataSetColumnView extends Backbone.View
     @sampleDataModelView.once 'done', @deleteModalView
 
   addColumnForVis: ->
+    event.target.setAttribute('disabled', true)
     @datsyModel.addColumn @model.name, @datasetName, @model.data_type
 
   showModal: =>

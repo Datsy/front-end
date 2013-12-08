@@ -22,9 +22,4 @@ describe('Cart Model', function() {
     expect(cart.clearCart).toHaveBeenCalled();
   });
 
-    spyOn(cart, 'addColumn').andCallThrough();
-    datsy.addColumn('price','stock_data');
-    expect(cart.addColumn).toHaveBeenCalled();
-
-
 });
