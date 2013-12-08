@@ -4,8 +4,6 @@ class DatsyApp.VisView extends Backbone.View
     "click button#lineChart": "renderLineChart"
     "click button#lineChart2Y": "renderLineChart2Y"
     "click button#stackedArea": "renderStackedArea"
-    "click button#scatterBubble": "renderScatterBubble"
-    "click button#stackedMultiBar": "renderStackedMultiBar"
     "click button#downloadPhoto": "downloadPhoto"
     'click .try-again-button': 'navigateToHome'
 
@@ -100,6 +98,7 @@ class DatsyApp.VisView extends Backbone.View
           styles[style] = cs.getPropertyValue(style)
           i++
       styles
+
     svg = document.getElementsByTagName("svg")[0]
     chartArea = document.getElementsByTagName("svg")[0].parentNode
     canvas = document.createElement("canvas")
@@ -111,7 +110,6 @@ class DatsyApp.VisView extends Backbone.View
     appendStyles = (node) ->
       styles = dumpComputedStyles(node)
       
-      # node.style = styles;
       for key of styles
         node[key] = styles[key]
 
@@ -122,7 +120,7 @@ class DatsyApp.VisView extends Backbone.View
         i++
       node
 
-    svg = appendStyles(svg)
+    appendStyles(svg)
     canvg canvas, svg.parentNode.innerHTML
     Canvas2Image.saveAsPNG canvas
     canvas.parentNode.removeChild canvas

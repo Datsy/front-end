@@ -4,6 +4,8 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   DatsyApp.ChartView = (function(_super) {
+    var bubbleSort;
+
     __extends(ChartView, _super);
 
     function ChartView() {
@@ -97,7 +99,52 @@
         });
         i++;
       }
+      i = 0;
+      while (i < d3Data.length) {
+        d3Data[i].values["x"] = bubbleSort(d3Data[i].values["x"]);
+        i++;
+      }
+      this.bubbleSort(d3Data);
       return d3Data;
+    };
+
+    bubbleSort = function(object) {
+      var recurse, series;
+      recurse = function(array) {
+        var i, j, notYetSorted, thisVal, thisY;
+        if (!Array.isArray(array)) {
+          throw array;
+        }
+        notYetSorted = true;
+        i = 0;
+        while (notYetSorted) {
+          notYetSorted = false;
+          j = 0;
+          while (j < array.length - 1) {
+            thisVal = array[j];
+            thisY = object[series].values.y[j];
+            if (thisVal > array[j + 1]) {
+              array[j] = array[j + 1];
+              array[j + 1] = thisVal;
+              object[series].values.y[j] = object[series].values.y[j + 1];
+              object[series].values.y[j + 1] = thisY;
+              notYetSorted = true;
+            }
+            j++;
+          }
+          if (notYetSorted === false) {
+            return array;
+          }
+          i++;
+        }
+        return array;
+      };
+      series = 0;
+      while (series < object.length) {
+        recurse(object[series].values.x);
+        series++;
+      }
+      return object;
     };
 
     return ChartView;
