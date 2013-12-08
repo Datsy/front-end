@@ -137,6 +137,14 @@
   padding: 0;
   margin: 0;
 }
+.explore-datasets .ui-accordion-content .dataset-item-header {
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 14px;
+}
+.explore-datasets .ui-accordion-content .dataset-item-header .dataset-item-header-title {
+  font-weight: 800;
+}
 .explore-datasets .ui-accordion-content li.column-listing {
   list-style: none;
   margin: 0;
