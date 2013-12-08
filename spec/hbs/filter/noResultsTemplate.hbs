@@ -1,0 +1,22 @@
+
+<div class="results-box panel panel-default col-md-9">
+  <div class="filterResults">
+    <h1 class="text-center">No databases match this search!</h1>{{#if tagsToShow}}
+    <div class="row current-tags text-center">{{#each tags}}
+      <h4 class="selected-keyword"><span class="label label-success">{{this}}<span class="glyphicon glyphicon-remove-sign"></span></span></h4>{{/each}}
+    </div>{{/if}}
+    <form role="form" class="form-inline">
+      <div class="form-group col-md-10 col-md-offset-1">
+        <label for="filter" class="sr-only">Search for keywords</label>
+        <div class="input-group">
+          <input id="filterTagSearch" type="text" placeholder="Add topics to filter results." autocomplete="off" class="form-control"/><span class="input-group-btn">
+            <button type="button" class="btn btn-default">Add</button></span>
+        </div>
+      </div>
+    </form>
+    <h4 class="text-center text-muted">Click Go! to see all databases</h4>
+    <div style="text-align:center">
+      <button id="seeAllDataBases" type="submit" class="btn btn-success btn-lg">Go!<span class="glyphicon glyphicon-chevron-right"></span></button>
+    </div>
+  </div>
+</div>

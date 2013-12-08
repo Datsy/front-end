@@ -31,7 +31,9 @@
     };
 
     SuggestedTagsView.prototype.addTagToFilters = function() {
-      return this.trigger('addTag');
+      var tag;
+      tag = event.target.innerHTML;
+      return this.trigger('addTag', tag);
     };
 
     return SuggestedTagsView;

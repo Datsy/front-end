@@ -66,8 +66,7 @@
     };
 
     ChartView.prototype.convertData = function(options) {
-      var _this;
-      _this = this;
+      var _this = this;
       this.rawData.x = options.data.columnsForX[0].getColumnData();
       options.data.columnsForY.forEach(function(column) {
         return _this.rawData.yValues[column.columnName] = column.getColumnData();

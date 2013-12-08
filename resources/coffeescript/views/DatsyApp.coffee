@@ -37,6 +37,7 @@ class DatsyApp.DatsyView extends Backbone.View
   searchKeyword: (event) ->
     event && event.preventDefault()
     tag = $('.header-search-box').val()
+    $('.header-search-box').val('')
     @router.navigate "/filterDatasets/" + tag, { trigger: true }
 
   navigateToLogin: (event) ->

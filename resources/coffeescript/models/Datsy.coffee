@@ -21,11 +21,11 @@ class DatsyApp.Datsy extends Backbone.Model
     total = cart.addColumn columnName, datasetID
     @trigger 'addColumn', { total: total, columnName: columnName, datasetID: datasetID }
 
-  setVisualizationData: (columns) ->
+  setVisualizationData: ->
     visualizationData = @get 'visualizationData'
+    visualizationData.on 'loaded', @triggerVisDataLoaded
     cart = @get('cart').getColumns()
     visualizationData.setVisualizationData cart
-    visualizationData.on 'loaded', @triggerVisDataLoaded
 
   triggerVisDataLoaded: =>
     @trigger 'visualizationDataLoaded'

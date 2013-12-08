@@ -68,6 +68,7 @@
       var tag;
       event && event.preventDefault();
       tag = $('.header-search-box').val();
+      $('.header-search-box').val('');
       return this.router.navigate("/filterDatasets/" + tag, {
         trigger: true
       });

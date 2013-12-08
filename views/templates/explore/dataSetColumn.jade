@@ -1,7 +1,11 @@
-div.column-descriptions.col-md-9
-  p Column Name: {{ name }}
-  p Data Type: {{ data_type }}
-  p Description: {{ description }}
+div.column-descriptions.col-md-6
+  p Column Name:
+    span.column-descriptions-var {{ name }}
+  p Data Type:
+    span.column-descriptions-var {{ data_type }}
+  p Description:
+    span.column-descriptions-var {{ description }}
 div.column-add-button.col-md-3
   button.btn.btn-success.btn-xs.btn-block.viewSampleData View Sample Data
+div.column-add-button.col-md-3
   button.btn.btn-success.btn-xs.btn-block.addColumnForVis Add For Viewing

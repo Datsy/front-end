@@ -9,8 +9,10 @@ class DatsyApp.DataSetItemView extends Backbone.View
     @dataSetColumnTemplate = options.dataSetColumnTemplate
 
   render: ->
+    console.log @model
+    @$el.append('<li class="dataset-item-header well well-md">About this dataset: ' + @model.get("description") + '</li>')
     columns = @model.getColumns().map (column) =>
-      return new DatsyApp.DataSetColumnView { datsyModel: @datsyModel, model: column, template: @dataSetColumnTemplate, datasetID: @model.getId() }
+      return new DatsyApp.DataSetColumnView { datsyModel: @datsyModel, model: column, template: @dataSetColumnTemplate, datasetName: @model.getId() }
     columns.forEach (column) =>
       @$el.append(column.render().el)
     @

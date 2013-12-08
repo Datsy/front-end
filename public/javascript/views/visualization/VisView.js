@@ -1,5 +1,6 @@
 (function() {
   var _ref,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -7,6 +8,7 @@
     __extends(VisView, _super);
 
     function VisView() {
+      this.navigateToHome = __bind(this.navigateToHome, this);
       _ref = VisView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
@@ -19,21 +21,31 @@
       "click button#stackedArea": "renderStackedArea",
       "click button#scatterBubble": "renderScatterBubble",
       "click button#stackedMultiBar": "renderStackedMultiBar",
-      "click button#downloadPhoto": "downloadPhoto"
+      "click button#downloadPhoto": "downloadPhoto",
+      'click .try-again-button': 'navigateToHome'
     };
 
     VisView.prototype.initialize = function() {
       var _this = this;
+      this.dataLoaded = false;
       this.loadingTemplate = this.model.get("templates")["visualizeLoading"];
       this.template = this.model.get("templates")["visualize"];
+      this.failedTemplate = this.model.get('templates')['failedTemplate'];
       _this = this;
       this.listenTo(window, "resize", this.resize);
+      setTimeout((function() {
+        if (!_this.dataLoaded) {
+          console.log('10 seconds past, no response');
+          return _this.renderFailed();
+        }
+      }), 10000);
       return this.model.on("visualizationDataLoaded", function() {
+        _this.dataLoaded = true;
         _this.currentGraphView = new DatsyApp.ChartView({
           model: _this.model,
           data: _this.model.get("visualizationData")
         });
-        return _this.renderLoaded.bind(_this)();
+        return _this.renderLoaded();
       });
     };
 
@@ -54,6 +66,12 @@
       return this.$graph.append(this.currentGraphView.render());
     };
 
+    VisView.prototype.renderFailed = function() {
+      console.log('failed template loading');
+      this.$el.html(this.failedTemplate);
+      return this;
+    };
+
     VisView.prototype.render = function() {
       this.$el.html(this.loadingTemplate);
       return this;
@@ -61,7 +79,6 @@
 
     VisView.prototype.renderLoaded = function(chartType) {
       var h, w;
-      console.log("render loaded");
       this.$el.html(this.template);
       w = $(".container").width();
       h = w / 2;
@@ -141,6 +158,12 @@
       canvg(canvas, svg.parentNode.innerHTML);
       Canvas2Image.saveAsPNG(canvas);
       return canvas.parentNode.removeChild(canvas);
+    };
+
+    VisView.prototype.navigateToHome = function() {
+      return Backbone.history.navigate('/', {
+        trigger: true
+      });
     };
 
     return VisView;

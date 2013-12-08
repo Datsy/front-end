@@ -36,6 +36,7 @@
       this.$el.html(this.template);
       setTimeout((function() {
         _this.columnList = $('#selectedColumns');
+        $('.list-group-item').popover();
         return _this.addExistingCart(_this.datsyModel.cartInStorage());
       }), 1);
       return this;
@@ -44,7 +45,8 @@
     ColumnCartView.prototype.clearCart = function() {
       $('.total-columns-added').text('0');
       $('#go').prop('disabled', true);
-      $('#selectedColumns').html('<li class="list-group-item">No Columns Selected</li>');
+      $('#selectedColumns').html('<li class="list-group-item" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="No Selected Columns">No Columns Selected</li>');
+      $('.list-group-item').popover();
       return this.trigger('clearCart');
     };
 
@@ -54,36 +56,46 @@
     };
 
     ColumnCartView.prototype.setTopPos = function() {
-      return this.$el.css({
-        'margin-top': $(window).scrollTop()
-      });
+      if ($(window).width() > 991) {
+        return this.$el.css({
+          'margin-top': $(window).scrollTop()
+        });
+      }
     };
 
     ColumnCartView.prototype.addColumn = function(params) {
-      if ($('#selectedColumns .list-group-item').get(0).innerHTML === 'No Columns Selected') {
-        $('#selectedColumns .list-group-item').get(0).remove();
+      var newColumn;
+      if ($('#selectedColumns .list-group-item').get(0)) {
+        if ($('#selectedColumns .list-group-item').get(0).innerHTML === 'No Columns Selected') {
+          $('#selectedColumns .list-group-item').get(0).remove();
+        }
       }
-      this.columnList.append('<li class="list-group-item">' + params.columnName + '</li>');
+      this.columnList.append('<li class="list-group-item" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom">' + params.columnName + '</li>');
+      newColumn = this.columnList.find('li').last();
+      newColumn.popover({
+        html: true,
+        content: '<ul class="popover-listing-desc"><li class="popover-listing-title">Dataset Name:</li><li class="popover-listing-param">' + params.datasetID.split('_').join(' ') + '</li><li class="popover-listing-title">Column Name:</li><li class="popover-listing-param">' + params.columnName + '</li></ul>'
+      });
       $('.total-columns-added').text(params.total);
       return $('#go').prop('disabled', false);
     };
 
     ColumnCartView.prototype.addExistingCart = function(cart) {
-      var columnArray, id, _ref1, _results,
+      var columnArray, id, _ref1,
         _this = this;
       if (cart) {
         $('#go').prop('disabled', false);
         _ref1 = cart.values;
-        _results = [];
         for (id in _ref1) {
           columnArray = _ref1[id];
-          _results.push(columnArray.forEach(function(column) {
+          columnArray.forEach(function(column) {
             return _this.addColumn({
-              columnName: column
+              columnName: column,
+              datasetID: id
             });
-          }));
+          });
         }
-        return _results;
+        return $('.total-columns-added').text(cart.total);
       } else {
         return $('#go').prop('disabled', true);
       }

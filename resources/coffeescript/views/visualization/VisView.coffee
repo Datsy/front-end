@@ -7,22 +7,30 @@ class DatsyApp.VisView extends Backbone.View
     "click button#scatterBubble": "renderScatterBubble"
     "click button#stackedMultiBar": "renderStackedMultiBar"
     "click button#downloadPhoto": "downloadPhoto"
+    'click .try-again-button': 'navigateToHome'
 
   initialize: ->
+    @dataLoaded = false
     @loadingTemplate = @model.get("templates")["visualizeLoading"]
     @template = @model.get("templates")["visualize"]
+    @failedTemplate = @model.get('templates')['failedTemplate']
     _this = this
     @listenTo window, "resize", @resize
+    setTimeout (=>
+      if !@dataLoaded
+        console.log '10 seconds past, no response'
+        @renderFailed()
+    ),10000
     @model.on "visualizationDataLoaded", =>
-      _this.currentGraphView = new DatsyApp.ChartView(
-        model: _this.model
-        data: _this.model.get("visualizationData")
+      @dataLoaded = true
+      @currentGraphView = new DatsyApp.ChartView(
+        model: @model
+        data: @model.get("visualizationData")
       )
-      _this.renderLoaded.bind(_this)()
+      @renderLoaded()
 
 
   resize: ->
-    
     # SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
     @currentGraphView.remove()
     @currentGraphView = new DatsyApp.ChartView(
@@ -38,12 +46,16 @@ class DatsyApp.VisView extends Backbone.View
 
     @$graph.append @currentGraphView.render()
 
+  renderFailed: ->
+    console.log 'failed template loading'
+    @$el.html @failedTemplate
+    @
+
   render: ->
     @$el.html @loadingTemplate
-    this
+    @
 
   renderLoaded: (chartType) ->
-    console.log "render loaded"
     @$el.html @template
     w = $(".container").width()
     h = w / 2
@@ -53,7 +65,7 @@ class DatsyApp.VisView extends Backbone.View
       width: w
 
     @$graph.append @currentGraphView.render(chartType)
-    this
+    @
 
   renderLineChart: ->
     @model.set "chartType", "lineChart"
@@ -114,3 +126,7 @@ class DatsyApp.VisView extends Backbone.View
     canvg canvas, svg.parentNode.innerHTML
     Canvas2Image.saveAsPNG canvas
     canvas.parentNode.removeChild canvas
+
+  navigateToHome: =>
+    Backbone.history.navigate '/', { trigger: true }
+
