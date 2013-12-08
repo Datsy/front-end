@@ -86,6 +86,9 @@
         width: w
       });
       this.$graph.append(this.currentGraphView.render(chartType));
+      if (this.model.get("visualizationData").columnsForY.length > 1) {
+        $('#lineChart2Y').removeClass("hidden");
+      }
       return this;
     };
 
