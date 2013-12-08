@@ -21,10 +21,13 @@
     };
 
     DataSetItemView.prototype.render = function() {
-      var columns,
+      var about, cols, columns, rows,
         _this = this;
       console.log(this.model);
-      this.$el.append('<li class="dataset-item-header well well-md">About this dataset: ' + this.model.get("description") + '</li>');
+      about = this.model.get("description");
+      cols = this.model.get("col_count");
+      rows = this.model.get("row_count");
+      this.$el.append('<li class="dataset-item-header well well-sm"><span class="dataset-item-header-title">About this dataset:</span> ' + about + '<br/><span class="dataset-item-header-title">Columns:</span> ' + cols + '<br/><span class="dataset-item-header-title">Rows:</span> ' + rows + '</li>');
       columns = this.model.getColumns().map(function(column) {
         return new DatsyApp.DataSetColumnView({
           datsyModel: _this.datsyModel,
