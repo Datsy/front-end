@@ -24,7 +24,6 @@
     Charts.prototype.renderLineChart2Y = function(data) {
       var i;
       i = 0;
-      console.log('2Ydata: ', data);
       while (i < data.length) {
         data[i].type = "line";
         i++;
