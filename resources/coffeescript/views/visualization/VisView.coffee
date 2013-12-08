@@ -27,7 +27,6 @@ class DatsyApp.VisView extends Backbone.View
       )
       @renderLoaded()
 
-
   resize: ->
     # SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
     @currentGraphView.remove()
@@ -63,6 +62,8 @@ class DatsyApp.VisView extends Backbone.View
       width: w
 
     @$graph.append @currentGraphView.render(chartType)
+    if @model.get("visualizationData").columnsForY.length > 1
+        $('#lineChart2Y').removeClass "hidden"
     @
 
   renderLineChart: ->

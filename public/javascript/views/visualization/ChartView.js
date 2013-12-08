@@ -97,8 +97,7 @@
         });
         i++;
       }
-      d3Data = this.bubbleSort(d3Data);
-      return d3Data;
+      return this.bubbleSort(d3Data);
     };
 
     ChartView.prototype.bubbleSort = function(object) {
