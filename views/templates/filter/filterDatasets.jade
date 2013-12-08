@@ -1,29 +1,36 @@
-div.results-box.panel.panel-default.col-md-9
-  div.filterResults
-    {{#if singular}}
-    h1.text-center Your search appeared in {{ occurance }} result.
-    {{else}}
-    h1.text-center Your search appeared in {{ occurance }} results.
-    {{/if}}
+div.results-box.col-md-9
+  div.row.panel.panel-default
+    div.filterResults
+      {{#if singular}}
+      h1.text-center Your search appeared in {{ occurance }} result.
+      {{else}}
+      h1.text-center Your search appeared in {{ occurance }} results.
+      {{/if}}
+      h3.text-center.text-muted You can filter down the results here.
 
-    {{#if tagsToShow}}
-    div.row.current-tags.text-center
-      {{#each tags}}
-      h4.selected-keyword
-        span.label.label-success {{this}}
-          span.glyphicon.glyphicon-remove-sign
-      {{/each}}
-    {{/if}}
+      form.form-inline(role='form')
+        div.form-group.col-md-10.col-md-offset-1
+          label.sr-only(for="filter") Add topics to filter results
+          div.input-group
+            input#filterTagSearch.form-control(type='text', placeholder="Add topics to filter results.", autocomplete="off")
+            span.input-group-btn
+              button.btn.btn-default(type="button") Add
 
-    form.form-inline(role='form')
-      div.form-group.col-md-10.col-md-offset-1
-        label.sr-only(for="filter") Add topics to filter results
-        div.input-group
-          input#filterTagSearch.form-control(type='text', placeholder="Add topics to filter results.", autocomplete="off")
-          span.input-group-btn
-            button.btn.btn-default(type="button") Add
+      {{#if tagsToShow}}
+      h4.text-center.text-muted Current keywords
+      div.well.well-sm.col-md-10.col-md-offset-1
+        div.row.current-tags.text-center
+          {{#each tags}}
+          h4.selected-keyword
+            span.label.label-success {{this}}
+              span.glyphicon.glyphicon-remove-sign
+          {{/each}}
+      {{/if}}
 
-    h4.text-center.text-muted Screw this noise! Lets see some data!
+  h2.text-center ...or...
+
+  div.row.panel.panel-default
+    h2.text-center.text-muted See these datasets!
 
     div(style="text-align:center")
       button#seeDataBases.btn.btn-success.btn-lg(type="submit") Go!

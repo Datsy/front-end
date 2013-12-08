@@ -52,22 +52,37 @@
       background-color #eee
 
   .results-box
-    padding-top 15px
+
+    h2
+      margin 0 0 20px 0
+
+    .panel
+      padding 15px 0
+
+      h2
+        margin-top 0
 
   .filterResults
 
     h1
       margin-top 0
+
     
     h3
       margin-top 3px
+
+    h4
+      margin 10px 0 3px 0
   
-    .current-tags
-      margin 20px 0
+    .well
+      margin-top 5px
+
+      .current-tags
+        margin 0
 
       h4
         display inline-block
-        margin 0 5px
+        margin 0
 
         .glyphicon
           padding-left 8px
@@ -83,9 +98,10 @@
 
     form
       margin-top 20px
-      height 40px
+      height 55px
 
     input[type='text']
+      height 50px
       text-align center
       font-size 18px
     
@@ -98,6 +114,9 @@
     
     input[type='text']:focus::-moz-placeholder
       color transparent
+
+    .input-group-btn > button
+      height 50px
 
     #seeDataBases, #seeAllDataBases
       text-align center

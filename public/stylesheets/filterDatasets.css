@@ -46,8 +46,14 @@
 .filter-page .filter-suggestions div.tag-suggestion:nth-child(even) {
   background-color: #eee;
 }
-.filter-page .results-box {
-  padding-top: 15px;
+.filter-page .results-box h2 {
+  margin: 0 0 20px 0;
+}
+.filter-page .results-box .panel {
+  padding: 15px 0;
+}
+.filter-page .results-box .panel h2 {
+  margin-top: 0;
 }
 .filter-page .filterResults h1 {
   margin-top: 0;
@@ -55,14 +61,20 @@
 .filter-page .filterResults h3 {
   margin-top: 3px;
 }
-.filter-page .filterResults .current-tags {
-  margin: 20px 0;
+.filter-page .filterResults h4 {
+  margin: 10px 0 3px 0;
 }
-.filter-page .filterResults .current-tags h4 {
+.filter-page .filterResults .well {
+  margin-top: 5px;
+}
+.filter-page .filterResults .well .current-tags {
+  margin: 0;
+}
+.filter-page .filterResults .well h4 {
   display: inline-block;
-  margin: 0 5px;
+  margin: 0;
 }
-.filter-page .filterResults .current-tags h4 .glyphicon {
+.filter-page .filterResults .well h4 .glyphicon {
   padding-left: 8px;
   padding-right: 15px;
   cursor: pointer;
@@ -76,9 +88,10 @@
 }
 .filter-page .filterResults form {
   margin-top: 20px;
-  height: 40px;
+  height: 55px;
 }
 .filter-page .filterResults input[type='text'] {
+  height: 50px;
   text-align: center;
   font-size: 18px;
 }
@@ -91,6 +104,9 @@
 }
 .filter-page .filterResults input[type='text']:focus::-moz-placeholder {
   color: transparent;
+}
+.filter-page .filterResults .input-group-btn > button {
+  height: 50px;
 }
 .filter-page .filterResults #seeDataBases,
 .filter-page .filterResults #seeAllDataBases {
