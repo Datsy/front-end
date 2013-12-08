@@ -36,6 +36,7 @@
       this.$el.html(this.template);
       setTimeout((function() {
         _this.columnList = $('#selectedColumns');
+        $('.list-group-item').popover();
         return _this.addExistingCart(_this.datsyModel.cartInStorage());
       }), 1);
       return this;
@@ -44,7 +45,8 @@
     ColumnCartView.prototype.clearCart = function() {
       $('.total-columns-added').text('0');
       $('#go').prop('disabled', true);
-      $('#selectedColumns').html('<li class="list-group-item">No Columns Selected</li>');
+      $('#selectedColumns').html('<li class="list-group-item" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="No Selected Columns">No Columns Selected</li>');
+      $('.list-group-item').popover();
       return this.trigger('clearCart');
     };
 
@@ -60,12 +62,15 @@
     };
 
     ColumnCartView.prototype.addColumn = function(params) {
+      var newColumn;
       if ($('#selectedColumns .list-group-item').get(0)) {
         if ($('#selectedColumns .list-group-item').get(0).innerHTML === 'No Columns Selected') {
           $('#selectedColumns .list-group-item').get(0).remove();
         }
       }
-      this.columnList.append('<li class="list-group-item">' + params.columnName + '</li>');
+      this.columnList.append('<li class="list-group-item" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="' + params.columnName + '">' + params.columnName + '</li>');
+      newColumn = this.columnList.find('li').last();
+      newColumn.popover();
       $('.total-columns-added').text(params.total);
       return $('#go').prop('disabled', false);
     };
