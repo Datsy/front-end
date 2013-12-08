@@ -94,7 +94,6 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jade');
@@ -104,6 +103,7 @@ module.exports = function(grunt) {
   grunt.registerTask('hbs', ['handlebars']);
   grunt.registerTask('compileJade', ['jade']);
   grunt.registerTask('compileCoffee', ['coffee']);
-  grunt.registerTask('default', ['coffee', 'jade', 'watch']);
+  grunt.registerTask('test', ['jasmine']);
+  grunt.registerTask('default', ['watch']);
   
 };
