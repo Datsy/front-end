@@ -104,6 +104,7 @@
         d3Data[i].values["x"] = bubbleSort(d3Data[i].values["x"]);
         i++;
       }
+      this.bubbleSort(d3Data);
       return d3Data;
     };
 
@@ -143,7 +144,6 @@
         recurse(object[series].values.x);
         series++;
       }
-      console.log("obj", object);
       return object;
     };
 
