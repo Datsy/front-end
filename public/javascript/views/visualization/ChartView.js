@@ -104,6 +104,7 @@
         d3Data[i].values["x"] = bubbleSort(d3Data[i].values["x"]);
         i++;
       }
+      console.log(d3Data);
       this.bubbleSort(d3Data);
       return d3Data;
     };

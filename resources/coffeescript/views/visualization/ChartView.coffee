@@ -63,7 +63,6 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
 
       i++
     i = 0
-
     while i < data.x.length
       d3Data.forEach (item) ->
         item.values.push
@@ -76,11 +75,11 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     while i < d3Data.length
       d3Data[i].values["x"] = bubbleSort(d3Data[i].values["x"])
       i++
-    
+    console.log d3Data
     @bubbleSort(d3Data)
     d3Data
 
-  bubbleSort = (object) ->
+  bubbleSort: (object) ->
     recurse = (array) ->
       throw array  unless Array.isArray(array)
       notYetSorted = true
@@ -90,12 +89,9 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
         j = 0
         while j < array.length - 1
           thisVal = array[j]
-          thisY = object[series].values.y[j]
-          if thisVal > array[j + 1]
+          if thisVal.x > array[j + 1].x
             array[j] = array[j + 1]
             array[j + 1] = thisVal
-            object[series].values.y[j] = object[series].values.y[j + 1]
-            object[series].values.y[j + 1] = thisY
             notYetSorted = true
           j++
         return array  if notYetSorted is false
@@ -103,8 +99,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       array
 
     series = 0
-
     while series < object.length
-      recurse object[series].values.x
+      recurse object[series].values
       series++
     object
