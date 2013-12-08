@@ -33,19 +33,23 @@
 }
 .cart .panel .panel-body button {
   margin-top: 7px;
-  width: 60px;
+  margin-bottom: 7px;
+  width: 160px;
 }
 .cart .panel .panel-body .cart-text {
   text-align: center;
   margin-top: 3px;
+  padding: 7px 0 5px 0;
 }
 .cart .panel .panel-body .cart-text p {
   margin: 0;
   font-size: 13px;
+  font-weight: 800;
 }
 .cart .panel .panel-body .cart-text p.total-columns-added {
   font-size: 18px;
   font-weight: 800;
+  padding-bottom: 5px;
 }
 .cart .panel .panel-body ul.list-group {
   margin: 0;
