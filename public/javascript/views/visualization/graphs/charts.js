@@ -22,14 +22,13 @@
     };
 
     Charts.prototype.renderLineChart2Y = function(data) {
-      var i;
+      var columns, i;
       i = 0;
-      while (i < data.length) {
-        data[i].type = "line";
-        i++;
-      }
+      columns = [];
       data[0].yAxis = 1;
+      data[0].type = 'bar';
       data[1].yAxis = 2;
+      data[1].type = 'line';
       return nv.addGraph(function() {
         var chart;
         chart = nv.models.multiChart().margin({
@@ -39,7 +38,7 @@
           left: 70
         }).color(d3.scale.category10().range());
         chart.xAxis.tickFormat(function(d) {
-          return d3.time.format("%b")(new Date(d));
+          return d3.time.format("%b %d, '%y")(new Date(d));
         });
         chart.yAxis1.tickFormat(d3.format(',.1f'));
         chart.yAxis2.tickFormat(d3.format(',.1f'));
@@ -102,7 +101,7 @@
           return d[1];
         }).clipEdge(true);
         chart.xAxis.showMaxMin(false).tickFormat(function(d) {
-          return d3.time.format("%b")(new Date(d));
+          return d3.time.format("%b %d, '%y")(new Date(d));
         });
         chart.yAxis.tickFormat(d3.format(",.2f"));
         d3.select("#graph svg").datum(newData).transition().duration(500).call(chart);

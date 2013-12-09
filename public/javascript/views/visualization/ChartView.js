@@ -84,11 +84,52 @@
     };
 
     ChartView.prototype.convertJSONForD3 = function(data) {
-      var colors, d3Data, i;
+      var colors, column, d3Data, dataSetNameClean, dataset, i, series;
+      console.log('data: ', data);
       d3Data = [];
       colors = ["red", "blue", "green", "black", "magenta", "cyan"];
       i = 0;
-      return this.bubbleSort(d3Data);
+      series = 0;
+      for (dataset in data) {
+        for (column in data[dataset].yValues) {
+          dataSetNameClean = this.cleanName(dataset);
+          d3Data.push({
+            key: dataSetNameClean + " - " + column,
+            values: [],
+            color: "red"
+          });
+          i = 0;
+          while (i < data[dataset].x.length) {
+            d3Data[series].values.push({
+              x: new Date(data[dataset].x[i]).getTime()
+            });
+            i++;
+          }
+          i = 0;
+          debugger;
+          while (i < data[dataset].yValues[column].length) {
+            d3Data[series].values[i].y = +data[dataset].yValues[column][i];
+            i++;
+          }
+        }
+        series++;
+      }
+      console.log('d3Data: ', d3Data);
+      return d3Data;
+    };
+
+    ChartView.prototype.cleanName = function(name) {
+      name = name.split('_');
+      name = name.map(function(word) {
+        var first;
+        first = word.slice(0, 1);
+        first = first.toUpperCase();
+        word = word.slice(1, word.length);
+        word = first + word;
+        return word;
+      });
+      name = name.join(' ');
+      return name;
     };
 
     ChartView.prototype.bubbleSort = function(object) {
