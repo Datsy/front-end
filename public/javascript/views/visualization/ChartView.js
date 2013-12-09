@@ -117,6 +117,7 @@
         }
         series++;
       }
+      console.log('d3Data', d3Data);
       return d3Data;
     };
 
