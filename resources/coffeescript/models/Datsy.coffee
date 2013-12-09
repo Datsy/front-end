@@ -34,6 +34,7 @@ class DatsyApp.Datsy extends Backbone.Model
     @trigger 'visualizationDataLoaded'
 
   clearCart: ->
+    @set 'chartType', 'lineChart'
     @get('visualizationData').clearOldData()
     @get('cart').clearCart()
 
