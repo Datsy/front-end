@@ -45,17 +45,17 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
   convertData: (options) ->
     i = 0
     for id, value of options.data.columnsForX
-      i++
       @rawData[id] = {
         x: value[0].getColumnData()
         yValues: {}
       }
 
-    @model.setNumY(i != 1)
 
     for id, value of options.data.columnsForY
       value.forEach (column) =>
+        i++
         @rawData[id].yValues[column.columnName] = column.getColumnData()
+    @model.setNumY(i != 1)
     @data = @convertJSONForD3(@rawData)
 
   convertJSONForD3: (data) ->
@@ -85,10 +85,8 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
   cleanName: (name) ->
     name = name.split('_')
     name = name.map (word) ->
-      first = word.slice(0,1)
-      first = first.toUpperCase();
-      word = word.slice(1, word.length)
-      word = first + word
+      first = word.slice(0,1).toUpperCase();
+      word = first + word.slice(1, word.length)
       word
     name = name.join(' ')
     name
