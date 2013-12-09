@@ -26,3 +26,21 @@ text {
   height: 50px;
   margin-top: 30px;
 }
+.x .tick:not(.zero) line {
+  opacity: 0.2 !important;
+}
+.x .tick:not(.zero) text {
+  opacity: 1 !important;
+}
+.y1 .tick:not(.zero) line {
+  opacity: 0.2 !important;
+}
+.y1 .tick:not(.zero) text {
+  opacity: 1 !important;
+}
+.y2 .tick:not(.zero) line {
+  opacity: 0 !important;
+}
+.y2 .tick:not(.zero) text {
+  opacity: 1 !important;
+}

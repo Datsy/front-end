@@ -19,14 +19,18 @@ class DatsyApp.Charts
 
   renderLineChart2Y: (data) ->
     i = 0
+    columns = [];
 
-    while i < data.length
-      data[i].type = "line"
-      i++
-      
+    # Set Data type to 'Line'
+    # while i < data.length
+    #   data[i].type = "line"
+    #   i++
+    
     # TODO: Create loop to specify y-axis if colname is the same or different
     data[0].yAxis = 1
+    data[0].type = 'bar'
     data[1].yAxis = 2
+    data[1].type = 'line'
 
     return nv.addGraph ->
       chart = nv.models.multiChart()
@@ -34,7 +38,7 @@ class DatsyApp.Charts
         .color(d3.scale.category10().range())
 
       chart.xAxis.tickFormat (d) ->
-        d3.time.format("%b") new Date(d)
+        d3.time.format("%b %d, '%y") new Date(d)
 
       chart.yAxis1
         .tickFormat(d3.format(',.1f'))
@@ -102,7 +106,7 @@ class DatsyApp.Charts
         d[1]
       ).clipEdge(true)
       chart.xAxis.showMaxMin(false).tickFormat (d) ->
-        d3.time.format("%b") new Date(d)
+        d3.time.format("%b %d, '%y") new Date(d)
 
       chart.yAxis.tickFormat d3.format(",.2f")
       d3.select("#graph svg").datum(newData).transition().duration(500).call chart

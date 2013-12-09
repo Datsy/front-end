@@ -84,29 +84,37 @@
     };
 
     ChartView.prototype.convertJSONForD3 = function(data) {
-      var colors, d3Data, i, key;
+      var colors, column, d3Data, dataset, i, series;
+      console.log('data: ', data);
       d3Data = [];
       colors = ["red", "blue", "green", "black", "magenta", "cyan"];
       i = 0;
-      for (key in data.yValues) {
-        d3Data.push({
-          key: key,
-          values: [],
-          color: colors[i]
-        });
-        i++;
-      }
-      i = 0;
-      while (i < data.x.length) {
-        d3Data.forEach(function(item) {
-          return item.values.push({
-            x: new Date(data.x[i]).getTime(),
-            y: +data.yValues[item.key][i]
+      series = 0;
+      for (dataset in data) {
+        for (column in data[dataset].yValues) {
+          d3Data.push({
+            key: dataset + " " + column,
+            values: [],
+            color: "red"
           });
-        });
-        i++;
+          i = 0;
+          while (i < data[dataset].x.length) {
+            d3Data[series].values.push({
+              x: new Date(data[dataset].x[i]).getTime()
+            });
+            i++;
+          }
+          i = 0;
+          debugger;
+          while (i < data[dataset].yValues[column].length) {
+            d3Data[series].values[i].y = +data[dataset].yValues[column][i];
+            i++;
+          }
+        }
+        series++;
       }
-      return this.bubbleSort(d3Data);
+      console.log('d3Data: ', d3Data);
+      return d3Data;
     };
 
     ChartView.prototype.bubbleSort = function(object) {

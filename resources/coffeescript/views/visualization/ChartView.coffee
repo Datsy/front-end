@@ -54,25 +54,39 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     @data = @convertJSONForD3(@rawData)
 
   convertJSONForD3: (data) ->
+    console.log 'data: ', data
     d3Data = []
     colors = ["red", "blue", "green", "black", "magenta", "cyan"]
     i = 0
-    for key of data.yValues
-      d3Data.push
-        key: key
-        values: []
-        color: colors[i]
+    series = 0
+    for dataset of data
+      for column of data[dataset].yValues
+        d3Data.push
+          key: dataset + " " + column
+          values: []
+          color: "red" #colors[i]
 
-      i++
-    i = 0
-    while i < data.x.length
-      d3Data.forEach (item) ->
-        item.values.push
-          x: new Date(data.x[i]).getTime()
-          y: +data.yValues[item.key][i]
-      i++
+        i = 0
+        while i < data[dataset].x.length
+          d3Data[series].values.push({x: new Date(data[dataset].x[i]).getTime()})
+          i++
+        i = 0
+        debugger
+        while i < data[dataset].yValues[column].length
+          d3Data[series].values[i].y = +data[dataset].yValues[column][i]
+          i++
+      series++
+
+        # while i < dataset.x.length
+        #   d3Data.forEach (item) ->
+        #     item.values.push
+        #       x: new Date(data.dataset.x[i]).getTime()
+        #       y: +data.dataset.yValues.column[item.key][i]
+        #   i++
     
-    @bubbleSort(d3Data)
+    console.log 'd3Data: ', d3Data
+    # @bubbleSort(d3Data)
+    d3Data
 
   bubbleSort: (object) ->
     recurse = (array) ->
