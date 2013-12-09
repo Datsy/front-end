@@ -84,7 +84,7 @@
     };
 
     ChartView.prototype.convertJSONForD3 = function(data) {
-      var color_idx, colors, column, d3Data, dataset, i, series;
+      var color_idx, colors, column, d3Data, dataSetNameClean, dataset, i, series;
       d3Data = [];
       colors = ["red", "blue", "green", "black", "magenta", "cyan"];
       i = 0;
@@ -92,8 +92,9 @@
       color_idx = 0;
       for (dataset in data) {
         for (column in data[dataset].yValues) {
+          dataSetNameClean = this.cleanName(dataset);
           d3Data.push({
-            key: dataset + " " + column,
+            key: dataSetNameClean + " - " + column,
             values: [],
             color: colors[color_idx]
           });
@@ -115,6 +116,20 @@
       }
       console.log('d3Data:', d3Data);
       return d3Data;
+    };
+
+    ChartView.prototype.cleanName = function(name) {
+      name = name.split('_');
+      name = name.map(function(word) {
+        var first;
+        first = word.slice(0, 1);
+        first = first.toUpperCase();
+        word = word.slice(1, word.length);
+        word = first + word;
+        return word;
+      });
+      name = name.join(' ');
+      return name;
     };
 
     ChartView.prototype.bubbleSort = function(object) {
