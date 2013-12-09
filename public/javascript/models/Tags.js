@@ -15,7 +15,7 @@
       return _ref;
     }
 
-    Tags.prototype.rootUrl = 'http://datsy-dev.azurewebsites.net/search/tag';
+    Tags.prototype.rootUrl = 'http://datsy.azurewebsites.net/search/tag';
 
     Tags.prototype.initialize = function() {
       this.allTags = [];

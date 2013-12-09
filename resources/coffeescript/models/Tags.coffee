@@ -1,6 +1,6 @@
 class DatsyApp.Tags extends Backbone.Model
   
-  rootUrl: 'http://datsy-dev.azurewebsites.net/search/tag',
+  rootUrl: 'http://datsy.azurewebsites.net/search/tag',
 
   initialize: ->
     @allTags = []

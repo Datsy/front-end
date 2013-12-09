@@ -7,7 +7,7 @@ class DatsyApp.DataSampleModelView extends DatsyApp.BaseModalView
     @template = universalTemplates.modal
     @datasetName = options.datasetName
     @columnName = options.columnName
-    urlForSample = 'http://datsy-dev.azurewebsites.net/search/table?name=' + @datasetName + '&row=5&column=' + @columnName
+    urlForSample = 'http://datsy.azurewebsites.net/search/table?name=' + @datasetName + '&row=5&column=' + @columnName
     @sampleData = new DatsyApp.SampleData { url: urlForSample }
     @sampleData.once 'ready', @onReady
     

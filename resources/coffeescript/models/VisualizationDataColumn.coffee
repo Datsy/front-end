@@ -6,7 +6,7 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
     if columnToSend.split(' ').length > 1
       columnToSend = columnToSend.split(' ').join('+')
     @datasetName = options.datasetName
-    @url = 'http://datsy-dev.azurewebsites.net/search/table?name=' + @datasetName + '&row=ALL&column=' + columnToSend
+    @url = 'http://datsy.azurewebsites.net/search/table?name=' + @datasetName + '&row=ALL&column=' + columnToSend
     @fetch @url
 
   fetch: (url) ->
@@ -21,7 +21,7 @@ class DatsyApp.VisualizationDataColumn extends Backbone.Model
     }
 
   setColumnData: (data) =>
-    @columnData = { name: @columnName };
+    @columnData = { dataset: @datasetName, name: @columnName };
     @columnData['data'] = data.Result.row.map (rowObj) =>
       return rowObj[@columnName]
     @trigger 'loaded'

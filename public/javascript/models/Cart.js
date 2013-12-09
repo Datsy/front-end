@@ -23,7 +23,7 @@
       }
     };
 
-    Cart.prototype.addColumn = function(name, id) {
+    Cart.prototype.addColumn = function(name, id, dataType) {
       this.cart['values'][id] = this.cart['values'][id] || [];
       this.cart['values'][id].push(name);
       this.cart['total']++;

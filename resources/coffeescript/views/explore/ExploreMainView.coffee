@@ -27,7 +27,7 @@ class DatsyApp.ExploreMainView extends Backbone.View
     @datsyModel.on 'addColumn', @addColumn
 
   getDataBases: (path) ->
-    url = 'http://datsy-dev.azurewebsites.net/search/meta'
+    url = 'http://datsy.azurewebsites.net/search/meta'
     if path.length
       url += '?'
       tags = path.split('/')
