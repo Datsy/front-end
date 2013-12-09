@@ -40,7 +40,7 @@
           left: 70
         }).color(d3.scale.category10().range());
         chart.xAxis.tickFormat(function(d) {
-          return d3.time.format("%b")(new Date(d));
+          return d3.time.format("%b %d, '%y")(new Date(d));
         });
         chart.yAxis1.tickFormat(d3.format(',.1f'));
         chart.yAxis2.tickFormat(d3.format(',.1f'));
@@ -103,7 +103,7 @@
           return d[1];
         }).clipEdge(true);
         chart.xAxis.showMaxMin(false).tickFormat(function(d) {
-          return d3.time.format("%b")(new Date(d));
+          return d3.time.format("%b %d, '%y")(new Date(d));
         });
         chart.yAxis.tickFormat(d3.format(",.2f"));
         d3.select("#graph svg").datum(newData).transition().duration(500).call(chart);
