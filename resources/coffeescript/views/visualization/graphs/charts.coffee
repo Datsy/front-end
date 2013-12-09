@@ -83,7 +83,6 @@ class DatsyApp.Charts
     convertData = (data) ->
       convertedData = []
       series = 0
-
       while series < data.length
         convertedData[series] = {
           key: data[series].key

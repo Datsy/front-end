@@ -110,8 +110,8 @@
             });
             i++;
           }
+          series++;
         }
-        series++;
       }
       return d3Data;
     };
