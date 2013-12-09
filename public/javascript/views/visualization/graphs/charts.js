@@ -22,8 +22,9 @@
     };
 
     Charts.prototype.renderLineChart2Y = function(data) {
-      var i;
+      var columns, i;
       i = 0;
+      columns = [];
       while (i < data.length) {
         data[i].type = "line";
         i++;

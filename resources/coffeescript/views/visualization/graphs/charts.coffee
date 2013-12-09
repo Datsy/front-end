@@ -19,7 +19,9 @@ class DatsyApp.Charts
 
   renderLineChart2Y: (data) ->
     i = 0
+    columns = [];
 
+    # Set Data type to 'Line'
     while i < data.length
       data[i].type = "line"
       i++
