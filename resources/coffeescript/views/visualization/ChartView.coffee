@@ -7,9 +7,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     @currentYModel = null
     @chartWidth = $(".container").width()
     @chartHeight = @chartWidth / 2
-    @rawData =
-      x: []
-      yValues: {}
+    @rawData = {}
 
     @convertData options
 
@@ -45,13 +43,14 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       y: @currentYModel
 
   convertData: (options) ->
-    ##
-    ## LOOK FOR NAME HERE
-    ##
-    @rawData.x = options.data.columnsForX[0].getColumnData()
-    options.data.columnsForY.forEach (column) =>
-      @rawData.yValues[column.columnName] = column.getColumnData()
-
+    for id, value of options.data.columnsForX
+      @rawData[id] = {
+        x: value[0].getColumnData()
+        yValues: {}
+      }
+    for id, value of options.data.columnsForY
+      value.forEach (column) =>
+        @rawData[id].yValues[column.columnName] = column.getColumnData()
     @data = @convertJSONForD3(@rawData)
 
   convertJSONForD3: (data) ->

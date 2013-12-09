@@ -20,10 +20,7 @@
       this.currentYModel = null;
       this.chartWidth = $(".container").width();
       this.chartHeight = this.chartWidth / 2;
-      this.rawData = {
-        x: [],
-        yValues: {}
-      };
+      this.rawData = {};
       this.convertData(options);
       this.margin = {
         top: 20,
@@ -66,11 +63,23 @@
     };
 
     ChartView.prototype.convertData = function(options) {
-      var _this = this;
-      this.rawData.x = options.data.columnsForX[0].getColumnData();
-      options.data.columnsForY.forEach(function(column) {
-        return _this.rawData.yValues[column.columnName] = column.getColumnData();
-      });
+      var id, value, _ref1, _ref2,
+        _this = this;
+      _ref1 = options.data.columnsForX;
+      for (id in _ref1) {
+        value = _ref1[id];
+        this.rawData[id] = {
+          x: value[0].getColumnData(),
+          yValues: {}
+        };
+      }
+      _ref2 = options.data.columnsForY;
+      for (id in _ref2) {
+        value = _ref2[id];
+        value.forEach(function(column) {
+          return _this.rawData[id].yValues[column.columnName] = column.getColumnData();
+        });
+      }
       return this.data = this.convertJSONForD3(this.rawData);
     };
 

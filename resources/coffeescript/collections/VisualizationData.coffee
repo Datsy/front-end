@@ -1,8 +1,8 @@
 class DatsyApp.VisualizationData extends Backbone.Collection
 
   initialize: (options) ->
-    @columnsForY = []
-    @columnsForX = []
+    @columnsForY = {}
+    @columnsForX = {}
     @totalLoaded = 0
     @total = 0
     @
@@ -14,15 +14,17 @@ class DatsyApp.VisualizationData extends Backbone.Collection
 
   makeRequests: (cart) ->
     for id, columnArray of cart
+      @columnsForX[id] = [] if !@columnsForX[id]
+      @columnsForY[id] = [] if !@columnsForY[id]
       columnArray.forEach (name) =>
         @total++
         if name is 'Date'
           newX = new DatsyApp.VisualizationDataColumn { columnName: 'Date', datasetName: id }
-          @columnsForX.push newX
+          @columnsForX[id].push newX
           newX.on 'loaded', @tagLoaded
         else
           newY = new DatsyApp.VisualizationDataColumn { columnName: name, datasetName: id }
-          @columnsForY.push newY
+          @columnsForY[id].push newY
           newY.on 'loaded', @tagLoaded
     @
 
