@@ -90,6 +90,12 @@
   color: #999;
   cursor: pointer;
 }
+.explore header #sort_table_name {
+  text-align: left;
+}
+.explore header #sort_rating {
+  text-align: right;
+}
 .explore header p:last-child {
   margin-right: 0px;
 }
