@@ -22,6 +22,11 @@ header .navbar-brand .brand-smaller {
   font-size: 18px;
   letter-spacing: 1.5px;
 }
+header nav {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
 header #headerSearchTag {
   margin-top: 14px;
   margin-left: 15px;
