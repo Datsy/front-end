@@ -14,11 +14,13 @@ class DatsyApp.DataSampleModelView extends DatsyApp.BaseModalView
   render: ->
     attrs = @sampleData.toJSON().Result.row
     body = "<ul class='rows'>"
+    i = 1
     for own prop, val of attrs
       isValid = prop != 'url'
-      body += '<li class="rowValue">' + val[@columnName] + '</p>' if isValid 
+      body += '<li class="rowValue">' + i + ": "+ val[@columnName] + '</p>' if isValid 
+      i++
     body += '</ul>'
-    @$el.html @template { title: 'Data samples for column: ' + @columnName, body: body }
+    @$el.html @template { title: 'Data samples for column:' + @columnName, body: body }
 
   onReady: =>
     @render()

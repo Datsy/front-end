@@ -30,20 +30,22 @@
     };
 
     DataSampleModelView.prototype.render = function() {
-      var attrs, body, isValid, prop, val;
+      var attrs, body, i, isValid, prop, val;
       attrs = this.sampleData.toJSON().Result.row;
       body = "<ul class='rows'>";
+      i = 1;
       for (prop in attrs) {
         if (!__hasProp.call(attrs, prop)) continue;
         val = attrs[prop];
         isValid = prop !== 'url';
         if (isValid) {
-          body += '<li class="rowValue">' + val[this.columnName] + '</p>';
+          body += '<li class="rowValue">' + i + ": " + val[this.columnName] + '</p>';
         }
+        i++;
       }
       body += '</ul>';
       return this.$el.html(this.template({
-        title: 'Data samples for column: ' + this.columnName,
+        title: 'Data samples for column:' + this.columnName,
         body: body
       }));
     };

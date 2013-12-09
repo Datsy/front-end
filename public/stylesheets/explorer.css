@@ -214,6 +214,20 @@
 .popover-listing-desc li.popover-listing-param:last-child {
   margin-bottom: 0;
 }
+.modal .modal-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -250px;
+  width: 500px;
+}
+.modal .modal-header {
+  text-align: center;
+}
+.modal .modal-header .modal-data-title {
+  font-weight: 800;
+}
 .modal .rows {
   padding: 0;
   margin: 0;
@@ -224,4 +238,7 @@
 }
 .modal .rowValue:nth-child(odd) {
   background-color: #ddd;
+}
+.modal .modal-footer {
+  padding: 10px 20px;
 }
