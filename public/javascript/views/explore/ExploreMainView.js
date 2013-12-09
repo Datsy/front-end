@@ -46,7 +46,7 @@
 
     ExploreMainView.prototype.getDataBases = function(path) {
       var tags, url;
-      url = 'http://datsy.azurewebsites.net/search/meta';
+      url = 'http://datsy-dev.azurewebsites.net/search/meta';
       if (path.length) {
         url += '?';
         tags = path.split('/');

@@ -44,7 +44,6 @@
 
     ColumnCartView.prototype.clearCart = function() {
       $('.addColumnForVis').each(function() {
-        console.log($(this));
         return $(this).attr('disabled', false);
       });
       $('.total-columns-added').text('0');

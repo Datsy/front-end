@@ -23,7 +23,6 @@ class DatsyApp.ColumnCartView extends Backbone.View
 
   clearCart: ->
     $('.addColumnForVis').each(->
-      console.log $(this)
       $(this).attr 'disabled', false
     )
     $('.total-columns-added').text('0')

@@ -45,6 +45,9 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       y: @currentYModel
 
   convertData: (options) ->
+    ##
+    ## LOOK FOR NAME HERE
+    ##
     @rawData.x = options.data.columnsForX[0].getColumnData()
     options.data.columnsForY.forEach (column) =>
       @rawData.yValues[column.columnName] = column.getColumnData()
