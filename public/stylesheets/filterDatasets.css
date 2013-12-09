@@ -58,6 +58,9 @@
 .filter-page .results-box .panel h2 {
   margin-top: 0;
 }
+.filter-page .results-box .selected-keyword {
+  padding: 0 10px;
+}
 .filter-page .filterResults h1 {
   margin-top: 0;
 }
@@ -110,6 +113,11 @@
 }
 .filter-page .filterResults .input-group-btn > button {
   height: 50px;
+  background-color: #5cb85c;
+  color: #fff;
+}
+.filter-page .filterResults .input-group-btn > button:hover {
+  background-color: #47a447;
 }
 .filter-page .filterResults #seeDataBases,
 .filter-page .filterResults #seeAllDataBases {

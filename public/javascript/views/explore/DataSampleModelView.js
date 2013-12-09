@@ -22,7 +22,7 @@
       this.template = universalTemplates.modal;
       this.datasetName = options.datasetName;
       this.columnName = options.columnName;
-      urlForSample = 'http://datsy.azurewebsites.net/search/table?name=' + this.datasetName + '&row=5&column=' + this.columnName;
+      urlForSample = 'http://datsy-dev.azurewebsites.net/search/table?name=' + this.datasetName + '&row=5&column=' + this.columnName;
       this.sampleData = new DatsyApp.SampleData({
         url: urlForSample
       });
