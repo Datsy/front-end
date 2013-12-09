@@ -80,7 +80,6 @@ class DatsyApp.Charts
       return chart
 
   renderStackedAreaChart: (data) ->
-    debugger
     convertData = (data) ->
       convertedData = []
       series = 0
