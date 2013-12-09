@@ -44,11 +44,6 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       x: @currentXModel
       y: @currentYModel
 
-  # [{ key:
-  #   values: [{x: , y: }] },
-  #  { key:
-  #   values: [{x: , y: }]}]
-
   convertData: (options) ->
     ##
     ## LOOK FOR NAME HERE

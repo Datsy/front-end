@@ -22,13 +22,15 @@ class DatsyApp.Charts
     columns = [];
 
     # Set Data type to 'Line'
-    while i < data.length
-      data[i].type = "line"
-      i++
+    # while i < data.length
+    #   data[i].type = "line"
+    #   i++
     
     # TODO: Create loop to specify y-axis if colname is the same or different
     data[0].yAxis = 1
+    data[0].type = 'bar'
     data[1].yAxis = 2
+    data[1].type = 'line'
 
     return nv.addGraph ->
       chart = nv.models.multiChart()

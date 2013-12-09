@@ -25,12 +25,10 @@
       var columns, i;
       i = 0;
       columns = [];
-      while (i < data.length) {
-        data[i].type = "line";
-        i++;
-      }
       data[0].yAxis = 1;
+      data[0].type = 'bar';
       data[1].yAxis = 2;
+      data[1].type = 'line';
       return nv.addGraph(function() {
         var chart;
         chart = nv.models.multiChart().margin({
