@@ -62,6 +62,7 @@ class DatsyApp.VisView extends Backbone.View
       width: w
 
     @$graph.append @currentGraphView.render(chartType)
+
     if @model.get("visualizationData").columnsForY.length > 1
         $('#lineChart2Y').removeClass "hidden"
     @
