@@ -5,6 +5,7 @@
     Charts.prototype.helpers = new DatsyApp.ChartHelpers();
 
     Charts.prototype.renderLineChart = function(data) {
+      console.log('data:', data);
       return nv.addGraph(function() {
         var chart;
         chart = nv.models.lineWithFocusChart();
@@ -93,6 +94,7 @@
         return convertedData;
       };
       newData = convertData(data);
+      console.log('newData:', newData);
       return nv.addGraph(function() {
         var chart;
         chart = nv.models.stackedAreaChart().x(function(d) {
