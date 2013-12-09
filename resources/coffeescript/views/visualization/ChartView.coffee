@@ -54,7 +54,6 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     @data = @convertJSONForD3(@rawData)
 
   convertJSONForD3: (data) ->
-    console.log 'data: ', data
     d3Data = []
     colors = ["red", "blue", "green", "black", "magenta", "cyan"]
     i = 0
@@ -73,20 +72,13 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
           d3Data[series].values.push({x: new Date(data[dataset].x[i]).getTime()})
           i++
         i = 0
-        debugger
         while i < data[dataset].yValues[column].length
           d3Data[series].values[i].y = +data[dataset].yValues[column][i]
           i++
       series++
 
-        # while i < dataset.x.length
-        #   d3Data.forEach (item) ->
-        #     item.values.push
-        #       x: new Date(data.dataset.x[i]).getTime()
-        #       y: +data.dataset.yValues.column[item.key][i]
-        #   i++
+    console.log 'd3Data:', d3Data
     
-    console.log 'd3Data: ', d3Data
     # @bubbleSort(d3Data)
     d3Data
 

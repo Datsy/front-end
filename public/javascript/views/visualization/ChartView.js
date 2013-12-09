@@ -85,7 +85,6 @@
 
     ChartView.prototype.convertJSONForD3 = function(data) {
       var color_idx, colors, column, d3Data, dataset, i, series;
-      console.log('data: ', data);
       d3Data = [];
       colors = ["red", "blue", "green", "black", "magenta", "cyan"];
       i = 0;
@@ -107,7 +106,6 @@
             i++;
           }
           i = 0;
-          debugger;
           while (i < data[dataset].yValues[column].length) {
             d3Data[series].values[i].y = +data[dataset].yValues[column][i];
             i++;
@@ -115,7 +113,7 @@
         }
         series++;
       }
-      console.log('d3Data: ', d3Data);
+      console.log('d3Data:', d3Data);
       return d3Data;
     };
 

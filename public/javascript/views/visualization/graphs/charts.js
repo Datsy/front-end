@@ -72,6 +72,7 @@
     };
 
     Charts.prototype.renderStackedAreaChart = function(data) {
+      debugger;
       var convertData, newData;
       convertData = function(data) {
         var convertedData, i, series;
