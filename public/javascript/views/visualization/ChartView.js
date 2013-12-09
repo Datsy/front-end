@@ -71,11 +71,13 @@
       options.data.columnsForY.forEach(function(column) {
         return _this.rawData.yValues[column.columnName] = column.getColumnData();
       });
+      console.log('raw: ', this.rawData);
       return this.data = this.convertJSONForD3(this.rawData);
     };
 
     ChartView.prototype.convertJSONForD3 = function(data) {
       var colors, d3Data, i, key;
+      console.log('data: ', data);
       d3Data = [];
       colors = ["red", "blue", "green", "black", "magenta", "cyan"];
       i = 0;
@@ -97,7 +99,7 @@
         });
         i++;
       }
-      return this.bubbleSort(d3Data);
+      return d3Data;
     };
 
     ChartView.prototype.bubbleSort = function(object) {

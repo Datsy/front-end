@@ -25,7 +25,7 @@ class DatsyApp.Charts
     while i < data.length
       data[i].type = "line"
       i++
-      
+    
     # TODO: Create loop to specify y-axis if colname is the same or different
     data[0].yAxis = 1
     data[1].yAxis = 2
