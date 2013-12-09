@@ -21,7 +21,7 @@
         columnToSend = columnToSend.split(' ').join('+');
       }
       this.datasetName = options.datasetName;
-      this.url = 'http://datsy-dev.azurewebsites.net/search/table?name=' + this.datasetName + '&row=ALL&column=' + columnToSend;
+      this.url = 'http://datsy.azurewebsites.net/search/table?name=' + this.datasetName + '&row=ALL&column=' + columnToSend;
       return this.fetch(this.url);
     };
 
@@ -43,6 +43,7 @@
     VisualizationDataColumn.prototype.setColumnData = function(data) {
       var _this = this;
       this.columnData = {
+        dataset: this.datasetName,
         name: this.columnName
       };
       this.columnData['data'] = data.Result.row.map(function(rowObj) {

@@ -7,7 +7,10 @@ class DatsyApp.Cart extends Backbone.Model
       @storageName = "datsy-app"
       @checkStorage(@storageName)
 
-  addColumn: (name, id) ->
+  addColumn: (name, id, dataType) ->
+    #
+    # dataType is currently UNUSED
+    #
     @cart['values'][id] = @cart['values'][id] || []
     @cart['values'][id].push name
     @cart['total']++

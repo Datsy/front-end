@@ -34,10 +34,10 @@
       return tags.list();
     };
 
-    Datsy.prototype.addColumn = function(columnName, datasetID) {
+    Datsy.prototype.addColumn = function(columnName, datasetID, dataType) {
       var cart, total;
       cart = this.get('cart');
-      total = cart.addColumn(columnName, datasetID);
+      total = cart.addColumn(columnName, datasetID, dataType);
       return this.trigger('addColumn', {
         total: total,
         columnName: columnName,
