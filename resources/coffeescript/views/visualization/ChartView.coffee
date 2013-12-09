@@ -57,21 +57,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     d3Data = []
     colors = ["red", "blue", "green", "black", "magenta", "cyan"]
     i = 0
-    for key of data.yValues
-      d3Data.push
-        key: key
-        values: []
-        color: colors[i]
 
-      i++
-    i = 0
-    while i < data.x.length
-      d3Data.forEach (item) ->
-        item.values.push
-          x: new Date(data.x[i]).getTime()
-          y: +data.yValues[item.key][i]
-      i++
-    
     @bubbleSort(d3Data)
 
   bubbleSort: (object) ->

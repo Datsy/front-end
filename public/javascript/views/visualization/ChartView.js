@@ -84,28 +84,10 @@
     };
 
     ChartView.prototype.convertJSONForD3 = function(data) {
-      var colors, d3Data, i, key;
+      var colors, d3Data, i;
       d3Data = [];
       colors = ["red", "blue", "green", "black", "magenta", "cyan"];
       i = 0;
-      for (key in data.yValues) {
-        d3Data.push({
-          key: key,
-          values: [],
-          color: colors[i]
-        });
-        i++;
-      }
-      i = 0;
-      while (i < data.x.length) {
-        d3Data.forEach(function(item) {
-          return item.values.push({
-            x: new Date(data.x[i]).getTime(),
-            y: +data.yValues[item.key][i]
-          });
-        });
-        i++;
-      }
       return this.bubbleSort(d3Data);
     };
 
