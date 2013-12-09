@@ -16,7 +16,11 @@ class DatsyApp.ListDataSetsView extends Backbone.View
     @databases.each (model) =>
       panel = new DatsyApp.DataSetItemView { datsyModel: @datsyModel, dataSetColumnTemplate: @dataSetColumnTemplate, model: model }
       shortenedNames = @shortenNames model.attributes 
-      @$el.append('<div class="dataset-table-listing" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"><div class="dataset-table-name" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.title + '</div><div class="dataset-source" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.author + '</div><div class="dataset-rating" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"><span class="glyphicon glyphicon-star" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"></span></div></div>')
+      headerString = '<div class="dataset-table-listing" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"><div class="dataset-table-name" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.title + '</div><div class="dataset-source" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.author + '</div><div class="dataset-rating" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">'
+      [1..model.attributes.star_count].forEach (star) =>
+        headerString += '<span class="glyphicon glyphicon-star" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"></span>'
+      headerString += '</div></div>'
+      @$el.append(headerString)
       @$el.append(panel.render().el)
     setTimeout (=> @$el.accordion({ collapsible: true, heightStyle: 'content', active: false, icons: false }) ), 0
     @

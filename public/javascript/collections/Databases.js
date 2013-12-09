@@ -42,6 +42,7 @@
       var _this = this;
       data.forEach(function(database) {
         var model;
+        database.star_count = Math.floor(Math.random() * 3) + 1;
         model = new DatsyApp.Database(database);
         return _this.databases.push(model);
       });
@@ -56,6 +57,18 @@
         }
         if (a.attributes[sortType].toLowerCase() < b.attributes[sortType].toLowerCase()) {
           return -1;
+        }
+        return 0;
+      });
+    };
+
+    Databases.prototype.sortByRating = function() {
+      return this.databases.sort(function(a, b) {
+        if (a.attributes.star_count > b.attributes.star_count) {
+          return -1;
+        }
+        if (a.attributes.star_count < b.attributes.star_count) {
+          return 1;
         }
         return 0;
       });

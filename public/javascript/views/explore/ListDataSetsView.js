@@ -28,14 +28,23 @@
     ListDataSetsView.prototype.render = function() {
       var _this = this;
       this.databases.each(function(model) {
-        var panel, shortenedNames;
+        var headerString, panel, shortenedNames, _i, _ref1, _results;
         panel = new DatsyApp.DataSetItemView({
           datsyModel: _this.datsyModel,
           dataSetColumnTemplate: _this.dataSetColumnTemplate,
           model: model
         });
         shortenedNames = _this.shortenNames(model.attributes);
-        _this.$el.append('<div class="dataset-table-listing" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"><div class="dataset-table-name" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.title + '</div><div class="dataset-source" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.author + '</div><div class="dataset-rating" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"><span class="glyphicon glyphicon-star" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"></span></div></div>');
+        headerString = '<div class="dataset-table-listing" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"><div class="dataset-table-name" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.title + '</div><div class="dataset-source" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">' + shortenedNames.author + '</div><div class="dataset-rating" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '">';
+        (function() {
+          _results = [];
+          for (var _i = 1, _ref1 = model.attributes.star_count; 1 <= _ref1 ? _i <= _ref1 : _i >= _ref1; 1 <= _ref1 ? _i++ : _i--){ _results.push(_i); }
+          return _results;
+        }).apply(this).forEach(function(star) {
+          return headerString += '<span class="glyphicon glyphicon-star" data-name="' + model.attributes.title + '" data-source="' + model.attributes.author + '"></span>';
+        });
+        headerString += '</div></div>';
+        _this.$el.append(headerString);
         return _this.$el.append(panel.render().el);
       });
       setTimeout((function() {

@@ -16,7 +16,8 @@
     ExploreMainView.prototype.className = 'mainView col-md-9';
 
     ExploreMainView.prototype.events = {
-      'click #sort_table_name, #sort_author, #sort_rating': 'sort'
+      'click #sort_table_name, #sort_author': 'sort',
+      'click #sort_rating': 'sortRating'
     };
 
     ExploreMainView.prototype.initialize = function(options) {
@@ -66,6 +67,12 @@
       var target;
       target = event.target.id;
       this.databases.sortBy(target.slice(5, target.length).toLowerCase());
+      this.$el.html('');
+      return this.render();
+    };
+
+    ExploreMainView.prototype.sortRating = function() {
+      this.databases.sortByRating();
       this.$el.html('');
       return this.render();
     };

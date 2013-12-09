@@ -32,6 +32,9 @@
   cursor: pointer;
   background-color: #fff;
 }
+.filter-page .filter-suggestions .panel-body ul .list-group-item:empty {
+  display: none;
+}
 .filter-page .filter-suggestions .panel-body ul .list-group-item:hover {
   background-color: #ddd;
 }

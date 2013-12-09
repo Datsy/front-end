@@ -94,6 +94,12 @@
       color #999
       cursor pointer
 
+    #sort_table_name
+      text-align left
+
+    #sort_rating
+      text-align right
+
     p:last-child
       margin-right 0px
     
@@ -215,6 +221,19 @@
     margin-bottom 0
   
 .modal
+  .modal-dialog
+    position absolute
+    left 50%
+    top 50%
+    margin-left -250px
+    margin-top -250px
+    width 500px
+
+  .modal-header
+    text-align center
+
+    .modal-data-title
+      font-weight 800
 
   .rows
     padding 0
@@ -226,3 +245,6 @@
   
   .rowValue:nth-child(odd)
     background-color #ddd
+
+  .modal-footer
+    padding 10px 20px

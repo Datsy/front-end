@@ -20,6 +20,7 @@ class DatsyApp.Databases extends Backbone.Collection
 
   addModels: (data) =>
     data.forEach (database) =>
+      database.star_count = Math.floor(Math.random() * 3) + 1
       model = new DatsyApp.Database database
       @databases.push model
     @sortBy ('table_name')
@@ -31,6 +32,14 @@ class DatsyApp.Databases extends Backbone.Collection
         return 1
       if a.attributes[sortType].toLowerCase() < b.attributes[sortType].toLowerCase()
         return -1
+      return 0
+
+  sortByRating: ->
+    @databases.sort (a,b) ->
+      if a.attributes.star_count > b.attributes.star_count
+        return -1
+      if a.attributes.star_count < b.attributes.star_count
+        return 1
       return 0
 
   each: (cb) =>
