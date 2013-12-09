@@ -9,6 +9,7 @@ class DatsyApp.VisView extends Backbone.View
 
   initialize: ->
     @dataLoaded = false
+    @needsTwoY = false
     @loadingTemplate = @model.get("templates")["visualizeLoading"]
     @template = @model.get("templates")["visualize"]
     @failedTemplate = @model.get('templates')['failedTemplate']
@@ -19,6 +20,7 @@ class DatsyApp.VisView extends Backbone.View
         console.log '10 seconds past, no response'
         @renderFailed()
     ),10000
+    @model.on 'setNumY', @setNumY
     @model.on "visualizationDataLoaded", =>
       @dataLoaded = true
       @currentGraphView = new DatsyApp.ChartView(
@@ -26,6 +28,10 @@ class DatsyApp.VisView extends Backbone.View
         data: @model.get("visualizationData")
       )
       @renderLoaded()
+
+  setNumY: (bool) =>
+    @needsTwoY = bool
+    debugger
 
   resize: ->
     # SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
@@ -62,8 +68,9 @@ class DatsyApp.VisView extends Backbone.View
       width: w
 
     @$graph.append @currentGraphView.render(chartType)
-    if @model.get("visualizationData").columnsForY.length > 1
-        $('#lineChart2Y').removeClass "hidden"
+    debugger
+    if @needsTwoY
+      $('#lineChart2Y').removeClass "hidden"
     @
 
   renderLineChart: ->

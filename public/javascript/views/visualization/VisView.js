@@ -9,6 +9,7 @@
 
     function VisView() {
       this.navigateToHome = __bind(this.navigateToHome, this);
+      this.setNumY = __bind(this.setNumY, this);
       _ref = VisView.__super__.constructor.apply(this, arguments);
       return _ref;
     }
@@ -26,6 +27,7 @@
     VisView.prototype.initialize = function() {
       var _this = this;
       this.dataLoaded = false;
+      this.needsTwoY = false;
       this.loadingTemplate = this.model.get("templates")["visualizeLoading"];
       this.template = this.model.get("templates")["visualize"];
       this.failedTemplate = this.model.get('templates')['failedTemplate'];
@@ -37,6 +39,7 @@
           return _this.renderFailed();
         }
       }), 10000);
+      this.model.on('setNumY', this.setNumY);
       return this.model.on("visualizationDataLoaded", function() {
         _this.dataLoaded = true;
         _this.currentGraphView = new DatsyApp.ChartView({
@@ -45,6 +48,11 @@
         });
         return _this.renderLoaded();
       });
+    };
+
+    VisView.prototype.setNumY = function(bool) {
+      this.needsTwoY = bool;
+      debugger;
     };
 
     VisView.prototype.resize = function() {
@@ -86,7 +94,8 @@
         width: w
       });
       this.$graph.append(this.currentGraphView.render(chartType));
-      if (this.model.get("visualizationData").columnsForY.length > 1) {
+      debugger;
+      if (this.needsTwoY) {
         $('#lineChart2Y').removeClass("hidden");
       }
       return this;

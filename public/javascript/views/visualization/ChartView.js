@@ -63,16 +63,19 @@
     };
 
     ChartView.prototype.convertData = function(options) {
-      var id, value, _ref1, _ref2,
+      var i, id, value, _ref1, _ref2,
         _this = this;
+      i = 0;
       _ref1 = options.data.columnsForX;
       for (id in _ref1) {
         value = _ref1[id];
+        i++;
         this.rawData[id] = {
           x: value[0].getColumnData(),
           yValues: {}
         };
       }
+      this.model.setNumY(i !== 1);
       _ref2 = options.data.columnsForY;
       for (id in _ref2) {
         value = _ref2[id];
@@ -114,7 +117,6 @@
         }
         series++;
       }
-      console.log('d3Data:', d3Data);
       return d3Data;
     };
 

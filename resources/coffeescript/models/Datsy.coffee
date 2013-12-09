@@ -16,6 +16,9 @@ class DatsyApp.Datsy extends Backbone.Model
     tags = @get 'tags'
     return tags.list();
 
+  setNumY: (bool) ->
+    @trigger 'setNumY', bool
+
   addColumn: (columnName, datasetID, dataType) ->
     cart = @get 'cart'
     total = cart.addColumn columnName, datasetID, dataType
