@@ -61,8 +61,9 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     color_idx = 0
     for dataset of data
       for column of data[dataset].yValues
+        dataSetNameClean = @cleanName dataset
         d3Data.push
-          key: dataset + " " + column
+          key: dataSetNameClean + " - " + column
           values: []
           color: colors[color_idx]
         color_idx++
@@ -82,6 +83,17 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     # @bubbleSort(d3Data)
     d3Data
 
+  cleanName: (name) ->
+    name = name.split('_')
+    name = name.map (word) ->
+      first = word.slice(0,1)
+      first = first.toUpperCase();
+      word = word.slice(1, word.length)
+      word = first + word
+      word
+    name = name.join(' ')
+    name
+  
   bubbleSort: (object) ->
     recurse = (array) ->
       throw array  unless Array.isArray(array)
