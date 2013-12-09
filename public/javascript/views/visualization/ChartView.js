@@ -20,10 +20,7 @@
       this.currentYModel = null;
       this.chartWidth = $(".container").width();
       this.chartHeight = this.chartWidth / 2;
-      this.rawData = {
-        x: [],
-        yValues: {}
-      };
+      this.rawData = {};
       this.convertData(options);
       this.margin = {
         top: 20,
@@ -66,39 +63,57 @@
     };
 
     ChartView.prototype.convertData = function(options) {
-      var _this = this;
-      this.rawData.x = options.data.columnsForX[0].getColumnData();
-      options.data.columnsForY.forEach(function(column) {
-        return _this.rawData.yValues[column.columnName] = column.getColumnData();
-      });
-      console.log('raw: ', this.rawData);
+      var id, value, _ref1, _ref2,
+        _this = this;
+      _ref1 = options.data.columnsForX;
+      for (id in _ref1) {
+        value = _ref1[id];
+        this.rawData[id] = {
+          x: value[0].getColumnData(),
+          yValues: {}
+        };
+      }
+      _ref2 = options.data.columnsForY;
+      for (id in _ref2) {
+        value = _ref2[id];
+        value.forEach(function(column) {
+          return _this.rawData[id].yValues[column.columnName] = column.getColumnData();
+        });
+      }
       return this.data = this.convertJSONForD3(this.rawData);
     };
 
     ChartView.prototype.convertJSONForD3 = function(data) {
-      var colors, d3Data, i, key;
+      var colors, column, d3Data, dataset, i, series;
       console.log('data: ', data);
       d3Data = [];
       colors = ["red", "blue", "green", "black", "magenta", "cyan"];
       i = 0;
-      for (key in data.yValues) {
-        d3Data.push({
-          key: key,
-          values: [],
-          color: colors[i]
-        });
-        i++;
-      }
-      i = 0;
-      while (i < data.x.length) {
-        d3Data.forEach(function(item) {
-          return item.values.push({
-            x: new Date(data.x[i]).getTime(),
-            y: +data.yValues[item.key][i]
+      series = 0;
+      for (dataset in data) {
+        for (column in data[dataset].yValues) {
+          d3Data.push({
+            key: dataset + " " + column,
+            values: [],
+            color: "red"
           });
-        });
-        i++;
+          i = 0;
+          while (i < data[dataset].x.length) {
+            d3Data[series].values.push({
+              x: new Date(data[dataset].x[i]).getTime()
+            });
+            i++;
+          }
+          i = 0;
+          debugger;
+          while (i < data[dataset].yValues[column].length) {
+            d3Data[series].values[i].y = +data[dataset].yValues[column][i];
+            i++;
+          }
+        }
+        series++;
       }
+      console.log('d3Data: ', d3Data);
       return d3Data;
     };
 

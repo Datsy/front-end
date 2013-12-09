@@ -14,8 +14,8 @@
     }
 
     VisualizationData.prototype.initialize = function(options) {
-      this.columnsForY = [];
-      this.columnsForX = [];
+      this.columnsForY = {};
+      this.columnsForX = {};
       this.totalLoaded = 0;
       this.total = 0;
       return this;
@@ -37,6 +37,12 @@
         _this = this;
       for (id in cart) {
         columnArray = cart[id];
+        if (!this.columnsForX[id]) {
+          this.columnsForX[id] = [];
+        }
+        if (!this.columnsForY[id]) {
+          this.columnsForY[id] = [];
+        }
         columnArray.forEach(function(name) {
           var newX, newY;
           _this.total++;
@@ -45,14 +51,14 @@
               columnName: 'Date',
               datasetName: id
             });
-            _this.columnsForX.push(newX);
+            _this.columnsForX[id].push(newX);
             return newX.on('loaded', _this.tagLoaded);
           } else {
             newY = new DatsyApp.VisualizationDataColumn({
               columnName: name,
               datasetName: id
             });
-            _this.columnsForY.push(newY);
+            _this.columnsForY[id].push(newY);
             return newY.on('loaded', _this.tagLoaded);
           }
         });
