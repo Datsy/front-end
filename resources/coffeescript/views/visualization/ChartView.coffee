@@ -59,12 +59,14 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
     colors = ["red", "blue", "green", "black", "magenta", "cyan"]
     i = 0
     series = 0
+    color_idx = 0
     for dataset of data
       for column of data[dataset].yValues
         d3Data.push
           key: dataset + " " + column
           values: []
-          color: "red" #colors[i]
+          color: colors[color_idx]
+        color_idx++
 
         i = 0
         while i < data[dataset].x.length

@@ -84,19 +84,21 @@
     };
 
     ChartView.prototype.convertJSONForD3 = function(data) {
-      var colors, column, d3Data, dataset, i, series;
+      var color_idx, colors, column, d3Data, dataset, i, series;
       console.log('data: ', data);
       d3Data = [];
       colors = ["red", "blue", "green", "black", "magenta", "cyan"];
       i = 0;
       series = 0;
+      color_idx = 0;
       for (dataset in data) {
         for (column in data[dataset].yValues) {
           d3Data.push({
             key: dataset + " " + column,
             values: [],
-            color: "red"
+            color: colors[color_idx]
           });
+          color_idx++;
           i = 0;
           while (i < data[dataset].x.length) {
             d3Data[series].values.push({
