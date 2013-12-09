@@ -31,7 +31,6 @@ class DatsyApp.VisView extends Backbone.View
 
   setNumY: (bool) =>
     @needsTwoY = bool
-    debugger
 
   resize: ->
     # SUB VIEWS NEED TO LISTEN FOR RESIZE AND DRAW
@@ -68,7 +67,6 @@ class DatsyApp.VisView extends Backbone.View
       width: w
 
     @$graph.append @currentGraphView.render(chartType)
-    debugger
     if @needsTwoY
       $('#lineChart2Y').removeClass "hidden"
     @

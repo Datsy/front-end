@@ -51,8 +51,7 @@
     };
 
     VisView.prototype.setNumY = function(bool) {
-      this.needsTwoY = bool;
-      debugger;
+      return this.needsTwoY = bool;
     };
 
     VisView.prototype.resize = function() {
@@ -94,7 +93,6 @@
         width: w
       });
       this.$graph.append(this.currentGraphView.render(chartType));
-      debugger;
       if (this.needsTwoY) {
         $('#lineChart2Y').removeClass("hidden");
       }
