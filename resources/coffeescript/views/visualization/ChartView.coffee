@@ -43,11 +43,16 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
       y: @currentYModel
 
   convertData: (options) ->
+    i = 0
     for id, value of options.data.columnsForX
+      i++
       @rawData[id] = {
         x: value[0].getColumnData()
         yValues: {}
       }
+
+    @model.setNumY(i != 1)
+
     for id, value of options.data.columnsForY
       value.forEach (column) =>
         @rawData[id].yValues[column.columnName] = column.getColumnData()
@@ -77,9 +82,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
           d3Data[series].values[i].y = +data[dataset].yValues[column][i]
           i++
       series++
-
-    console.log 'd3Data:', d3Data
-    
+    console.log 'd3Data', d3Data
     # @bubbleSort(d3Data)
     d3Data
 

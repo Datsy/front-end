@@ -34,6 +34,10 @@
       return tags.list();
     };
 
+    Datsy.prototype.setNumY = function(bool) {
+      return this.trigger('setNumY', bool);
+    };
+
     Datsy.prototype.addColumn = function(columnName, datasetID, dataType) {
       var cart, total;
       cart = this.get('cart');
