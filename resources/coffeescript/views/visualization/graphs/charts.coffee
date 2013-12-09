@@ -79,25 +79,26 @@ class DatsyApp.Charts
       
       return chart
 
-  renderStackedAreaChart:  (data) ->
+  renderStackedAreaChart: (data) ->
+    debugger
     convertData = (data) ->
       convertedData = []
       series = 0
 
       while series < data.length
-        convertedData[series] =
+        convertedData[series] = {
           key: data[series].key
           values: []
           color: data[series].color
+        }
 
         i = 0
-
         while i < data[series].values.length
           convertedData[series].values[i] = [data[series].values[i].x, data[series].values[i].y]
           i++
         series++
       convertedData
-
+    
     newData = convertData(data)
     nv.addGraph ->
       chart = nv.models.stackedAreaChart().x((d) ->
