@@ -43,6 +43,10 @@
     };
 
     ColumnCartView.prototype.clearCart = function() {
+      $('.addColumnForVis').each(function() {
+        console.log($(this));
+        return $(this).attr('disabled', false);
+      });
       $('.total-columns-added').text('0');
       $('#go').prop('disabled', true);
       $('#selectedColumns').html('<li class="list-group-item" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="No Selected Columns">No Columns Selected</li>');
