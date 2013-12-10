@@ -118,6 +118,7 @@
         series++;
       }
       console.log('d3Data', d3Data);
+      this.bubbleSort(d3Data);
       return d3Data;
     };
 

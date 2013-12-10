@@ -23,7 +23,7 @@ class DatsyApp.Databases extends Backbone.Collection
       database.star_count = Math.floor(Math.random() * 3) + 1
       model = new DatsyApp.Database database
       @databases.push model
-    @sortBy ('table_name')
+    @sortBy ('author')
     @trigger 'add'
 
   sortBy: (sortType) ->

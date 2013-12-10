@@ -83,7 +83,7 @@ class DatsyApp.ChartView extends DatsyApp.SvgBackboneView
           i++
       series++
     console.log 'd3Data', d3Data
-    # @bubbleSort(d3Data)
+    @bubbleSort(d3Data)
     d3Data
 
   cleanName: (name) ->
