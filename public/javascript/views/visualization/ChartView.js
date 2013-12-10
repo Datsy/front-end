@@ -113,6 +113,7 @@
           series++;
         }
       }
+      this.bubbleSort(d3Data);
       return d3Data;
     };
 
