@@ -62,6 +62,7 @@
     };
 
     Datsy.prototype.clearCart = function() {
+      this.set('chartType', 'lineChart');
       this.get('visualizationData').clearOldData();
       return this.get('cart').clearCart();
     };
