@@ -46,7 +46,7 @@
         model = new DatsyApp.Database(database);
         return _this.databases.push(model);
       });
-      this.sortBy('table_name');
+      this.sortBy('author');
       return this.trigger('add');
     };
 
