@@ -39,6 +39,10 @@ Unit testing was done in vanilla **Jasmine**. The core functionality of this tes
 
 In the first days of this project, we needed data to build our JSON files, which would serve as the mock data to fill out our pages until the API was ready. We wrote a very simple data scraper in Node and Express, which pulled data from sites with no public API, parsed it, and stored it in a **PostGres** database. While it ultimately proved more useful to just make up all the data to build our JSON files from, this first pass proved informative in learning serve side data collection and storage.
 
+##Screenshots
+
+![Example screens](https://raw.github.com/RyanMG/Datsy.io-front-end/master/datsy-screens.jpg "Example screen shots")
+
 
 ##The Application Structure
 
