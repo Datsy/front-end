@@ -2,6 +2,8 @@ class DatsyApp.Charts
   helpers: new DatsyApp.ChartHelpers()
 
   renderLineChart: (data) ->
+    console.log 'data:', data
+
     nv.addGraph ->
       chart = nv.models.lineWithFocusChart()
       chart.xAxis.tickFormat (d) ->
@@ -83,7 +85,6 @@ class DatsyApp.Charts
     convertData = (data) ->
       convertedData = []
       series = 0
-
       while series < data.length
         convertedData[series] = {
           key: data[series].key
@@ -99,6 +100,7 @@ class DatsyApp.Charts
       convertedData
     
     newData = convertData(data)
+    console.log 'newData:', newData
     nv.addGraph ->
       chart = nv.models.stackedAreaChart().x((d) ->
         d[0]
